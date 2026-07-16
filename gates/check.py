@@ -41,7 +41,27 @@ def gate_M0() -> tuple[bool, str]:
     return ok, "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
 
 
-GATES = {"M0": gate_M0}
+def gate_M1() -> tuple[bool, str]:
+    """IAST transliteration + Devanāgarī integrity."""
+    py = str(ROOT / ".venv" / "bin" / "python")
+    rc, out = _run([py, "-m", "pytest", "tests/corpus/test_translit.py", "-q"])
+    if rc != 0:
+        return False, f"transliteration tests failed:\n{out}"
+    ed_path = ROOT / "data" / "vakyapadiya" / "edition.jsonl"
+    if not ed_path.exists():
+        return False, "edition.jsonl missing"
+    n = missing_iast = 0
+    for line in ed_path.open(encoding="utf-8"):
+        row = json.loads(line)
+        n += 1
+        iast = row.get("iast_lines")
+        if not iast or len(iast) != len(row["mula_lines"]) or not all(s.strip() for s in iast):
+            missing_iast += 1
+    ok = n == 1797 and missing_iast == 0
+    return ok, f"rows={n}; rows_missing_iast={missing_iast}"
+
+
+GATES = {"M0": gate_M0, "M1": gate_M1}
 
 
 def main(argv: list[str]) -> int:

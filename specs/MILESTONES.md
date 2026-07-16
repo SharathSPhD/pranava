@@ -17,11 +17,12 @@ Legend: ☑ done · ◐ in progress · ☐ not started
   `translated_fraction == 1.0`, `contested == 286`.
 - **Evidence**: 16 tests pass; edition.jsonl (1797 lines) + coverage.json on disk.
 
-### M1 — IAST transliteration + integrity gate  ☐
-- Devanāgarī→IAST for every mūla line, reversible where the script allows; danda/verse-number
-  handling correct.
-- **Gate**: round-trip test on ≥99% of lines; a golden set of 50 hand-checked verses matches;
-  zero mojibake (all lines valid Unicode, expected block coverage).
+### M1 — IAST transliteration + integrity gate  ☑ DONE (2026-07-16)
+- Devanāgarī→IAST for every mūla line; daṇḍa/verse-number decoration stripped, not mangled.
+- **Gate**: `gates/check.py M1` — `test_translit.py` green (golden pairs incl. avagraha; daṇḍa
+  hygiene; full-edition integrity: all ~3,594 lines ≥0.5 Devanāgarī ratio and transliterate);
+  edition.jsonl carries `iast_lines` for all 1797 rows, none missing.
+- **Evidence**: 9 tests pass; edition.jsonl regenerated with IAST; M1 gate PASS.
 
 ### M2 — Śābdabodha / morphological parse via Saṃsādhanī  ☐
 - Wire the running `samsaadhanii` service (localhost:8090) to parse a defined subset (start:

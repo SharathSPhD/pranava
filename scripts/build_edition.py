@@ -6,6 +6,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from pranava.corpus.edition import build_edition
+from pranava.corpus.translit import to_iast
 
 OUT = Path(__file__).resolve().parents[1] / "data" / "vakyapadiya"
 
@@ -21,6 +22,7 @@ def main() -> None:
             row["vid"] = k.vid.canonical
             row["kanda"] = k.vid.kanda
             row["mula_lines"] = list(k.mula_lines)
+            row["iast_lines"] = [to_iast(line) for line in k.mula_lines]
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
     (OUT / "coverage.json").write_text(json.dumps(cov, indent=2), encoding="utf-8")
