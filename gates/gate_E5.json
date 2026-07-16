@@ -1,0 +1,12 @@
+{
+  "milestone": "E5",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "e5 ran"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "prereg_exists:ok; report_exists:ok; PR1_recorded:ok; PR2_text_near_chance:ok; gap_has_CI:ok | gap=0.5 (localization exploratory NULL — saturated; see E5-report)"
+  },
+  "closed": true
+}

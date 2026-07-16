@@ -93,9 +93,23 @@ Legend: ☑ done · ◐ in progress · ☐ not started
   ≥3 confirmatory tests each with CI + bootstrap p.
 - **Evidence**: `data/experiments/e2_results.json`, `e2_trajectories.png`; gate_E2.json.
 
-### E3 — Hypothesis H-VERBFIRST (pre-registered)  ☐
-- Compare emergence/robustness of event vs entity representations in speech vs text models.
-- **Gate**: same rigor bar as E2; explicit text-vs-speech contrast; reproducible.
+### E3 — Second causal text model (loop-driven)  ☑ DONE (2026-07-16, via X0)
+- Reused E2 pipeline with distilgpt2; the holism finding replicated (speech verb_final HI 0.406 vs
+  0.148, CI [0.128, 0.384], p=0.0005). See X0.
+
+### E5 — H-PROSODY: the acoustic-blindness gap (pre-registered, loop-proposed)  ☑ DONE (2026-07-16)
+- Quantified the speech-vs-text pragmatic gap on a controlled prosodic contrast: speech decodes
+  prosody (acc 1.0), text is exactly at chance (0.5) — **gap 0.5, CI [0.425, 0.581]**.
+- **Honest negative**: the pre-registered *exploratory* layer-localization hypothesis is NOT
+  supported — the rate+pitch manipulation saturates all 13 layers, so prosody depth cannot be
+  compared to meaning depth. Recorded to the loop ledger as a near-miss (tier 1) so the selector
+  refines rather than repeats. Full reading: `research/E5-report.md`.
+- **Gate** (`gates/check.py E5`, validity-not-outcome): pre-reg + report present, PR1/PR2 recorded,
+  gap has CI. Evidence: `data/experiments/e5_results.json`, gate_E5.json.
+
+### E3-orig — Hypothesis H-VERBFIRST (pre-registered)  ☐ (superseded by E2 exploratory + E3/E2b)
+- The verb-first/event-first question is partly answered by E2's structure breakdown (verb_first
+  items: speech HI 0.377 vs text 0.022). A dedicated pre-registered version remains optional.
 
 ### E4 — Report  ☐
 - Write up Pillar II as a short paper (methods, results incl. negatives, threats to validity).

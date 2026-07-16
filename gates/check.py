@@ -223,6 +223,30 @@ def gate_E2() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_E5() -> dict:
+    """Prosody gap experiment ran validly and is honestly reported (incl. its negative)."""
+    res_p = ROOT / "data/experiments/e5_results.json"
+    prereg = ROOT / "research/prereg/H-PROSODY-E5.md"
+    report = ROOT / "research/E5-report.md"
+    code = _verdict(res_p.exists(), "e5 ran" if res_p.exists() else "e5 not run")
+    if res_p.exists():
+        res = json.loads(res_p.read_text())
+        checks = {
+            "prereg_exists": prereg.exists(),
+            "report_exists": report.exists(),
+            "PR1_recorded": "acc_speech_best_layer" in res,
+            "PR2_text_near_chance": res.get("PR2_text_near_chance") is True,
+            "gap_has_CI": "ci95" in res.get("prosody_gap_speech_minus_text", {}),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | gap={res.get('prosody_gap_speech_minus_text',{}).get('effect')} "
+                         f"(localization exploratory NULL — saturated; see E5-report)")
+    else:
+        dom = _verdict(False, "e5_results.json missing")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_X0() -> dict:
     """Autoresearch loop (reuses prabodha EFE) wired end-to-end with a recorded cycle."""
     rc, out = _run([PY, "-m", "pytest", "tests/autoresearch/", "-q"])
@@ -249,7 +273,7 @@ def gate_X0() -> dict:
 
 GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3,
-    "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "X0": gate_X0,
+    "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "X0": gate_X0,
 }
 
 
