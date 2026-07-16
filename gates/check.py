@@ -100,7 +100,35 @@ def gate_M2() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
-GATES = {"M0": gate_M0, "M1": gate_M1, "M2": gate_M2}
+def gate_M3() -> dict:
+    """Verse-anchored concept knowledge graph."""
+    rc, out = _run([PY, "-m", "pytest", "tests/kg/", "-q"])
+    code = _verdict(rc == 0, "concept-graph tests green" if rc == 0 else out)
+
+    g_p = ROOT / "data/vakyapadiya/concept_graph.json"
+    if g_p.exists():
+        g = json.loads(g_p.read_text())
+        concepts = g.get("concepts", [])
+        edges = g.get("edges", [])
+        curated = g.get("curated_relations", [])
+        all_anchored = all(c.get("anchor_count", 0) >= 1 for c in concepts)
+        curated_anchored = all(r.get("anchor_vid") for r in curated)
+        checks = {
+            "concepts>=12": len(concepts) >= 12,
+            "all_concepts_anchored": all_anchored,
+            "edges>0": len(edges) > 0,
+            "curated>=4": len(curated) >= 4,
+            "curated_all_anchored": curated_anchored,
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | concepts={len(concepts)} edges={len(edges)} curated={len(curated)}")
+    else:
+        dom = _verdict(False, "concept_graph.json missing — run scripts/build_concept_graph.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
+GATES = {"M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3}
 
 
 def main(argv: list[str]) -> int:

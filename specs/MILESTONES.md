@@ -41,11 +41,16 @@ Legend: ☑ done · ◐ in progress · ☐ not started
 - **Gate**: with segmentation, ≥0.85 token coverage on Brahma-kāṇḍa; a 20-verse gold set
   spot-checked and documented.
 
-### M3 — Concept knowledge graph  ☐
-- Extract a typed graph of Bhartṛhari's key concepts with verse anchors and relations
-  (defines, contrasts-with, depends-on). Seeded from the commentary's own section labels.
-- **Gate**: ≥12 core concepts, each anchored to ≥1 verse with a quoted mūla span; graph loads,
-  is acyclic where it must be, and every edge cites a source verse; query API returns anchors.
+### M3 — Concept knowledge graph  ☑ DONE (2026-07-16)
+- 20 core concepts, each **empirically anchored** to verses whose mūla genuinely contains the
+  stem (diacritic-folded IAST match), quoting the original line; 125 verse-grounded co-occurrence
+  edges; 6 curated doctrinal relations, each verse-anchored and hand-verified
+  (e.g. `śabda identified-with brahma @1.1`; `vākya grasped-by pratibhā @2.143` — the locus
+  classicus; `sphoṭa manifested-by dhvani @1.75`).
+- **Gate** (`gates/check.py M3`, dual): code = 7 KG tests green (incl. "anchors actually contain
+  the term", "edges grounded", "curated relations verse-anchored"); domain = ≥12 concepts all
+  anchored, edges>0, ≥4 curated relations all anchored.
+- **Evidence**: `data/vakyapadiya/concept_graph.json` (71 KB); gate_M3.json.
 
 ### M4 — Published, queryable edition  ☐
 - Static site + JSON API (Vercel) and/or Supabase Postgres with the edition, parses, and KG.

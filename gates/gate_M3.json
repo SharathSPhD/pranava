@@ -1,0 +1,12 @@
+{
+  "milestone": "M3",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "concept-graph tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "concepts>=12:ok; all_concepts_anchored:ok; edges>0:ok; curated>=4:ok; curated_all_anchored:ok | concepts=20 edges=125 curated=6"
+  },
+  "closed": true
+}
