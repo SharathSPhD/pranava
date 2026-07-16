@@ -35,8 +35,9 @@ more than the **text** model does. Honestly reported, confound-checked — see
 | E0 | Speech-model representation harness on GB10 GPU (WavLM, ~50 Hz) | ✅ |
 | E1 | Controlled stimulus set (288 items, balanced, synthesized) | ✅ |
 | E2 | H-HOLISM pre-registered experiment — **speech more holistic on late-resolving** | ✅ |
+| X0 | Autoresearch loop (reuses prabodha EFE) — full cycle; finding replicated across 4 model pairings | ✅ |
 
-Run the whole ledger: `python gates/check.py`. Milestones + gates: [`specs/MILESTONES.md`](specs/MILESTONES.md).
+8 milestones. Run the whole ledger: `python gates/check.py`. Milestones + gates: [`specs/MILESTONES.md`](specs/MILESTONES.md).
 
 ## Discipline
 Spec/PRD-driven · TDD (60 tests) · **dual-verdict gates** (code + domain, from prabodha) ·

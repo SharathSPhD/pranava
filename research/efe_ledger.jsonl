@@ -1,0 +1,5 @@
+{"kind": "observation", "candidate_id": "e2b_hubert_replication", "primary_tier": 2, "gate": "/home/sharaths/projects/pranava/gates/gate_E2.json"}
+{"kind": "proposal", "candidate_id": "e3_second_text_model", "action": "smoke", "efe": -3.1361, "knobs": {"text_model": "bert-base-uncased"}}
+{"kind": "observation", "candidate_id": "e3_second_text_model", "primary_tier": 3, "gate": "/home/sharaths/projects/pranava/gates/gate_E3.json"}
+{"kind": "disposition", "candidate_id": "e3_second_text_model", "note": "BERT→distilgpt2 (causal validity)"}
+{"kind": "proposal", "candidate_id": "e5_prosody_manipulation", "action": "smoke", "efe": -3.1361, "knobs": {"stimulus": "prosody"}}

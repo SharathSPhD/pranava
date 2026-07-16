@@ -1,0 +1,12 @@
+{
+  "milestone": "E3",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "E2 pipeline reused"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "speech>distilgpt2 on verb_final CI [0.1276, 0.384] excludes 0"
+  },
+  "closed": true
+}

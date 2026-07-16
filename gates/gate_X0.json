@@ -1,0 +1,12 @@
+{
+  "milestone": "X0",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "autoresearch loop tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "has_observations:ok; has_proposals:ok; full_cycle_recorded:ok | obs=2 prop=2"
+  },
+  "closed": true
+}

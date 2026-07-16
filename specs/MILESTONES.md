@@ -105,10 +105,20 @@ Legend: ☑ done · ◐ in progress · ☐ not started
 
 ## Cross-cutting
 
-### X0 — Autoresearch loop wired  ☐
-- Adapt prabodha's loop to drive E2/E3: hypothesis → experiment → verify-gate → refine, logging
-  each iteration.
-- **Gate**: one full loop iteration recorded end-to-end with artifacts per stage.
+### X0 — Autoresearch loop wired  ☑ DONE (2026-07-16)
+- **Reuses** (not copies) prabodha's `EFESelector` (imported via a venv `.pth`) to drive
+  Sphoṭa-Bench: a Candidate menu of next experiments, `gate_*.json` → tiered `Observation`, a
+  JSONL ledger (`research/efe_ledger.jsonl`) making beliefs re-entrant. Explore→confirm emerges
+  (cheap 'smoke' actions first).
+- **Closed a full cycle live**: seeded from gate_E2 → proposed `e3_second_text_model` → agent
+  *disposed* (BERT is bidirectional → substituted causal distilgpt2, documented) → ran E3 →
+  observed gate_E3 (tier 3) → recorded → loop re-proposed `e5_prosody_manipulation`.
+- **E3 result**: the holism finding replicates on a *third* model (distilgpt2: speech verb_final
+  HI 0.406 vs 0.148, effect +0.258, CI [0.128, 0.384], p=0.0005). Now robust across 2 speech
+  encoders (WavLM, HuBERT) × 2 causal text models (GPT-2, distilgpt2).
+- **Gate** (`gates/check.py X0`, dual): code = 9 loop tests green; domain = ledger shows a full
+  propose→observe→re-propose cycle (obs=2, prop=2).
+- **Evidence**: `research/efe_ledger.jsonl`, `data/experiments/e3_results.json`, gate_X0/E3.json.
 
 ### X1 — Pramāṇa validation layer (reuse)  ☐
 - Reuse the operator's published Navya-Nyāya reasoning (pramana) as the "Layer C" validator over

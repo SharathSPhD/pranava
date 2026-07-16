@@ -65,6 +65,13 @@ Both replication hypotheses (R1, R2) supported. The late-holism effect is theref
 WavLM artifact** — it holds across two independently-trained self-supervised speech encoders.
 Artifact: `data/experiments/e2b_results.json`.
 
+## Second replication — a third model, via the autoresearch loop (E3)
+The prabodha-EFE autoresearch loop (X0) proposed a second text model; agent disposition swapped the
+proposed *bidirectional* BERT for a *causal* **distilgpt2** (valid for the incremental design).
+Result: speech (WavLM) verb_final HI 0.406 vs distilgpt2 0.148 — effect +0.258, CI [0.128, 0.384],
+p=0.0005. The effect is therefore robust across **2 speech encoders (WavLM, HuBERT) × 2 causal text
+models (GPT-2, distilgpt2)** — four model pairings, same direction, all CIs excluding 0.
+
 ## Threats to validity (not hidden)
 Synthetic single-speaker TTS; small closed vocabulary (11 labels); word→frame alignment is
 implicit in the relative-position grid; "cumulative mean-pool" is one operationalisation of

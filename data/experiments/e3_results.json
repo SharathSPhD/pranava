@@ -1,0 +1,14 @@
+{
+  "text_model": "distilgpt2 (causal; substituted for proposed BERT \u2014 see docstring)",
+  "HI_speech_verb_final": 0.4055,
+  "HI_distilgpt2_verb_final": 0.148,
+  "speech_gt_text_verb_final": {
+    "effect": 0.2575,
+    "ci95": [
+      0.1276,
+      0.384
+    ],
+    "p_one_sided": 0.0005,
+    "supported": true
+  }
+}

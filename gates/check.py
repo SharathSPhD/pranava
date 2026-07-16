@@ -223,9 +223,33 @@ def gate_E2() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_X0() -> dict:
+    """Autoresearch loop (reuses prabodha EFE) wired end-to-end with a recorded cycle."""
+    rc, out = _run([PY, "-m", "pytest", "tests/autoresearch/", "-q"])
+    code = _verdict(rc == 0, "autoresearch loop tests green" if rc == 0 else out)
+
+    ledger = ROOT / "research" / "efe_ledger.jsonl"
+    if ledger.exists():
+        entries = [json.loads(x) for x in ledger.open(encoding="utf-8") if x.strip()]
+        kinds = {e.get("kind") for e in entries}
+        n_obs = sum(1 for e in entries if e.get("kind") == "observation")
+        n_prop = sum(1 for e in entries if e.get("kind") == "proposal")
+        checks = {
+            "has_observations": "observation" in kinds and n_obs >= 1,
+            "has_proposals": "proposal" in kinds and n_prop >= 1,
+            "full_cycle_recorded": n_obs >= 2 and n_prop >= 1,  # propose→run→observe→re-propose
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | obs={n_obs} prop={n_prop}")
+    else:
+        dom = _verdict(False, "efe_ledger.jsonl missing — run scripts/autoresearch_step.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3,
-    "E0": gate_E0, "E1": gate_E1, "E2": gate_E2,
+    "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "X0": gate_X0,
 }
 
 

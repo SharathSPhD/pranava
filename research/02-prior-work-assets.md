@@ -38,3 +38,21 @@ Direct inspection of the sibling projects. Only what pranava can actually reuse.
   (transformer-lens/nnsight, CUDA env at ActiveCIrcuitDiscovery/.venv) — probing infrastructure
   reusable for Pillar II's representation probes.
 - **Saṃsādhanī** — morphology works; segmenter/parser blocked (see 01-samsaadhanii-integration.md).
+
+## UPDATE — prabodha autoresearch loop mechanics (from prabodha-survey, 2026-07-16)
+Confirmed reusable, imported into the pranava venv via a `.pth` (prabodha `__init__` is empty,
+EFE selector is stdlib-only):
+- **`prabodha.efe.agent.EFESelector`** — analytic Expected-Free-Energy selector over experiment
+  candidates. `select(candidates, *, budget_gpu_hours, exclude)` → Proposal; `rank`, `update`,
+  `score`, `belief`. Candidate(id, description, knobs, prior_value_hint); Observation(primary_tier,
+  secondary_tier); Action(name, gpu_hours, resolution) with smoke/partial/full tiers. EFE =
+  −(w_epi·epistemic + w_prag·pragmatic); explore→confirm emerges (high-entropy→smoke,
+  high-belief→full). iccha–jñāna–kriyā as auto-research.
+- **`prabodha.efe.gate_to_obs`** — closed gate JSON → tiered Observation (3=pass+headroom,
+  2=pass, 1=near-miss, 0=fail).
+- **`prabodha.stats.core`** — permutation_p, hedges_g, boot_ci_g, holm, screen (numpy).
+- **`prabodha.contracts.closure`** — Pydantic GateReport with R1 dual-closure validator
+  (code_gate + domain_gate both pass|pruned); honest-negative closure via status="pruned".
+- Loop: rebuild beliefs from ledger replay → propose top candidate → dispatch knobs → observe
+  gate → update belief → re-enter. Ledger = JSONL (research/efe_ledger.jsonl). RULES R1–R9.
+- **pranava X0 reuses EFESelector directly** to propose the next Sphoṭa-Bench experiment.
