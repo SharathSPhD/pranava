@@ -1,0 +1,37 @@
+{
+  "prereg": "research/prereg/H-HOLISM-2b.md",
+  "speech_model": "facebook/hubert-base-ls960",
+  "probe_validity": {
+    "chance": 0.0909,
+    "hubert_full_utt_Ptrue": 0.3975
+  },
+  "means": {
+    "HI_hubert_verb_final": 0.4279,
+    "HI_text_verb_final": 0.1686,
+    "HI_hubert_late": 0.3409,
+    "HI_text_late": 0.1458,
+    "wavlm_verb_final_ref": 0.4055
+  },
+  "tests": {
+    "R1_hubert_gt_text_verb_final": {
+      "effect_HI_diff": 0.2593,
+      "ci95": [
+        0.1266,
+        0.3866
+      ],
+      "p_one_sided": 0.0,
+      "n": 96,
+      "supported_after_holm": true
+    },
+    "R2_hubert_gt_text_late": {
+      "effect_HI_diff": 0.1951,
+      "ci95": [
+        0.1133,
+        0.2731
+      ],
+      "p_one_sided": 0.0,
+      "n": 240,
+      "supported_after_holm": true
+    }
+  }
+}

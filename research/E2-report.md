@@ -55,6 +55,16 @@ structurally-cued ones. This is the sphoṭa-consistent core of the finding.
   (garden-path shows nothing), and that late-vs-early moves HI *within* speech (it doesn't — speech
   HI is moderate across the board except where resolution is structurally forced to the end).
 
+## Replication across a second speech encoder (E2b)
+Pre-registered (`research/prereg/H-HOLISM-2b.md`) before running. Swapping WavLM for **HuBERT-base**
+(facebook/hubert-base-ls960), same pipeline:
+- **verb_final**: HI_hubert **0.428** vs HI_text 0.169 — effect +0.259, CI [0.127, 0.387], p≈0
+  (Holm). Compare WavLM's 0.406: the two SSL encoders agree closely.
+- **all late items**: HI_hubert 0.341 vs HI_text 0.146 — effect +0.195, CI [0.113, 0.273], p≈0.
+Both replication hypotheses (R1, R2) supported. The late-holism effect is therefore **not a
+WavLM artifact** — it holds across two independently-trained self-supervised speech encoders.
+Artifact: `data/experiments/e2b_results.json`.
+
 ## Threats to validity (not hidden)
 Synthetic single-speaker TTS; small closed vocabulary (11 labels); word→frame alignment is
 implicit in the relative-position grid; "cumulative mean-pool" is one operationalisation of
