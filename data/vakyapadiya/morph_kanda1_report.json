@@ -1,0 +1,8 @@
+{
+  "kanda": 1,
+  "verses": 144,
+  "tokens": 1189,
+  "tokens_covered": 541,
+  "coverage": 0.45500420521446594,
+  "note": "whitespace tokenisation; no sandhi splitter (Heritage backend absent)"
+}

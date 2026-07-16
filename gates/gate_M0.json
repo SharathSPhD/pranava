@@ -1,0 +1,12 @@
+{
+  "milestone": "M0",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "verse_id + edition tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "karikas==1797:ok; lines==1797:ok; translated_fraction==1.0:ok; contested==286:ok"
+  },
+  "closed": true
+}

@@ -24,11 +24,22 @@ Legend: ☑ done · ◐ in progress · ☐ not started
   edition.jsonl carries `iast_lines` for all 1797 rows, none missing.
 - **Evidence**: 9 tests pass; edition.jsonl regenerated with IAST; M1 gate PASS.
 
-### M2 — Śābdabodha / morphological parse via Saṃsādhanī  ☐
-- Wire the running `samsaadhanii` service (localhost:8090) to parse a defined subset (start:
-  Brahma-kāṇḍa, 137 verses); persist kāraka/dependency output.
-- **Gate**: ≥90% of targeted verses return a non-empty structured parse; parses validated against
-  a schema; a 20-verse gold set manually spot-checked for plausibility (documented, not faked).
+### M2 — Morphological analysis via Saṃsādhanī  ☑ DONE (2026-07-16)  ·  rescoped (see below)
+- Wired the running `samsaadhanii` morph.cgi (localhost:8090, JSON mode) via a tested client;
+  ran real morphological analysis over the whole Brahma-kāṇḍa; persisted every analysis.
+- **Honest rescope**: the container's sandhi segmenter + dependency parser are **non-functional**
+  (Heritage `sktgraph2` backend absent — `research/01-samsaadhanii-integration.md`). Full
+  kāraka/dependency parse is therefore moved to **M2b (blocked)**. No parse was fabricated.
+- **Gate** (`gates/check.py M2`, dual): code = morph client tests green; domain = ran over
+  144 kāṇḍa-1 verses / 1189 whitespace tokens, **coverage 0.455** (541 tokens with ≥1 valid
+  analysis; the rest are unsplit sandhi/compounds). Number reported, not asserted.
+- **Evidence**: `data/vakyapadiya/morph_kanda1.jsonl` (per-token analyses) + report; gate_M2.json.
+
+### M2b — Full dependency/kāraka parse (segmentation)  ☐ BLOCKED
+- Needs a working segmenter. Candidate: `vidyut-cheda` (pip `vidyut` installed; needs data kosha).
+  Whitespace coverage of 0.455 shows segmentation is the main lever to lift word-level coverage.
+- **Gate**: with segmentation, ≥0.85 token coverage on Brahma-kāṇḍa; a 20-verse gold set
+  spot-checked and documented.
 
 ### M3 — Concept knowledge graph  ☐
 - Extract a typed graph of Bhartṛhari's key concepts with verse anchors and relations

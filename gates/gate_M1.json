@@ -1,0 +1,12 @@
+{
+  "milestone": "M1",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "transliteration tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "rows=1797; missing_iast=0"
+  },
+  "closed": true
+}

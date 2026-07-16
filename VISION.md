@@ -72,9 +72,17 @@ by runnable evidence on disk. Sanskrit sources cited accurately; textual claims 
 computational analogies. Use the GB10 GPU. Build on the incomplete prior work, don't restart it.
 
 ## How we work
-Spec/PRD-driven; TDD (red→green→refactor); contracts + gates adapted from prabodha; an autoresearch
-loop (also from prabodha) driving Pillar II's hypothesis→experiment→verify→iterate cycle; TRIZ and
-the attractor-flow / pratyabhijna creative engines for ideation and convergence diagnostics.
+Spec/PRD-driven; TDD (red→green→refactor); **dual-verdict gates** adapted from prabodha (every
+milestone carries a `code_gate` *and* a `domain_gate`, each `{verdict, evidence}`; closure is never
+automatic); the ralph autoresearch loop (plan→build→test→validate→close, work isolated in git
+worktrees) driving Pillar II; TRIZ and the attractor-flow / pratyabhijna creative engines for
+ideation and convergence diagnostics.
+
+**Ethos inherited from prabodha (operator's own words):** the aim is *innovation, not
+falsification*. Statistical rigour is a **pruning shears for the exploration tree**, not the point;
+keep multiple parallels alive and let evidence prune them. **Honest negatives are shipped results.**
+So Pillar II's "hypotheses" are exploration probes: a null that survives is a real finding about
+where the sphoṭa analogy does and doesn't hold — published either way.
 
 ## Definition of "phenomenal"
 A digital edition good enough that a Sanskritist would cite it and an ML researcher would build on

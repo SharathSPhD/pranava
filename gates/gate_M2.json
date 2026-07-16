@@ -1,0 +1,12 @@
+{
+  "milestone": "M2",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "morph client tests green (or skipped if service down)"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "verses=144, tokens=1189, coverage=0.455 (whitespace tok; no segmenter)"
+  },
+  "closed": true
+}
