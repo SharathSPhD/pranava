@@ -181,9 +181,51 @@ def gate_E1() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_E2() -> dict:
+    """H-HOLISM experiment ran validly and is honestly reported.
+
+    A gate on VALIDITY, not on a positive result (honest negatives ship). Requires:
+    metric tests green; pre-registration exists; probe beats chance; every confirmatory
+    test recorded with a CI + p; figure + report present.
+    """
+    rc, out = _run([PY, "-m", "pytest", "tests/experiments/", "-q"])
+    code = _verdict(rc == 0, "experiment + metric tests green" if rc == 0 else out)
+
+    res_p = ROOT / "data/experiments/e2_results.json"
+    prereg = ROOT / "research/prereg/H-HOLISM.md"
+    fig = ROOT / "data/experiments/e2_trajectories.png"
+    report = ROOT / "research/E2-report.md"
+    if res_p.exists():
+        res = json.loads(res_p.read_text())
+        pv = res.get("probe_validity", {})
+        tests = res.get("tests", {})
+        beats_chance = (
+            pv.get("speech_full_utt_Ptrue", 0) > 2 * pv.get("chance", 1)
+            and pv.get("text_full_utt_Ptrue", 0) > 2 * pv.get("chance", 1)
+        )
+        all_reported = all(
+            "ci95" in t and "p_one_sided_predicted_dir" in t for t in tests.values()
+        )
+        checks = {
+            "prereg_exists": prereg.exists(),
+            "report_exists": report.exists(),
+            "figure_exists": fig.exists(),
+            "probe_beats_chance": beats_chance,
+            ">=3_confirmatory_tests": len(tests) >= 3,
+            "all_tests_have_CI_and_p": all_reported,
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | probe speech={pv.get('speech_full_utt_Ptrue')} "
+                         f"text={pv.get('text_full_utt_Ptrue')} chance={pv.get('chance')}")
+    else:
+        dom = _verdict(False, "e2_results.json missing — run scripts/e2_run.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3,
-    "E0": gate_E0, "E1": gate_E1,
+    "E0": gate_E0, "E1": gate_E1, "E2": gate_E2,
 }
 
 

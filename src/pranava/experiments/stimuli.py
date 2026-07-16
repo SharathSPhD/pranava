@@ -31,6 +31,7 @@ class Stimulus:
     structure: str  # "canonical" | "garden_path" | "verb_final" | "verb_first"
     disambig_word_index: int
     n_words: int
+    group: str  # the template string; CV holds out whole templates → no lexical leakage
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -83,7 +84,7 @@ def generate_stimuli() -> list[Stimulus]:
     out: list[Stimulus] = []
     n = 0
 
-    def add(text: str, label: str, res: str, struct: str, dis: int) -> None:
+    def add(text: str, label: str, res: str, struct: str, dis: int, group: str) -> None:
         nonlocal n
         words = text.rstrip(".").split()
         out.append(
@@ -95,20 +96,21 @@ def generate_stimuli() -> list[Stimulus]:
                 structure=struct,
                 disambig_word_index=dis,
                 n_words=len(words),
+                group=group,
             )
         )
         n += 1
 
     for (tmpl, label, dis), subj, obj in product(_EARLY, _EARLY_SUBJ, _EARLY_OBJ):
-        add(_fill(tmpl, subj=subj, obj=obj), label, "early", "canonical", dis)
+        add(_fill(tmpl, subj=subj, obj=obj), label, "early", "canonical", dis, tmpl)
 
     for (tmpl, label, dis), subj, obj in product(_LATE_GARDEN, _LATE_GARDEN_SUBJ, _LATE_GARDEN_OBJ):
-        add(_fill(tmpl, subj=subj, obj=obj), label, "late", "garden_path", dis)
+        add(_fill(tmpl, subj=subj, obj=obj), label, "late", "garden_path", dis, tmpl)
 
     for (tmpl, label, dis), subj, verb in product(_LATE_VERBFINAL, _LATE_VF_SUBJ, _LATE_VF_VERB):
-        add(_fill(tmpl, subj=subj, verb=verb), verb, "late", "verb_final", dis)
+        add(_fill(tmpl, subj=subj, verb=verb), verb, "late", "verb_final", dis, tmpl)
 
     for (tmpl, label, dis), obj in product(_VERB_FIRST, _VF_OBJ):
-        add(_fill(tmpl, obj=obj), label, "early", "verb_first", dis)
+        add(_fill(tmpl, obj=obj), label, "early", "verb_first", dis, tmpl)
 
     return out

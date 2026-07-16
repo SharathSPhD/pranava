@@ -19,3 +19,4 @@ research/transcripts/
 data/speech/*.npy
 data/stimuli/wav/
 data/speech/*.npy
+data/experiments/features/

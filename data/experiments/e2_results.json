@@ -1,0 +1,150 @@
+{
+  "prereg": "research/prereg/H-HOLISM.md",
+  "note_on_prereg": "Pre-reg body specifies P1 within EACH modality; its 'two primary tests' line was inconsistent. We ran the 3 tests the body implies and applied Holm across all 3 (more conservative). Reported transparently.",
+  "means": {
+    "HI_speech_late": 0.239,
+    "HI_speech_early": 0.2291,
+    "HI_text_late": 0.1458,
+    "HI_text_early": 0.2469
+  },
+  "probe_validity": {
+    "chance": 0.0909,
+    "speech_full_utt_Ptrue": 0.4708,
+    "text_full_utt_Ptrue": 0.5905
+  },
+  "n_items": 288,
+  "n_valid_HI": {
+    "speech": 204,
+    "text": 204
+  },
+  "tests": {
+    "P1_speech_late_gt_early": {
+      "effect_HI_diff": 0.0099,
+      "ci95": [
+        -0.0657,
+        0.0804
+      ],
+      "p_one_sided_predicted_dir": 0.396,
+      "n": 204,
+      "supported_after_holm": false
+    },
+    "P1_text_late_gt_early": {
+      "effect_HI_diff": -0.1011,
+      "ci95": [
+        -0.1573,
+        -0.0385
+      ],
+      "p_one_sided_predicted_dir": 0.9995,
+      "n": 204,
+      "supported_after_holm": false
+    },
+    "P2_speech_gt_text_on_late": {
+      "effect_HI_diff": 0.0932,
+      "ci95": [
+        0.0164,
+        0.1667
+      ],
+      "p_one_sided_predicted_dir": 0.0095,
+      "n": 240,
+      "supported_after_holm": true
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "positions": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0
+  ],
+  "mean_curves": {
+    "speech_late": [
+      0.18577654693217482,
+      0.2834121371076132,
+      0.2263906811674436,
+      0.23518443092082938,
+      0.2721518661904459,
+      0.347378722531721,
+      0.39311526416180037,
+      0.5993169710040093,
+      0.7310409368326266,
+      0.7150572218000889
+    ],
+    "speech_early": [
+      0.1449596429122591,
+      0.14531694377018584,
+      0.14974207032840545,
+      0.22393656714051585,
+      0.27752548996968907,
+      0.2514646286782365,
+      0.1996100120304618,
+      0.1396128464978011,
+      0.1256634299560184,
+      0.12179716405946583
+    ],
+    "text_late": [
+      0.5241327744773183,
+      0.4451926393725444,
+      0.4709314786072355,
+      0.5571672982536257,
+      0.5672436680023869,
+      0.6216098882335549,
+      0.6228836826708478,
+      0.8387346913106739,
+      0.894454565892617,
+      0.8974963451425234
+    ],
+    "text_early": [
+      0.040829928993064514,
+      0.11165433214046061,
+      0.11165433214046061,
+      0.15046399604484795,
+      0.15046399604484795,
+      0.13193249970763213,
+      0.11969897774092499,
+      0.11969897774092499,
+      0.1519904784813878,
+      0.1519904784813878
+    ]
+  },
+  "exploratory": {
+    "canonical": {
+      "n": 144,
+      "HI_speech": 0.2044,
+      "HI_text": 0.2843
+    },
+    "garden_path": {
+      "n": 72,
+      "HI_speech": 0.1279,
+      "HI_text": 0.1306
+    },
+    "verb_final": {
+      "n": 48,
+      "HI_speech": 0.4055,
+      "HI_text": 0.1686
+    },
+    "verb_first": {
+      "n": 24,
+      "HI_speech": 0.377,
+      "HI_text": 0.0221
+    },
+    "verb_final_speech_gt_text": {
+      "effect_HI_diff": 0.2369,
+      "ci95": [
+        0.106,
+        0.361
+      ],
+      "p_one_sided": 0.0,
+      "n": 96
+    }
+  }
+}

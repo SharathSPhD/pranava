@@ -80,12 +80,18 @@ Legend: ☑ done · ◐ in progress · ☐ not started
   resolution classes.
 - **Evidence**: `data/stimuli/manifest.jsonl`, `datasheet.json`, 288 WAVs (local); gate_E1.json.
 
-### E2 — Hypothesis H-HOLISM (pre-registered)  ☐
-- Probe decodability of final-sentence-meaning across time; test whether the curve shows a late
-  near-discontinuous jump (sphoṭa-like) vs monotone accrual.
-- **Gate**: pre-registration committed *before* results (`research/prereg/H-HOLISM.md`); metric,
-  null, and stopping rule fixed; ≥3 seeds; bootstrap CI; result (either sign) written up with the
-  analysis script reproducing the figure from raw tensors.
+### E2 — Hypothesis H-HOLISM (pre-registered)  ☑ DONE (2026-07-16)
+- Ran the pre-registered experiment: Holism Index from a template-grouped-CV linear probe over
+  WavLM (speech) vs GPT-2 (text) decodability trajectories, 3 seeds, bootstrap + Holm.
+- **Result (honest, nuanced)**: **P2 supported** — speech resolves *late-resolving* sentences more
+  holistically than text (HI +0.093, CI [0.016, 0.167], p=0.0095, Holm). Confound checked:
+  garden-path items (structurally cued) show **no** effect (0.128 vs 0.131); the signal is carried
+  by verb-final items where meaning genuinely resolves last (HI 0.41 vs 0.17, CI [0.106, 0.361]).
+  P1 (within-modality late>early) not supported. Full reading + threats in `research/E2-report.md`.
+- **Gate** (`gates/check.py E2`, dual, validity-not-outcome): code = 18 experiment/metric tests
+  green; domain = pre-reg + report + figure present, probe beats chance (0.47/0.59 vs 0.091),
+  ≥3 confirmatory tests each with CI + bootstrap p.
+- **Evidence**: `data/experiments/e2_results.json`, `e2_trajectories.png`; gate_E2.json.
 
 ### E3 — Hypothesis H-VERBFIRST (pre-registered)  ☐
 - Compare emergence/robustness of event vs entity representations in speech vs text models.

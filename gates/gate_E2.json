@@ -1,0 +1,12 @@
+{
+  "milestone": "E2",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "experiment + metric tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "prereg_exists:ok; report_exists:ok; figure_exists:ok; probe_beats_chance:ok; >=3_confirmatory_tests:ok; all_tests_have_CI_and_p:ok | probe speech=0.4708 text=0.5905 chance=0.0909"
+  },
+  "closed": true
+}
