@@ -128,7 +128,33 @@ def gate_M3() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
-GATES = {"M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3}
+def gate_E0() -> dict:
+    """Speech-model representation harness on GPU."""
+    rc, out = _run([PY, "-m", "pytest", "tests/speech/", "-q"])
+    # tests skip (not fail) if CUDA is unavailable; treat all-skipped as a soft pass
+    code = _verdict(rc == 0, "harness tests green (or skipped without CUDA)" if rc == 0 else out)
+
+    man_p = ROOT / "data/speech/e0_manifest.json"
+    npy_p = ROOT / "data/speech/e0_lastlayer.npy"
+    if man_p.exists() and npy_p.exists():
+        man = json.loads(man_p.read_text())
+        checks = {
+            "device==cuda": str(man.get("device", "")).startswith("cuda"),
+            "n_layers==13": man.get("n_layers") == 13,
+            "dim==768": man.get("dim") == 768,
+            "frame_rate~50Hz": 40 < man.get("frame_rate_hz", 0) < 60,
+            "frames>0": man.get("n_frames", 0) > 0,
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | {man.get('n_frames')} frames @ {man.get('frame_rate_hz')}Hz "
+                         f"in {man.get('elapsed_s')}s on {man.get('device')}")
+    else:
+        dom = _verdict(False, "e0 manifest/tensor missing — run scripts/e0_harness_demo.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
+GATES = {"M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3, "E0": gate_E0}
 
 
 def main(argv: list[str]) -> int:

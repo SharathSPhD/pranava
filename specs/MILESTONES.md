@@ -61,11 +61,14 @@ Legend: ☑ done · ◐ in progress · ☐ not started
 
 ## Pillar II — SPHOṬA-BENCH (empirical study)
 
-### E0 — Speech-model harness on GB10  ☐
-- Load an open speech LM / SSL encoder (Whisper working ☑; add a semantic-token model:
-  Mimi/HuBERT/WavLM) and extract per-frame hidden states on GPU.
-- **Gate**: a script produces hidden-state tensors for a fixed audio set, shapes asserted,
-  runs on CUDA (not CPU fallback), timing logged.
+### E0 — Speech-model harness on GB10  ☑ DONE (2026-07-16)
+- `pranava.speech.harness.SpeechEncoder` loads WavLM-base on CUDA and extracts per-frame,
+  per-layer hidden states `[13, n_frames, 768]` at ~50 Hz. Whisper GPU transcription also
+  validated (research/transcripts/).
+- **Gate** (`gates/check.py E0`, dual): code = 5 harness tests green on GPU (device, shapes,
+  determinism, frame-rate, resample); domain = real clip → 299 frames @ 49.83 Hz on `cuda:0`
+  in 0.42 s, manifest + last-layer tensor persisted.
+- **Evidence**: `data/speech/e0_manifest.json`, `e0_lastlayer.npy`; gate_E0.json.
 
 ### E1 — Stimulus set with ground truth  ☐
 - A controlled spoken stimulus set (minimal pairs; sentences where meaning resolves late;

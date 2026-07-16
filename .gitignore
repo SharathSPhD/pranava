@@ -15,3 +15,5 @@ docs/*.mp3
 docs/*.pdf
 docs/**/*.pdf
 research/transcripts/
+.hf_cache/
+data/speech/*.npy

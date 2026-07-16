@@ -1,0 +1,12 @@
+{
+  "milestone": "E0",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "harness tests green (or skipped without CUDA)"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "device==cuda:ok; n_layers==13:ok; dim==768:ok; frame_rate~50Hz:ok; frames>0:ok | 299 frames @ 49.83Hz in 0.4159s on cuda:0"
+  },
+  "closed": true
+}

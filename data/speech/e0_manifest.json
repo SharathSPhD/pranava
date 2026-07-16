@@ -1,0 +1,11 @@
+{
+  "model": "microsoft/wavlm-base",
+  "device": "cuda:0",
+  "seconds": 6.0,
+  "n_layers": 13,
+  "n_frames": 299,
+  "dim": 768,
+  "frame_rate_hz": 49.83,
+  "elapsed_s": 0.4159,
+  "source": "topic-debate-1.mp3"
+}
