@@ -17,3 +17,5 @@ docs/**/*.pdf
 research/transcripts/
 .hf_cache/
 data/speech/*.npy
+data/stimuli/wav/
+data/speech/*.npy

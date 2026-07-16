@@ -154,7 +154,37 @@ def gate_E0() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
-GATES = {"M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3, "E0": gate_E0}
+def gate_E1() -> dict:
+    """Controlled stimulus set with ground truth + synthesized audio."""
+    rc, out = _run([PY, "-m", "pytest", "tests/experiments/test_stimuli.py", "-q"])
+    code = _verdict(rc == 0, "stimulus tests green" if rc == 0 else out)
+
+    man_p = ROOT / "data/stimuli/manifest.jsonl"
+    ds_p = ROOT / "data/stimuli/datasheet.json"
+    wav_dir = ROOT / "data/stimuli/wav"
+    if man_p.exists() and ds_p.exists():
+        rows = [json.loads(l) for l in man_p.open(encoding="utf-8")]
+        n_wav = len(list(wav_dir.glob("*.wav"))) if wav_dir.exists() else 0
+        have_all_wavs = all((ROOT / r["wav"]).exists() for r in rows)
+        labelled = all(r.get("meaning_label") and r.get("resolution") for r in rows)
+        checks = {
+            "items>=200": len(rows) >= 200,
+            "all_wavs_present": have_all_wavs and n_wav >= len(rows),
+            "all_labelled": labelled,
+            "both_resolution_classes": len({r["resolution"] for r in rows}) == 2,
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | items={len(rows)} wavs={n_wav}")
+    else:
+        dom = _verdict(False, "manifest/datasheet missing — run scripts/e1_synthesize.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
+GATES = {
+    "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3,
+    "E0": gate_E0, "E1": gate_E1,
+}
 
 
 def main(argv: list[str]) -> int:

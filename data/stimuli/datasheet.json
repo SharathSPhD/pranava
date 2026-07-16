@@ -1,0 +1,18 @@
+{
+  "n_items": 288,
+  "voice": "en_US-lessac-medium.onnx",
+  "sample_rate": 22050,
+  "resolution_balance": {
+    "early": 168,
+    "late": 120
+  },
+  "structure_balance": {
+    "canonical": 144,
+    "garden_path": 72,
+    "verb_final": 48,
+    "verb_first": 24
+  },
+  "total_audio_s": 483.0,
+  "generation": "template slot-fill; labels+disambig index exact by construction",
+  "limits": "synthetic single-speaker TTS; English; small closed vocabulary; disambiguation index is word-level (frame alignment approximated in E2)."
+}

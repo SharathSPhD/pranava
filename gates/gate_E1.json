@@ -1,0 +1,12 @@
+{
+  "milestone": "E1",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "stimulus tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "items>=200:ok; all_wavs_present:ok; all_labelled:ok; both_resolution_classes:ok | items=288 wavs=288"
+  },
+  "closed": true
+}

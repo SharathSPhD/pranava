@@ -70,12 +70,15 @@ Legend: ☑ done · ◐ in progress · ☐ not started
   in 0.42 s, manifest + last-layer tensor persisted.
 - **Evidence**: `data/speech/e0_manifest.json`, `e0_lastlayer.npy`; gate_E0.json.
 
-### E1 — Stimulus set with ground truth  ☐
-- A controlled spoken stimulus set (minimal pairs; sentences where meaning resolves late;
-  verb-first vs noun-first variants; prosody-carrying sarcasm/urgency items). TTS-generated +
-  provenance; text-parallel condition for every audio item.
-- **Gate**: ≥200 items, each with structured labels; a datasheet documents generation & limits;
-  held-out split defined before any modeling.
+### E1 — Stimulus set with ground truth  ☑ DONE (2026-07-16)
+- 288 controlled items, balanced early(168)/late(120) across 4 structures (canonical, garden_path,
+  verb_final, verb_first), 11 meaning labels, exact disambiguation indices by construction.
+  Synthesized with a single fixed neural voice (piper en_US-lessac-medium, 22.05 kHz, 483 s total).
+  Every item carries a text-parallel condition (the written sentence). Datasheet documents limits.
+- **Gate** (`gates/check.py E1`, dual): code = 9 stimulus tests green (size, balance, late-items-
+  disambiguate-late, determinism); domain = 288 items, 288 WAVs present, all labelled, both
+  resolution classes.
+- **Evidence**: `data/stimuli/manifest.jsonl`, `datasheet.json`, 288 WAVs (local); gate_E1.json.
 
 ### E2 — Hypothesis H-HOLISM (pre-registered)  ☐
 - Probe decodability of final-sentence-meaning across time; test whether the curve shows a late
