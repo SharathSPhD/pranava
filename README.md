@@ -40,7 +40,7 @@ more than the **text** model does. Honestly reported, confound-checked — see
 8 milestones. Run the whole ledger: `python gates/check.py`. Milestones + gates: [`specs/MILESTONES.md`](specs/MILESTONES.md).
 
 ## Discipline
-Spec/PRD-driven · TDD (60 tests) · **dual-verdict gates** (code + domain, from prabodha) ·
+Spec/PRD-driven · TDD (69 tests) · **dual-verdict gates** (code + domain, from prabodha) ·
 pre-registration before results · honest negatives shipped · GPU (GB10). No fabrication, no stubs,
 no bypassed gates — the Sākṣī invariant.
 
