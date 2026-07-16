@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+._*
+.DS_Store
+.smbdelete*
+*.tmp
+*.egg-info/
+# Heavy media (kept local only)
+docs/*.mp4
+docs/*.m4a
+docs/*.mp3
+docs/*.pdf
+docs/**/*.pdf
+research/transcripts/
