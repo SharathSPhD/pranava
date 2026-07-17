@@ -28,3 +28,5 @@ data/alm/*.pt
 data/alm/checkpoints/
 data/alm/speech_corpus/wav/
 data/alm/_tts_probe.wav
+data/alm/projector.pt
+data/alm/speech_corpus/feats/

@@ -1,0 +1,21 @@
+{
+  "arm": "m2",
+  "epochs": 8,
+  "n_train": 542,
+  "n_val": 58,
+  "train_loss_history": [
+    1.5713,
+    1.2981,
+    1.1684,
+    1.0524,
+    0.9497,
+    0.8464,
+    0.7361,
+    0.6475
+  ],
+  "val_cer_audio": 0.7745,
+  "val_cer_noaudio_baseline": 1.0,
+  "cer_improvement": 0.2255,
+  "beats_baseline": true,
+  "projector_ckpt": "/work/pranava/data/alm/projector.pt"
+}

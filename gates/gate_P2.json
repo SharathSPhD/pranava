@@ -1,0 +1,12 @@
+{
+  "milestone": "P2",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "metric tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "trained_enough:ok; loss_decreased:ok; beats_no_audio_baseline:ok; meaningful_cer_gain>=0.1:ok; projector_ckpt_on_disk:ok | CER audio=0.7745 vs no-audio=1.0 (Δ0.2255); loss 1.5713→0.6475"
+  },
+  "closed": true
+}
