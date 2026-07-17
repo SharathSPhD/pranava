@@ -463,6 +463,31 @@ def gate_P4() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_LR() -> dict:
+    """LoRA fine-tuning: adapting the core beats projector-only understanding."""
+    code_files = [ROOT / "src/pranava/alm/lora.py", ROOT / "scripts/alm/train_lora.py"]
+    code = _verdict(all(p.exists() for p in code_files),
+                    "LoRA module + trainer present" if all(p.exists() for p in code_files)
+                    else "missing LoRA files")
+    m_p = ROOT / "data/alm/lora_metrics.json"
+    if m_p.exists():
+        m = json.loads(m_p.read_text())
+        hist = m.get("train_loss_history", [])
+        checks = {
+            "lora_params>0": m.get("n_lora_params", 0) > 0,
+            "loss_decreased": len(hist) >= 2 and hist[-1] < 0.4 * hist[0],
+            "beats_projector_only": m.get("improves_on_projector_only") is True,
+            "cer_meaningful": m.get("val_cer_audio", 1.0) < 0.7,
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | CER {m.get('val_cer_audio')} vs projector-only "
+                         f"{m.get('projector_only_baseline_cer')} ({m.get('n_lora_params')} LoRA params)")
+    else:
+        dom = _verdict(False, "lora_metrics.json missing — run scripts/alm/train_lora.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_SL() -> dict:
     """Sphoṭa-Lens v2: validated meaning-emergence locus (correlational + causal agree)."""
     rc, out = _run([PY, "-m", "pytest", "tests/sphota_lens/test_emergence.py", "-q"])
@@ -621,7 +646,7 @@ GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M2b": gate_M2b, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
-    "P4": gate_P4, "P5": gate_P5, "SL": gate_SL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
+    "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
 }
 
 

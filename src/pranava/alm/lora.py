@@ -34,18 +34,24 @@ class LoRALinear(nn.Module):
         return out + self.scale * lora.to(out.dtype)
 
 
-def inject_lora(model: nn.Module, targets=("in_proj", "out_proj"), r: int = 8, alpha: int = 16
+def inject_lora(model: nn.Module, target_substrings=("mlp",), r: int = 8, alpha: int = 16
                 ) -> list[nn.Parameter]:
-    """Replace target Linears in ``model`` with :class:`LoRALinear`. Returns trainable LoRA params."""
+    """Replace Linears whose qualified name contains a target substring with :class:`LoRALinear`.
+
+    Default target = the MLP projections (``blocks.N.mlp.1`` / ``.mlp.3``). NB: the Mamba mixer's
+    ``in_proj``/``out_proj`` are consumed by the fused kernel via ``.weight`` (not called as
+    modules), so wrapping them breaks the kernel — the MLP linears are the safe, high-capacity target.
+    """
     replaced = 0
-    for name, module in list(model.named_modules()):
+    for mod_name, module in list(model.named_modules()):
         for child_name, child in list(module.named_children()):
-            if isinstance(child, nn.Linear) and child_name in targets:
+            full = f"{mod_name}.{child_name}"
+            if isinstance(child, nn.Linear) and any(s in full for s in target_substrings):
                 setattr(module, child_name, LoRALinear(child, r=r, alpha=alpha))
                 replaced += 1
     params = [p for n, p in model.named_parameters() if (".A" in n or ".B" in n) and p.requires_grad]
     if replaced == 0:
-        raise RuntimeError(f"no target Linears {targets} found to LoRA-inject")
+        raise RuntimeError(f"no Linears matching {target_substrings} found to LoRA-inject")
     return params
 
 
