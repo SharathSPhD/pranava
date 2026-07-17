@@ -6,7 +6,7 @@
   },
   "domain_gate": {
     "verdict": "pass",
-    "evidence": "has_observations:ok; has_proposals:ok; full_cycle_recorded:ok | obs=2 prop=2"
+    "evidence": "has_observations:ok; has_proposals:ok; full_cycle_recorded:ok | obs=3 prop=3"
   },
   "closed": true
 }

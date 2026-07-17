@@ -1,0 +1,12 @@
+{
+  "milestone": "E6",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "scaled-vf stimulus tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "n>=200:ok; ci_tightened_vs_E2:ok; correction_doc_exists:ok; effect_has_CI:ok | effect=-0.0011 CI=[-0.0745, 0.0706] (corrective negative)"
+  },
+  "closed": true
+}

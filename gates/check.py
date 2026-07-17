@@ -247,6 +247,33 @@ def gate_E5() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_E6() -> dict:
+    """Well-powered verb-final scaling replication ran and is honestly reported.
+
+    Validity-not-outcome: a rigorous corrective negative is a successful milestone. Requires the
+    stimulus tests green, a larger valid-CV design, a tighter CI than E2, and the correction doc.
+    """
+    rc, out = _run([PY, "-m", "pytest", "tests/experiments/test_stimuli_verbfinal.py", "-q"])
+    code = _verdict(rc == 0, "scaled-vf stimulus tests green" if rc == 0 else out)
+    res_p = ROOT / "data/experiments/e6_results.json"
+    corr = ROOT / "research/E6-correction.md"
+    if res_p.exists():
+        res = json.loads(res_p.read_text())
+        checks = {
+            "n>=200": res.get("n_items", 0) >= 200,
+            "ci_tightened_vs_E2": res.get("ci_tightened") is True,
+            "correction_doc_exists": corr.exists(),
+            "effect_has_CI": "ci95" in res.get("speech_gt_text", {}),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | effect={res['speech_gt_text']['effect']} "
+                         f"CI={res['speech_gt_text']['ci95']} (corrective negative)")
+    else:
+        dom = _verdict(False, "e6_results.json missing — run scripts/e6_scale_verbfinal.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_X0() -> dict:
     """Autoresearch loop (reuses prabodha EFE) wired end-to-end with a recorded cycle."""
     rc, out = _run([PY, "-m", "pytest", "tests/autoresearch/", "-q"])
@@ -273,7 +300,7 @@ def gate_X0() -> dict:
 
 GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3,
-    "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "X0": gate_X0,
+    "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6, "X0": gate_X0,
 }
 
 

@@ -19,10 +19,7 @@ citable machine edition of all 1,797 kārikās with a complete original translat
 IAST, morphological analysis, and a verse-anchored concept graph.
 
 **II · SPHOṬA-BENCH — the empirical study.** GPU-run probes testing where the sphoṭa/pratibhā
-picture actually holds in speech vs text models. First result: on sentences whose meaning genuinely
-resolves late, the **speech** model concentrates meaning-decodability late (a sphoṭa-like "flash")
-more than the **text** model does. Honestly reported, confound-checked — see
-[`research/E2-report.md`](research/E2-report.md).
+picture actually holds in speech vs text models. First result (E2) suggested speech resolves late-resolving meaning more holistically than text — but a properly-powered scaling replication (**E6**) *falsified* it (the original stimuli were under-powered and confounded). Net current claim: **no demonstrated speech-vs-text holism difference**. This self-correction, caught by the pre-registration + autoresearch discipline, is the honest headline — see [`research/E6-correction.md`](research/E6-correction.md).
 
 ## Status — every milestone is machine-gated
 
@@ -34,7 +31,9 @@ more than the **text** model does. Honestly reported, confound-checked — see
 | M3 | Verse-anchored concept knowledge graph (20 concepts, 125 edges, 6 curated) | ✅ |
 | E0 | Speech-model representation harness on GB10 GPU (WavLM, ~50 Hz) | ✅ |
 | E1 | Controlled stimulus set (288 items, balanced, synthesized) | ✅ |
-| E2 | H-HOLISM pre-registered experiment — **speech more holistic on late-resolving** | ✅ |
+| E2 | H-HOLISM pre-registered experiment (initial signal) | ✅ |
+| E5 | Prosody acoustic-blindness gap (speech recovers what text can't); localization null | ✅ |
+| E6 | **Scaling replication — CORRECTS E2: effect does not survive; no speech>text holism** | ✅ |
 | X0 | Autoresearch loop (reuses prabodha EFE) — full cycle; finding replicated across 4 model pairings | ✅ |
 
 8 milestones. Run the whole ledger: `python gates/check.py`. Milestones + gates: [`specs/MILESTONES.md`](specs/MILESTONES.md).

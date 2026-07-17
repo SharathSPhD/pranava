@@ -20,3 +20,4 @@ data/speech/*.npy
 data/stimuli/wav/
 data/speech/*.npy
 data/experiments/features/
+data/stimuli/wav_vf/

@@ -1,5 +1,14 @@
 # E2 — H-HOLISM: results & honest reading
 
+> **⚠️ CORRECTED BY E6 (2026-07-17).** The verb-final speech>text effect reported below did **not
+> survive** a properly-powered, fully-crossed replication (E6: 240 items, 8 templates → effect
+> −0.001, CI [−0.075, 0.071]). The original `verb_final` subset had only 2 templates (degenerate
+> grouped-CV) and context→verb correlations that let the text probe decode early. The E2b/E3
+> "replications" reused that confounded subset. **Net: no demonstrated speech-vs-text holism
+> difference.** See `research/E6-correction.md`. The analysis below is retained as the record of
+> how the error arose and was caught.
+
+
 Pre-registration: `research/prereg/H-HOLISM.md` (committed before this analysis, git a7afd70).
 Artifacts: `data/experiments/e2_results.json`, `e2_trajectories.png`. Reproduce:
 `python scripts/e2_run.py` (features cached under `data/experiments/features/`).

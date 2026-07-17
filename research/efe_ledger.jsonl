@@ -6,3 +6,5 @@
 {"kind": "observation", "candidate_id": "e5_prosody_manipulation", "primary_tier": 1, "gate": "gates/gate_E5.json"}
 {"kind": "disposition", "candidate_id": "e5_prosody_manipulation", "note": "confirmatory PR1/PR2 passed but definitional; exploratory localization saturated → refine to graded/natural prosody next"}
 {"kind": "proposal", "candidate_id": "e6_scale_verbfinal", "action": "smoke", "efe": -3.1361, "knobs": {"stimulus": "verb_final_x4"}}
+{"kind": "observation", "candidate_id": "e6_scale_verbfinal", "primary_tier": 1, "gate": "/home/sharaths/projects/pranava/gates/gate_E6.json"}
+{"kind": "disposition", "candidate_id": "e6_scale_verbfinal", "note": "scaled 48→240 vf items; CI 0.145"}
