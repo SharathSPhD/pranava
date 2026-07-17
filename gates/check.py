@@ -463,6 +463,30 @@ def gate_P4() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_CL() -> dict:
+    """Continuous ALM-improvement loop: EFE-driven, benchmark-scored, re-entrant."""
+    rc, out = _run([PY, "-m", "pytest", "tests/autoresearch/test_alm_loop.py", "-q"])
+    code = _verdict(rc == 0, "loop tests green" if rc == 0 else out)
+    ledger = ROOT / "research" / "alm_efe_ledger.jsonl"
+    if ledger.exists():
+        entries = [json.loads(x) for x in ledger.open(encoding="utf-8") if x.strip()]
+        obs = [e for e in entries if e.get("kind") == "observation"]
+        props = [e for e in entries if e.get("kind") == "proposal"]
+        # an observation must carry the benchmark-linked CER it scored
+        scored = [e for e in obs if "new_cer" in e]
+        checks = {
+            "has_scored_observation": len(scored) >= 1,
+            "has_proposal": len(props) >= 1,
+            "scored_against_cer": any(e.get("new_cer") is not None for e in scored),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | obs={len(obs)} prop={len(props)}")
+    else:
+        dom = _verdict(False, "alm_efe_ledger.jsonl missing — run scripts/alm/alm_loop_step.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_BM() -> dict:
     """SOTA benchmark: Śabda-ALM weighed against SOTA ASR on a common task, leaderboard produced."""
     b_p = ROOT / "data/benchmark/sota_leaderboard.json"
@@ -671,7 +695,7 @@ GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M2b": gate_M2b, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
-    "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
+    "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "CL": gate_CL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
 }
 
 

@@ -1,0 +1,12 @@
+{
+  "milestone": "CL",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "loop tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "has_scored_observation:ok; has_proposal:ok; scored_against_cer:ok | obs=1 prop=1"
+  },
+  "closed": true
+}
