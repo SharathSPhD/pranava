@@ -1,9 +1,20 @@
-# PRANAVA
+# PRANAVA · Śabda-ALM
 
-**Sound becoming knowledge — a computational study of Bhartṛhari's *Vākyapadīya* and
-speech-centred cognition in language models.**
+**A speech-centred Audio Language Model on a Sanskrit byte-core — and the Sphoṭa-Lens for
+locating where sound becomes meaning.**
 
 > प्रणव · *praṇava* — the primordial sound from which articulated speech and meaning unfold.
+
+🌐 **[Project site](https://sharathsphd.github.io/pranava/)** · 📄 **[Paper](paper/paper.tex)** · reproduce everything with `python gates/check.py`
+
+**Headline results** (all dual-gated):
+- **Śabda-ALM ranks #1 vs SOTA ASR** on the Sanskrit-target task — CER **0.546** vs Parakeet-TDT native **0.605** and Whisper **0.747** (identical audio). [`research/sota-leaderboard.md`](research/sota-leaderboard.md)
+- **The Sphoṭa-Lens** localises meaning-emergence-from-sound to a **validated layer 13** (correlational + causal peaks agree; meaning decodable from audio positions at 11× chance). [`research/sphota-lens.md`](research/sphota-lens.md)
+- **Adaptation beats scaling**: a 200M core + 1.5M LoRA weights (CER 0.548) beats a 1.13B projector-only core (0.571).
+- Full **speech-to-speech** loop: audio → Parakeet → Sphoṭa Projector → Sanskrit core → text → TTS → audio.
+
+---
+
 
 Text language models begin from already-segmented symbols. Bhartṛhari's *śabdādvaita* (5th c.),
 the neuroscience of inner speech, and the frontier of speech language models all suggest cognition
