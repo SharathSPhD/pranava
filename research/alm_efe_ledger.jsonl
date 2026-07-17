@@ -4,3 +4,5 @@
 {"kind": "observation", "candidate_id": "real_speech_data", "primary_tier": 1, "prev_cer": 0.546, "new_cer": 0.565, "note": "native-Sanskrit indic-parler-tts corpus; harder authentic audio; ALM 0.565 close 2nd to Parakeet 0.522"}
 {"kind": "disposition", "candidate_id": "real_speech_data", "note": "authentic audio reversed the ranking; gap 0.043 → next: lora_1b_5090 + more epochs/data"}
 {"kind": "proposal", "candidate_id": "lora_1b_5090", "action": "smoke", "knobs": {"where": "5090", "r": 8}}
+{"kind": "observation", "candidate_id": "multilingual_english", "result": "one 200M core transcribes real English + native Sanskrit; sa CER 0.706 beats Whisper 0.940", "tier": 2, "gate": "ML"}
+{"kind": "observation", "candidate_id": "vercel_app", "result": "inference server verified in-container (en+sa over HTTP); frontend live https://sabda-alm.vercel.app", "tier": 3, "gate": "APP"}

@@ -1,0 +1,12 @@
+{
+  "milestone": "IT",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "instruction corpus + SFT code present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "six_tasks:ok; gold_grounded:ok; follows_instructions:ok; instruction_sensitivity:ok; beats_control:ok; all_tasks_evaluated:ok | acc=0.2808 vs control 0.0 (gap 0.2808)"
+  },
+  "closed": true
+}

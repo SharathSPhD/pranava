@@ -517,6 +517,35 @@ def gate_APP() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_IT() -> dict:
+    """Instruction-tuning: one audio → six tasks; the model demonstrably follows the instruction."""
+    ds = ROOT / "data/alm/instruct_corpus/datasheet.json"
+    mt = ROOT / "data/alm/instruct_metrics.json"
+    code_ok = ds.exists() and (ROOT / "src/pranava/alm/instruct.py").exists() \
+        and (ROOT / "scripts/alm/train_instruct.py").exists()
+    code = _verdict(code_ok, "instruction corpus + SFT code present" if code_ok else "missing IT files")
+    if ds.exists() and mt.exists():
+        d = json.loads(ds.read_text())
+        m = json.loads(mt.read_text())
+        gap = m.get("instruction_sensitivity_gap", 0)
+        tasks = set(m.get("per_task_accuracy", {}))
+        checks = {
+            "six_tasks": len(d.get("by_task", {})) >= 6,
+            "gold_grounded": "fabricated" in d.get("note", "") and "nothing is fabricated" in d.get("note", ""),
+            "follows_instructions": bool(m.get("follows_instructions")),
+            "instruction_sensitivity": gap > 0.05,  # correct instr >> shuffled instr (causal)
+            "beats_control": m.get("overall_accuracy", 0) > m.get("control_shuffled_instruction_accuracy", 1),
+            "all_tasks_evaluated": {"transcribe", "kriya", "karta", "language"} <= tasks,
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | acc={m.get('overall_accuracy')} vs control {m.get('control_shuffled_instruction_accuracy')}"
+                         f" (gap {gap})")
+    else:
+        dom = _verdict(False, "instruct metrics missing (run train_instruct.py)")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_RD() -> dict:
     """Native-Sanskrit audio corpus built, ALM retrained on it, re-benchmarked honestly."""
     ds = ROOT / "data/alm/speech_corpus_indic/datasheet.json"
@@ -775,7 +804,7 @@ GATES = {
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
     "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "RD": gate_RD,
     "CL": gate_CL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
-    "ML": gate_ML, "APP": gate_APP,
+    "ML": gate_ML, "APP": gate_APP, "IT": gate_IT,
 }
 
 

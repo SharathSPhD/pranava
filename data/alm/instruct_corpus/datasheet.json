@@ -1,0 +1,21 @@
+{
+  "n_examples": 3947,
+  "by_task": {
+    "transcribe": 1100,
+    "language": 1100,
+    "kriya": 600,
+    "karta": 600,
+    "karma": 422,
+    "karana": 125
+  },
+  "by_language": {
+    "sa": 2947,
+    "en": 1000
+  },
+  "by_split": {
+    "train": 3566,
+    "val": 381
+  },
+  "sources": "speech_corpus_indic (native Sanskrit + gold kāraka) + speech_corpus_en (LibriSpeech)",
+  "note": "every response is a gold label (kāraka filler / transcript / language) already on disk — instructions select which field to read; nothing is fabricated."
+}

@@ -162,14 +162,21 @@ class SanskritCore:
         return self.model.head(self.features_embeds(inputs_embeds))
 
     @torch.no_grad()
-    def greedy_from_embeds(self, prefix_embeds: torch.Tensor, max_new: int = 64) -> list[int]:
-        """Greedy-decode byte ids conditioned on a leading embedding prefix (B=1)."""
+    def greedy_from_embeds(self, prefix_embeds: torch.Tensor, max_new: int = 64,
+                           stop_token: int | None = None) -> list[int]:
+        """Greedy-decode byte ids conditioned on a leading embedding prefix (B=1).
+
+        If ``stop_token`` is given, decoding halts at (and excludes) the first such token — this is
+        how instruction responses terminate instead of running to ``max_new`` and rambling.
+        """
         assert prefix_embeds.shape[0] == 1
         x = prefix_embeds.to(self.torch_device)
         out: list[int] = []
         for _ in range(max_new):
             logits = self.forward_embeds(x)[0, -1]
             nxt = int(torch.argmax(logits).item())
+            if stop_token is not None and nxt == stop_token:
+                break
             out.append(nxt)
             nxt_emb = self.model.embed(
                 torch.tensor([[nxt]], device=self.torch_device, dtype=torch.long)

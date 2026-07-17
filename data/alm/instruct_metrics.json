@@ -1,0 +1,26 @@
+{
+  "method": "instruction SFT (projector+LoRA r=8), warm-start multilingual",
+  "epochs": 6,
+  "n_train": 3566,
+  "n_val": 381,
+  "train_loss_history": [
+    0.3822,
+    0.2508,
+    0.2302,
+    0.2132,
+    0.198,
+    0.1895
+  ],
+  "per_task_accuracy": {
+    "karana": 0.0909,
+    "karma": 0.8684,
+    "karta": 0.7586,
+    "kriya": 0.4655,
+    "language": 0.0,
+    "transcribe": 0.0185
+  },
+  "overall_accuracy": 0.2808,
+  "control_shuffled_instruction_accuracy": 0.0,
+  "instruction_sensitivity_gap": 0.2808,
+  "follows_instructions": true
+}
