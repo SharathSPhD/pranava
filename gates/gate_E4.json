@@ -1,0 +1,12 @@
+{
+  "milestone": "E4",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "report structured with conclusion"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "has_abstract:ok; reports_the_null:ok; reports_the_correction:ok; cites_edition_and_experiments:ok; has_limitations:ok"
+  },
+  "closed": true
+}

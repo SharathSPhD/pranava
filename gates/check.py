@@ -326,6 +326,26 @@ def gate_E7() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_E4() -> dict:
+    """Consolidated research report exists, is honest (reports the correction), and is grounded."""
+    paper = ROOT / "PAPER.md"
+    if not paper.exists():
+        return {"code_gate": _verdict(False, "PAPER.md missing"),
+                "domain_gate": _verdict(False, "missing")}
+    t = paper.read_text(encoding="utf-8")
+    checks = {
+        "has_abstract": "## Abstract" in t,
+        "reports_the_null": "no speech-vs-text holism" in t.lower(),
+        "reports_the_correction": "falsified" in t.lower() and "savyabhich" in t.lower(),
+        "cites_edition_and_experiments": "M0" in t and "E7" in t and "X1" in t,
+        "has_limitations": "## 6. Limitations" in t or "Limitations" in t,
+    }
+    code = _verdict("## 7. Conclusion" in t, "report structured with conclusion")
+    dom = _verdict(all(checks.values()),
+                   "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items()))
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_X0() -> dict:
     """Autoresearch loop (reuses prabodha EFE) wired end-to-end with a recorded cycle."""
     rc, out = _run([PY, "-m", "pytest", "tests/autoresearch/", "-q"])
@@ -410,7 +430,7 @@ def r_ok(holism: dict) -> bool:
 GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M2b": gate_M2b, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
-    "E7": gate_E7, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
+    "E4": gate_E4, "E7": gate_E7, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
 }
 
 
