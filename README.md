@@ -5,7 +5,7 @@ locating where sound becomes meaning.**
 
 > प्रणव · *praṇava* — the primordial sound from which articulated speech and meaning unfold.
 
-🌐 **[Project site](https://sharathsphd.github.io/pranava/)** · 🎙️ **[Try it live](https://sabda-alm.vercel.app)** · 📄 **[Paper](paper/paper.tex)** · reproduce everything with `python gates/check.py`
+🌐 **[Project site](https://sharathsphd.github.io/pranava/)** · 🎙️ **[Try it live](https://sabda-alm.vercel.app)** · 🏛️ **[Platform architecture (NSM)](NSM.md)** · 📄 **[Paper](paper/paper.tex)** · reproduce everything with `python gates/check.py`
 
 **Headline results** (all dual-gated):
 - **Multilingual on one Sanskrit byte-core**: fed real English (LibriSpeech) *and* native Sanskrit, one 200M model transcribes both — Sanskrit CER **0.706** (beats Whisper-base 0.940), English 0.785. Capability, not English SOTA: [`research/multilingual.md`](research/multilingual.md)

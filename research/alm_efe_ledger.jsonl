@@ -8,3 +8,4 @@
 {"kind": "observation", "candidate_id": "vercel_app", "result": "inference server verified in-container (en+sa over HTTP); frontend live https://sabda-alm.vercel.app", "tier": 3, "gate": "APP"}
 {"kind": "observation", "candidate_id": "instruction_tuning", "result": "SFT one-audio-six-tasks; causal instruction-following gap 0.281 vs shuffled-control 0.0; karma 0.87/karta 0.76", "tier": 3, "gate": "IT"}
 {"kind": "observation", "candidate_id": "rlaif", "result": "DPO w/ AI-feedback reward; first attempt regressed (0.28->0.14), fixed via balanced pairs + beta 0.3 -> 0.291 (karma 0.95)", "tier": 2, "gate": "RF"}
+{"kind": "observation", "candidate_id": "nsm_layer_c", "result": "gold-free pramana gate; ascertained 0.40 acc vs rejected 0.0 (rejections 100% precise); high-precision low-recall", "tier": 2, "gate": "NC"}

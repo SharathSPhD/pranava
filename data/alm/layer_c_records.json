@@ -1,0 +1,2459 @@
+[
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansitAm",
+    "conf": 0.865,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "kriya",
+    "gold": "BavizyataH",
+    "pred": "vadizyataH",
+    "conf": 0.854,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "karta",
+    "gold": "vidye",
+    "pred": "vidye",
+    "conf": 0.92,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrispane gfeet",
+    "conf": 0.668,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.25
+  },
+  {
+    "task": "kriya",
+    "gold": "paWet",
+    "pred": "paWet",
+    "conf": 0.922,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "naraH",
+    "pred": "naraH",
+    "conf": 0.958,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "gfham",
+    "pred": "gfham",
+    "conf": 0.846,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansiale adadIavam addity",
+    "conf": 0.611,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 2.375
+  },
+  {
+    "task": "kriya",
+    "gold": "aBavatAm",
+    "pred": "aBavadete bAvadetavidat abadI",
+    "conf": 0.638,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 2.75
+  },
+  {
+    "task": "karta",
+    "gold": "vidye",
+    "pred": "vidye",
+    "conf": 0.947,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansialavasati",
+    "conf": 0.699,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.125
+  },
+  {
+    "task": "kriya",
+    "gold": "Bavizyanti",
+    "pred": "vasizyanti",
+    "conf": 0.848,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "karta",
+    "gold": "PalAni",
+    "pred": "PalAni",
+    "conf": 0.968,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansialevasizyataH",
+    "conf": 0.713,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.5
+  },
+  {
+    "task": "kriya",
+    "gold": "avadetAm",
+    "pred": "vadete",
+    "conf": 0.903,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.375
+  },
+  {
+    "task": "karta",
+    "gold": "vane",
+    "pred": "vane",
+    "conf": 0.991,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansia",
+    "conf": 0.828,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.375
+  },
+  {
+    "task": "kriya",
+    "gold": "gamizyanti",
+    "pred": "gamizyan",
+    "conf": 0.807,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "karta",
+    "gold": "PalAni",
+    "pred": "PalAni",
+    "conf": 0.948,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karana",
+    "gold": "aSvena",
+    "pred": "aSvena",
+    "conf": 0.896,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansitAm",
+    "conf": 0.716,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "kriya",
+    "gold": "KAdanti",
+    "pred": "KAdan",
+    "conf": 0.94,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.286
+  },
+  {
+    "task": "karta",
+    "gold": "sitAH",
+    "pred": "sitAH",
+    "conf": 0.987,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "jalam",
+    "pred": "Palam",
+    "conf": 0.995,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "karana",
+    "gold": "guruRA",
+    "pred": "guruRAnlRalAm",
+    "conf": 0.682,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.167
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SanskrialaSvasizyati",
+    "conf": 0.809,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.5
+  },
+  {
+    "task": "kriya",
+    "gold": "KAdizyati",
+    "pred": "KAdizyati",
+    "conf": 0.895,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "aSvaH",
+    "pred": "aSvaH",
+    "conf": 0.917,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karana",
+    "gold": "bAlena",
+    "pred": "bAle",
+    "conf": 0.943,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.333
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrisakacasi",
+    "conf": 0.762,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.0
+  },
+  {
+    "task": "kriya",
+    "gold": "agacCat",
+    "pred": "agacCata",
+    "conf": 0.886,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.143
+  },
+  {
+    "task": "karta",
+    "gold": "vanam",
+    "pred": "vanam",
+    "conf": 0.991,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.999,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrispane bAlya",
+    "conf": 0.738,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.375
+  },
+  {
+    "task": "kriya",
+    "gold": "paWet",
+    "pred": "paWet",
+    "conf": 0.915,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "kanyA",
+    "pred": "kany",
+    "conf": 0.989,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansialI",
+    "conf": 0.8,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "kriya",
+    "gold": "vasetAm",
+    "pred": "avadatavasite sidadIdAsam",
+    "conf": 0.708,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 2.714
+  },
+  {
+    "task": "karta",
+    "gold": "bAlO",
+    "pred": "bAlaH",
+    "conf": 0.926,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrispane jalam",
+    "conf": 0.757,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.375
+  },
+  {
+    "task": "kriya",
+    "gold": "paWet",
+    "pred": "paWet",
+    "conf": 0.91,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "guruH",
+    "pred": "guruH",
+    "conf": 0.96,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "jalam",
+    "pred": "jalam",
+    "conf": 0.998,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrisakasi",
+    "conf": 0.756,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.75
+  },
+  {
+    "task": "kriya",
+    "gold": "adatta",
+    "pred": "adadata",
+    "conf": 0.905,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.333
+  },
+  {
+    "task": "karta",
+    "gold": "kanyA",
+    "pred": "kanyAapadan",
+    "conf": 0.737,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.2
+  },
+  {
+    "task": "karma",
+    "gold": "jalam",
+    "pred": "jalam",
+    "conf": 0.999,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrigam",
+    "conf": 0.797,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.375
+  },
+  {
+    "task": "kriya",
+    "gold": "KAdet",
+    "pred": "KAdet",
+    "conf": 0.812,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "vidyA",
+    "pred": "vidya",
+    "conf": 0.944,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SanskrisandaddadIpadena",
+    "conf": 0.644,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 2.0
+  },
+  {
+    "task": "kriya",
+    "gold": "dadIta",
+    "pred": "dadIdadIdadIdadIdadIdadIdadIdadIdadIdadIdadIdadIdadIdadIdadIdadI",
+    "conf": 0.632,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 9.833
+  },
+  {
+    "task": "karta",
+    "gold": "nadI",
+    "pred": "nadI",
+    "conf": 0.965,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "jalam",
+    "pred": "jalam",
+    "conf": 0.998,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrimagamadani",
+    "conf": 0.699,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.25
+  },
+  {
+    "task": "kriya",
+    "gold": "agacCan",
+    "pred": "agacCan",
+    "conf": 0.99,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "kanyAH",
+    "pred": "kanyAH",
+    "conf": 0.967,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.999,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karana",
+    "gold": "jalena",
+    "pred": "jale",
+    "conf": 0.946,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.333
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SanskrimayaH",
+    "conf": 0.755,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.625
+  },
+  {
+    "task": "kriya",
+    "gold": "KAdeyuH",
+    "pred": "KAdeyuH",
+    "conf": 0.83,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "sitAH",
+    "pred": "sitAH",
+    "conf": 0.989,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "jalam",
+    "pred": "jalam",
+    "conf": 0.998,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karana",
+    "gold": "rAmeRa",
+    "pred": "rAmam",
+    "conf": 0.87,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansialO",
+    "conf": 0.718,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "kriya",
+    "gold": "apaWatAm",
+    "pred": "apaWatAm",
+    "conf": 0.964,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "narO",
+    "pred": "narO",
+    "conf": 0.991,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.998,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrimsudantap jalam jale pustakam adadAt jalam adadIdAsam jal",
+    "conf": 0.751,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 7.0
+  },
+  {
+    "task": "kriya",
+    "gold": "adadAtAm",
+    "pred": "adadAtAm",
+    "conf": 0.8,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "nadyO",
+    "pred": "nadyO",
+    "conf": 0.986,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "pustakam",
+    "pred": "pustakam",
+    "conf": 0.871,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrispat Palam",
+    "conf": 0.791,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.125
+  },
+  {
+    "task": "kriya",
+    "gold": "paWizyati",
+    "pred": "paWati",
+    "conf": 0.97,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.333
+  },
+  {
+    "task": "karta",
+    "gold": "vanam",
+    "pred": "vanam",
+    "conf": 0.992,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.999,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrisakacasi",
+    "conf": 0.73,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.0
+  },
+  {
+    "task": "kriya",
+    "gold": "adatta",
+    "pred": "adadata",
+    "conf": 0.892,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.333
+  },
+  {
+    "task": "karta",
+    "gold": "jalam",
+    "pred": "jalam",
+    "conf": 0.989,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansialavasizyataH",
+    "conf": 0.728,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.5
+  },
+  {
+    "task": "kriya",
+    "gold": "avadata",
+    "pred": "adadata",
+    "conf": 0.916,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.143
+  },
+  {
+    "task": "karta",
+    "gold": "vidyA",
+    "pred": "vidyAH",
+    "conf": 0.959,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.999,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansie vasizyanti",
+    "conf": 0.767,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.375
+  },
+  {
+    "task": "kriya",
+    "gold": "vaderan",
+    "pred": "vaderan",
+    "conf": 0.955,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "jalAni",
+    "pred": "jalAni",
+    "conf": 0.956,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansialaKAdadIdadIranAnyaSva",
+    "conf": 0.694,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 2.875
+  },
+  {
+    "task": "kriya",
+    "gold": "aKAdat",
+    "pred": "aKAdat",
+    "conf": 0.961,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "sitA",
+    "pred": "sitAH",
+    "conf": 0.956,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.25
+  },
+  {
+    "task": "karma",
+    "gold": "jalam",
+    "pred": "jalam",
+    "conf": 0.999,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SanskrisaratIasi",
+    "conf": 0.621,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.0
+  },
+  {
+    "task": "kriya",
+    "gold": "KAdet",
+    "pred": "KAdat",
+    "conf": 0.811,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "karta",
+    "gold": "naraH",
+    "pred": "naraH",
+    "conf": 0.969,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.999,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karana",
+    "gold": "pustakena",
+    "pred": "pustraya",
+    "conf": 0.764,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.444
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansiale KAdicam KAdataH",
+    "conf": 0.685,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 2.25
+  },
+  {
+    "task": "kriya",
+    "gold": "KAdataH",
+    "pred": "KAdataH",
+    "conf": 0.906,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "vane",
+    "pred": "vane",
+    "conf": 0.986,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "pustakam",
+    "pred": "pustakam",
+    "conf": 0.84,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karana",
+    "gold": "bAlena",
+    "pred": "bAle",
+    "conf": 0.966,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.333
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrigamizyati",
+    "conf": 0.779,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.0
+  },
+  {
+    "task": "kriya",
+    "gold": "paWati",
+    "pred": "adati",
+    "conf": 0.742,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.333
+  },
+  {
+    "task": "karta",
+    "gold": "aSvaH",
+    "pred": "aSvaH",
+    "conf": 0.924,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrimiti",
+    "conf": 0.761,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.375
+  },
+  {
+    "task": "kriya",
+    "gold": "paWizyati",
+    "pred": "paWizyati",
+    "conf": 0.912,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "guruH",
+    "pred": "guruH",
+    "conf": 0.972,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "gfham",
+    "pred": "gurum",
+    "conf": 0.928,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.6
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskriam",
+    "conf": 0.802,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.25
+  },
+  {
+    "task": "kriya",
+    "gold": "Bavizyati",
+    "pred": "vasizyati",
+    "conf": 0.924,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.222
+  },
+  {
+    "task": "karta",
+    "gold": "aSvaH",
+    "pred": "aSvaH",
+    "conf": 0.886,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansialevidatteale",
+    "conf": 0.705,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.5
+  },
+  {
+    "task": "kriya",
+    "gold": "apaWan",
+    "pred": "apaWan",
+    "conf": 0.987,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "rAmAH",
+    "pred": "rAmAH",
+    "conf": 0.979,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "vidyAm",
+    "pred": "vidyAm",
+    "conf": 0.986,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SanskrimyabApam",
+    "conf": 0.712,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.0
+  },
+  {
+    "task": "kriya",
+    "gold": "paWataH",
+    "pred": "paWataH",
+    "conf": 0.923,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "jale",
+    "pred": "jale",
+    "conf": 0.983,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "pustakam",
+    "pred": "pustvismismitedvidyAmya",
+    "conf": 0.654,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 2.25
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansietexidrAH",
+    "conf": 0.649,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.125
+  },
+  {
+    "task": "kriya",
+    "gold": "gacCetAm",
+    "pred": "gacCetAm",
+    "conf": 0.821,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "jale",
+    "pred": "jale",
+    "conf": 0.981,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrisam gfheRAgam adatta",
+    "conf": 0.685,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 2.375
+  },
+  {
+    "task": "kriya",
+    "gold": "adatta",
+    "pred": "adadata",
+    "conf": 0.92,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.333
+  },
+  {
+    "task": "karta",
+    "gold": "vidyA",
+    "pred": "vidyAH",
+    "conf": 0.933,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "karma",
+    "gold": "pustakam",
+    "pred": "pustakam",
+    "conf": 0.91,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansiap",
+    "conf": 0.772,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "kriya",
+    "gold": "adadAtAm",
+    "pred": "adadAta pustakam",
+    "conf": 0.843,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.125
+  },
+  {
+    "task": "karta",
+    "gold": "vidye",
+    "pred": "vidye",
+    "conf": 0.968,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "pustakam",
+    "pred": "pustakam",
+    "conf": 0.872,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansialIgacCalam",
+    "conf": 0.677,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.5
+  },
+  {
+    "task": "kriya",
+    "gold": "gacCanti",
+    "pred": "gamagacCan",
+    "conf": 0.752,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.75
+  },
+  {
+    "task": "karta",
+    "gold": "rAmAH",
+    "pred": "rAmAH",
+    "conf": 0.955,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrisara",
+    "conf": 0.742,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "kriya",
+    "gold": "akuruta",
+    "pred": "agacCan",
+    "conf": 0.976,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.857
+  },
+  {
+    "task": "karta",
+    "gold": "rAmaH",
+    "pred": "rAmAH",
+    "conf": 0.905,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "karma",
+    "gold": "aSvam",
+    "pred": "aSvam",
+    "conf": 0.995,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SanskrimsitAm Palam",
+    "conf": 0.781,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.375
+  },
+  {
+    "task": "kriya",
+    "gold": "dadIyAtAm",
+    "pred": "drakzaSyataH",
+    "conf": 0.708,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.889
+  },
+  {
+    "task": "karta",
+    "gold": "kanye",
+    "pred": "kanye",
+    "conf": 0.944,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.998,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SanskrimayAH",
+    "conf": 0.706,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.625
+  },
+  {
+    "task": "kriya",
+    "gold": "paWeyuH",
+    "pred": "paWeyuH",
+    "conf": 0.884,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "aSvAH",
+    "pred": "aSvAH",
+    "conf": 0.956,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.997,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansitAm",
+    "conf": 0.857,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "kriya",
+    "gold": "dAsyante",
+    "pred": "dAsyan",
+    "conf": 0.784,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.25
+  },
+  {
+    "task": "karta",
+    "gold": "jalAni",
+    "pred": "jalAni",
+    "conf": 0.95,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.998,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SanskrisnadIvanam KAdetAt jale vasekanyayAH",
+    "conf": 0.719,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 4.375
+  },
+  {
+    "task": "kriya",
+    "gold": "KAdeyuH",
+    "pred": "KAdeyuH",
+    "conf": 0.862,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "gfhARi",
+    "pred": "gfham",
+    "conf": 0.874,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "karma",
+    "gold": "jalam",
+    "pred": "jalam",
+    "conf": 0.998,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karana",
+    "gold": "aSvena",
+    "pred": "vidyayAt",
+    "conf": 0.833,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.333
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SanskrimayAH",
+    "conf": 0.72,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.625
+  },
+  {
+    "task": "kriya",
+    "gold": "paWeyuH",
+    "pred": "paWeyuH",
+    "conf": 0.869,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "jalAni",
+    "pred": "jalAni",
+    "conf": 0.968,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "pustakam",
+    "pred": "pustakam",
+    "conf": 0.838,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansiale adadIavidyAmya",
+    "conf": 0.632,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 2.25
+  },
+  {
+    "task": "kriya",
+    "gold": "dadIyAtAm",
+    "pred": "avadetAm adadAtAm",
+    "conf": 0.635,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.111
+  },
+  {
+    "task": "karta",
+    "gold": "kanye",
+    "pred": "kanye",
+    "conf": 0.967,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansitAm KAlataH",
+    "conf": 0.725,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.375
+  },
+  {
+    "task": "kriya",
+    "gold": "KAdizyataH",
+    "pred": "KAdizyataH",
+    "conf": 0.935,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "Pale",
+    "pred": "Pale",
+    "conf": 0.991,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "aSvam",
+    "pred": "aSvam",
+    "conf": 0.993,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrisvapakam",
+    "conf": 0.705,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.0
+  },
+  {
+    "task": "kriya",
+    "gold": "KAdet",
+    "pred": "KAdet",
+    "conf": 0.806,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "kanyA",
+    "pred": "kanytikaSva",
+    "conf": 0.784,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.4
+  },
+  {
+    "task": "karma",
+    "gold": "bAlam",
+    "pred": "bAlatakam",
+    "conf": 0.706,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.8
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrisakacasi",
+    "conf": 0.754,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.0
+  },
+  {
+    "task": "kriya",
+    "gold": "apaSyat",
+    "pred": "apaWat",
+    "conf": 0.95,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.286
+  },
+  {
+    "task": "karta",
+    "gold": "kanyA",
+    "pred": "kanyAa",
+    "conf": 0.775,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "karma",
+    "gold": "naram",
+    "pred": "naram",
+    "conf": 0.957,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SansialevaH",
+    "conf": 0.7,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.875
+  },
+  {
+    "task": "kriya",
+    "gold": "dadIran",
+    "pred": "drakzacauRaH",
+    "conf": 0.637,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.286
+  },
+  {
+    "task": "karta",
+    "gold": "aSvAH",
+    "pred": "aSvAH",
+    "conf": 0.911,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrisakam",
+    "conf": 0.81,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.625
+  },
+  {
+    "task": "kriya",
+    "gold": "agacCan",
+    "pred": "agacCan",
+    "conf": 0.988,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "gfhARi",
+    "pred": "gfham",
+    "conf": 0.769,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.999,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karana",
+    "gold": "kanyayA",
+    "pred": "kanyfalam",
+    "conf": 0.746,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.571
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansietea agameavanAp apaWataH",
+    "conf": 0.574,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 3.125
+  },
+  {
+    "task": "kriya",
+    "gold": "paWataH",
+    "pred": "drakzadataH",
+    "conf": 0.623,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.857
+  },
+  {
+    "task": "karta",
+    "gold": "pustake",
+    "pred": "pustike",
+    "conf": 0.792,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.143
+  },
+  {
+    "task": "karma",
+    "gold": "aSvam",
+    "pred": "aSvam",
+    "conf": 0.993,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanam jale jalam jalam dataH",
+    "conf": 0.766,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 3.0
+  },
+  {
+    "task": "kriya",
+    "gold": "datte",
+    "pred": "dadIdattkanyaSvam jale kanyayaH",
+    "conf": 0.728,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 5.2
+  },
+  {
+    "task": "karta",
+    "gold": "aSvaH",
+    "pred": "aSvaH",
+    "conf": 0.967,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "jalam",
+    "pred": "jalam",
+    "conf": 0.999,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrisam",
+    "conf": 0.733,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.375
+  },
+  {
+    "task": "kriya",
+    "gold": "aKAdat",
+    "pred": "aKAdat",
+    "conf": 0.953,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "guruH",
+    "pred": "guruH",
+    "conf": 0.958,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "vanam",
+    "pred": "vanam",
+    "conf": 0.995,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskriggaguggais ggacet Palam",
+    "conf": 0.625,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 2.75
+  },
+  {
+    "task": "kriya",
+    "gold": "gacCetAm",
+    "pred": "gacCataH",
+    "conf": 0.942,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.375
+  },
+  {
+    "task": "karta",
+    "gold": "kanye",
+    "pred": "kanye",
+    "conf": 0.853,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansia",
+    "conf": 0.831,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.375
+  },
+  {
+    "task": "kriya",
+    "gold": "KAdizyati",
+    "pred": "KAdizyati",
+    "conf": 0.903,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "bAlaH",
+    "pred": "bAlaH",
+    "conf": 0.99,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "jalam",
+    "pred": "jalam",
+    "conf": 0.998,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karana",
+    "gold": "nadyA",
+    "pred": "nadI",
+    "conf": 0.937,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.4
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansia",
+    "conf": 0.883,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.375
+  },
+  {
+    "task": "kriya",
+    "gold": "gamizyati",
+    "pred": "gamiziaram",
+    "conf": 0.719,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.444
+  },
+  {
+    "task": "karta",
+    "gold": "vanam",
+    "pred": "vanam",
+    "conf": 0.99,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.999,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrim vasite",
+    "conf": 0.753,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.875
+  },
+  {
+    "task": "kriya",
+    "gold": "BavataH",
+    "pred": "vadete kanyayAtakam",
+    "conf": 0.701,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 2.143
+  },
+  {
+    "task": "karta",
+    "gold": "narO",
+    "pred": "narO",
+    "conf": 0.994,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "SanskrimsuppetApaWate",
+    "conf": 0.604,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.625
+  },
+  {
+    "task": "kriya",
+    "gold": "paWetAm",
+    "pred": "paWetAm",
+    "conf": 0.932,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "nadyO",
+    "pred": "nadyO",
+    "conf": 0.982,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "pustakam",
+    "pred": "pust'p",
+    "conf": 0.844,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrimam",
+    "conf": 0.74,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.375
+  },
+  {
+    "task": "kriya",
+    "gold": "paWati",
+    "pred": "paWati",
+    "conf": 0.976,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "naraH",
+    "pred": "naraH",
+    "conf": 0.968,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "jalam",
+    "pred": "jalam",
+    "conf": 0.997,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sanskrisvidyati",
+    "conf": 0.799,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.875
+  },
+  {
+    "task": "kriya",
+    "gold": "vasati",
+    "pred": "vidya",
+    "conf": 0.816,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.833
+  },
+  {
+    "task": "karta",
+    "gold": "rAmaH",
+    "pred": "rAmam",
+    "conf": 0.896,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.2
+  },
+  {
+    "task": "language",
+    "gold": "Sanskrit",
+    "pred": "Sansiale KAlyataH",
+    "conf": 0.668,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 1.5
+  },
+  {
+    "task": "kriya",
+    "gold": "gacCataH",
+    "pred": "gacCataH",
+    "conf": 0.976,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karta",
+    "gold": "vane",
+    "pred": "vane",
+    "conf": 0.986,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karma",
+    "gold": "Palam",
+    "pred": "Palam",
+    "conf": 0.999,
+    "verdict": "ascertained",
+    "correct": 1,
+    "cer_transcribe_ref": 0.0
+  },
+  {
+    "task": "karana",
+    "gold": "rAmeRa",
+    "pred": "rAmam",
+    "conf": 0.84,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 0.5
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wither to here we wereds the toom is it w widitioning i",
+    "conf": 0.54,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe with whe has have had the mist to the mist the ming the",
+    "conf": 0.545,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has have had the has have had the has have had the has",
+    "conf": 0.569,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.0
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has hare has has has has has has has has has has has ha",
+    "conf": 0.505,
+    "verdict": "not_ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has have has have has have has have has have perhappiek",
+    "conf": 0.508,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has have had the minsed to her helped had the has have",
+    "conf": 0.527,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.0
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has have has have has have has have has have has have p",
+    "conf": 0.542,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wither to here we wereds any istedominesedo at the acce",
+    "conf": 0.552,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has have has have has have has have has have has have h",
+    "conf": 0.539,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has har had herelly he has had the mist had herected to",
+    "conf": 0.542,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has har had herelly he has herell had comed he has here",
+    "conf": 0.523,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has have had the has have had the has have had the has",
+    "conf": 0.554,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.0
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has has has has has the has has the has has the has has",
+    "conf": 0.537,
+    "verdict": "not_ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has have had the has have had the has have had the mist",
+    "conf": 0.544,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has has he has hearved to fased he has her help he has",
+    "conf": 0.549,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.0
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishereatedderanneseansinchasistedean the accesisneelour pass",
+    "conf": 0.528,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wign what had the has has the hat has has the hat hall",
+    "conf": 0.561,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.0
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe assiselesismin has has the has has the has has the has",
+    "conf": 0.557,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.0
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wither to herelly had the has has the has has the has h",
+    "conf": 0.544,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe with whe has herell had the has hearved to fased haved",
+    "conf": 0.558,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.0
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has had the has has the has has the has has the has has",
+    "conf": 0.557,
+    "verdict": "not_ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wity wit had the acceseansing a st the has has the has",
+    "conf": 0.543,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.0
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has hare the has has has has has has has has has has ha",
+    "conf": 0.512,
+    "verdict": "not_ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has has has has has has has has has has the mist had th",
+    "conf": 0.537,
+    "verdict": "not_ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishereated tolkingitonsilled for has hearved to fact to coul",
+    "conf": 0.556,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wign'in the has has the has has the has has the has has",
+    "conf": 0.562,
+    "verdict": "not_ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has has the has has the has has the has has the has has",
+    "conf": 0.559,
+    "verdict": "not_ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wither to here we wereds the toom is it w the toom is i",
+    "conf": 0.53,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wither to the has his his his caredougnyed haved to fas",
+    "conf": 0.545,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has has has has has has has has has the mist had the mi",
+    "conf": 0.544,
+    "verdict": "not_ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wiged haved to fased flied tomessite we ismasis co cast",
+    "conf": 0.529,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wither to here we wereds assise whereign'sishedloflecar",
+    "conf": 0.519,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe has have had the has have had the has hearved to her he",
+    "conf": 0.559,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wither siserience was the accesime we chasheresisince h",
+    "conf": 0.501,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wign'sishap the toom is a singlessedeated tolk to setig",
+    "conf": 0.518,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wigedsity wit had the accesisnesing to the doover in th",
+    "conf": 0.589,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe assiselesismin to a sist as i susising the accesime one",
+    "conf": 0.512,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wity wit had the has has the toom is a sent had the has",
+    "conf": 0.52,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wign'sishap asped higly the has has the has has the has",
+    "conf": 0.554,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wigedationarac c haddidy othereige the fact the fact th",
+    "conf": 0.567,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe witche the fact the toom is a sent had the has have to",
+    "conf": 0.514,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.0
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishenenyer to fased him to fased his hearing the tooneivingi",
+    "conf": 0.522,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe any to a sent a see wign the has has the has has the ha",
+    "conf": 0.5,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wiging the has has the has has the has has the has has",
+    "conf": 0.568,
+    "verdict": "not_ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.0
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wigedsity ounchasmin the acceseansince to the has himel",
+    "conf": 0.532,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe witche oneserien to fased for the fact the took ist one",
+    "conf": 0.557,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishen himy oreed oceseny oneedinn on the took ist oneedin'yo",
+    "conf": 0.525,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wign'sishap asped any sometourdly wit had the accesisne",
+    "conf": 0.53,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wither to here we wereds the toom is in the has his his",
+    "conf": 0.535,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  },
+  {
+    "task": "language",
+    "gold": "English",
+    "pred": "Englishe wither in the acceseansince asistedeigunisucisedo a has",
+    "conf": 0.517,
+    "verdict": "ascertained",
+    "correct": 0,
+    "cer_transcribe_ref": 8.143
+  }
+]

@@ -546,6 +546,29 @@ def gate_IT() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_NC() -> dict:
+    """NSM Layer C: a gold-free pramāṇa gate whose ascertainment predicts ALM correctness."""
+    v = ROOT / "data/alm/layer_c_validation.json"
+    code_ok = (ROOT / "src/pranava/nsm/layer_c.py").exists() \
+        and (ROOT / "scripts/nsm/validate_layer_c.py").exists()
+    code = _verdict(code_ok, "Layer C code + validator present" if code_ok else "missing Layer C files")
+    if v.exists():
+        m = json.loads(v.read_text())
+        a, r = m.get("accuracy_ascertained"), m.get("accuracy_rejected")
+        checks = {
+            "both_buckets_nonempty": m.get("n_ascertained", 0) > 0 and m.get("n_rejected", 0) > 0,
+            "predicts_correctness": bool(m.get("layer_c_predicts_correctness")),
+            "ascertained_more_accurate": a is not None and r is not None and a > r,
+            "gold_free": "gold-free" in m.get("reward", ""),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v_ else 'FAIL'}" for k, v_ in checks.items())
+                       + f" | acc ascertained {a} vs rejected {r} (gap {m.get('accuracy_gap')})")
+    else:
+        dom = _verdict(False, "layer_c_validation.json missing (run validate_layer_c.py)")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_RF() -> dict:
     """RLAIF: a real DPO preference pass over the SFT model with an AI-feedback reward, no regression."""
     mt = ROOT / "data/alm/rlaif_metrics.json"
@@ -826,7 +849,7 @@ GATES = {
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
     "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "RD": gate_RD,
     "CL": gate_CL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
-    "ML": gate_ML, "APP": gate_APP, "IT": gate_IT, "RF": gate_RF,
+    "ML": gate_ML, "APP": gate_APP, "IT": gate_IT, "RF": gate_RF, "NC": gate_NC,
 }
 
 

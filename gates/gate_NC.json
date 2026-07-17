@@ -1,0 +1,12 @@
+{
+  "milestone": "NC",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "Layer C code + validator present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "both_buckets_nonempty:ok; predicts_correctness:ok; ascertained_more_accurate:ok; gold_free:ok | acc ascertained 0.3977 vs rejected 0.0 (gap 0.3977)"
+  },
+  "closed": true
+}

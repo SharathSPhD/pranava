@@ -1,0 +1,11 @@
+{
+  "task": "instruction tasks with correctness variance (held-out, excl. transcribe)",
+  "n": 273,
+  "n_ascertained": 264,
+  "n_rejected": 9,
+  "accuracy_ascertained": 0.3977,
+  "accuracy_rejected": 0.0,
+  "layer_c_predicts_correctness": true,
+  "accuracy_gap": 0.3977,
+  "reward": "gold-free: pratyakṣa(confidence) + śabda(legality) + anumāna(non-repetition)"
+}
