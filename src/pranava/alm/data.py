@@ -33,6 +33,20 @@ class Example:
     split: str
     duration_s: float
 
+    @property
+    def kriya(self) -> str | None:
+        """The verb (kriyā) — the sentence's core meaning, from the gold kāraka parse."""
+        for pair in self.karaka:
+            if len(pair) == 2 and pair[1] == "kriyA":
+                return pair[0]
+        return None
+
+    @property
+    def template(self) -> str:
+        """A leakage-safe CV group: the sentence with its kāraka fillers blanked."""
+        fillers = {p[0] for p in self.karaka if len(p) == 2}
+        return " ".join("_" if w in fillers else w for w in self.text.split())
+
 
 def load_manifest(split: str | None = None) -> list[Example]:
     rows = [json.loads(x) for x in MANIFEST.open(encoding="utf-8") if x.strip()]

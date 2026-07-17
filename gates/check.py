@@ -463,6 +463,32 @@ def gate_P4() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_SL() -> dict:
+    """Sphoṭa-Lens v2: validated meaning-emergence locus (correlational + causal agree)."""
+    rc, out = _run([PY, "-m", "pytest", "tests/sphota_lens/test_emergence.py", "-q"])
+    code = _verdict(rc == 0, "emergence instrument recovers planted layer" if rc == 0 else out)
+    r_p = ROOT / "data/sphota_lens/emergence_report.json"
+    doc = ROOT / "research/sphota-lens.md"
+    if r_p.exists():
+        r = json.loads(r_p.read_text())
+        dec = [x for x in r.get("decodability_by_layer", []) if x == x]  # drop nan
+        peak_dec = max(dec) if dec else 0.0
+        checks = {
+            "meaning_decodable_from_audio": peak_dec > 5 * r.get("chance", 1),  # ≫ chance
+            "peak_not_input_layer": r.get("peak_layer", 0) >= 1,
+            "corr_causal_agree": r.get("sphota_layer", -1) >= 0,
+            "validated": r.get("validated") is True,
+            "writeup": doc.exists(),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | sphoṭa layer={r.get('sphota_layer')} peak_decod={peak_dec:.3f} "
+                         f"(chance {r.get('chance')}); corr={r.get('peak_layer')} causal={r.get('causal_peak_layer')}")
+    else:
+        dom = _verdict(False, "emergence_report.json missing — run scripts/alm/p3b_emergence.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_P5() -> dict:
     """Scaled to the fully-trained 1B Nemotron-H (RTX 5090): understanding ≥ the 200M baseline."""
     code_files = [ROOT / "src/pranava/alm/megatron_core.py", ROOT / "scripts/alm/train_1b.py"]
@@ -595,7 +621,7 @@ GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M2b": gate_M2b, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
-    "P4": gate_P4, "P5": gate_P5, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
+    "P4": gate_P4, "P5": gate_P5, "SL": gate_SL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
 }
 
 

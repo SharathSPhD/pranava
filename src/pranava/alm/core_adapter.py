@@ -136,6 +136,27 @@ class SanskritCore:
         return layers
 
     @torch.no_grad()
+    def features_final_ablated(self, inputs_embeds: torch.Tensor, ablate_layer: int,
+                               positions: slice) -> torch.Tensor:
+        """Final hidden states (B,T,d) with layer ``ablate_layer``'s ``positions`` mean-collapsed.
+
+        A true activation ablation: at the output of block ``ablate_layer-1`` (layer index
+        ``ablate_layer``; 0 = input), the selected positions are replaced by their own mean over
+        that span, destroying the meaning-carrying variation there while preserving gross level.
+        Used to causally locate the sphoṭa layer (where ablating audio positions most hurts meaning).
+        """
+        x = inputs_embeds.to(self.torch_device)
+        if ablate_layer == 0:
+            x = x.clone()
+            x[:, positions] = x[:, positions].mean(dim=1, keepdim=True)
+        for li, block in enumerate(self.model.blocks):
+            x = block(x)
+            if li + 1 == ablate_layer:
+                x = x.clone()
+                x[:, positions] = x[:, positions].mean(dim=1, keepdim=True)
+        return self.model.norm_f(x)
+
+    @torch.no_grad()
     def forward_embeds(self, inputs_embeds: torch.Tensor) -> torch.Tensor:
         """(B,T,d) embeddings → next-token logits (B,T,vocab)."""
         return self.model.head(self.features_embeds(inputs_embeds))

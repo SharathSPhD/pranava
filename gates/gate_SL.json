@@ -1,0 +1,12 @@
+{
+  "milestone": "SL",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "emergence instrument recovers planted layer"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "meaning_decodable_from_audio:ok; peak_not_input_layer:ok; corr_causal_agree:ok; validated:ok; writeup:ok | sphoṭa layer=13 peak_decod=0.263 (chance 0.0222); corr=13 causal=14"
+  },
+  "closed": true
+}
