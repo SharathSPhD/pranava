@@ -56,8 +56,8 @@
   "cer_progression": {
     "proj_200m": 0.7745,
     "proj_1b": 0.5709,
-    "lora_200m": 0.5701
+    "lora_200m": 0.7048
   },
-  "gates_passing": 27,
-  "gates_total": 27
+  "gates_passing": 31,
+  "gates_total": 31
 }
