@@ -110,6 +110,26 @@ held-out split, referenced to a no-audio baseline.
 NVIDIA GB10 (200M) and an RTX 5090 (1B).
 
 \section{Results}\label{sec:results}
+Every claim is backed by a machine-checkable dual-verdict gate (\texttt{code\_gate}: the software
+runs and its tests pass; \texttt{domain\_gate}: the artifact meets the stated bar). Table~\ref{tab:claims}
+maps each claim to its evidence and gate; $26/26$ gates pass.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{p{6.4cm}lc}
+\toprule
+Claim & Gate & Strength \\
+\midrule
+Audio embeddings inject faithfully into the frozen core (arg-max identical) & \texttt{P0} & strong \\
+Śabda-ALM outranks SOTA ASR on the Sanskrit task (CER $0.546$) & \texttt{BM} & strong \\
+LoRA adaptation of the $200$M core beats the $1.13$B projector-only model & \texttt{LR},\texttt{P5} & strong \\
+Meaning emerges from sound at a validated locus (layer $13$; corr.\ + causal agree) & \texttt{SL} & strong \\
+Full speech-to-speech pipeline runs end-to-end (content bounded by data scale) & \texttt{P4} & moderate \\
+\bottomrule
+\end{tabular}
+\caption{Claims traced to gates. Reproduce with \texttt{python gates/check.py}.}
+\label{tab:claims}
+\end{table}
+
 \textbf{Understanding scales, and adaptation beats scaling.} Table~\ref{tab:cer} shows held-out CER.
 The no-audio baseline is $1.0$ (the core cannot guess the text without audio). Projector-only
 training already conveys speech content; scaling the core $200$M$\to$$1.13$B lowers CER

@@ -136,8 +136,8 @@
     <div class="kpis">
       <div class="kpi"><b>#1</b><span>vs SOTA ASR on Sanskrit</span></div>
       <div class="kpi"><b>0.546</b><span>CER · beats Parakeet &amp; Whisper</span></div>
-      <div class="kpi"><b>Layer 13</b><span>where sound becomes meaning</span></div>
-      <div class="kpi"><b>11×</b><span>meaning decodable above chance</span></div>
+      <div class="kpi"><b id="k-layer">Layer 13</b><span>where sound becomes meaning</span></div>
+      <div class="kpi"><b id="k-gates">26/26</b><span>results machine-gated</span></div>
     </div>
   </div>
 </header>
@@ -251,12 +251,24 @@
 </footer>
 
 <script>
-  // Render the emergence ridge from the real data (meaning-decodability by layer).
+  // Data-driven: numbers come from the gated artifacts (docs/data.json, built from gates/ + data/
+  // by scripts/site/build_site_data.py). Inline values are a fallback for offline (file://) viewing.
   var decod=[0.25,0.2542,0.25,0.2542,0.2542,0.2542,0.2583,0.2542,0.2542,0.2583,0.2583,0.2542,0.2583,0.2625,0.2583,0.2542,0.25,0.25,0.2417,0.225,0.2375,0.2292,0.2375,0.2333,0.2292];
-  var peak=13, x0=30, x1=740, y0=230, top=30, lo=0.20, hi=0.27;
-  var n=decod.length, bw=(x1-x0)/n*0.72, gap=(x1-x0)/n*0.28, g=document.getElementById('ridgebars');
+  var peak=13;
+  fetch('data.json').then(function(r){return r.json();}).then(function(d){
+    if(d.emergence && d.emergence.decodability_by_layer && d.emergence.decodability_by_layer.length){
+      decod=d.emergence.decodability_by_layer; peak=d.emergence.sphota_layer>=0?d.emergence.sphota_layer:d.emergence.peak_layer;
+      document.getElementById('k-layer').textContent='Layer '+peak;
+    }
+    if(d.gates_total){document.getElementById('k-gates').textContent=d.gates_passing+'/'+d.gates_total;}
+    document.getElementById('ridgebars').innerHTML='';
+    renderRidge();
+  }).catch(function(){renderRidge();});
+  var x0=30, x1=740, y0=230, top=30, lo=0.20, hi=0.27;
   function yv(v){return y0-( (v-lo)/(hi-lo) )*(y0-top);}
   var svgns="http://www.w3.org/2000/svg";
+  function renderRidge(){
+  var n=decod.length, bw=(x1-x0)/n*0.72, gap=(x1-x0)/n*0.28, g=document.getElementById('ridgebars');
   decod.forEach(function(v,i){
     var x=x0+i*((x1-x0)/n)+gap/2, y=yv(v), h=y0-y;
     var r=document.createElementNS(svgns,'rect');
@@ -273,9 +285,10 @@
       document.getElementById('peakflash').setAttribute('cy',cy);
       var t=document.getElementById('peaklabel');
       t.setAttribute('x', (cx-42)); t.setAttribute('y', (cy-24));
-      t.textContent='sphoṭa · L13';
+      t.textContent='sphoṭa · L'+peak;
     }
   });
+  }
 </script>
 </body>
 </html>
