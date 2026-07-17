@@ -26,3 +26,5 @@ data/stimuli/wav_ea/
 # ALM heavy artifacts (checkpoints kept out of git)
 data/alm/*.pt
 data/alm/checkpoints/
+data/alm/speech_corpus/wav/
+data/alm/_tts_probe.wav

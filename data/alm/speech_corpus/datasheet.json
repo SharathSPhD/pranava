@@ -1,0 +1,13 @@
+{
+  "n_items": 600,
+  "total_hours": 0.335,
+  "sample_rate": 22050,
+  "source": "PSALM paninian_v1 (Vidyut-realized, gold kāraka)",
+  "tts": "NeMo tts_en_fastpitch + tts_en_lj_hifigan_ft_mixertts",
+  "split": {
+    "train": 542,
+    "val": 58
+  },
+  "limitation": "English FastPitch voice pronouncing romanized Sanskrit — consistent/deterministic but not native Sanskrit phonetics; native-pronunciation audio is future work.",
+  "text_encoding": "SLP1-romanized; gold kāraka by construction (no parser)."
+}

@@ -1,0 +1,61 @@
+"""Paired speech↔text dataset for ALM training (Phase 1 output).
+
+Reads the manifest produced by scripts/alm/build_speech_corpus.py. Loading the manifest and the
+WAV files needs no GPU/NeMo, so this is host-testable; feature extraction happens at train time.
+"""
+from __future__ import annotations
+
+import json
+import wave
+from dataclasses import dataclass
+from pathlib import Path
+
+import numpy as np
+
+
+def _root() -> Path:
+    for c in ("/work/pranava", "/home/sharaths/projects/pranava"):
+        if (Path(c) / "data/alm/speech_corpus/manifest.jsonl").exists():
+            return Path(c)
+    return Path(__file__).resolve().parents[3]
+
+
+CORPUS_DIR = _root() / "data" / "alm" / "speech_corpus"
+MANIFEST = CORPUS_DIR / "manifest.jsonl"
+
+
+@dataclass(frozen=True, slots=True)
+class Example:
+    id: str
+    text: str
+    wav_path: Path
+    karaka: list
+    split: str
+    duration_s: float
+
+
+def load_manifest(split: str | None = None) -> list[Example]:
+    rows = [json.loads(x) for x in MANIFEST.open(encoding="utf-8") if x.strip()]
+    out = []
+    for r in rows:
+        if split and r["split"] != split:
+            continue
+        out.append(
+            Example(
+                id=r["id"], text=r["text"], wav_path=_root() / r["wav"],
+                karaka=r.get("karaka", []), split=r["split"],
+                duration_s=float(r.get("duration_s", 0.0)),
+            )
+        )
+    return out
+
+
+def read_wav(path: Path) -> tuple[np.ndarray, int]:
+    with wave.open(str(path), "rb") as wf:
+        sr, raw = wf.getframerate(), wf.readframes(wf.getnframes())
+    return np.frombuffer(raw, dtype=np.int16).astype(np.float32) / 32768.0, sr
+
+
+def text_to_bytes(text: str) -> list[int]:
+    """Byte ids for the core's byte-level tokenizer (matches vocab_size 256)."""
+    return list(text.encode("utf-8"))

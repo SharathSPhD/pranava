@@ -1,0 +1,12 @@
+{
+  "milestone": "P1",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "data-loader tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "items>=200:ok; both_splits:ok; all_wavs_present:ok; datasheet_has_hours:ok; limitation_documented:ok | 600 items, 0.335h, gold kāraka"
+  },
+  "closed": true
+}
