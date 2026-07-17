@@ -6,3 +6,5 @@
 {"kind": "proposal", "candidate_id": "lora_1b_5090", "action": "smoke", "knobs": {"where": "5090", "r": 8}}
 {"kind": "observation", "candidate_id": "multilingual_english", "result": "one 200M core transcribes real English + native Sanskrit; sa CER 0.706 beats Whisper 0.940", "tier": 2, "gate": "ML"}
 {"kind": "observation", "candidate_id": "vercel_app", "result": "inference server verified in-container (en+sa over HTTP); frontend live https://sabda-alm.vercel.app", "tier": 3, "gate": "APP"}
+{"kind": "observation", "candidate_id": "instruction_tuning", "result": "SFT one-audio-six-tasks; causal instruction-following gap 0.281 vs shuffled-control 0.0; karma 0.87/karta 0.76", "tier": 3, "gate": "IT"}
+{"kind": "observation", "candidate_id": "rlaif", "result": "DPO w/ AI-feedback reward; first attempt regressed (0.28->0.14), fixed via balanced pairs + beta 0.3 -> 0.291 (karma 0.95)", "tier": 2, "gate": "RF"}

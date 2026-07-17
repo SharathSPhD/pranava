@@ -1,0 +1,12 @@
+{
+  "milestone": "RF",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "RLAIF/DPO code present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "dpo_ran:ok; ai_feedback_reward:ok; real_preference_pairs:ok; no_regression:ok | SFT 0.2808 → RLAIF 0.2913 over 130 pairs"
+  },
+  "closed": true
+}

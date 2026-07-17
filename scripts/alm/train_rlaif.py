@@ -88,7 +88,8 @@ def _accuracy(core, proj, bias, val, dev):
         round(sum(hit.values()) / max(1, sum(tot.values())), 4)
 
 
-def main(n_prompts: int = 300, dpo_epochs: int = 3, beta: float = 0.1, k: int = 4) -> int:
+def main(n_prompts: int = 300, dpo_epochs: int = 2, beta: float = 0.3, k: int = 4,
+         per_task_cap: int = 30, lr: float = 5e-5) -> int:
     core = SanskritCore(arm="m2", device="cuda").load()
     for p in core.model.parameters():
         p.requires_grad_(False)
@@ -115,7 +116,7 @@ def main(n_prompts: int = 300, dpo_epochs: int = 3, beta: float = 0.1, k: int = 
     base_per_task, base_overall = _accuracy(core, proj, bias, val, dev)
 
     # --- build preference pairs with the AI-feedback reward (sampling under the SFT policy) -------
-    pairs = []
+    raw = []
     proj.eval()
     with torch.no_grad():
         for ex in prompts:
@@ -127,8 +128,18 @@ def main(n_prompts: int = 300, dpo_epochs: int = 3, beta: float = 0.1, k: int = 
             scored = sorted(cands, key=lambda c: ai_reward(c, ex["response"], ex["task"]))
             if ai_reward(scored[-1], ex["response"], ex["task"]) - \
                ai_reward(scored[0], ex["response"], ex["task"]) > 0.05:
-                pairs.append((ex, scored[-1], scored[0]))  # (prompt, chosen, rejected)
-    print(json.dumps({"n_pairs": len(pairs)}), flush=True)
+                raw.append((ex, scored[-1], scored[0]))  # (prompt, chosen, rejected)
+
+    # Balance pairs per task so the long, high-gradient `transcribe` pairs don't dominate the shared
+    # LoRA update and corrupt the well-calibrated extractive tasks (the β=0.1 regression we saw).
+    from collections import defaultdict
+    cap = per_task_cap
+    buckets: dict[str, list] = defaultdict(list)
+    for p in raw:
+        buckets[p[0]["task"]].append(p)
+    pairs = [p for b in buckets.values() for p in b[:cap]]
+    print(json.dumps({"n_pairs_raw": len(raw), "n_pairs_balanced": len(pairs),
+                      "per_task": {t: min(len(b), cap) for t, b in buckets.items()}}), flush=True)
 
     # --- precompute reference (SFT) log-probs; then DPO on the policy ----------------------------
     ref = {}
@@ -139,7 +150,7 @@ def main(n_prompts: int = 300, dpo_epochs: int = 3, beta: float = 0.1, k: int = 
             ref[idx] = (_seq_logprob(core, prefix, ch, dev).item(),
                         _seq_logprob(core, prefix, rj, dev).item())
 
-    opt = torch.optim.Adam(list(proj.parameters()) + lora_params, lr=1e-4)
+    opt = torch.optim.Adam(list(proj.parameters()) + lora_params, lr=lr)
     hist = []
     for ep in range(dpo_epochs):
         proj.train(); run = 0.0
@@ -163,6 +174,7 @@ def main(n_prompts: int = 300, dpo_epochs: int = 3, beta: float = 0.1, k: int = 
                ROOT / "data/alm/rlaif_ckpt.pt")
     out = {"method": "RLAIF via DPO (AI-feedback reward: correctness + conciseness) over SFT",
            "reward": "0.8*edit_similarity_to_gold + 0.2*conciseness", "beta": beta, "k_samples": k,
+           "per_task_cap": per_task_cap, "lr": lr,
            "n_prompts": n_prompts, "n_preference_pairs": len(pairs), "dpo_epochs": dpo_epochs,
            "dpo_loss_history": hist,
            "sft_overall_accuracy": base_overall, "rlaif_overall_accuracy": rlaif_overall,
@@ -175,4 +187,6 @@ def main(n_prompts: int = 300, dpo_epochs: int = 3, beta: float = 0.1, k: int = 
 
 if __name__ == "__main__":
     a = sys.argv
-    raise SystemExit(main(int(a[1]) if len(a) > 1 else 300, int(a[2]) if len(a) > 2 else 3))
+    raise SystemExit(main(int(a[1]) if len(a) > 1 else 300,
+                          int(a[2]) if len(a) > 2 else 2,
+                          float(a[3]) if len(a) > 3 else 0.3))

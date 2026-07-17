@@ -546,6 +546,28 @@ def gate_IT() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_RF() -> dict:
+    """RLAIF: a real DPO preference pass over the SFT model with an AI-feedback reward, no regression."""
+    mt = ROOT / "data/alm/rlaif_metrics.json"
+    code_ok = (ROOT / "scripts/alm/train_rlaif.py").exists()
+    code = _verdict(code_ok, "RLAIF/DPO code present" if code_ok else "missing train_rlaif.py")
+    if mt.exists():
+        m = json.loads(mt.read_text())
+        sft, rl = m.get("sft_overall_accuracy", 0), m.get("rlaif_overall_accuracy", 0)
+        checks = {
+            "dpo_ran": "DPO" in m.get("method", "") and len(m.get("dpo_loss_history", [])) > 0,
+            "ai_feedback_reward": "reward" in m and "conciseness" in m.get("reward", ""),
+            "real_preference_pairs": m.get("n_preference_pairs", 0) > 0,
+            "no_regression": rl >= sft - 0.01,  # honest bar: DPO must not degrade instruction-following
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | SFT {sft} → RLAIF {rl} over {m.get('n_preference_pairs')} pairs")
+    else:
+        dom = _verdict(False, "rlaif metrics missing (run train_rlaif.py)")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_RD() -> dict:
     """Native-Sanskrit audio corpus built, ALM retrained on it, re-benchmarked honestly."""
     ds = ROOT / "data/alm/speech_corpus_indic/datasheet.json"
@@ -804,7 +826,7 @@ GATES = {
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
     "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "RD": gate_RD,
     "CL": gate_CL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
-    "ML": gate_ML, "APP": gate_APP, "IT": gate_IT,
+    "ML": gate_ML, "APP": gate_APP, "IT": gate_IT, "RF": gate_RF,
 }
 
 
