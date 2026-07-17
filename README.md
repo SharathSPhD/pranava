@@ -5,9 +5,10 @@ locating where sound becomes meaning.**
 
 > प्रणव · *praṇava* — the primordial sound from which articulated speech and meaning unfold.
 
-🌐 **[Project site](https://sharathsphd.github.io/pranava/)** · 📄 **[Paper](paper/paper.tex)** · reproduce everything with `python gates/check.py`
+🌐 **[Project site](https://sharathsphd.github.io/pranava/)** · 🎙️ **[Try it live](https://sabda-alm.vercel.app)** · 📄 **[Paper](paper/paper.tex)** · reproduce everything with `python gates/check.py`
 
 **Headline results** (all dual-gated):
+- **Multilingual on one Sanskrit byte-core**: fed real English (LibriSpeech) *and* native Sanskrit, one 200M model transcribes both — Sanskrit CER **0.706** (beats Whisper-base 0.940), English 0.785. Capability, not English SOTA: [`research/multilingual.md`](research/multilingual.md)
 - **Competitive with SOTA on authentic Sanskrit**: on native-Sanskrit speech the 200M Śabda-ALM reaches CER **0.565** — a close 2nd to NVIDIA's 0.6B Parakeet-TDT (**0.522**), well ahead of Whisper (0.754); on a controlled TTS distribution it ranks **1st** (0.546 vs 0.605). The honest two-regime read: [`research/sota-leaderboard.md`](research/sota-leaderboard.md)
 - **The Sphoṭa-Lens** localises meaning-emergence-from-sound to a **validated layer 13** (correlational + causal peaks agree; meaning decodable from audio positions at 11× chance). [`research/sphota-lens.md`](research/sphota-lens.md)
 - **Adaptation beats scaling**: a 200M core + 1.5M LoRA weights (CER 0.548) beats a 1.13B projector-only core (0.571).
