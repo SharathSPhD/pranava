@@ -113,7 +113,7 @@ NVIDIA GB10 (200M) and an RTX 5090 (1B).
 \section{Results}\label{sec:results}
 Every claim is backed by a machine-checkable dual-verdict gate (\texttt{code\_gate}: the software
 runs and its tests pass; \texttt{domain\_gate}: the artifact meets the stated bar). Table~\ref{tab:claims}
-maps each claim to its evidence and gate; $26/26$ gates pass.
+maps each claim to its evidence and gate; $32/32$ gates pass.
 
 \begin{table}[h]\centering\small
 \begin{tabular}{p{6.4cm}lc}
@@ -123,7 +123,11 @@ Claim & Gate & Strength \\
 Audio embeddings inject faithfully into the frozen core (arg-max identical) & \texttt{P0} & strong \\
 $200$M ALM is competitive with $0.6$B SOTA ASR on authentic Sanskrit ($0.565$ vs $0.522$) & \texttt{BM} & strong \\
 LoRA adaptation of the $200$M core beats the $1.13$B projector-only model & \texttt{LR},\texttt{P5} & strong \\
+One Sanskrit byte-core transcribes real English + native Sanskrit (sa $0.706 <$ Whisper $0.940$) & \texttt{ML} & strong \\
+Instruction-following from speech: right instruction $0.281$ vs shuffled control $0.000$ & \texttt{IT} & strong \\
+RLAIF (DPO, AI-feedback reward) improves the SFT model without regression ($0.281{\to}0.291$) & \texttt{RF} & moderate \\
 Meaning emerges from sound at a validated locus (layer $13$; corr.\ + causal agree) & \texttt{SL} & strong \\
+Gold-free pramāṇa gate predicts correctness (ascertained $0.40$ vs rejected $0.00$ acc) & \texttt{NC} & moderate \\
 Full speech-to-speech pipeline runs end-to-end (content bounded by data scale) & \texttt{P4} & moderate \\
 \bottomrule
 \end{tabular}
