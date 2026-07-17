@@ -274,6 +274,29 @@ def gate_E6() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_E7() -> dict:
+    """Definitive matched-vocabulary holism test ran, is valid (P1 sanity holds), reported."""
+    rc, out = _run([PY, "-m", "pytest", "tests/experiments/test_stimuli_early.py", "-q"])
+    code = _verdict(rc == 0, "early-pool tests green" if rc == 0 else out)
+    res_p = ROOT / "data/experiments/e7_results.json"
+    if res_p.exists():
+        res = json.loads(res_p.read_text())
+        p1s = res.get("P1_speech_late_gt_early", {})
+        p2 = res.get("P2_speech_gt_text_late", {})
+        checks = {
+            "matched_pools>=200": res.get("n_early", 0) >= 200 and res.get("n_late", 0) >= 200,
+            "P1_sanity_holds": p1s.get("supported_holm") is True,  # metric validity check
+            "P2_reported_with_CI": "ci95" in p2,
+            "verdict_recorded": bool(res.get("verdict")),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | {res.get('verdict')}")
+    else:
+        dom = _verdict(False, "e7_results.json missing — run scripts/e7_definitive.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_X0() -> dict:
     """Autoresearch loop (reuses prabodha EFE) wired end-to-end with a recorded cycle."""
     rc, out = _run([PY, "-m", "pytest", "tests/autoresearch/", "-q"])
@@ -300,7 +323,8 @@ def gate_X0() -> dict:
 
 GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3,
-    "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6, "X0": gate_X0,
+    "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
+    "E7": gate_E7, "X0": gate_X0,
 }
 
 

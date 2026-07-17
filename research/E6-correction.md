@@ -54,7 +54,17 @@ project's headline is corrected here rather than propagated.
   caught the error.
 - The digital-edition pillar (M0–M3) is untouched by this.
 
-## Next (for a future, better-powered study)
-Re-run the FULL H-HOLISM design on properly-crossed stimuli across all structures (≥8 templates
-each), with valid grouped CV, before making any speech-vs-text holism claim. Until then, the
-honest state is: **no demonstrated speech-vs-text holism difference.**
+## Definitive re-run (E7) — question settled
+Pre-registered (`research/prereg/H-HOLISM-E7.md`), matched vocabulary (same 8 verbs in early vs
+late position, 240+240 items, one grouped-CV probe across both, full power):
+- **P1** HI(late) > HI(early): strongly supported in **both** modalities (speech +0.435
+  CI [0.379, 0.489]; text +0.576 CI [0.521, 0.630]). The metric is valid — genuinely late-resolving
+  meaning yields high holism; early meaning near-zero.
+- **P2** HI_speech(late) − HI_text(late): **null, slightly reversed** — −0.075, CI [−0.148,
+  −0.0004], p=0.98 in the predicted direction. No speech advantage; if anything text is marginally
+  more holistic.
+
+**Verdict (final):** there is **no speech-vs-text holism difference** in this decodability-trajectory
+paradigm once stimuli are properly crossed and CV is valid. The E2 headline is fully retired. What
+stands is a careful **null** plus a working paradigm (P1) — and a documented case of a false
+positive caught and corrected by pre-registration + scaling + the autoresearch loop.

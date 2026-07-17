@@ -1,0 +1,39 @@
+{
+  "prereg": "research/prereg/H-HOLISM-E7.md",
+  "n_early": 240,
+  "n_late": 240,
+  "means": {
+    "HI_speech_late": 0.5011,
+    "HI_speech_early": 0.0664,
+    "HI_text_late": 0.5757,
+    "HI_text_early": 0.0
+  },
+  "P1_speech_late_gt_early": {
+    "effect": 0.4346,
+    "ci95": [
+      0.3787,
+      0.4893
+    ],
+    "p": 0.0,
+    "supported_holm": true
+  },
+  "P1_text_late_gt_early": {
+    "effect": 0.5757,
+    "ci95": [
+      0.521,
+      0.6297
+    ],
+    "p": 0.0,
+    "supported_holm": true
+  },
+  "P2_speech_gt_text_late": {
+    "effect": -0.0746,
+    "ci95": [
+      -0.1484,
+      -0.0004
+    ],
+    "p": 0.976,
+    "supported_holm": false
+  },
+  "verdict": "P2 null \u2014 no speech>text holism (confirms E6 correction)"
+}

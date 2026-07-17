@@ -1,0 +1,12 @@
+{
+  "milestone": "E7",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "early-pool tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "matched_pools>=200:ok; P1_sanity_holds:ok; P2_reported_with_CI:ok; verdict_recorded:ok | P2 null — no speech>text holism (confirms E6 correction)"
+  },
+  "closed": true
+}

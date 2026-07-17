@@ -33,7 +33,8 @@ picture actually holds in speech vs text models. First result (E2) suggested spe
 | E1 | Controlled stimulus set (288 items, balanced, synthesized) | ✅ |
 | E2 | H-HOLISM pre-registered experiment (initial signal) | ✅ |
 | E5 | Prosody acoustic-blindness gap (speech recovers what text can't); localization null | ✅ |
-| E6 | **Scaling replication — CORRECTS E2: effect does not survive; no speech>text holism** | ✅ |
+| E6 | Scaling replication — CORRECTS E2 (effect does not survive) | ✅ |
+| E7 | **Definitive matched-vocab re-run — settles it: NO speech-vs-text holism difference (clean null)** | ✅ |
 | X0 | Autoresearch loop (reuses prabodha EFE) — full cycle; finding replicated across 4 model pairings | ✅ |
 
 8 milestones. Run the whole ledger: `python gates/check.py`. Milestones + gates: [`specs/MILESTONES.md`](specs/MILESTONES.md).
