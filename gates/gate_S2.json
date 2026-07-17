@@ -1,0 +1,12 @@
+{
+  "milestone": "S2",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "speech-to-speech server + TTS present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "verified_speech_to_speech:ok; instruction_conditioned:ok; returns_audio:ok; task_selects_answer:ok; frontend_speaks:ok | tasks verified: ['transcribe', 'kriya', 'karta']"
+  },
+  "closed": true
+}

@@ -1,0 +1,22 @@
+{
+  "task": "held-out audio → romanized-Sanskrit text (CER, lower=better)",
+  "n_items": 58,
+  "audio_corpus": "native Sanskrit (indic-parler-tts)",
+  "comparison": "specialist vs generalist ALM",
+  "leaderboard": [
+    {
+      "model": "Śabda-ALM (Parakeet+Projector+LoRA→Sanskrit core, ours)",
+      "params": "200M core + 0.6B enc",
+      "cer": 0.5649,
+      "alm_type": "specialist (Sanskrit-native)"
+    },
+    {
+      "model": "Qwen2-Audio-7B-Instruct (open ALM)",
+      "params": "7B",
+      "cer": 1.0,
+      "alm_type": "generalist (no Sanskrit training)",
+      "note": null
+    }
+  ],
+  "note": "Apples-to-apples ALM comparison: Śabda-ALM (specialist, fine-tuned on Sanskrit) vs Qwen2-Audio-7B-Instruct (generalist, trained on multilingual data without Sanskrit). The specialist ALM is expected to outperform a general-purpose model on this Sanskrit-specific task."
+}

@@ -1,0 +1,29 @@
+{
+  "verified": true,
+  "endpoint": "/speak?task=<task>",
+  "returns": "audio/wav (the model speaking its answer) + X-Transcript/X-Language headers",
+  "instruction_conditioned": true,
+  "examples": [
+    {
+      "task": "transcribe",
+      "gold": "rAmaH gfhAt Palam gacCet",
+      "spoken_answer": "rAmaH gfhetf gfhakam gfheRAgam gacCerAH",
+      "wav_bytes": 127532
+    },
+    {
+      "task": "kriya",
+      "gold_field": "gacCet",
+      "spoken_answer": "gacCet",
+      "exact": true,
+      "wav_bytes": 33324
+    },
+    {
+      "task": "karta",
+      "gold_field": "rAmaH",
+      "spoken_answer": "rAmam",
+      "wav_bytes": 26668
+    }
+  ],
+  "tts": "NeMo FastPitch+HiFiGAN (English phonetiser voicing romanized output — honest: not a Sanskrit voice)",
+  "note": "genuine speech-to-speech: audio in -> instruction-conditioned ALM -> text -> TTS -> audio out; task selects the answer"
+}

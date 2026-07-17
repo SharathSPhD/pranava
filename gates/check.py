@@ -546,6 +546,34 @@ def gate_IT() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_S2() -> dict:
+    """Speech-to-speech app: /speak returns the model's spoken, instruction-conditioned answer."""
+    server = ROOT / "src/pranava/serve/server.py"
+    web = ROOT / "web/index.html"
+    art = ROOT / "data/alm/s2s_app_verified.json"
+    s = server.read_text() if server.exists() else ""
+    w = web.read_text() if web.exists() else ""
+    code_ok = "/speak" in s and "def speak" in s and "def _speak" in s and "def _answer" in s \
+        and (ROOT / "src/pranava/alm/synth.py").exists()
+    code = _verdict(code_ok, "speech-to-speech server + TTS present" if code_ok else "missing S2S code")
+    if art.exists():
+        a = json.loads(art.read_text())
+        ex = a.get("examples", [])
+        checks = {
+            "verified_speech_to_speech": bool(a.get("verified")),
+            "instruction_conditioned": bool(a.get("instruction_conditioned")),
+            "returns_audio": all(e.get("wav_bytes", 0) > 1000 for e in ex) and len(ex) >= 3,
+            "task_selects_answer": len({e.get("spoken_answer") for e in ex}) >= 2,
+            "frontend_speaks": "/speak" in w and ("task" in w) and "Audio(" in w,
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | tasks verified: {[e.get('task') for e in ex]}")
+    else:
+        dom = _verdict(False, "s2s_app_verified.json missing (run the /speak test)")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_NC() -> dict:
     """NSM Layer C: a gold-free pramāṇa gate whose ascertainment predicts ALM correctness."""
     v = ROOT / "data/alm/layer_c_validation.json"
@@ -849,7 +877,7 @@ GATES = {
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
     "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "RD": gate_RD,
     "CL": gate_CL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
-    "ML": gate_ML, "APP": gate_APP, "IT": gate_IT, "RF": gate_RF, "NC": gate_NC,
+    "ML": gate_ML, "APP": gate_APP, "IT": gate_IT, "RF": gate_RF, "NC": gate_NC, "S2": gate_S2,
 }
 
 
