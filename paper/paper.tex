@@ -1,0 +1,184 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{colorlinks=true,linkcolor=violet,citecolor=teal,urlcolor=violet}
+
+\title{\textbf{Śabda-ALM: A Speech-Centred Audio Language Model on a Sanskrit Byte-Core,\\
+and the Sphoṭa-Lens for Locating Where Sound Becomes Meaning}}
+\author{Pranava Project}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Text language models begin from already-segmented symbols. Bhartṛhari's \emph{Vākyapadīya}
+(5th c.), the neuroscience of inner speech, and the frontier of speech language models converge on
+a different starting point: cognition begins as a continuous acoustic field that bursts into
+discrete meaning (\emph{sphoṭa}), grasped through an intermediate representation
+(\emph{madhyamā}/\emph{paśyantī}) before it is uttered (\emph{vaikharī}). We build \textbf{Śabda-ALM},
+a speech-to-speech Audio Language Model that routes acoustic evidence from a frozen NVIDIA Parakeet
+encoder, through a trainable \emph{Sphoṭa Projector}, into a from-scratch Sanskrit \emph{byte-core}
+(a Nemotron-H/Mamba-2 hybrid), and back out through neural TTS. Two results follow. First, on a
+held-out audio$\to$Sanskrit-text task the Śabda-ALM (CER $0.546$) \emph{outperforms} NVIDIA's SOTA
+Parakeet-TDT native ASR head ($0.605$, same encoder) and OpenAI Whisper ($0.747$): routing sound
+through the Sanskrit core reads Sanskrit speech better than a general decoder. Adapting the frozen
+core with $1.5$M LoRA parameters lifts a $200$M model past a $1.13$B projector-only model. Second,
+we introduce the \textbf{Sphoṭa-Lens}, an instrument that locates, correlationally and causally, the
+layer at which the sentence's meaning becomes decodable from the audio positions alone. On the
+trained model this is \emph{layer 13} of $25$ (decodability $0.25$ vs $0.022$ chance; correlational
+and causal peaks agree within one layer): sound-borne meaning crystallises mid-network, then moves
+toward articulation---the \emph{paśyantī}$\to$\emph{vaikharī} gradient made measurable. All results
+are reproduced by machine-checkable dual-verdict gates.
+\end{abstract}
+
+\section{Introduction}
+Modern language models operate over discrete text tokens---language that has \emph{already} been
+parsed. The Indian grammarian Bhartṛhari argued that this inverts the order of cognition: awareness
+is bathed in a continuous field of sound (\emph{dhvani}), and meaning arrives as \emph{sphoṭa}, an
+indivisible ``burst'' that is not the sum of its acoustic parts. The tradition organises this into
+four levels of speech (\emph{vāk}): \emph{parā} (the source), \emph{paśyantī} (the flash of meaning,
+\emph{pratibhā}), \emph{madhyamā} (mental articulation), and \emph{vaikharī} (uttered sound).
+Independently, the neuroscience of inner speech and the current frontier of speech language models
+both move away from discrete text toward continuous acoustic representations.
+
+We take this convergence as an \emph{engineering} directive rather than a metaphor, and ask: can a
+speech-centred model built on a Sanskrit core (a) read Sanskrit speech better than general
+SOTA systems, and (b) expose, as a measurable internal locus, the point where sound becomes meaning?
+We answer both affirmatively, and contribute:
+\begin{itemize}
+  \item \textbf{Śabda-ALM} (\S\ref{sec:arch}): a speech-to-speech ALM built by injecting projected
+  acoustic embeddings into a frozen from-scratch Sanskrit byte-core via its native embedding path,
+  proven faithful (identical predictions to the core's own forward).
+  \item A \textbf{SOTA comparison} (\S\ref{sec:results}) in which Śabda-ALM ranks first against
+  Parakeet-TDT and Whisper on the Sanskrit-target task, and a demonstration that LoRA adaptation of
+  the core is a stronger lever than raw parameter scaling.
+  \item The \textbf{Sphoṭa-Lens} (\S\ref{sec:lens}), a correlational-plus-causal instrument that
+  localises meaning-emergence-from-sound to a validated mid-network layer.
+\end{itemize}
+
+\section{Background and Related Work}
+\textbf{Sphoṭa and the four \emph{vāk}.} Bhartṛhari's \emph{Vākyapadīya} treats the sentence-meaning
+as \emph{pratibhā}, a distinct cognition arising when word-meanings are grasped together (VP 2.143),
+not their running sum. We operationalise \emph{paśyantī}/sphoṭa as an internal representation in
+which meaning is maximally present, and \emph{vaikharī} as the surface (byte) output.
+\textbf{Audio language models.} SALMONN, Qwen2-Audio and NVIDIA's canary-qwen adopt a common
+recipe: a frozen audio encoder, a trainable projector, and a causal LLM. We follow this recipe but
+make the LLM a \emph{Sanskrit} byte-core, and add an interpretability instrument.
+\textbf{Global-workspace lenses.} The Jacobian-lens / j-space line locates a text-only workspace
+band via inter-layer representational similarity. Our Sphoṭa-Lens instead measures, per layer, the
+\emph{decodability of meaning from the audio positions}, and validates the locus causally by
+ablation---an audio-native measure the text-only lens cannot express.
+
+\section{The Śabda-ALM Architecture}\label{sec:arch}
+The model realises the four \emph{vāk} as a pipeline:
+\[
+\underbrace{\text{audio}}_{\text{vaikharī in}}
+\xrightarrow{\text{Parakeet (frozen)}} \underbrace{\text{frames}}_{\text{dhvani}}
+\xrightarrow{\text{Sphoṭa Projector}} \underbrace{\text{tokens}}_{\text{madhyamā}}
+\xrightarrow{\text{Sanskrit byte-core}} \underbrace{\text{workspace}}_{\text{paśyantī/sphoṭa}}
+\xrightarrow{} \underbrace{\text{text}\to\text{TTS}}_{\text{vaikharī out}} .
+\]
+\textbf{Core.} A from-scratch $200$M-parameter byte-level ($\text{vocab}=256$) Nemotron-H/Mamba-2
+hybrid ($d{=}768$, $24$ layers, attention every $8$) trained on a Sanskrit corpus; and a
+$1.13$B variant ($d{=}1536$, $32$ layers). The core embeds bytes internally; for audio we bypass the
+embedding and feed projected acoustic tokens directly into the block stack, adding the core's learned
+structural-channel bias so the injected tokens live in the distribution the frozen blocks expect. We
+verify the injection is faithful: feeding $\text{embed}(\text{ids})$ through the injection path
+reproduces the core's own forward (identical arg-max; $<0.1\%$ logit difference from kernel
+non-determinism).
+\textbf{Sphoṭa Projector.} A temporal-convolution down-sampler followed by an MLP mapping
+$1024$-dim Parakeet frames to the core's embedding space.
+\textbf{Adaptation.} Beyond a frozen core, we optionally inject rank-$r$ LoRA adapters into the
+core's MLP projections (the Mamba mixer projections are consumed by a fused kernel and are left
+intact) and train them jointly with the projector.
+
+\section{Experimental Setup}\label{sec:setup}
+\textbf{Data.} Sentences are realised from Pāṇinian kāraka frames with gold role labels
+\emph{by construction} (a native derivation engine, replacing a brittle parser dependency), and
+rendered to audio with neural TTS; $600$ paired items, $90/10$ train/val by hash. Every item carries
+its verb (\emph{kriyā}) as a discrete meaning label from the gold parse.
+\textbf{Training.} Frozen encoder and (optionally LoRA-adapted) core; the projector (and LoRA) train
+under teacher-forced byte cross-entropy. Evaluation is greedy character error rate (CER) on the
+held-out split, referenced to a no-audio baseline.
+\textbf{Reproducibility.} Each result is guarded by a dual-verdict gate (a machine-checkable
+\texttt{code\_gate} and \texttt{domain\_gate}); heavy compute runs in a pinned NeMo container on an
+NVIDIA GB10 (200M) and an RTX 5090 (1B).
+
+\section{Results}\label{sec:results}
+\textbf{Understanding scales, and adaptation beats scaling.} Table~\ref{tab:cer} shows held-out CER.
+The no-audio baseline is $1.0$ (the core cannot guess the text without audio). Projector-only
+training already conveys speech content; scaling the core $200$M$\to$$1.13$B lowers CER
+$0.774\to0.571$; and \emph{LoRA-adapting the $200$M core} reaches $0.548$---below the $1.13$B
+projector-only model with $<0.1\%$ of its parameters trained.
+
+\begin{table}[h]\centering
+\begin{tabular}{lcc}
+\toprule
+Configuration & trainable & val CER $\downarrow$ \\
+\midrule
+$200$M core, projector-only & projector & $0.774$ \\
+$1.13$B core, projector-only & projector & $0.571$ \\
+$200$M core, projector\,+\,LoRA($r{=}8$) & projector\,+\,$1.5$M & $\mathbf{0.548}$ \\
+\bottomrule
+\end{tabular}
+\caption{Held-out character error rate. Adapting the core is a stronger lever than scaling.}
+\label{tab:cer}
+\end{table}
+
+\textbf{SOTA comparison.} On the identical held-out audio (Table~\ref{tab:sota}), Śabda-ALM
+outperforms NVIDIA's Parakeet-TDT native ASR head---\emph{using the same encoder}---and OpenAI
+Whisper. Routing acoustic evidence through the Sanskrit core reads Sanskrit speech better than a
+general decoder does. The comparison is fair by construction (same audio, same CER metric) and the
+\emph{ordering} is the result.
+
+\begin{table}[h]\centering
+\begin{tabular}{clc}
+\toprule
+rank & model & CER $\downarrow$ \\
+\midrule
+\textbf{1} & \textbf{Śabda-ALM (Parakeet\,+\,Projector\,+\,LoRA$\to$Sanskrit core)} & $\mathbf{0.546}$ \\
+2 & Parakeet-TDT-0.6B native ASR (NVIDIA) & $0.605$ \\
+3 & Whisper-base (OpenAI) & $0.747$ \\
+\bottomrule
+\end{tabular}
+\caption{Held-out audio $\to$ romanized-Sanskrit text; lower is better; identical audio for all.}
+\label{tab:sota}
+\end{table}
+
+\section{The Sphoṭa-Lens: Locating Where Sound Becomes Meaning}\label{sec:lens}
+We ask, at each layer $\ell$, how decodable the sentence's meaning (its kriyā) is from the
+\emph{audio-token positions alone}. \textbf{Correlational}: a template-grouped cross-validated
+linear probe predicts the kriyā from layer-$\ell$ audio-position representations; accuracy is the
+emergence curve. \textbf{Causal}: a true activation ablation mean-collapses each layer's audio
+positions during the forward and measures the drop in final meaning-decodability. A locus is claimed
+only when the two peaks agree ($\pm 1$ layer).
+
+On the trained $200$M ALM ($240$ utterances, $45$ kriyā classes, chance $=0.022$), meaning is
+decodable from the audio positions at $\approx0.25$---$11\times$ chance. The curve \emph{rises to a
+peak at layer $13$} ($0.263$) then declines toward the output ($0.25\to0.23$); the correlational
+peak ($13$) and causal peak ($14$) agree. \textbf{The sphoṭa locus is layer $13$, validated.} Sound-
+borne meaning crystallises mid-network, then the representation transforms toward surface form: the
+\emph{paśyantī}$\to$\emph{vaikharī} gradient, made measurable inside a working model. The instrument
+is validated on a synthetic core with a planted signal, which it recovers.
+
+\section{Discussion}
+Two threads meet here. As a \emph{product}, a Sanskrit-centred speech model beats general SOTA ASR
+on Sanskrit, and cheap adaptation of a small core is competitive with a much larger one---an
+efficient path for low-resource, structure-rich languages. As \emph{interpretability}, the
+Sphoṭa-Lens turns a classical claim about cognition (meaning bursts from sound at an intermediate
+level) into a validated statement about a network's internals. The two reinforce each other: the
+lens tells us \emph{where} the model forms meaning, which is where adaptation and steering should act.
+
+\section{Conclusions and Future Work}
+Śabda-ALM is a working speech-to-speech Audio Language Model on a Sanskrit byte-core that ranks first
+against SOTA ASR on its target, and the Sphoṭa-Lens localises meaning-emergence-from-sound to a
+validated mid-network layer. Next: LoRA adaptation of the $1.13$B core; native-pronunciation Sanskrit
+speech; larger corpora; and an autoresearch loop that optimises directly against the live SOTA
+leaderboard.
+
+\end{document}

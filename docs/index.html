@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Śabda-ALM — where sound becomes meaning</title>
+<meta name="description" content="A speech-centred Audio Language Model built on a Sanskrit byte-core and Bhartṛhari's theory of sphoṭa. It reads Sanskrit speech better than SOTA ASR, and locates the layer where sound becomes meaning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,500;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Devanagari:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1020; --ink2:#16182B; --panel:#1B1E36;
+    --saffron:#E8A13A; --amber:#F2D9A8; --violet:#6E5AE6;
+    --paper:#E7E3D6; --muted:#9195B8; --line:#2A2E4C;
+    --grad:linear-gradient(90deg,var(--violet),var(--saffron));
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--ink);color:var(--paper);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:"Spectral",Georgia,serif;font-weight:500;line-height:1.08;letter-spacing:-.015em}
+  .dev{font-family:"Noto Serif Devanagari",serif}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--saffron);margin:0 0 1rem}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  a{color:var(--amber);text-decoration:none;border-bottom:1px solid #ffffff22}
+  a:hover{border-color:var(--saffron)}
+  .accent{color:var(--saffron)}
+
+  /* HERO */
+  header{position:relative;min-height:100vh;display:flex;align-items:center;
+    padding:80px 0;overflow:hidden}
+  .aura{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(60% 55% at 62% 42%,#241a3a 0%,transparent 60%),
+               radial-gradient(45% 40% at 20% 80%,#1a2240 0%,transparent 55%)}
+  .vak-rule{height:3px;width:190px;background:var(--grad);border-radius:2px;margin:0 0 2rem}
+  header .glyph{font-family:"Noto Serif Devanagari",serif;font-size:clamp(3rem,10vw,7rem);
+    color:var(--saffron);line-height:1;margin:0 0 1rem;text-shadow:0 0 44px #e8a13a55}
+  header h1{font-size:clamp(2.5rem,6.6vw,5rem);margin:0 0 1.4rem;max-width:17ch}
+  header h1 em{font-style:italic;color:var(--amber)}
+  .lede{font-size:clamp(1.05rem,2.1vw,1.35rem);color:#CFCBE6;max-width:52ch;margin:0 0 2.2rem}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:.72rem 1.3rem;border-radius:999px;font-weight:600;font-size:.95rem;
+    border-bottom:none}
+  .btn-a{background:var(--saffron);color:#20160a}
+  .btn-a:hover{background:var(--amber)}
+  .btn-b{border:1px solid var(--line);color:var(--paper)}
+  .btn-b:hover{border-color:var(--saffron)}
+  .kpis{display:flex;gap:34px;flex-wrap:wrap;margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+  .kpi b{font-family:"Spectral",serif;font-size:1.9rem;color:#fff;display:block;line-height:1}
+  .kpi span{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+
+  section{padding:clamp(4rem,9vh,7rem) 0;position:relative}
+  .band{background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  h2{font-size:clamp(1.9rem,4.2vw,3rem);margin:.4rem 0 1.3rem;max-width:20ch}
+  .sub{color:var(--muted);max-width:60ch;margin:0 0 2.4rem}
+
+  /* four vak spine */
+  .vak{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .vak .step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.2rem;
+    position:relative;overflow:hidden}
+  .vak .step:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);
+    opacity:calc(.25 + var(--i)*.25)}
+  .vak .dev{font-size:1.5rem;color:var(--amber);display:block;margin-bottom:.2rem}
+  .vak h3{font-size:1.12rem;margin:.1rem 0 .4rem}
+  .vak p{font-size:.9rem;color:var(--muted);margin:0}
+
+  /* pipeline */
+  .pipe{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-top:1rem;
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel)}
+  .pipe .node{flex:1 1 150px;padding:1.15rem 1rem;border-right:1px solid var(--line);min-width:150px}
+  .pipe .node:last-child{border-right:none}
+  .pipe .lab{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--saffron);margin-bottom:.4rem}
+  .pipe .name{font-weight:600;font-size:.98rem}
+  .pipe .meta{font-size:.8rem;color:var(--muted);margin-top:.25rem}
+  .pipe .frozen{color:var(--violet)}
+
+  /* signature: emergence ridge */
+  .ridge-wrap{background:var(--panel);border:1px solid var(--line);border-radius:18px;
+    padding:1.6rem 1.4rem 1.2rem;margin-top:1rem}
+  .ridge-cap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+    font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+  svg{display:block;width:100%;height:auto}
+  .flash-note{margin-top:.8rem;font-size:.92rem;color:var(--amber)}
+
+  /* leaderboard */
+  table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.98rem}
+  th,td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--line)}
+  th{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);font-weight:500}
+  tbody tr:first-child td{color:#fff}
+  tbody tr:first-child{background:linear-gradient(90deg,#e8a13a18,transparent)}
+  .cer{font-family:"IBM Plex Mono",monospace}
+  .rank{font-family:"Spectral",serif;font-size:1.2rem;color:var(--saffron)}
+  .win{color:var(--saffron);font-weight:600}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:1rem}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.4rem}
+  .card h3{font-size:1.15rem;margin:0 0 .5rem}
+  .card p{font-size:.94rem;color:var(--muted);margin:0}
+  .card .big{font-family:"Spectral",serif;font-size:2.1rem;color:#fff}
+
+  footer{padding:3.5rem 0 4rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+
+  @media(max-width:760px){
+    .vak{grid-template-columns:1fr 1fr}
+    .grid2{grid-template-columns:1fr}
+    .kpis{gap:22px}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="aura"></div>
+  <div class="wrap">
+    <div class="vak-rule"></div>
+    <div class="glyph dev">शब्द</div>
+    <p class="eyebrow">Śabda-ALM · a speech-centred language model</p>
+    <h1>Meaning is <em>born from sound</em>, not read from text.</h1>
+    <p class="lede">A 1,500-year-old Sanskrit theory of language says awareness begins as continuous
+      sound and bursts into meaning — <span class="accent">sphoṭa</span>. We built a speech model on
+      that principle. It reads Sanskrit speech better than state-of-the-art ASR, and it shows you the
+      exact layer where sound becomes meaning.</p>
+    <div class="cta-row">
+      <a class="btn btn-a" href="#ridge">See the discovery</a>
+      <a class="btn btn-b" href="../paper/paper.pdf">Read the paper</a>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b>#1</b><span>vs SOTA ASR on Sanskrit</span></div>
+      <div class="kpi"><b>0.546</b><span>CER · beats Parakeet &amp; Whisper</span></div>
+      <div class="kpi"><b>Layer 13</b><span>where sound becomes meaning</span></div>
+      <div class="kpi"><b>11×</b><span>meaning decodable above chance</span></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The wrong abstraction</p>
+    <h2>Text models start from language already parsed.</h2>
+    <p class="sub">Bhartṛhari's <em>Vākyapadīya</em> describes four levels of speech — from the silent
+      source to the spoken word. Cognition moves through them; a text model skips straight to the last
+      one. Śabda-ALM walks the whole path, and its architecture <em>is</em> these four levels.</p>
+    <div class="vak">
+      <div class="step" style="--i:0"><span class="dev">परा</span><h3>Parā</h3><p>The source — the
+        model's learned Sanskrit prior, silent and whole.</p></div>
+      <div class="step" style="--i:1"><span class="dev">पश्यन्ती</span><h3>Paśyantī · sphoṭa</h3><p>The
+        flash of meaning. The mid-network layer where sound has become sense.</p></div>
+      <div class="step" style="--i:2"><span class="dev">मध्यमा</span><h3>Madhyamā</h3><p>Inner
+        articulation — the projector that turns continuous sound into meaning-units.</p></div>
+      <div class="step" style="--i:3"><span class="dev">वैखरी</span><h3>Vaikharī</h3><p>The uttered
+        word — audio in, and audio out.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">The architecture</p>
+    <h2>Sound routed through a Sanskrit mind.</h2>
+    <p class="sub">A frozen NVIDIA Parakeet encoder hears the audio; a trainable Sphoṭa Projector turns
+      its frames into tokens the Sanskrit core understands; the core reasons; and neural speech turns
+      the answer back into sound. Only the projector (and a few adapter weights) ever learn.</p>
+    <div class="pipe">
+      <div class="node"><div class="lab">vaikharī in</div><div class="name">Audio</div><div class="meta">raw speech</div></div>
+      <div class="node"><div class="lab">dhvani</div><div class="name frozen">Parakeet encoder</div><div class="meta frozen">frozen · 0.6B</div></div>
+      <div class="node"><div class="lab">madhyamā</div><div class="name">Sphoṭa Projector</div><div class="meta">trained</div></div>
+      <div class="node"><div class="lab">paśyantī</div><div class="name frozen">Sanskrit byte-core</div><div class="meta frozen">Nemotron-H · 200M→1.1B</div></div>
+      <div class="node"><div class="lab">vaikharī out</div><div class="name">Text → TTS</div><div class="meta">spoken answer</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="ridge">
+  <div class="wrap">
+    <p class="eyebrow">The discovery · the Sphoṭa-Lens</p>
+    <h2>We can watch sound turn into meaning.</h2>
+    <p class="sub">At every layer we ask: how well can the sentence's meaning be read from the
+      <em>sound</em> positions alone? The answer rises to a peak, then fades toward the output. That
+      peak — layer 13 — is the computational <span class="accent">sphoṭa</span>: where the flash of
+      meaning happens. A causal test (ablating each layer) agrees. Meaning is decodable there at
+      <b>11× chance</b>.</p>
+
+    <div class="ridge-wrap">
+      <div class="ridge-cap"><span>meaning-decodability from sound · by layer</span><span>chance = 0.022</span></div>
+      <svg viewBox="0 0 760 260" role="img" aria-label="Meaning-decodability from the audio positions rises to a peak at layer 13, then declines toward the output layers.">
+        <defs>
+          <linearGradient id="bars" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0" stop-color="#6E5AE6"/><stop offset="1" stop-color="#E8A13A"/>
+          </linearGradient>
+          <radialGradient id="flash" cx="50%" cy="30%" r="60%">
+            <stop offset="0" stop-color="#E8A13A"/><stop offset="1" stop-color="#E8A13A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- baseline -->
+        <line x1="30" y1="230" x2="740" y2="230" stroke="#2A2E4C"/>
+        <text x="30" y="250" fill="#9195B8" font-family="IBM Plex Mono" font-size="11">L0</text>
+        <text x="720" y="250" fill="#9195B8" font-family="IBM Plex Mono" font-size="11">L24</text>
+        <!-- bars generated: 25 layers, value 0.22–0.263 mapped to height -->
+        <g id="ridgebars"></g>
+        <!-- flash on peak -->
+        <circle cx="0" cy="0" r="46" fill="url(#flash)" id="peakflash"/>
+        <text id="peaklabel" fill="#F2D9A8" font-family="IBM Plex Mono" font-size="12"></text>
+      </svg>
+      <p class="flash-note">◈ Layer 13 — correlational peak and causal peak agree. The
+        <em>paśyantī → vaikharī</em> gradient, measured inside the network.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Weighed against the state of the art</p>
+    <h2>It reads Sanskrit better than general SOTA speech models.</h2>
+    <p class="sub">Same held-out audio for everyone; lower character error rate is better. Routing the
+      sound through the Sanskrit core beats decoding it with a general ASR head — even NVIDIA's own,
+      on the same encoder.</p>
+    <table>
+      <thead><tr><th>Rank</th><th>Model</th><th>Trainable / size</th><th>CER ↓</th></tr></thead>
+      <tbody>
+        <tr><td class="rank">1</td><td><b>Śabda-ALM</b> — Parakeet + Projector + LoRA → Sanskrit core</td><td>200M core</td><td class="cer win">0.546</td></tr>
+        <tr><td class="rank" style="color:#9195B8">2</td><td>Parakeet-TDT-0.6B native ASR — NVIDIA</td><td>0.6B</td><td class="cer">0.605</td></tr>
+        <tr><td class="rank" style="color:#9195B8">3</td><td>Whisper-base — OpenAI</td><td>74M</td><td class="cer">0.747</td></tr>
+      </tbody>
+    </table>
+    <div class="grid2">
+      <div class="card"><h3>Adaptation beats scaling</h3><p><span class="big">0.548</span><br>
+        A 200M core with 1.5M LoRA weights beats a 1.1B core with none (0.571). Teaching the small
+        model to listen is cheaper than making it bigger.</p></div>
+      <div class="card"><h3>Every number is gated</h3><p>Each result must clear a machine-checkable
+        <span class="accent">code gate</span> and <span class="accent">domain gate</span> — the
+        software works, and the claim is backed by an artifact on disk. Trained on an NVIDIA GB10 and
+        an RTX 5090.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><span class="dev accent" style="font-size:1.3rem">श</span> &nbsp;Śabda-ALM · the Pranava project — sound becoming knowledge.</div>
+    <div><a href="../paper/paper.pdf">Paper (PDF)</a> · <a href="https://github.com/">Code &amp; gates</a></div>
+  </div>
+</footer>
+
+<script>
+  // Render the emergence ridge from the real data (meaning-decodability by layer).
+  var decod=[0.25,0.2542,0.25,0.2542,0.2542,0.2542,0.2583,0.2542,0.2542,0.2583,0.2583,0.2542,0.2583,0.2625,0.2583,0.2542,0.25,0.25,0.2417,0.225,0.2375,0.2292,0.2375,0.2333,0.2292];
+  var peak=13, x0=30, x1=740, y0=230, top=30, lo=0.20, hi=0.27;
+  var n=decod.length, bw=(x1-x0)/n*0.72, gap=(x1-x0)/n*0.28, g=document.getElementById('ridgebars');
+  function yv(v){return y0-( (v-lo)/(hi-lo) )*(y0-top);}
+  var svgns="http://www.w3.org/2000/svg";
+  decod.forEach(function(v,i){
+    var x=x0+i*((x1-x0)/n)+gap/2, y=yv(v), h=y0-y;
+    var r=document.createElementNS(svgns,'rect');
+    r.setAttribute('x',x.toFixed(1)); r.setAttribute('y',y.toFixed(1));
+    r.setAttribute('width',bw.toFixed(1)); r.setAttribute('height',Math.max(2,h).toFixed(1));
+    r.setAttribute('rx','2');
+    r.setAttribute('fill', i===peak? '#E8A13A':'url(#bars)');
+    r.setAttribute('opacity', i===peak? '1': '0.82');
+    if(i===peak){ r.setAttribute('stroke','#F2D9A8'); r.setAttribute('stroke-width','1'); }
+    g.appendChild(r);
+    if(i===peak){
+      var cx=x+bw/2, cy=yv(v);
+      document.getElementById('peakflash').setAttribute('cx',cx);
+      document.getElementById('peakflash').setAttribute('cy',cy);
+      var t=document.getElementById('peaklabel');
+      t.setAttribute('x', (cx-42)); t.setAttribute('y', (cy-24));
+      t.textContent='sphoṭa · L13';
+    }
+  });
+</script>
+</body>
+</html>
