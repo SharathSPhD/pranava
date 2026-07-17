@@ -441,6 +441,28 @@ def gate_P3() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_P4() -> dict:
+    """Full speech-to-speech: audio-in → ALM → text → TTS → audio-out, end-to-end on GB10."""
+    m_p = ROOT / "data/alm/s2s/s2s_metrics.json"
+    code = _verdict(m_p.exists(), "s2s ran" if m_p.exists() else "s2s not run")
+    if m_p.exists():
+        m = json.loads(m_p.read_text())
+        wavs = list((ROOT / "data/alm/s2s").glob("*_out.wav"))
+        checks = {
+            "produced_audio": m.get("all_produced_audio") is True,
+            "audio_nonsilent": m.get("all_nonsilent") is True,
+            "roundtrip_measured": "mean_roundtrip_cer" in m,
+            "output_wavs_on_disk": len(wavs) >= m.get("n", 1),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | n={m.get('n')} roundtrip_cer={m.get('mean_roundtrip_cer')} "
+                         f"(content capped by Phase-2 CER; pipeline proven)")
+    else:
+        dom = _verdict(False, "s2s_metrics.json missing — run scripts/alm/s2s_demo.py in-container")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_E4() -> dict:
     """Consolidated research report exists, is honest (reports the correction), and is grounded."""
     paper = ROOT / "PAPER.md"
@@ -546,7 +568,7 @@ GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M2b": gate_M2b, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
-    "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
+    "P4": gate_P4, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
 }
 
 

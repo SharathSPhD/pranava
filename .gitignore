@@ -30,3 +30,4 @@ data/alm/speech_corpus/wav/
 data/alm/_tts_probe.wav
 data/alm/projector.pt
 data/alm/speech_corpus/feats/
+data/alm/s2s/*.wav

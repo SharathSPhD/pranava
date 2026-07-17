@@ -1,0 +1,12 @@
+{
+  "milestone": "P4",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "s2s ran"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "produced_audio:ok; audio_nonsilent:ok; roundtrip_measured:ok; output_wavs_on_disk:ok | n=5 roundtrip_cer=0.655 (content capped by Phase-2 CER; pipeline proven)"
+  },
+  "closed": true
+}

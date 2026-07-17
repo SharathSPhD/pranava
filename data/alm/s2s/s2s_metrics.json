@@ -1,0 +1,49 @@
+{
+  "n": 5,
+  "all_produced_audio": true,
+  "all_nonsilent": true,
+  "mean_roundtrip_cer": 0.655,
+  "note": "end-to-end audio\u2192text\u2192audio; content fidelity capped by Phase-2 CER (0.77). Gate proves the speech-to-speech PIPELINE, not final quality.",
+  "samples": [
+    {
+      "id": "u00010",
+      "text_out": "pustameSvizam vadAya vade",
+      "roundtrip_asr": "Customs visum verde avaid.",
+      "audio_out_s": 2.05,
+      "roundtrip_cer": 0.52,
+      "audio_nonsilent": true
+    },
+    {
+      "id": "u00012",
+      "text_out": "PalARaHAlamAnaRaHaNar",
+      "roundtrip_asr": "Paller Hell and Manor Henner.",
+      "audio_out_s": 1.68,
+      "roundtrip_cer": 0.952,
+      "audio_nonsilent": true
+    },
+    {
+      "id": "u00030",
+      "text_out": "Pale aserAtamAle asere",
+      "roundtrip_asr": "Pale Aseratamel Acer.",
+      "audio_out_s": 1.86,
+      "roundtrip_cer": 0.318,
+      "audio_nonsilent": true
+    },
+    {
+      "id": "u00045",
+      "text_out": "pusAdARAdvaDaNgamAtam adaD",
+      "roundtrip_asr": "Who said her adveda? Add",
+      "audio_out_s": 2.23,
+      "roundtrip_cer": 0.846,
+      "audio_nonsilent": true
+    },
+    {
+      "id": "u00049",
+      "text_out": "Pale asyamAtam adaDartamA",
+      "roundtrip_asr": "Pale is Yemitem, added Artemis.",
+      "audio_out_s": 2.21,
+      "roundtrip_cer": 0.64,
+      "audio_nonsilent": true
+    }
+  ]
+}
