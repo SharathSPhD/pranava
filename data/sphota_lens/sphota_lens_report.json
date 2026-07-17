@@ -1,0 +1,125 @@
+{
+  "n_layers": 25,
+  "n_samples": 40,
+  "band_contrast": 0.0401,
+  "bands": [
+    21,
+    23
+  ],
+  "workspace_band": [
+    21,
+    23
+  ],
+  "fusion_by_layer": [
+    0.6327,
+    0.7078,
+    0.705,
+    0.7054,
+    0.7045,
+    0.703,
+    0.7015,
+    0.6987,
+    0.6968,
+    0.6979,
+    0.6984,
+    0.6974,
+    0.6992,
+    0.699,
+    0.701,
+    0.6987,
+    0.6999,
+    0.6996,
+    0.6971,
+    0.6956,
+    0.6874,
+    0.6784,
+    0.6707,
+    0.6557,
+    0.6503
+  ],
+  "fusion_peak_layer": 1,
+  "articulation_by_layer": [
+    0.0022,
+    0.0111,
+    0.041,
+    0.0483,
+    0.0722,
+    0.0958,
+    0.113,
+    0.1458,
+    0.532,
+    0.6301,
+    0.6865,
+    0.7338,
+    0.7645,
+    0.7823,
+    0.8359,
+    0.8281,
+    0.873,
+    0.8712,
+    0.8791,
+    0.8614,
+    0.8751,
+    0.8806,
+    0.859,
+    0.7974,
+    0.8192
+  ],
+  "steering": {
+    "band": [
+      21,
+      23
+    ],
+    "output_changed_at_alpha": {
+      "2.0": true,
+      "4.0": true
+    },
+    "any_shift": true,
+    "reproducible": true,
+    "base_bytes": [
+      112,
+      117,
+      115,
+      116,
+      97,
+      109,
+      101,
+      83,
+      118,
+      105,
+      122,
+      97,
+      109,
+      32,
+      118,
+      97
+    ],
+    "steered_bytes_alpha4": [
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111
+    ]
+  },
+  "interpretation": {
+    "workspace_band_layers": [
+      21,
+      23
+    ],
+    "sphota_layer_fusion_peak": 1,
+    "articulation_trend_rising": true,
+    "note": "fusion peak = where audio (dhvani) and text (pada) representations converge into a unified meaning (spho\u1e6da); articulation rises pa\u015byant\u012b\u2192vaikhar\u012b toward the head."
+  }
+}

@@ -122,6 +122,20 @@ class SanskritCore:
         return self.model.norm_f(x)
 
     @torch.no_grad()
+    def features_per_layer(self, inputs_embeds: torch.Tensor) -> list[torch.Tensor]:
+        """(B,T,d) embeddings → list of per-layer hidden states [input, block_0, …, block_{L-1}].
+
+        The Sphoṭa-Lens reads these: each entry is (B,T,d). Entry 0 is the input embeddings;
+        entry i+1 is the output of block i. The final entry, after ``norm_f``, is the workspace.
+        """
+        x = inputs_embeds.to(self.torch_device)
+        layers = [x]
+        for block in self.model.blocks:
+            x = block(x)
+            layers.append(x)
+        return layers
+
+    @torch.no_grad()
     def forward_embeds(self, inputs_embeds: torch.Tensor) -> torch.Tensor:
         """(B,T,d) embeddings → next-token logits (B,T,vocab)."""
         return self.model.head(self.features_embeds(inputs_embeds))

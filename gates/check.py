@@ -414,6 +414,33 @@ def gate_P2() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_P3() -> dict:
+    """Sphoṭa-Lens: locates the fused workspace band, measures it, and steers it reproducibly."""
+    rc, out = _run([PY, "-m", "pytest", "tests/sphota_lens/", "-q"])
+    code = _verdict(rc == 0, "lens logic tests green" if rc == 0 else out)
+    rep_p = ROOT / "data/sphota_lens/sphota_lens_report.json"
+    report_md = ROOT / "research/P3-sphota-lens.md"
+    if rep_p.exists():
+        r = json.loads(rep_p.read_text())
+        st = r.get("steering", {})
+        checks = {
+            "lens_fit": r.get("n_layers", 0) >= 3 and r.get("n_samples", 0) >= 10,
+            "workspace_band_identified": len(r.get("workspace_band", [])) == 2
+            and r["workspace_band"][0] < r["workspace_band"][1],
+            "articulation_gradient_recorded": len(r.get("articulation_by_layer", [])) >= 3,
+            "steering_shifts_output": st.get("any_shift") is True,
+            "steering_reproducible": st.get("reproducible") is True,
+            "honest_writeup": report_md.exists(),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | band={r.get('workspace_band')} contrast={r.get('band_contrast')} "
+                         f"fusion_peak={r.get('fusion_peak_layer')} (v1 metric — see report)")
+    else:
+        dom = _verdict(False, "sphota_lens_report.json missing — run scripts/alm/p3_sphota_lens.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_E4() -> dict:
     """Consolidated research report exists, is honest (reports the correction), and is grounded."""
     paper = ROOT / "PAPER.md"
@@ -518,7 +545,8 @@ def r_ok(holism: dict) -> bool:
 GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M2b": gate_M2b, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
-    "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
+    "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
+    "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
 }
 
 

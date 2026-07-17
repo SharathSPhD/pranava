@@ -1,0 +1,12 @@
+{
+  "milestone": "P3",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "lens logic tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "lens_fit:ok; workspace_band_identified:ok; articulation_gradient_recorded:ok; steering_shifts_output:ok; steering_reproducible:ok; honest_writeup:ok | band=[21, 23] contrast=0.0401 fusion_peak=1 (v1 metric — see report)"
+  },
+  "closed": true
+}
