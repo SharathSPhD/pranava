@@ -31,3 +31,4 @@ data/alm/_tts_probe.wav
 data/alm/projector.pt
 data/alm/speech_corpus/feats/
 data/alm/s2s/*.wav
+data/alm/projector_1b.pt

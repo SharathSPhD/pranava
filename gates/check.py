@@ -463,6 +463,33 @@ def gate_P4() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_P5() -> dict:
+    """Scaled to the fully-trained 1B Nemotron-H (RTX 5090): understanding ≥ the 200M baseline."""
+    code_files = [ROOT / "src/pranava/alm/megatron_core.py", ROOT / "scripts/alm/train_1b.py"]
+    code = _verdict(all(p.exists() for p in code_files),
+                    "1B loader + trainer present" if all(p.exists() for p in code_files)
+                    else "missing 1B loader/trainer")
+    m_p = ROOT / "data/alm/p5_metrics.json"
+    m2_p = ROOT / "data/alm/p2_metrics.json"
+    if m_p.exists():
+        m = json.loads(m_p.read_text())
+        hist = m.get("train_loss_history", [])
+        m2_cer = json.loads(m2_p.read_text()).get("val_cer_audio", 1.0) if m2_p.exists() else 1.0
+        checks = {
+            "core_is_1b": "1b" in str(m.get("core", "")).lower() and m.get("d_model") == 1536,
+            "loss_decreased": len(hist) >= 2 and hist[-1] < 0.6 * hist[0],
+            "beats_no_audio_baseline": m.get("beats_baseline") is True,
+            "improves_on_200M_core": m.get("val_cer_audio", 1.0) <= m2_cer,
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | 1B CER={m.get('val_cer_audio')} vs 200M={m2_cer} "
+                         f"(Δbaseline {m.get('cer_improvement')}); trained on RTX 5090")
+    else:
+        dom = _verdict(False, "p5_metrics.json missing — run scripts/alm/train_1b.py on the 5090")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_E4() -> dict:
     """Consolidated research report exists, is honest (reports the correction), and is grounded."""
     paper = ROOT / "PAPER.md"
@@ -568,7 +595,7 @@ GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M2b": gate_M2b, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
-    "P4": gate_P4, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
+    "P4": gate_P4, "P5": gate_P5, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
 }
 
 

@@ -1,0 +1,12 @@
+{
+  "milestone": "P5",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "1B loader + trainer present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "core_is_1b:ok; loss_decreased:ok; beats_no_audio_baseline:ok; improves_on_200M_core:ok | 1B CER=0.5709 vs 200M=0.7745 (Δbaseline 0.4291); trained on RTX 5090"
+  },
+  "closed": true
+}

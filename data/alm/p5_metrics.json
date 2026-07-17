@@ -1,0 +1,19 @@
+{
+  "core": "m4_1b (1.13B Nemotron-H)",
+  "epochs": 6,
+  "d_model": 1536,
+  "n_train": 542,
+  "n_val": 58,
+  "train_loss_history": [
+    1.2169,
+    0.8819,
+    0.7218,
+    0.5985,
+    0.4863,
+    0.3839
+  ],
+  "val_cer_audio": 0.5709,
+  "val_cer_noaudio_baseline": 1.0,
+  "cer_improvement": 0.4291,
+  "beats_baseline": true
+}
