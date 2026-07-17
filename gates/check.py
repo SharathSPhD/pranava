@@ -546,6 +546,35 @@ def gate_IT() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_AX() -> dict:
+    """Auth-gated app: Supabase schema + tunnel service + role-routed frontend + real replay demos."""
+    schema = ROOT / "apps/web/supabase/schema.sql"
+    web = ROOT / "web/index.html"
+    tunnel = ROOT / "scripts/ops/alm_tunnel_service.sh"
+    demo = ROOT / "web/demo/demo.json"
+    files_ok = all(p.exists() for p in (schema, web, tunnel, demo, ROOT / "web/config.js"))
+    code = _verdict(files_ok, "schema + tunnel + auth frontend + demos present" if files_ok else "missing app-access files")
+    if files_ok:
+        sc, w, tn = schema.read_text(), web.read_text(), tunnel.read_text()
+        arts = json.loads(demo.read_text())
+        wavs_real = all((ROOT / "web" / a.get("audio_out", "")).exists() for a in arts) and len(arts) >= 6
+        checks = {
+            "tiers_and_roles": all(k in sc for k in ("user_tiers", "account_tier", "'admin'", "'guest'")),
+            "admin_bootstrap": "sharath.sathish@gmail.com" in sc and "assign_tier" in sc,
+            "admin_invite_guest": "invite_guest" in sc and "invite_guest" in w,
+            "gateway_config": "runtime_config" in sc and "alm_gateway_url" in sc and "alm_gateway_url" in tn,
+            "frontend_auth": "createClient" in w and "signInWithOtp" in w and "user_tiers" in w,
+            "role_routing": "'admin'" in w and "replay" in w.lower() and "/speak" in w,
+            "real_replay_demos": wavs_real,
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | {len(arts)} replay artifacts")
+    else:
+        dom = _verdict(False, "app-access files missing")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_S2() -> dict:
     """Speech-to-speech app: /speak returns the model's spoken, instruction-conditioned answer."""
     server = ROOT / "src/pranava/serve/server.py"
@@ -878,6 +907,7 @@ GATES = {
     "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "RD": gate_RD,
     "CL": gate_CL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
     "ML": gate_ML, "APP": gate_APP, "IT": gate_IT, "RF": gate_RF, "NC": gate_NC, "S2": gate_S2,
+    "AX": gate_AX,
 }
 
 

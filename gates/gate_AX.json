@@ -1,0 +1,12 @@
+{
+  "milestone": "AX",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "schema + tunnel + auth frontend + demos present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "tiers_and_roles:ok; admin_bootstrap:ok; admin_invite_guest:ok; gateway_config:ok; frontend_auth:ok; role_routing:ok; real_replay_demos:ok | 19 replay artifacts"
+  },
+  "closed": true
+}

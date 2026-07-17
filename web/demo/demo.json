@@ -1,0 +1,173 @@
+[
+  {
+    "clip_id": "u00010",
+    "task": "transcribe",
+    "gold": "vidye vane BavizyataH",
+    "answer": "vidyO vanam vidyO vanam vadizyataH",
+    "audio_in": "demo/u00010_in.wav",
+    "audio_out": "demo/u00010_transcribe_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00010",
+    "task": "kriya",
+    "gold": "BavizyataH",
+    "answer": "vadizyataH",
+    "audio_in": "demo/u00010_in.wav",
+    "audio_out": "demo/u00010_kriya_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00010",
+    "task": "karta",
+    "gold": "vidye",
+    "answer": "vidye",
+    "audio_in": "demo/u00010_in.wav",
+    "audio_out": "demo/u00010_karta_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00012",
+    "task": "transcribe",
+    "gold": "naraH gfham paWet",
+    "answer": "naraH gfhetvanam gacCet",
+    "audio_in": "demo/u00012_in.wav",
+    "audio_out": "demo/u00012_transcribe_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00012",
+    "task": "kriya",
+    "gold": "paWet",
+    "answer": "paWet",
+    "audio_in": "demo/u00012_in.wav",
+    "audio_out": "demo/u00012_kriya_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00012",
+    "task": "karta",
+    "gold": "naraH",
+    "answer": "naraH",
+    "audio_in": "demo/u00012_in.wav",
+    "audio_out": "demo/u00012_karta_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00012",
+    "task": "karma",
+    "gold": "gfham",
+    "answer": "gfham",
+    "audio_in": "demo/u00012_in.wav",
+    "audio_out": "demo/u00012_karma_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00030",
+    "task": "transcribe",
+    "gold": "vidye bAle aBavatAm",
+    "answer": "vidya bAvaH bASvam addidyate",
+    "audio_in": "demo/u00030_in.wav",
+    "audio_out": "demo/u00030_transcribe_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00030",
+    "task": "kriya",
+    "gold": "aBavatAm",
+    "answer": "aBavadete bAvadetavidat abadI",
+    "audio_in": "demo/u00030_in.wav",
+    "audio_out": "demo/u00030_kriya_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00030",
+    "task": "karta",
+    "gold": "vidye",
+    "answer": "vidye",
+    "audio_in": "demo/u00030_in.wav",
+    "audio_out": "demo/u00030_karta_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00045",
+    "task": "transcribe",
+    "gold": "PalAni gfhe Bavizyanti",
+    "answer": "PalAni gfham gamizyanti gfeakam KAdan",
+    "audio_in": "demo/u00045_in.wav",
+    "audio_out": "demo/u00045_transcribe_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00045",
+    "task": "kriya",
+    "gold": "Bavizyanti",
+    "answer": "vasizyanti",
+    "audio_in": "demo/u00045_in.wav",
+    "audio_out": "demo/u00045_kriya_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00045",
+    "task": "karta",
+    "gold": "PalAni",
+    "answer": "PalAni",
+    "audio_in": "demo/u00045_in.wav",
+    "audio_out": "demo/u00045_karta_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00049",
+    "task": "transcribe",
+    "gold": "vane sitAyAm avadetAm",
+    "answer": "vane dadI sitAm sidde sitAm siddagganye dadIyoudad dIdI side vas",
+    "audio_in": "demo/u00049_in.wav",
+    "audio_out": "demo/u00049_transcribe_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00049",
+    "task": "kriya",
+    "gold": "avadetAm",
+    "answer": "vadete",
+    "audio_in": "demo/u00049_in.wav",
+    "audio_out": "demo/u00049_kriya_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00049",
+    "task": "karta",
+    "gold": "vane",
+    "answer": "vane",
+    "audio_in": "demo/u00049_in.wav",
+    "audio_out": "demo/u00049_karta_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00050",
+    "task": "transcribe",
+    "gold": "PalAnyaSvena gamizyanti",
+    "answer": "PalAni aSvale gamizyanti agam apaWan",
+    "audio_in": "demo/u00050_in.wav",
+    "audio_out": "demo/u00050_transcribe_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00050",
+    "task": "kriya",
+    "gold": "gamizyanti",
+    "answer": "gamizyan",
+    "audio_in": "demo/u00050_in.wav",
+    "audio_out": "demo/u00050_kriya_out.wav",
+    "lang": "sa"
+  },
+  {
+    "clip_id": "u00050",
+    "task": "karta",
+    "gold": "PalAni",
+    "answer": "PalAni",
+    "audio_in": "demo/u00050_in.wav",
+    "audio_out": "demo/u00050_karta_out.wav",
+    "lang": "sa"
+  }
+]

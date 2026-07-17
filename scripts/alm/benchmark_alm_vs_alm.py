@@ -111,9 +111,9 @@ def eval_qwen_audio(val):
                     wav = librosa.resample(wav, orig_sr=sr, target_sr=16000)
 
                 # Prepare inputs: prompt the model to transcribe in Roman script
-                # Use a clear instruction for transcription
+                # Note: Qwen2-Audio requires the <|AUDIO|> token in the prompt
                 inputs = processor(
-                    text="Transcribe the Sanskrit speech to romanized text: ",
+                    text="<|AUDIO|>\nTranscribe the Sanskrit speech to romanized text: ",
                     audio=wav,
                     sampling_rate=16000,
                     return_tensors="pt",

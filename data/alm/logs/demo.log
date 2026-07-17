@@ -1,0 +1,171 @@
+/usr/local/lib/python3.12/dist-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+[NeMo W 2026-07-17 21:22:52 nemo_logging:364] /opt/venv/lib/python3.12/site-packages/lhotse/recipes/iwslt22_ta.py:323: SyntaxWarning: invalid escape sequence '\s'
+      text = re.sub("\s+", " ", text)
+    
+[NeMo W 2026-07-17 21:22:52 nemo_logging:364] /opt/venv/lib/python3.12/site-packages/lhotse/recipes/iwslt22_ta.py:324: SyntaxWarning: invalid escape sequence '\s'
+      text = re.sub("\s+\.\s+", ".", text)
+    
+OneLogger: Setting error_handling_strategy to DISABLE_QUIETLY_AND_REPORT_METRIC_ERROR for rank (rank=0) with OneLogger disabled. To override: explicitly set error_handling_strategy parameter.
+No exporters were provided. This means that no telemetry data will be collected.
+Multiple distributions found for package modelopt. Picked distribution: nvidia-modelopt
+[NeMo W 2026-07-17 21:23:16 nemo_logging:364] /opt/venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work
+      warn("Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work", RuntimeWarning)
+    
+[NeMo I 2026-07-17 21:23:19 mixins:184] Tokenizer SentencePieceTokenizer initialized with 8192 tokens
+[NeMo W 2026-07-17 21:23:21 modelPT:188] If you intend to do training or fine-tuning, please call the ModelPT.setup_training_data() method and provide a valid configuration file to setup the train data loader.
+    Train config : 
+    use_lhotse: true
+    skip_missing_manifest_entries: true
+    input_cfg: null
+    tarred_audio_filepaths: null
+    manifest_filepath: null
+    sample_rate: 16000
+    shuffle: true
+    num_workers: 2
+    pin_memory: true
+    max_duration: 10.0
+    min_duration: 1.0
+    text_field: answer
+    batch_duration: null
+    max_tps: null
+    use_bucketing: true
+    bucket_duration_bins: null
+    bucket_batch_size: null
+    num_buckets: 30
+    bucket_buffer_size: 20000
+    shuffle_buffer_size: 10000
+    
+[NeMo W 2026-07-17 21:23:21 modelPT:195] If you intend to do validation, please call the ModelPT.setup_validation_data() or ModelPT.setup_multiple_validation_data() method and provide a valid configuration file to setup the validation data loader(s). 
+    Validation config : 
+    use_lhotse: true
+    manifest_filepath: null
+    sample_rate: 16000
+    batch_size: 16
+    shuffle: false
+    max_duration: 40.0
+    min_duration: 0.1
+    num_workers: 2
+    pin_memory: true
+    text_field: answer
+    
+[NeMo I 2026-07-17 21:23:24 rnnt_models:226] Using RNNT Loss : tdt
+    Loss tdt_kwargs: {'fastemit_lambda': 0.0, 'clamp': -1.0, 'durations': [0, 1, 2, 3, 4], 'sigma': 0.02, 'omega': 0.1}
+[NeMo I 2026-07-17 21:23:24 rnnt_models:226] Using RNNT Loss : tdt
+    Loss tdt_kwargs: {'fastemit_lambda': 0.0, 'clamp': -1.0, 'durations': [0, 1, 2, 3, 4], 'sigma': 0.02, 'omega': 0.1}
+[NeMo I 2026-07-17 21:23:24 rnnt_models:226] Using RNNT Loss : tdt
+    Loss tdt_kwargs: {'fastemit_lambda': 0.0, 'clamp': -1.0, 'durations': [0, 1, 2, 3, 4], 'sigma': 0.02, 'omega': 0.1}
+[NeMo I 2026-07-17 21:23:25 save_restore_connector:285] Model EncDecRNNTBPEModel was successfully restored from /work/pranava/.hf_cache/hub/models--nvidia--parakeet-tdt-0.6b-v3/snapshots/7c35754d166cca382ad1e53e68b01e7c575f3a1d/parakeet-tdt-0.6b-v3.nemo.
+[NeMo I 2026-07-17 21:23:25 cloud:68] Downloading from: https://api.ngc.nvidia.com/v2/models/nvidia/nemo/tts_en_fastpitch/versions/1.8.1/files/tts_en_fastpitch_align.nemo to /root/.cache/torch/NeMo/NeMo_2.7.1/tts_en_fastpitch_align/b7d086a07b5126c12d5077d9a641a38c/tts_en_fastpitch_align.nemo
+[NeMo I 2026-07-17 21:23:28 common:939] Instantiating model from pre-trained checkpoint
+[NeMo E 2026-07-17 21:23:28 base:45] `nemo_text_processing` not installed, see https://github.com/NVIDIA/NeMo-text-processing for more details.
+[NeMo E 2026-07-17 21:23:28 base:48] The normalizer will be disabled.
+[NeMo W 2026-07-17 21:23:29 en_us_arpabet:66] apply_to_oov_word=None, This means that some of words will remain unchanged if they are not handled by any of the rules in self.parse_one_word(). This may be intended if phonemes and chars are both valid inputs, otherwise, you may see unexpected deletions in your input.
+[NeMo W 2026-07-17 21:23:29 modelPT:188] If you intend to do training or fine-tuning, please call the ModelPT.setup_training_data() method and provide a valid configuration file to setup the train data loader.
+    Train config : 
+    dataset:
+      _target_: nemo.collections.tts.torch.data.TTSDataset
+      manifest_filepath: /ws/LJSpeech/nvidia_ljspeech_train_clean_ngc.json
+      sample_rate: 22050
+      sup_data_path: /raid/LJSpeech/supplementary
+      sup_data_types:
+      - align_prior_matrix
+      - pitch
+      n_fft: 1024
+      win_length: 1024
+      hop_length: 256
+      window: hann
+      n_mels: 80
+      lowfreq: 0
+      highfreq: 8000
+      max_duration: null
+      min_duration: 0.1
+      ignore_file: null
+      trim: false
+      pitch_fmin: 65.40639132514966
+      pitch_fmax: 2093.004522404789
+      pitch_norm: true
+      pitch_mean: 212.35873413085938
+      pitch_std: 68.52806091308594
+      use_beta_binomial_interpolator: true
+    dataloader_params:
+      drop_last: false
+      shuffle: true
+      batch_size: 24
+      num_workers: 0
+    
+[NeMo W 2026-07-17 21:23:29 modelPT:195] If you intend to do validation, please call the ModelPT.setup_validation_data() or ModelPT.setup_multiple_validation_data() method and provide a valid configuration file to setup the validation data loader(s). 
+    Validation config : 
+    dataset:
+      _target_: nemo.collections.tts.torch.data.TTSDataset
+      manifest_filepath: /ws/LJSpeech/nvidia_ljspeech_val_clean_ngc.json
+      sample_rate: 22050
+      sup_data_path: /raid/LJSpeech/supplementary
+      sup_data_types:
+      - align_prior_matrix
+      - pitch
+      n_fft: 1024
+      win_length: 1024
+      hop_length: 256
+      window: hann
+      n_mels: 80
+      lowfreq: 0
+      highfreq: 8000
+      max_duration: null
+      min_duration: null
+      ignore_file: null
+      trim: false
+      pitch_fmin: 65.40639132514966
+      pitch_fmax: 2093.004522404789
+      pitch_norm: true
+      pitch_mean: 212.35873413085938
+      pitch_std: 68.52806091308594
+      use_beta_binomial_interpolator: true
+    dataloader_params:
+      drop_last: false
+      shuffle: false
+      batch_size: 24
+      num_workers: 0
+    
+[NeMo I 2026-07-17 21:23:29 save_restore_connector:285] Model FastPitchModel was successfully restored from /root/.cache/torch/NeMo/NeMo_2.7.1/tts_en_fastpitch_align/b7d086a07b5126c12d5077d9a641a38c/tts_en_fastpitch_align.nemo.
+[NeMo I 2026-07-17 21:23:29 cloud:68] Downloading from: https://api.ngc.nvidia.com/v2/models/nvidia/nemo/tts_en_lj_hifigan/versions/1.6.0/files/tts_en_lj_hifigan_ft_mixertts.nemo to /root/.cache/torch/NeMo/NeMo_2.7.1/tts_en_lj_hifigan_ft_mixertts/02824f77092c9ed0c70e24284d539ec0/tts_en_lj_hifigan_ft_mixertts.nemo
+[NeMo I 2026-07-17 21:23:33 common:939] Instantiating model from pre-trained checkpoint
+[NeMo W 2026-07-17 21:23:35 modelPT:188] If you intend to do training or fine-tuning, please call the ModelPT.setup_training_data() method and provide a valid configuration file to setup the train data loader.
+    Train config : 
+    dataset:
+      _target_: nemo.collections.tts.data.datalayers.MelAudioDataset
+      manifest_filepath: lj_train.json
+      min_duration: 0.75
+      n_segments: 8192
+    dataloader_params:
+      drop_last: false
+      shuffle: true
+      batch_size: 16
+      num_workers: 1
+    
+[NeMo W 2026-07-17 21:23:35 modelPT:195] If you intend to do validation, please call the ModelPT.setup_validation_data() or ModelPT.setup_multiple_validation_data() method and provide a valid configuration file to setup the validation data loader(s). 
+    Validation config : 
+    dataset:
+      _target_: nemo.collections.tts.data.datalayers.MelAudioDataset
+      manifest_filepath: lj_val.json
+      min_duration: 3
+      n_segments: 66048
+    dataloader_params:
+      drop_last: false
+      shuffle: false
+      batch_size: 16
+      num_workers: 1
+    
+[NeMo I 2026-07-17 21:23:35 features:307] STFT using exact pad
+[NeMo I 2026-07-17 21:23:35 features:307] STFT using exact pad
+[NeMo I 2026-07-17 21:23:36 save_restore_connector:285] Model HifiGanModel was successfully restored from /root/.cache/torch/NeMo/NeMo_2.7.1/tts_en_lj_hifigan_ft_mixertts/02824f77092c9ed0c70e24284d539ec0/tts_en_lj_hifigan_ft_mixertts.nemo.
+{
+  "clips": 6,
+  "artifacts": 19,
+  "tasks": [
+    "karma",
+    "karta",
+    "kriya",
+    "transcribe"
+  ]
+}
