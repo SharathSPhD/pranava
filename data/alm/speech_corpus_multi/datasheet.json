@@ -1,0 +1,13 @@
+{
+  "n_items": 1100,
+  "languages": {
+    "en": 500,
+    "sa": 600
+  },
+  "splits": {
+    "val": 108,
+    "train": 992
+  },
+  "sources": "en=REAL LibriSpeech human speech; sa=native indic-parler-tts",
+  "note": "multilingual: byte-core handles both scripts; [lang] prefix makes decoding language-aware"
+}

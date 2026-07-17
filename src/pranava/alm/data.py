@@ -39,6 +39,7 @@ class Example:
     karaka: list
     split: str
     duration_s: float
+    lang: str = "sa"
 
     @property
     def kriya(self) -> str | None:
@@ -65,7 +66,7 @@ def load_manifest(split: str | None = None) -> list[Example]:
             Example(
                 id=r["id"], text=r["text"], wav_path=_root() / r["wav"],
                 karaka=r.get("karaka", []), split=r["split"],
-                duration_s=float(r.get("duration_s", 0.0)),
+                duration_s=float(r.get("duration_s", 0.0)), lang=r.get("lang", "sa"),
             )
         )
     return out

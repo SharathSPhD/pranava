@@ -1,0 +1,12 @@
+{
+  "milestone": "ML",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "multilingual corpus present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "two_languages:ok; real_english:ok; per_language_benchmark:ok; beats_whisper_on_sanskrit:ok; honest_writeup:ok | langs=['en', 'sa']; sa 0.7056 vs Whisper 0.9403"
+  },
+  "closed": true
+}

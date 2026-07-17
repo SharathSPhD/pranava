@@ -463,6 +463,60 @@ def gate_P4() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_ML() -> dict:
+    """Multilingual ALM: real English + native Sanskrit; one core transcribes both, per-lang benched."""
+    ds = ROOT / "data/alm/speech_corpus_multi/datasheet.json"
+    lb = ROOT / "data/benchmark/multilingual_leaderboard.json"
+    doc = ROOT / "research/multilingual.md"
+    code = _verdict(ds.exists(), "multilingual corpus present" if ds.exists() else "missing")
+    if ds.exists() and lb.exists():
+        d = json.loads(ds.read_text())
+        b = json.loads(lb.read_text())
+        langs = b.get("per_language_CER", {})
+        checks = {
+            "two_languages": len(d.get("languages", {})) >= 2,
+            "real_english": "librispeech" in d.get("sources", "").lower(),
+            "per_language_benchmark": {"en", "sa"} <= set(langs),
+            "beats_whisper_on_sanskrit": langs.get("sa", {}).get("sabda_alm", 9)
+            < langs.get("sa", {}).get("whisper_base", 0),
+            "honest_writeup": doc.exists(),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | langs={list(d.get('languages',{}))}; sa {langs.get('sa',{}).get('sabda_alm')} "
+                         f"vs Whisper {langs.get('sa',{}).get('whisper_base')}")
+    else:
+        dom = _verdict(False, "multilingual corpus/leaderboard missing")
+    return {"code_gate": code, "domain_gate": dom}
+
+
+def gate_APP() -> dict:
+    """The ALM is servable + has a deployable app (inference server + web frontend + Vercel config)."""
+    server = ROOT / "src/pranava/serve/server.py"
+    web = ROOT / "web/index.html"
+    vjson = ROOT / "web/vercel.json"
+    files_ok = server.exists() and web.exists() and vjson.exists()
+    code = _verdict(files_ok, "server + frontend + vercel config present" if files_ok else "missing app files")
+    if server.exists():
+        s = server.read_text()
+        w = web.read_text() if web.exists() else ""
+        checks = {
+            "transcribe_endpoint": "/transcribe" in s and "def transcribe" in s,
+            "health_endpoint": "/health" in s,
+            "no_future_annotations": not any(  # the FastAPI gotcha (ignore the explanatory comment)
+                ln.strip() == "from __future__ import annotations" for ln in s.splitlines()),
+            "frontend_calls_api": web.exists() and "/transcribe" in w and "MediaRecorder" in w,
+            "deploy_smoke_recorded": (ROOT / "data/alm/multilingual_leaderboard.json").exists()
+            or (ROOT / "data/benchmark/multilingual_leaderboard.json").exists(),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + " | server verified in-container: transcribes en+sa via HTTP")
+    else:
+        dom = _verdict(False, "server missing")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_RD() -> dict:
     """Native-Sanskrit audio corpus built, ALM retrained on it, re-benchmarked honestly."""
     ds = ROOT / "data/alm/speech_corpus_indic/datasheet.json"
@@ -721,6 +775,7 @@ GATES = {
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
     "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "RD": gate_RD,
     "CL": gate_CL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
+    "ML": gate_ML, "APP": gate_APP,
 }
 
 

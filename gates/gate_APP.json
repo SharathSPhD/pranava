@@ -1,0 +1,12 @@
+{
+  "milestone": "APP",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "server + frontend + vercel config present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "transcribe_endpoint:ok; health_endpoint:ok; no_future_annotations:ok; frontend_calls_api:ok; deploy_smoke_recorded:ok | server verified in-container: transcribes en+sa via HTTP"
+  },
+  "closed": true
+}

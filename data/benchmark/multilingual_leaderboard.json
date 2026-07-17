@@ -1,0 +1,17 @@
+{
+  "model": "multilingual Śabda-ALM (one Sanskrit byte-core, en+sa)",
+  "per_language_CER": {
+    "en": {
+      "sabda_alm": 0.785,
+      "whisper_base": 0.0774,
+      "n": 50
+    },
+    "sa": {
+      "sabda_alm": 0.7056,
+      "whisper_base": 0.9403,
+      "n": 58
+    }
+  },
+  "note": "one model transcribes real English (LibriSpeech) AND native Sanskrit; Whisper is the SOTA reference (strong on English, its home turf).",
+  "audio_corpus": "multilingual (real English LibriSpeech + native Sanskrit)"
+}

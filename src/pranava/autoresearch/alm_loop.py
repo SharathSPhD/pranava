@@ -19,22 +19,31 @@ ROOT = Path(__file__).resolve().parents[3]
 LEDGER = ROOT / "research" / "alm_efe_ledger.jsonl"
 LEADERBOARD = ROOT / "data" / "benchmark" / "sota_leaderboard.json"
 
-# The menu of ALM improvements. prior_value_hint ∈ {0..3} (negligible..high expected value).
+# The menu of platform improvements. prior_value_hint ∈ {0..3} (negligible..high expected value).
+# Expanded 2026-07-17: multilingual, app, instruction-tuning/RLAIF, and NSM-architecture candidates —
+# pranava as a platform + research testbed, not a single Sanskrit model.
 MENU: list[Candidate] = [
     Candidate("lora_r8_200m", "LoRA r=8 on the 200M core (adapt, don't just project)",
               {"where": "gb10", "r": 8}, 3),
-    Candidate("lora_r16_200m", "Higher-rank LoRA r=16 on the 200M core",
-              {"where": "gb10", "r": 16}, 2),
     Candidate("lora_1b_5090", "LoRA on the 1.13B Megatron core (RTX 5090)",
               {"where": "5090", "r": 8}, 3),
-    Candidate("more_epochs", "Longer projector+LoRA schedule (20 epochs)",
-              {"epochs": 20}, 2),
-    Candidate("real_speech_data", "Replace synthetic TTS with real Indic/Sanskrit speech",
-              {"data": "real"}, 3),
-    Candidate("lens_guided_decoding", "Steer the sphoṭa layer (13) during decode toward meaning",
+    Candidate("real_speech_data", "Native-Sanskrit speech corpus (indic-parler-tts)",
+              {"data": "native_sa"}, 3),
+    Candidate("multilingual_english", "Multilingual ALM: add REAL English speech (LibriSpeech/CV)",
+              {"lang": "en", "data": "real"}, 3),
+    Candidate("multilingual_indic", "Add Hindi/other Indic real speech (cross-lingual transfer)",
+              {"lang": "hi"}, 2),
+    Candidate("instruction_tuning", "SFT the ALM to follow spoken instructions (usable product)",
+              {"stage": "sft"}, 3),
+    Candidate("rlaif", "RLAIF: align with an AI reward model (NeMo/Nemotron reward)",
+              {"stage": "rlaif"}, 2),
+    Candidate("nsm_layer_c", "Inline Navya-Nyaya (pramana) validation over ALM claims (NSM Layer C)",
+              {"nsm": "C"}, 2),
+    Candidate("vercel_app", "Serve the ALM + Vercel/Supabase app (make it usable)",
+              {"deploy": "vercel"}, 3),
+    Candidate("lens_guided_decoding", "Steer the sphoṭa layer during decode toward meaning",
               {"steer_layer": 13}, 2),
-    Candidate("larger_projector", "Deeper Q-Former projector (more madhyamā capacity)",
-              {"projector": "qformer"}, 1),
+    Candidate("more_epochs", "Longer projector+LoRA schedule (20+ epochs)", {"epochs": 20}, 1),
 ]
 
 

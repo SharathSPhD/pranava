@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Śabda-ALM · speak to it</title>
+<meta name="description" content="Speak English or Sanskrit; the Śabda-ALM transcribes it through a Sanskrit byte-core.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&family=Noto+Serif+Devanagari:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0E1020;--panel:#16182B;--line:#2A2E4C;--saffron:#E8A13A;--amber:#F2D9A8;
+        --paper:#E7E3D6;--muted:#9195B8;--violet:#6E5AE6}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--paper);font-family:"IBM Plex Sans",system-ui,sans-serif;
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:2rem 1.2rem}
+  .glyph{font-family:"Noto Serif Devanagari",serif;font-size:3rem;color:var(--saffron);
+    text-shadow:0 0 40px #e8a13a44;margin:.5rem 0 0}
+  h1{font-family:"Spectral",serif;font-weight:500;font-size:clamp(1.8rem,5vw,2.6rem);margin:.3rem 0 .2rem;text-align:center}
+  .sub{color:var(--muted);text-align:center;max-width:46ch;margin:0 0 1.8rem}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:1.6rem;
+    width:100%;max-width:620px}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  button{font-family:"IBM Plex Sans";font-weight:600;font-size:1rem;border:none;border-radius:999px;
+    padding:.8rem 1.4rem;cursor:pointer}
+  .rec{background:var(--saffron);color:#20160a}
+  .rec.on{background:#c0392b;color:#fff;animation:pulse 1.3s infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 10px #c0392b22}}
+  .ghost{background:transparent;border:1px solid var(--line);color:var(--paper)}
+  input[type=file]{color:var(--muted);font-size:.9rem}
+  .out{margin-top:1.4rem;min-height:3rem}
+  .out .lang{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--saffron)}
+  .out .txt{font-family:"Spectral",serif;font-size:1.4rem;margin:.3rem 0;line-height:1.3}
+  .out .meta{font-family:"IBM Plex Mono",monospace;font-size:.75rem;color:var(--muted)}
+  .cfg{margin-top:1.4rem;font-size:.8rem;color:var(--muted)}
+  .cfg input{background:#0E1020;border:1px solid var(--line);color:var(--paper);border-radius:6px;
+    padding:.4rem .6rem;font-family:"IBM Plex Mono",monospace;font-size:.8rem;width:min(100%,340px)}
+  a{color:var(--amber)}
+  footer{margin-top:2rem;color:var(--muted);font-size:.85rem;text-align:center}
+</style>
+</head>
+<body>
+  <div class="glyph">शब्द</div>
+  <h1>Speak to the Śabda-ALM</h1>
+  <p class="sub">Record or upload a short clip in <b>English</b> or <b>Sanskrit</b>. It is transcribed
+    through a Sanskrit byte-core — sound routed through a Sanskrit mind.</p>
+
+  <div class="card">
+    <div class="row">
+      <button id="rec" class="rec">● Record</button>
+      <span style="color:var(--muted)">or</span>
+      <input type="file" id="file" accept="audio/*">
+      <button id="send" class="ghost">Transcribe file</button>
+    </div>
+    <div class="out" id="out"><span class="meta">Ready. Say a sentence.</span></div>
+  </div>
+
+  <div class="cfg">
+    API endpoint: <input id="api" placeholder="https://your-alm-endpoint/transcribe">
+    <div style="margin-top:.4rem">Point this at your running Śabda-ALM server
+      (<span style="font-family:IBM Plex Mono">uvicorn pranava.serve.server:app</span>, exposed via a tunnel).</div>
+  </div>
+
+  <footer>
+    <a href="https://sharathsphd.github.io/pranava/">About the model</a> ·
+    <a href="https://github.com/SharathSPhD/pranava">Code</a>
+  </footer>
+
+<script>
+  const $=id=>document.getElementById(id);
+  const apiInput=$('api');
+  apiInput.value = localStorage.getItem('alm_api') || (location.origin.includes('github')? '' : location.origin+'/transcribe');
+  apiInput.onchange=()=>localStorage.setItem('alm_api',apiInput.value);
+
+  function endpoint(){ return apiInput.value.trim() || (location.origin+'/transcribe'); }
+  function show(state){ $('out').innerHTML = state; }
+  async function post(blob){
+    show('<span class="meta">Listening…</span>');
+        try{
+      const r=await fetch(endpoint(),{method:'POST',body:blob});
+      const d=await r.json();
+      show(`<div class="lang">${d.language||'?'} · ${d.ms||'?'} ms</div>
+            <div class="txt">${(d.text||'').replace(/</g,'&lt;')||'(no speech detected)'}</div>
+            <div class="meta">raw: ${(d.raw||'').replace(/</g,'&lt;')}</div>`);
+    }catch(e){ show(`<span class="meta" style="color:#c0392b">Could not reach the API. Set the endpoint above. (${e})</span>`); }
+  }
+  $('send').onclick=()=>{ const f=$('file').files[0]; if(f) post(f); };
+
+  let rec, chunks=[];
+  $('rec').onclick=async()=>{
+    const b=$('rec');
+    if(rec && rec.state==='recording'){ rec.stop(); return; }
+    try{
+      const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+      rec=new MediaRecorder(stream); chunks=[];
+      rec.ondataavailable=e=>chunks.push(e.data);
+      rec.onstop=()=>{ post(new Blob(chunks,{type:'audio/webm'})); stream.getTracks().forEach(t=>t.stop());
+                       b.classList.remove('on'); b.textContent='● Record'; };
+      rec.start(); b.classList.add('on'); b.textContent='■ Stop';
+    }catch(e){ show(`<span class="meta" style="color:#c0392b">Mic blocked: ${e}</span>`); }
+  };
+</script>
+</body>
+</html>
