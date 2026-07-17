@@ -1,0 +1,12 @@
+{
+  "milestone": "X1",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "auditor tests green"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "audited>=4_claims:ok; holism_claim_refused_as_hetvabhasa:ok; some_claims_ascertained:ok | ascertained=4/5"
+  },
+  "closed": true
+}

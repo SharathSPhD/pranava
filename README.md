@@ -35,9 +35,10 @@ picture actually holds in speech vs text models. First result (E2) suggested spe
 | E5 | Prosody acoustic-blindness gap (speech recovers what text can't); localization null | ✅ |
 | E6 | Scaling replication — CORRECTS E2 (effect does not survive) | ✅ |
 | E7 | **Definitive matched-vocab re-run — settles it: NO speech-vs-text holism difference (clean null)** | ✅ |
-| X0 | Autoresearch loop (reuses prabodha EFE) — full cycle; finding replicated across 4 model pairings | ✅ |
+| X0 | Autoresearch loop (reuses prabodha EFE) — drove E3/E5/E6 cycles | ✅ |
+| X1 | Pramāṇa epistemic layer (reuses pramana) — audits own claims; refuses the retracted holism claim as *hetvābhāsa* | ✅ |
 
-8 milestones. Run the whole ledger: `python gates/check.py`. Milestones + gates: [`specs/MILESTONES.md`](specs/MILESTONES.md).
+11 milestones. Run the whole ledger: `python gates/check.py`. Milestones + gates: [`specs/MILESTONES.md`](specs/MILESTONES.md).
 
 ## Discipline
 Spec/PRD-driven · TDD (69 tests) · **dual-verdict gates** (code + domain, from prabodha) ·

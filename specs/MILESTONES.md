@@ -156,10 +156,18 @@ Legend: ☑ done · ◐ in progress · ☐ not started
   propose→observe→re-propose cycle (obs=2, prop=2).
 - **Evidence**: `research/efe_ledger.jsonl`, `data/experiments/e3_results.json`, gate_X0/E3.json.
 
-### X1 — Pramāṇa validation layer (reuse)  ☐
-- Reuse the operator's published Navya-Nyāya reasoning (pramana) as the "Layer C" validator over
-  extracted claims in the KG / experiment conclusions.
-- **Gate**: at least one claim passed through the 6-phase epistemic check with recorded output.
+### X1 — Pramāṇa validation layer (NSM "Layer C")  ☑ DONE (2026-07-17)
+- **Reuses** the operator's published *pramana* (arXiv 2604.04937): its Pydantic 6-phase Nyāya
+  models + `HetvabhasaType` fallacy taxonomy (imported via venv `.pth`). Built a
+  `pranava.pramana_layer.auditor` that runs claims through saṃśaya → pramāṇa → pañca-avayava →
+  tarka → hetvābhāsa → nirṇaya and returns an ascertainment verdict.
+- **Self-referential audit** of pranava's own claims: VP 1.1 (śabda=brahman) and VP 2.143
+  (pratibhā) → *ascertained* (śabda-pramāṇa); the retracted E2 holism claim → *not ascertained*,
+  flagged **savyabhichāra + satpratipakṣa** — the Nyāya framework independently reaches the same
+  verdict E6/E7 found empirically; the corrected null and the E5 prosody gap → *ascertained*.
+- **Gate** (`gates/check.py X1`, dual): 6 auditor tests green; the holism claim is refused on
+  hetvābhāsa grounds; ≥2 claims ascertained.
+- **Evidence**: `data/pramana_layer/audit.json`; gate_X1.json.
 
 ### X2 — NSM reference spec  ☐
 - A grounded spec of the Neuro-Symbolic Acoustic Model, citing *only* what M/E milestones

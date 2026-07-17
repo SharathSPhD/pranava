@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "VP 1.1 identifies śabda-tattva with brahman (śabdādvaita).",
+    "samshaya": "prima-facie-clear",
+    "pramana_used": [
+      "anumana",
+      "shabda"
+    ],
+    "hetu": "mūla 'anādinidhanaṃ brahma śabdatattvaṃ' + KG anchor @1.1",
+    "hetvabhasa": [],
+    "verdict": "ascertained",
+    "nirnaya": "Ascertained: clears saṃśaya, pramāṇa, tarka, and hetvābhāsa checks."
+  },
+  {
+    "claim": "vākya-meaning is grasped as pratibhā (VP 2.143).",
+    "samshaya": "prima-facie-clear",
+    "pramana_used": [
+      "shabda"
+    ],
+    "hetu": "mūla 2.143 'pratibhā... vākyārtha iti tāmāhuḥ' (locus classicus)",
+    "hetvabhasa": [],
+    "verdict": "ascertained",
+    "nirnaya": "Ascertained: clears saṃśaya, pramāṇa, tarka, and hetvābhāsa checks."
+  },
+  {
+    "claim": "Speech encoders resolve meaning more holistically than text on late-resolving sentences.",
+    "samshaya": "conflicting-or-weak-evidence",
+    "pramana_used": [
+      "pratyaksha"
+    ],
+    "hetu": "E2 verb_final subset HI 0.41 vs 0.17 (48 items, 2 templates → degenerate CV)",
+    "hetvabhasa": [
+      {
+        "kind": "savyabhichara",
+        "explanation": "the reason does not invariably yield the conclusion (weak/underpowered support)"
+      },
+      {
+        "kind": "satpratipaksha",
+        "explanation": "an equally strong counter-reason exists"
+      }
+    ],
+    "verdict": "not_ascertained",
+    "nirnaya": "Not ascertained: blocked by savyabhichara, satpratipaksha."
+  },
+  {
+    "claim": "There is no speech-vs-text holism difference (corrected conclusion).",
+    "samshaya": "prima-facie-clear",
+    "pramana_used": [
+      "anumana",
+      "pratyaksha"
+    ],
+    "hetu": "E7 P2 null (-0.07); P1 sanity holds",
+    "hetvabhasa": [],
+    "verdict": "ascertained",
+    "nirnaya": "Ascertained: clears saṃśaya, pramāṇa, tarka, and hetvābhāsa checks."
+  },
+  {
+    "claim": "Speech carries prosodic information that text structurally cannot (E5).",
+    "samshaya": "prima-facie-clear",
+    "pramana_used": [
+      "pratyaksha"
+    ],
+    "hetu": "E5 speech acc 1.0 vs text 0.5 (definitional gap 0.5)",
+    "hetvabhasa": [],
+    "verdict": "ascertained",
+    "nirnaya": "Ascertained: clears saṃśaya, pramāṇa, tarka, and hetvābhāsa checks."
+  }
+]

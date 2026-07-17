@@ -321,10 +321,38 @@ def gate_X0() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_X1() -> dict:
+    """Pramāṇa validation layer (reuses pramana) audits pranava's own claims correctly."""
+    rc, out = _run([PY, "-m", "pytest", "tests/pramana_layer/", "-q"])
+    code = _verdict(rc == 0, "auditor tests green" if rc == 0 else out)
+    audit_p = ROOT / "data/pramana_layer/audit.json"
+    if audit_p.exists():
+        rows = json.loads(audit_p.read_text())
+        # the retracted holism claim MUST be refused on hetvābhāsa grounds
+        holism = next((r for r in rows if "more holistically" in r["claim"]), None)
+        holism_refused = bool(holism and r_ok(holism))
+        n_ascertained = sum(1 for r in rows if r["verdict"] == "ascertained")
+        checks = {
+            "audited>=4_claims": len(rows) >= 4,
+            "holism_claim_refused_as_hetvabhasa": holism_refused,
+            "some_claims_ascertained": n_ascertained >= 2,
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | ascertained={n_ascertained}/{len(rows)}")
+    else:
+        dom = _verdict(False, "audit.json missing — run scripts/x1_audit_claims.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
+def r_ok(holism: dict) -> bool:
+    return holism["verdict"] == "not_ascertained" and len(holism["hetvabhasa"]) >= 1
+
+
 GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
-    "E7": gate_E7, "X0": gate_X0,
+    "E7": gate_E7, "X0": gate_X0, "X1": gate_X1,
 }
 
 
