@@ -1,0 +1,23 @@
+{
+  "task": "held-out audio → romanized-Sanskrit text (CER, lower=better)",
+  "n_items": 58,
+  "leaderboard": [
+    {
+      "model": "Śabda-ALM (Parakeet+Projector+LoRA→Sanskrit core, ours)",
+      "params": "200M core + 0.6B enc",
+      "cer": 0.5461
+    },
+    {
+      "model": "Parakeet-TDT-0.6B native ASR (NVIDIA)",
+      "params": "0.6B",
+      "cer": 0.6052
+    },
+    {
+      "model": "Whisper-base (OpenAI)",
+      "params": "74M",
+      "cer": 0.7475,
+      "note": null
+    }
+  ],
+  "note": " SOTA general ASR is not trained on this romanized-Sanskrit target; the ALM is specialised for the Sanskrit byte-core. All models see the identical audio."
+}

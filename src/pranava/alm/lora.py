@@ -22,8 +22,9 @@ class LoRALinear(nn.Module):
         self.r = r
         self.scale = alpha / r
         self.drop = nn.Dropout(dropout) if dropout > 0 else nn.Identity()
-        self.A = nn.Parameter(torch.zeros(r, base.in_features))
-        self.B = nn.Parameter(torch.zeros(base.out_features, r))
+        dev = base.weight.device
+        self.A = nn.Parameter(torch.zeros(r, base.in_features, device=dev))
+        self.B = nn.Parameter(torch.zeros(base.out_features, r, device=dev))
         nn.init.kaiming_uniform_(self.A, a=5 ** 0.5)
         # B stays zero at init → the adapter is a no-op until trained (stable).
 

@@ -463,6 +463,31 @@ def gate_P4() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_BM() -> dict:
+    """SOTA benchmark: Śabda-ALM weighed against SOTA ASR on a common task, leaderboard produced."""
+    b_p = ROOT / "data/benchmark/sota_leaderboard.json"
+    code = _verdict(b_p.exists(), "leaderboard produced" if b_p.exists() else "no leaderboard")
+    if b_p.exists():
+        b = json.loads(b_p.read_text())
+        board = b.get("leaderboard", [])
+        scored = [r for r in board if r.get("cer") is not None]
+        ours = next((r for r in board if "ours" in r.get("model", "")), None)
+        checks = {
+            ">=3_models": len(board) >= 3,
+            ">=2_sota_baselines_scored": sum(1 for r in scored if "ours" not in r["model"]) >= 2,
+            "ours_scored": ours is not None and ours.get("cer") is not None,
+            "identical_task": "identical audio" in b.get("note", "").lower(),
+        }
+        best = min(scored, key=lambda r: r["cer"]) if scored else None
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | best={best['model'][:30] if best else '?'}@{best['cer'] if best else '?'}; "
+                         f"ours={ours['cer'] if ours else '?'}")
+    else:
+        dom = _verdict(False, "sota_leaderboard.json missing — run scripts/alm/benchmark_sota.py")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_LR() -> dict:
     """LoRA fine-tuning: adapting the core beats projector-only understanding."""
     code_files = [ROOT / "src/pranava/alm/lora.py", ROOT / "scripts/alm/train_lora.py"]
@@ -646,7 +671,7 @@ GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M2b": gate_M2b, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
-    "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
+    "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
 }
 
 

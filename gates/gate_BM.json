@@ -1,0 +1,12 @@
+{
+  "milestone": "BM",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "leaderboard produced"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": ">=3_models:ok; >=2_sota_baselines_scored:ok; ours_scored:ok; identical_task:ok | best=Śabda-ALM (Parakeet+Projector+@0.5461; ours=0.5461"
+  },
+  "closed": true
+}
