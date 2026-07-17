@@ -1,0 +1,12 @@
+{
+  "milestone": "AA",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "ALM-vs-ALM benchmark present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "competitor_is_an_alm:ok; genuinely_ran:ok; real_predictions_saved:ok; specialist_wins:ok; failure_documented:ok | ours 0.5649 vs Qwen 15.8615 (1 unique of 58)"
+  },
+  "closed": true
+}

@@ -546,6 +546,36 @@ def gate_IT() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_AA() -> dict:
+    """Apples-to-apples: a GENUINE run of another ALM (Qwen2-Audio), with per-item predictions as proof."""
+    lb = ROOT / "data/benchmark/alm_vs_alm.json"
+    rec = ROOT / "data/benchmark/alm_vs_alm_records.json"
+    doc = ROOT / "research/alm-vs-alm.md"
+    code_ok = (ROOT / "scripts/alm/benchmark_alm_vs_alm.py").exists()
+    code = _verdict(code_ok, "ALM-vs-ALM benchmark present" if code_ok else "missing benchmark")
+    if lb.exists() and rec.exists():
+        d = json.loads(lb.read_text())
+        recs = json.loads(rec.read_text())
+        ev = d.get("qwen_evidence", {})
+        scored = [x for x in recs if "qwen_pred" in x]
+        ours = next((r for r in d["leaderboard"] if "ours" in r["model"]), {})
+        qwen = next((r for r in d["leaderboard"] if "Qwen" in r["model"]), {})
+        checks = {
+            "competitor_is_an_alm": "Qwen2-Audio" in qwen.get("model", ""),  # ALM, not TTS/ASR
+            "genuinely_ran": len(scored) >= 50 and ev.get("items_errored", 99) == 0,
+            "real_predictions_saved": all("qwen_pred" in x for x in scored) and len(scored) > 0,
+            "specialist_wins": ours.get("cer", 9) < qwen.get("cer", 0),
+            "failure_documented": doc.exists() and "1 unique output" in doc.read_text(),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | ours {ours.get('cer')} vs Qwen {qwen.get('cer')} "
+                         f"({ev.get('unique_qwen_outputs')} unique of {len(scored)})")
+    else:
+        dom = _verdict(False, "alm_vs_alm.json / records missing")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_SC() -> dict:
     """Scale: the 1.13B Megatron core trained on the multilingual corpus, honestly compared to 200M."""
     m = ROOT / "data/alm/p5_metrics_1b_multi.json"
@@ -934,7 +964,7 @@ GATES = {
     "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "RD": gate_RD,
     "CL": gate_CL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
     "ML": gate_ML, "APP": gate_APP, "IT": gate_IT, "RF": gate_RF, "NC": gate_NC, "S2": gate_S2,
-    "AX": gate_AX, "SC": gate_SC,
+    "AX": gate_AX, "SC": gate_SC, "AA": gate_AA,
 }
 
 

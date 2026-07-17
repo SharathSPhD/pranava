@@ -21,3 +21,81 @@ Model loaded successfully
   [ 5/58] u00049: CER=16.6667 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vane sitAyAm avadetAm'
   [ 6/58] u00050: CER=15.2174 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='PalAnyaSvena gamizyanti'
   [ 7/58] u00067: CER=13.5769 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='sitAH guruRA jalam KAdanti'
+  [ 8/58] u00074: CER=15.9545 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='aSvaH bAlena KAdizyati'
+  [ 9/58] u00087: CER=12.3929 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vanam kanyAyAH Palam agacCat'
+  [10/58] u00103: CER=22.1250 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='kanyA bAle paWet'
+  [11/58] u00110: CER=17.6500 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='bAlO sitAyAm vasetAm'
+  [12/58] u00115: CER=16.0455 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='guruH rAme jalam paWet'
+  [13/58] u00122: CER=14.5417 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='kanyA nadyE jalam adatta'
+  [14/58] u00129: CER=22.2500 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vidyA gurO KAdet'
+  [15/58] u00189: CER=15.2174 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='nadyaSvAya jalam dadIta'
+  [16/58] u00191: CER=12.8519 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='kanyAH jalena Palam agacCan'
+  [17/58] u00204: CER=13.5385 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='sitAH rAmeRa jalam KAdeyuH'
+  [18/58] u00210: CER=18.4737 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='narO Palam apaWatAm'
+  [19/58] u00217: CER=12.5357 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='nadyO jale pustakam adadAtAm'
+  [20/58] u00219: CER=11.9310 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vanam pustake Palam paWizyati'
+  [21/58] u00238: CER=20.7059 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='jalam bAle adatta'
+  [22/58] u00239: CER=18.3684 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vidyA Palam avadata'
+  [23/58] u00257: CER=19.6111 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='jalAnyaSve vaderan'
+  [24/58] u00277: CER=16.0000 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='sitA Pale jalam aKAdat'
+  [25/58] u00288: CER=13.0000 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='naraH pustakena Palam KAdet'
+  [26/58] u00294: CER=12.4286 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vane bAlena pustakam KAdataH'
+  [27/58] u00296: CER=20.7647 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='aSvaH gurO paWati'
+  [28/58] u00353: CER=16.8095 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='guruH gfham paWizyati'
+  [29/58] u00372: CER=17.5500 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='aSvaH gfhe Bavizyati'
+  [30/58] u00383: CER=18.5263 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='rAmAH vidyAm apaWan'
+  [31/58] u00385: CER=11.6333 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='jale vidyAyAm pustakam paWataH'
+  [32/58] u00421: CER=16.9048 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='jale sitAyAH gacCetAm'
+  [33/58] u00424: CER=13.4231 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vidyA gfhe pustakam adatta'
+  [34/58] u00449: CER=11.6667 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vidye gurave pustakam adadAtAm'
+  [35/58] u00451: CER=17.7000 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='rAmAH guroH gacCanti'
+  [36/58] u00453: CER=18.5263 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='rAmaH aSvam akuruta'
+  [37/58] u00463: CER=12.1034 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='kanye pustake Palam dadIyAtAm'
+  [38/58] u00464: CER=14.6250 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='aSvAH rAme Palam paWeyuH'
+  [39/58] u00467: CER=12.1379 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='jalAni kanyAyE Palam dAsyante'
+  [40/58] u00488: CER=13.5769 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='gfhARyaSvena jalam KAdeyuH'
+  [41/58] u00494: CER=12.5714 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='jalAni Pale pustakam paWeyuH'
+  [42/58] u00503: CER=16.0000 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='kanye aSvAya dadIyAtAm'
+  [43/58] u00507: CER=16.7619 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='Pale aSvam KAdizyataH'
+  [44/58] u00509: CER=20.7647 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='kanyA bAlam KAdet'
+  [45/58] u00515: CER=18.3684 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='kanyA naram apaSyat'
+  [46/58] u00521: CER=17.6000 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='aSvAH vanAya dadIran'
+  [47/58] u00525: CER=12.5000 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='gfhARi kanyayA Palam agacCan'
+  [48/58] u00530: CER=16.6667 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='pustake aSvam paWataH'
+  [49/58] u00542: CER=14.0400 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='aSvaH kanyAyE jalam datte'
+  [50/58] u00545: CER=19.6111 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='guruH vanam aKAdat'
+  [51/58] u00546: CER=17.7500 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='kanye guroH gacCetAm'
+  [52/58] u00547: CER=13.0000 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='bAlaH nadyA jalam KAdizyati'
+  [53/58] u00555: CER=12.8148 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vanam gfhAt Palam gamizyati'
+  [54/58] u00557: CER=16.6667 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='narO kanyAyAm BavataH'
+  [55/58] u00559: CER=13.0741 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='nadyO gurO pustakam paWetAm'
+  [56/58] u00587: CER=12.8889 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='naraH kanyAyAm jalam paWati'
+  [57/58] u00593: CER=16.6667 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='rAmaH vidyAyAm vasati'
+  [58/58] u00599: CER=13.3462 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vane rAmeRa Palam gacCataH'
+
+Qwen2-Audio CER: 15.8615
+
+{
+  "task": "held-out audio → romanized-Sanskrit text (CER, lower=better)",
+  "n_items": 58,
+  "audio_corpus": "native Sanskrit (indic-parler-tts)",
+  "comparison": "specialist vs generalist ALM",
+  "leaderboard": [
+    {
+      "model": "Śabda-ALM (Parakeet+Projector+LoRA→Sanskrit core, ours)",
+      "params": "200M core + 0.6B enc",
+      "cer": 0.5649,
+      "alm_type": "specialist (Sanskrit-native)"
+    },
+    {
+      "model": "Qwen2-Audio-7B-Instruct (open ALM)",
+      "params": "7B",
+      "cer": 15.8615,
+      "alm_type": "generalist (no Sanskrit training)",
+      "note": null
+    }
+  ],
+  "note": "Apples-to-apples ALM comparison: Śabda-ALM (specialist, fine-tuned on Sanskrit) vs Qwen2-Audio-7B-Instruct (generalist, trained on multilingual data without Sanskrit). The specialist ALM is expected to outperform a general-purpose model on this Sanskrit-specific task."
+}
+
+Results written to /work/pranava/data/benchmark/alm_vs_alm.json

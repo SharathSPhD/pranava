@@ -1,0 +1,350 @@
+[
+  {
+    "id": "u00010",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vidye vane BavizyataH",
+    "cer": 16.6667
+  },
+  {
+    "id": "u00012",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "naraH gfham paWet",
+    "cer": 20.7059
+  },
+  {
+    "id": "u00030",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vidye bAle aBavatAm",
+    "cer": 18.4737
+  },
+  {
+    "id": "u00045",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "PalAni gfhe Bavizyanti",
+    "cer": 16.0
+  },
+  {
+    "id": "u00049",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vane sitAyAm avadetAm",
+    "cer": 16.6667
+  },
+  {
+    "id": "u00050",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "PalAnyaSvena gamizyanti",
+    "cer": 15.2174
+  },
+  {
+    "id": "u00067",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "sitAH guruRA jalam KAdanti",
+    "cer": 13.5769
+  },
+  {
+    "id": "u00074",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "aSvaH bAlena KAdizyati",
+    "cer": 15.9545
+  },
+  {
+    "id": "u00087",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vanam kanyAyAH Palam agacCat",
+    "cer": 12.3929
+  },
+  {
+    "id": "u00103",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "kanyA bAle paWet",
+    "cer": 22.125
+  },
+  {
+    "id": "u00110",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "bAlO sitAyAm vasetAm",
+    "cer": 17.65
+  },
+  {
+    "id": "u00115",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "guruH rAme jalam paWet",
+    "cer": 16.0455
+  },
+  {
+    "id": "u00122",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "kanyA nadyE jalam adatta",
+    "cer": 14.5417
+  },
+  {
+    "id": "u00129",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vidyA gurO KAdet",
+    "cer": 22.25
+  },
+  {
+    "id": "u00189",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "nadyaSvAya jalam dadIta",
+    "cer": 15.2174
+  },
+  {
+    "id": "u00191",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "kanyAH jalena Palam agacCan",
+    "cer": 12.8519
+  },
+  {
+    "id": "u00204",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "sitAH rAmeRa jalam KAdeyuH",
+    "cer": 13.5385
+  },
+  {
+    "id": "u00210",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "narO Palam apaWatAm",
+    "cer": 18.4737
+  },
+  {
+    "id": "u00217",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "nadyO jale pustakam adadAtAm",
+    "cer": 12.5357
+  },
+  {
+    "id": "u00219",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vanam pustake Palam paWizyati",
+    "cer": 11.931
+  },
+  {
+    "id": "u00238",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "jalam bAle adatta",
+    "cer": 20.7059
+  },
+  {
+    "id": "u00239",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vidyA Palam avadata",
+    "cer": 18.3684
+  },
+  {
+    "id": "u00257",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "jalAnyaSve vaderan",
+    "cer": 19.6111
+  },
+  {
+    "id": "u00277",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "sitA Pale jalam aKAdat",
+    "cer": 16.0
+  },
+  {
+    "id": "u00288",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "naraH pustakena Palam KAdet",
+    "cer": 13.0
+  },
+  {
+    "id": "u00294",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vane bAlena pustakam KAdataH",
+    "cer": 12.4286
+  },
+  {
+    "id": "u00296",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "aSvaH gurO paWati",
+    "cer": 20.7647
+  },
+  {
+    "id": "u00353",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "guruH gfham paWizyati",
+    "cer": 16.8095
+  },
+  {
+    "id": "u00372",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "aSvaH gfhe Bavizyati",
+    "cer": 17.55
+  },
+  {
+    "id": "u00383",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "rAmAH vidyAm apaWan",
+    "cer": 18.5263
+  },
+  {
+    "id": "u00385",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "jale vidyAyAm pustakam paWataH",
+    "cer": 11.6333
+  },
+  {
+    "id": "u00421",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "jale sitAyAH gacCetAm",
+    "cer": 16.9048
+  },
+  {
+    "id": "u00424",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vidyA gfhe pustakam adatta",
+    "cer": 13.4231
+  },
+  {
+    "id": "u00449",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vidye gurave pustakam adadAtAm",
+    "cer": 11.6667
+  },
+  {
+    "id": "u00451",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "rAmAH guroH gacCanti",
+    "cer": 17.7
+  },
+  {
+    "id": "u00453",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "rAmaH aSvam akuruta",
+    "cer": 18.5263
+  },
+  {
+    "id": "u00463",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "kanye pustake Palam dadIyAtAm",
+    "cer": 12.1034
+  },
+  {
+    "id": "u00464",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "aSvAH rAme Palam paWeyuH",
+    "cer": 14.625
+  },
+  {
+    "id": "u00467",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "jalAni kanyAyE Palam dAsyante",
+    "cer": 12.1379
+  },
+  {
+    "id": "u00488",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "gfhARyaSvena jalam KAdeyuH",
+    "cer": 13.5769
+  },
+  {
+    "id": "u00494",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "jalAni Pale pustakam paWeyuH",
+    "cer": 12.5714
+  },
+  {
+    "id": "u00503",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "kanye aSvAya dadIyAtAm",
+    "cer": 16.0
+  },
+  {
+    "id": "u00507",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "Pale aSvam KAdizyataH",
+    "cer": 16.7619
+  },
+  {
+    "id": "u00509",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "kanyA bAlam KAdet",
+    "cer": 20.7647
+  },
+  {
+    "id": "u00515",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "kanyA naram apaSyat",
+    "cer": 18.3684
+  },
+  {
+    "id": "u00521",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "aSvAH vanAya dadIran",
+    "cer": 17.6
+  },
+  {
+    "id": "u00525",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "gfhARi kanyayA Palam agacCan",
+    "cer": 12.5
+  },
+  {
+    "id": "u00530",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "pustake aSvam paWataH",
+    "cer": 16.6667
+  },
+  {
+    "id": "u00542",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "aSvaH kanyAyE jalam datte",
+    "cer": 14.04
+  },
+  {
+    "id": "u00545",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "guruH vanam aKAdat",
+    "cer": 19.6111
+  },
+  {
+    "id": "u00546",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "kanye guroH gacCetAm",
+    "cer": 17.75
+  },
+  {
+    "id": "u00547",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "bAlaH nadyA jalam KAdizyati",
+    "cer": 13.0
+  },
+  {
+    "id": "u00555",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vanam gfhAt Palam gamizyati",
+    "cer": 12.8148
+  },
+  {
+    "id": "u00557",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "narO kanyAyAm BavataH",
+    "cer": 16.6667
+  },
+  {
+    "id": "u00559",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "nadyO gurO pustakam paWetAm",
+    "cer": 13.0741
+  },
+  {
+    "id": "u00587",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "naraH kanyAyAm jalam paWati",
+    "cer": 12.8889
+  },
+  {
+    "id": "u00593",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "rAmaH vidyAyAm vasati",
+    "cer": 16.6667
+  },
+  {
+    "id": "u00599",
+    "qwen_pred": "Svātma-vinayakam brahma-nam svaratīyamiva caivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaivaiva",
+    "gold": "vane rAmeRa Palam gacCataH",
+    "cer": 13.3462
+  }
+]
