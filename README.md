@@ -12,7 +12,8 @@ locating where sound becomes meaning.**
 - **Competitive with SOTA on authentic Sanskrit**: on native-Sanskrit speech the 200M Śabda-ALM reaches CER **0.565** — a close 2nd to NVIDIA's 0.6B Parakeet-TDT (**0.522**), well ahead of Whisper (0.754); on a controlled TTS distribution it ranks **1st** (0.546 vs 0.605). The honest two-regime read: [`research/sota-leaderboard.md`](research/sota-leaderboard.md)
 - **Instruction-following from speech**: one audio clip, six tasks (transcribe / language / kartā / karaṇa / karma / kriyā) selected by an English instruction — a clean causal test (0.281 accuracy with the right instruction vs **0.000** with a shuffled one). RLAIF/DPO sharpens it (karma 0.87→**0.95**). [`research/instruction-tuning.md`](research/instruction-tuning.md) · [`research/rlaif.md`](research/rlaif.md)
 - **The Sphoṭa-Lens** localises meaning-emergence-from-sound to a **validated layer 13** (correlational + causal peaks agree; meaning decodable from audio positions at 11× chance). [`research/sphota-lens.md`](research/sphota-lens.md)
-- **Adaptation beats scaling**: a 200M core + 1.5M LoRA weights (CER 0.548) beats a 1.13B projector-only core (0.571).
+- **Scales to 1.13B**: the Sphoṭa Projector trained against the 1.13B Megatron Nemotron-H core (RTX 5090) reaches multilingual CER **0.682** vs the 200M+LoRA's 0.742 — scale helps. [`research/scale-1b.md`](research/scale-1b.md)
+- **Adaptation beats scaling** (within a fixed adaptation): a 200M core + 1.5M LoRA weights (CER 0.548) beats a 1.13B projector-only core (0.571) on the controlled corpus.
 - Full **speech-to-speech** loop: audio → Parakeet → Sphoṭa Projector → Sanskrit core → text → TTS → audio.
 
 ---
