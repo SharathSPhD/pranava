@@ -1,0 +1,23 @@
+/usr/local/lib/python3.12/dist-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loaded 58 val examples from speech_corpus_indic
+
+=== Loading Śabda-ALM (pre-computed) ===
+Śabda-ALM CER: 0.5649
+
+=== Evaluating Qwen2-Audio-7B-Instruct ===
+Loading Qwen2-Audio-7B-Instruct...
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.50it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:01,  1.56it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:01<00:01,  1.56it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  2.01it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.55it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.07it/s]
+Some parameters are on the meta device because they were offloaded to the cpu.
+Keyword argument `audios` is not a valid argument for this processor and will be ignored.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Model loaded successfully
+
+  [ 1/58] u00010: CER=16.6667 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vidye vane BavizyataH'
+  [ 2/58] u00012: CER=20.7059 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='naraH gfham paWet'
+  [ 3/58] u00030: CER=18.4737 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vidye bAle aBavatAm'
+  [ 4/58] u00045: CER=16.0000 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='PalAni gfhe Bavizyanti'
+  [ 5/58] u00049: CER=16.6667 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='vane sitAyAm avadetAm'
+  [ 6/58] u00050: CER=15.2174 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='PalAnyaSvena gamizyanti'
+  [ 7/58] u00067: CER=13.5769 pred='Svātma-vinayakam brahma-nam svaratīyamiv' gold='sitAH guruRA jalam KAdanti'

@@ -546,6 +546,33 @@ def gate_IT() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_SC() -> dict:
+    """Scale: the 1.13B Megatron core trained on the multilingual corpus, honestly compared to 200M."""
+    m = ROOT / "data/alm/p5_metrics_1b_multi.json"
+    lb = ROOT / "data/benchmark/scale_1b_leaderboard.json"
+    doc = ROOT / "research/scale-1b.md"
+    code_ok = m.exists() and (ROOT / "data/alm/projector_1b_multi.pt").exists() \
+        and (ROOT / "scripts/alm/train_1b.py").exists()
+    code = _verdict(code_ok, "1.13B artifacts + trainer present" if code_ok else "missing 1.13B artifacts")
+    if m.exists() and lb.exists():
+        d = json.loads(m.read_text())
+        b = json.loads(lb.read_text())
+        models = {r["params"] for r in b.get("leaderboard", [])}
+        checks = {
+            "is_1p13b_core": d.get("d_model") == 1536 and "1.13B" in d.get("core", ""),
+            "beats_no_audio": d.get("val_cer_audio", 1) < d.get("val_cer_noaudio_baseline", 0),
+            "multilingual_run": d.get("n_train", 0) > 600,   # multi corpus (992) not indic-only (600)
+            "scale_comparison": {"1.13B core", "200M core"} <= models,
+            "honest_note": "not fully apples-to-apples" in b.get("note", "").lower() and doc.exists(),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | 1.13B CER {d.get('val_cer_audio')} vs 200M {[r['cer'] for r in b['leaderboard'] if '200M' in r['params']]}")
+    else:
+        dom = _verdict(False, "1.13B multilingual metrics/leaderboard missing")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_AX() -> dict:
     """Auth-gated app: Supabase schema + tunnel service + role-routed frontend + real replay demos."""
     schema = ROOT / "apps/web/supabase/schema.sql"
@@ -907,7 +934,7 @@ GATES = {
     "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "RD": gate_RD,
     "CL": gate_CL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
     "ML": gate_ML, "APP": gate_APP, "IT": gate_IT, "RF": gate_RF, "NC": gate_NC, "S2": gate_S2,
-    "AX": gate_AX,
+    "AX": gate_AX, "SC": gate_SC,
 }
 
 

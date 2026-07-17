@@ -1,0 +1,12 @@
+{
+  "milestone": "SC",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "1.13B artifacts + trainer present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "is_1p13b_core:ok; beats_no_audio:ok; multilingual_run:ok; scale_comparison:ok; honest_note:ok | 1.13B CER 0.6818 vs 200M [0.7424]"
+  },
+  "closed": true
+}

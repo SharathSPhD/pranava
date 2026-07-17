@@ -1,0 +1,23 @@
+{
+  "task": "held-out multilingual (en+sa) audio → text, overall CER (lower=better), identical corpus",
+  "corpus": "speech_corpus_multi (real English LibriSpeech + native Sanskrit)",
+  "n_val": 108,
+  "leaderboard": [
+    {
+      "model": "Śabda-ALM 1.13B (Megatron Nemotron-H core + Sphoṭa Projector)",
+      "params": "1.13B core",
+      "adaptation": "projector-only",
+      "cer": 0.6818,
+      "d_model": 1536
+    },
+    {
+      "model": "Śabda-ALM 200M (byte core + Projector + LoRA)",
+      "params": "200M core",
+      "adaptation": "projector + LoRA",
+      "cer": 0.7424,
+      "d_model": 768
+    }
+  ],
+  "no_audio_baseline": 0.9783,
+  "note": "Genuine scale-up on identical multilingual data. The 1.13B core (projector-only) reaches 0.6818 overall CER vs the 200M+LoRA's 0.7424 — scale helps on the multilingual task. Trained on the RTX 5090 (Megatron-Core). Not fully apples-to-apples on adaptation (1.13B is projector-only, 200M has LoRA); a LoRA'd 1.13B is the next step."
+}

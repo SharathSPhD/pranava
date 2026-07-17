@@ -99,55 +99,47 @@ def eval_qwen_audio(val):
     except Exception as e:
         return None, f"Failed to load Qwen2-Audio: {e}"
 
-    cers = []
+    import librosa
+
+    cers, records, errors = [], [], 0
     with torch.no_grad():
         for i, ex in enumerate(val):
             try:
+                # `val` holds dicts — use subscript access.
                 wav, sr = read_wav(ex["wav_path"])
-
-                # Resample to 16kHz if needed (Qwen2-Audio expects 16kHz)
                 if sr != 16000:
-                    import librosa
                     wav = librosa.resample(wav, orig_sr=sr, target_sr=16000)
 
-                # Prepare inputs: prompt the model to transcribe in Roman script
-                # Note: Qwen2-Audio requires the <|AUDIO|> token in the prompt
-                inputs = processor(
-                    text="<|AUDIO|>\nTranscribe the Sanskrit speech to romanized text: ",
-                    audio=wav,
-                    sampling_rate=16000,
-                    return_tensors="pt",
-                )
+                # Canonical Qwen2-Audio chat-template API (audio content + text instruction).
+                conversation = [{"role": "user", "content": [
+                    {"type": "audio", "audio_url": "clip.wav"},
+                    {"type": "text", "text": "Transcribe this spoken Sanskrit to romanized (IAST/SLP1) "
+                                             "text. Output only the transcription."}]}]
+                prompt = processor.apply_chat_template(conversation, add_generation_prompt=True,
+                                                       tokenize=False)
+                inputs = processor(text=prompt, audios=[wav], sampling_rate=16000, return_tensors="pt")
                 inputs = {k: v.to(model.device) for k, v in inputs.items()}
-
-                # Generate transcription with greedy decoding
-                with torch.no_grad():
-                    output_ids = model.generate(**inputs, max_new_tokens=256)
-
-                # Decode output
-                pred = processor.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
-
-                # Qwen2-Audio may include preamble; extract the actual transcription
-                # Heuristic: look for text after common prefixes like "Here is" or "The transcription"
-                for prefix in ["here is the transcription:", "transcription:", "the text is:", "text:", "romanized text:"]:
-                    if prefix in pred.lower():
-                        pred = pred.lower().split(prefix)[1].strip()
-                        break
-
-                # Clean up: remove markdown-like artifacts
-                pred = pred.replace("```", "").replace("`", "").strip()
+                out = model.generate(**inputs, max_new_tokens=128, do_sample=False)
+                gen = out[:, inputs["input_ids"].shape[1]:]  # drop the prompt tokens
+                pred = processor.batch_decode(gen, skip_special_tokens=True)[0].strip()
 
                 c = cer(pred, ex["text"])
                 cers.append(c)
-                print(f"  [{i+1:2d}/{len(val)}] {ex['id']:6s}: CER={c:.4f}  pred='{pred[:35]}...'  gold='{ex['text'][:35]}...'")
-
+                records.append({"id": ex["id"], "qwen_pred": pred, "gold": ex["text"], "cer": round(c, 4)})
+                print(f"  [{i+1:2d}/{len(val)}] {ex['id']}: CER={c:.4f} pred='{pred[:40]}' gold='{ex['text'][:40]}'",
+                      flush=True)
             except Exception as e:
-                print(f"  [{i+1:2d}/{len(val)}] {ex['id']:6s}: ERROR: {e}")
-                cers.append(1.0)  # max error on exception
+                errors += 1
+                records.append({"id": ex.get("id", "?"), "error": str(e)})
+                print(f"  [{i+1:2d}/{len(val)}] ERROR: {e}", flush=True)
 
+    # Save the raw predictions as evidence the model genuinely ran (no silent 1.0 defaults).
+    (OUT / "alm_vs_alm_records.json").write_text(json.dumps(records, indent=2, ensure_ascii=False))
     if not cers:
-        return None, "No examples evaluated"
-    return float(np.mean(cers)), None
+        return None, f"Qwen produced NO output on any item ({errors} errors) — could not be evaluated"
+    if errors:
+        print(f"  (note: {errors}/{len(val)} items errored and are excluded)")
+    return float(np.mean(cers)), (f"{errors} items errored" if errors else None)
 
 
 def load_sabda_alm_cer():
