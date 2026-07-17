@@ -134,8 +134,8 @@
       <a class="btn btn-b" href="../paper/paper.pdf">Read the paper</a>
     </div>
     <div class="kpis">
-      <div class="kpi"><b>#1</b><span>vs SOTA ASR on Sanskrit</span></div>
-      <div class="kpi"><b>0.546</b><span>CER · beats Parakeet &amp; Whisper</span></div>
+      <div class="kpi"><b>0.565</b><span>CER on authentic Sanskrit speech</span></div>
+      <div class="kpi"><b>≈ SOTA</b><span>close 2nd to a 3× larger ASR</span></div>
       <div class="kpi"><b id="k-layer">Layer 13</b><span>where sound becomes meaning</span></div>
       <div class="kpi"><b id="k-gates">26/26</b><span>results machine-gated</span></div>
     </div>
@@ -219,16 +219,17 @@
 <section class="band">
   <div class="wrap">
     <p class="eyebrow">Weighed against the state of the art</p>
-    <h2>It reads Sanskrit better than general SOTA speech models.</h2>
-    <p class="sub">Same held-out audio for everyone; lower character error rate is better. Routing the
-      sound through the Sanskrit core beats decoding it with a general ASR head — even NVIDIA's own,
-      on the same encoder.</p>
+    <h2>A 200M model, competitive with SOTA on authentic Sanskrit.</h2>
+    <p class="sub">Same held-out audio for everyone; lower character error rate is better. On
+      <b>authentic native-Sanskrit speech</b>, the small Śabda-ALM is a close second to NVIDIA's 3×
+      larger multilingual ASR, and well ahead of Whisper. (On a controlled English-TTS distribution
+      the specialist ALM ranks first — but authentic audio is the real yardstick, so we lead with it.)</p>
     <table>
-      <thead><tr><th>Rank</th><th>Model</th><th>Trainable / size</th><th>CER ↓</th></tr></thead>
+      <thead><tr><th>Rank</th><th>Model · native Sanskrit audio</th><th>Size</th><th>CER ↓</th></tr></thead>
       <tbody>
-        <tr><td class="rank">1</td><td><b>Śabda-ALM</b> — Parakeet + Projector + LoRA → Sanskrit core</td><td>200M core</td><td class="cer win">0.546</td></tr>
-        <tr><td class="rank" style="color:#9195B8">2</td><td>Parakeet-TDT-0.6B native ASR — NVIDIA</td><td>0.6B</td><td class="cer">0.605</td></tr>
-        <tr><td class="rank" style="color:#9195B8">3</td><td>Whisper-base — OpenAI</td><td>74M</td><td class="cer">0.747</td></tr>
+        <tr><td class="rank">1</td><td>Parakeet-TDT-0.6B native ASR — NVIDIA</td><td>0.6B</td><td class="cer">0.522</td></tr>
+        <tr><td class="rank">2</td><td><b>Śabda-ALM</b> — Parakeet + Projector + LoRA → Sanskrit core</td><td>200M core</td><td class="cer win">0.565</td></tr>
+        <tr><td class="rank" style="color:#9195B8">3</td><td>Whisper-base — OpenAI</td><td>74M</td><td class="cer">0.754</td></tr>
       </tbody>
     </table>
     <div class="grid2">

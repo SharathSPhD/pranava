@@ -463,6 +463,30 @@ def gate_P4() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_RD() -> dict:
+    """Native-Sanskrit audio corpus built, ALM retrained on it, re-benchmarked honestly."""
+    ds = ROOT / "data/alm/speech_corpus_indic/datasheet.json"
+    lb = ROOT / "data/benchmark/sota_leaderboard.json"
+    doc = ROOT / "research/sota-leaderboard.md"
+    code = _verdict(ds.exists(), "native corpus present" if ds.exists() else "native corpus missing")
+    if ds.exists() and lb.exists():
+        d = json.loads(ds.read_text())
+        b = json.loads(lb.read_text())
+        n_wav = len(list((ROOT / "data/alm/speech_corpus_indic/wav").glob("*.wav")))
+        checks = {
+            "native_tts": "indic-parler" in d.get("tts", "").lower(),
+            "corpus_complete": d.get("n_items", 0) >= 200 and n_wav >= d.get("n_items", 0),
+            "benchmarked_on_native": "native" in b.get("audio_corpus", "").lower(),
+            "honest_writeup": doc.exists() and "close second" in doc.read_text().lower(),
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | {d.get('n_items')} native items; leaderboard corpus={b.get('audio_corpus','?')[:24]}")
+    else:
+        dom = _verdict(False, "native corpus/leaderboard missing")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_CL() -> dict:
     """Continuous ALM-improvement loop: EFE-driven, benchmark-scored, re-entrant."""
     rc, out = _run([PY, "-m", "pytest", "tests/autoresearch/test_alm_loop.py", "-q"])
@@ -695,7 +719,8 @@ GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M2b": gate_M2b, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
     "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "P1": gate_P1, "P2": gate_P2, "P3": gate_P3,
-    "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "CL": gate_CL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
+    "P4": gate_P4, "P5": gate_P5, "LR": gate_LR, "SL": gate_SL, "BM": gate_BM, "RD": gate_RD,
+    "CL": gate_CL, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
 }
 
 

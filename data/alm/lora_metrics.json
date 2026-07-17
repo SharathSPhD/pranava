@@ -3,20 +3,20 @@
   "n_lora_params": 1474560,
   "epochs": 10,
   "train_loss_history": [
-    0.9197,
-    0.6575,
-    0.542,
-    0.46,
-    0.3906,
-    0.3293,
-    0.2648,
-    0.2123,
-    0.1708,
-    0.1391
+    0.9205,
+    0.6638,
+    0.566,
+    0.4859,
+    0.4125,
+    0.3609,
+    0.2988,
+    0.2371,
+    0.1938,
+    0.1569
   ],
-  "val_cer_audio": 0.5475,
-  "val_cer_noaudio_baseline": 1.0,
+  "val_cer_audio": 0.5701,
+  "val_cer_noaudio_baseline": 0.9992,
   "projector_only_baseline_cer": 0.7745,
   "improves_on_projector_only": true,
-  "cer_improvement_over_noaudio": 0.4525
+  "cer_improvement_over_noaudio": 0.4291
 }

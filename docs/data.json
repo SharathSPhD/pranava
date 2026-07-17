@@ -2,23 +2,23 @@
   "generated_from": "gates/ + data/ artifacts (scripts/site/build_site_data.py)",
   "leaderboard": [
     {
-      "model": "Śabda-ALM (Parakeet+Projector+LoRA→Sanskrit core, ours)",
-      "params": "200M core + 0.6B enc",
-      "cer": 0.5461
-    },
-    {
       "model": "Parakeet-TDT-0.6B native ASR (NVIDIA)",
       "params": "0.6B",
-      "cer": 0.6052
+      "cer": 0.5224
+    },
+    {
+      "model": "Śabda-ALM (Parakeet+Projector+LoRA→Sanskrit core, ours)",
+      "params": "200M core + 0.6B enc",
+      "cer": 0.5649
     },
     {
       "model": "Whisper-base (OpenAI)",
       "params": "74M",
-      "cer": 0.7475,
+      "cer": 0.7544,
       "note": null
     }
   ],
-  "ours_cer": 0.5461,
+  "ours_cer": 0.5649,
   "emergence": {
     "decodability_by_layer": [
       0.25,
@@ -56,8 +56,8 @@
   "cer_progression": {
     "proj_200m": 0.7745,
     "proj_1b": 0.5709,
-    "lora_200m": 0.5475
+    "lora_200m": 0.5701
   },
-  "gates_passing": 26,
-  "gates_total": 26
+  "gates_passing": 27,
+  "gates_total": 27
 }

@@ -1,0 +1,12 @@
+{
+  "milestone": "RD",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "native corpus present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "native_tts:ok; corpus_complete:ok; benchmarked_on_native:ok; honest_writeup:ok | 600 native items; leaderboard corpus=native Sanskrit (indic-p"
+  },
+  "closed": true
+}

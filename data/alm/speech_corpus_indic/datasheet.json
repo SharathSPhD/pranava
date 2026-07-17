@@ -1,0 +1,8 @@
+{
+  "n_items": 600,
+  "total_hours": 0.343,
+  "sample_rate": 44100,
+  "tts": "ai4bharat/indic-parler-tts (NATIVE Sanskrit phonetics, Devanāgarī input)",
+  "provenance": "same sentences/labels/splits as speech_corpus; audio re-synthesized native",
+  "note": "real human Sanskrit speech unavailable (FLEURS no sa; Common Voice gated) — this is the most authentic synthesis available."
+}

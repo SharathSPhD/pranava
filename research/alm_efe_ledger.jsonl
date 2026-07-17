@@ -1,3 +1,6 @@
 {"kind": "observation", "candidate_id": "lora_r8_200m", "primary_tier": 3, "prev_cer": 0.7745, "new_cer": 0.5475, "note": "LoRA r=8 on 200M core; beats 1B projector-only"}
 {"kind": "disposition", "candidate_id": "lora_r8_200m", "note": "current best; now the SOTA-leaderboard #1 (0.546)"}
 {"kind": "proposal", "candidate_id": "lora_1b_5090", "action": "smoke", "knobs": {"where": "5090", "r": 8}}
+{"kind": "observation", "candidate_id": "real_speech_data", "primary_tier": 1, "prev_cer": 0.546, "new_cer": 0.565, "note": "native-Sanskrit indic-parler-tts corpus; harder authentic audio; ALM 0.565 close 2nd to Parakeet 0.522"}
+{"kind": "disposition", "candidate_id": "real_speech_data", "note": "authentic audio reversed the ranking; gap 0.043 → next: lora_1b_5090 + more epochs/data"}
+{"kind": "proposal", "candidate_id": "lora_1b_5090", "action": "smoke", "knobs": {"where": "5090", "r": 8}}

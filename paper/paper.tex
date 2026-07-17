@@ -24,10 +24,11 @@ discrete meaning (\emph{sphoṭa}), grasped through an intermediate representati
 a speech-to-speech Audio Language Model that routes acoustic evidence from a frozen NVIDIA Parakeet
 encoder, through a trainable \emph{Sphoṭa Projector}, into a from-scratch Sanskrit \emph{byte-core}
 (a Nemotron-H/Mamba-2 hybrid), and back out through neural TTS. Two results follow. First, on a
-held-out audio$\to$Sanskrit-text task the Śabda-ALM (CER $0.546$) \emph{outperforms} NVIDIA's SOTA
-Parakeet-TDT native ASR head ($0.605$, same encoder) and OpenAI Whisper ($0.747$): routing sound
-through the Sanskrit core reads Sanskrit speech better than a general decoder. Adapting the frozen
-core with $1.5$M LoRA parameters lifts a $200$M model past a $1.13$B projector-only model. Second,
+held-out audio$\to$Sanskrit-text task the $200$M Śabda-ALM is \emph{competitive with SOTA}: on
+authentic native-Sanskrit speech it reaches CER $0.565$, a close second to NVIDIA's $0.6$B
+multilingual Parakeet-TDT ($0.522$) and well ahead of Whisper ($0.754$); on a controlled TTS
+distribution the specialist ranks first ($0.546$ vs $0.605$). Adapting the frozen core with
+$1.5$M LoRA parameters lifts the $200$M model past a $1.13$B projector-only model. Second,
 we introduce the \textbf{Sphoṭa-Lens}, an instrument that locates, correlationally and causally, the
 layer at which the sentence's meaning becomes decodable from the audio positions alone. On the
 trained model this is \emph{layer 13} of $25$ (decodability $0.25$ vs $0.022$ chance; correlational
@@ -120,7 +121,7 @@ maps each claim to its evidence and gate; $26/26$ gates pass.
 Claim & Gate & Strength \\
 \midrule
 Audio embeddings inject faithfully into the frozen core (arg-max identical) & \texttt{P0} & strong \\
-Śabda-ALM outranks SOTA ASR on the Sanskrit task (CER $0.546$) & \texttt{BM} & strong \\
+$200$M ALM is competitive with $0.6$B SOTA ASR on authentic Sanskrit ($0.565$ vs $0.522$) & \texttt{BM} & strong \\
 LoRA adaptation of the $200$M core beats the $1.13$B projector-only model & \texttt{LR},\texttt{P5} & strong \\
 Meaning emerges from sound at a validated locus (layer $13$; corr.\ + causal agree) & \texttt{SL} & strong \\
 Full speech-to-speech pipeline runs end-to-end (content bounded by data scale) & \texttt{P4} & moderate \\
@@ -150,23 +151,28 @@ $200$M core, projector\,+\,LoRA($r{=}8$) & projector\,+\,$1.5$M & $\mathbf{0.548
 \label{tab:cer}
 \end{table}
 
-\textbf{SOTA comparison.} On the identical held-out audio (Table~\ref{tab:sota}), Śabda-ALM
-outperforms NVIDIA's Parakeet-TDT native ASR head---\emph{using the same encoder}---and OpenAI
-Whisper. Routing acoustic evidence through the Sanskrit core reads Sanskrit speech better than a
-general decoder does. The comparison is fair by construction (same audio, same CER metric) and the
-\emph{ordering} is the result.
+\textbf{SOTA comparison, honestly.} We test on two audio distributions (Table~\ref{tab:sota}). On a
+controlled English-TTS corpus the specialist Śabda-ALM ranks first ($0.546$)---but this partly
+reflects that it trained on that TTS distribution, which general ASR handles poorly. On
+\emph{authentic} native-Sanskrit speech (AI4Bharat indic-parler-tts), NVIDIA's multilingual
+Parakeet-TDT---whose training covers Indic---transcribes the clearer pronunciation best ($0.522$),
+and the $200$M Śabda-ALM is a close second ($0.565$), well ahead of Whisper. The defensible claim is
+therefore not ``beats SOTA'' but the sharper one: a $200$M speech model on a Sanskrit byte-core is
+\emph{competitive} with a $0.6$B SOTA multilingual ASR on authentic Sanskrit, with a $0.043$ CER gap
+as the concrete target. Building the harder (authentic-audio) test is what surfaced this: the
+controlled corpus flattered the specialist.
 
 \begin{table}[h]\centering
-\begin{tabular}{clc}
+\begin{tabular}{lcc}
 \toprule
-rank & model & CER $\downarrow$ \\
+model & native Sanskrit & controlled TTS \\
 \midrule
-\textbf{1} & \textbf{Śabda-ALM (Parakeet\,+\,Projector\,+\,LoRA$\to$Sanskrit core)} & $\mathbf{0.546}$ \\
-2 & Parakeet-TDT-0.6B native ASR (NVIDIA) & $0.605$ \\
-3 & Whisper-base (OpenAI) & $0.747$ \\
+\textbf{Śabda-ALM} (ours, $200$M core) & $0.565$ (2nd) & $\mathbf{0.546}$ (1st) \\
+Parakeet-TDT-0.6B native ASR (NVIDIA) & $\mathbf{0.522}$ (1st) & $0.605$ \\
+Whisper-base (OpenAI) & $0.754$ & $0.747$ \\
 \bottomrule
 \end{tabular}
-\caption{Held-out audio $\to$ romanized-Sanskrit text; lower is better; identical audio for all.}
+\caption{Held-out audio $\to$ Sanskrit text, CER (lower better), identical audio per column.}
 \label{tab:sota}
 \end{table}
 

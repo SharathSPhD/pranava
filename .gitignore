@@ -34,3 +34,7 @@ data/alm/s2s/*.wav
 data/alm/projector_1b.pt
 data/alm/lora_ckpt.pt
 data/alm/*.log
+.voices/
+data/alm/speech_corpus_indic/wav/
+data/alm/speech_corpus_indic/feats/
+data/alm/_indic_probe.wav

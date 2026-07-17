@@ -13,14 +13,21 @@ from pathlib import Path
 import numpy as np
 
 
+import os
+
+# Which corpus to use — swap to the native-Sanskrit (indic-parler-tts) corpus via
+# PRANAVA_CORPUS=speech_corpus_indic. Default is the original controlled TTS corpus.
+CORPUS_NAME = os.environ.get("PRANAVA_CORPUS", "speech_corpus")
+
+
 def _root() -> Path:
     for c in ("/work/pranava", "/home/sharaths/projects/pranava"):
-        if (Path(c) / "data/alm/speech_corpus/manifest.jsonl").exists():
+        if (Path(c) / "data/alm" / CORPUS_NAME / "manifest.jsonl").exists():
             return Path(c)
     return Path(__file__).resolve().parents[3]
 
 
-CORPUS_DIR = _root() / "data" / "alm" / "speech_corpus"
+CORPUS_DIR = _root() / "data" / "alm" / CORPUS_NAME
 MANIFEST = CORPUS_DIR / "manifest.jsonl"
 
 

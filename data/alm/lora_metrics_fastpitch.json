@@ -1,0 +1,22 @@
+{
+  "method": "projector+LoRA(r=8) on 200M core",
+  "n_lora_params": 1474560,
+  "epochs": 10,
+  "train_loss_history": [
+    0.9197,
+    0.6575,
+    0.542,
+    0.46,
+    0.3906,
+    0.3293,
+    0.2648,
+    0.2123,
+    0.1708,
+    0.1391
+  ],
+  "val_cer_audio": 0.5475,
+  "val_cer_noaudio_baseline": 1.0,
+  "projector_only_baseline_cer": 0.7745,
+  "improves_on_projector_only": true,
+  "cer_improvement_over_noaudio": 0.4525
+}
