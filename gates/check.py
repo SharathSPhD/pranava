@@ -321,6 +321,35 @@ def gate_X0() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_X2() -> dict:
+    """NSM reference spec exists and every [EVIDENCED, <id>] tag cites a really-passing gate."""
+    import re
+
+    spec = ROOT / "specs" / "NSM-reference-spec.md"
+    if not spec.exists():
+        return {"code_gate": _verdict(False, "NSM-reference-spec.md missing"),
+                "domain_gate": _verdict(False, "missing")}
+    text = spec.read_text(encoding="utf-8")
+    # collect milestone ids referenced as evidence, e.g. [EVIDENCED, E0] or [EVIDENCED, M0–M3]
+    cited = set(re.findall(r"\[EVIDENCED[^\]]*?\b(M\d|E\d|X\d)\b", text))
+    # a milestone is "really passing" iff its gate_<id>.json exists with closed/pass
+    def passing(mid: str) -> bool:
+        gp = GATES_DIR / f"gate_{mid}.json"
+        if not gp.exists():
+            return False
+        g = json.loads(gp.read_text())
+        return (g.get("closed") is True
+                or all(v.get("verdict") in ("pass", "pruned")
+                       for v in (g.get("code_gate", {}), g.get("domain_gate", {}))))
+    unbacked = sorted(m for m in cited if not passing(m))
+    has_labels = all(tag in text for tag in ("[EVIDENCED", "[ANALOGICAL]", "[OPEN]"))
+    code = _verdict(has_labels, "spec has evidenced/analogical/open labels" if has_labels
+                    else "missing honesty labels")
+    dom = _verdict(len(cited) >= 4 and not unbacked,
+                   f"cited={sorted(cited)}; unbacked_evidence_claims={unbacked}")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_X1() -> dict:
     """Pramāṇa validation layer (reuses pramana) audits pranava's own claims correctly."""
     rc, out = _run([PY, "-m", "pytest", "tests/pramana_layer/", "-q"])
@@ -352,7 +381,7 @@ def r_ok(holism: dict) -> bool:
 GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
-    "E7": gate_E7, "X0": gate_X0, "X1": gate_X1,
+    "E7": gate_E7, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
 }
 
 

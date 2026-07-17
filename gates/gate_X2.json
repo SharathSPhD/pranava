@@ -1,0 +1,12 @@
+{
+  "milestone": "X2",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "spec has evidenced/analogical/open labels"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "cited=['E0', 'E2', 'E5', 'M3', 'X1']; unbacked_evidence_claims=[]"
+  },
+  "closed": true
+}
