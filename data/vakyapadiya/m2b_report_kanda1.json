@@ -1,0 +1,10 @@
+{
+  "kanda": 1,
+  "verses": 144,
+  "segmented_padas": 1947,
+  "padas_validated": 1038,
+  "coverage_segmented": 0.5331,
+  "m2_whitespace_baseline": 0.455,
+  "lift": 0.0781,
+  "note": "vidyut-cheda split + Sa\u1e43s\u0101dhan\u012b morph validation; errors fail validation (honest)."
+}

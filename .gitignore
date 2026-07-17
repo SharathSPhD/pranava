@@ -22,3 +22,4 @@ data/speech/*.npy
 data/experiments/features/
 data/stimuli/wav_vf/
 data/stimuli/wav_ea/
+.vidyut-data/

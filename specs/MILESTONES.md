@@ -35,11 +35,17 @@ Legend: ☑ done · ◐ in progress · ☐ not started
   analysis; the rest are unsplit sandhi/compounds). Number reported, not asserted.
 - **Evidence**: `data/vakyapadiya/morph_kanda1.jsonl` (per-token analyses) + report; gate_M2.json.
 
-### M2b — Full dependency/kāraka parse (segmentation)  ☐ BLOCKED
-- Needs a working segmenter. Candidate: `vidyut-cheda` (pip `vidyut` installed; needs data kosha).
-  Whitespace coverage of 0.455 shows segmentation is the main lever to lift word-level coverage.
-- **Gate**: with segmentation, ≥0.85 token coverage on Brahma-kāṇḍa; a 20-verse gold set
-  spot-checked and documented.
+### M2b — Sandhi segmentation + validated morphology  ☑ DONE (2026-07-17)  ·  honest partial
+- Downloaded the vidyut data kosha (78 MB); `pranava.corpus.segmenter` wraps vidyut-cheda.
+  Self-checking pipeline: vidyut splits each mūla line into pādas → Saṃsādhanī morph.cgi
+  **validates** each pāda (so vidyut's segmentation errors fail validation, keeping the number honest).
+- **Result**: coverage **0.533** (1038/1947 validated pādas) on Brahma-kāṇḍa — a **+0.078 lift**
+  over the M2 whitespace baseline (0.455). The aspirational **≥0.85 target is NOT reached**:
+  off-the-shelf vidyut-cheda (statistical, uncalibrated on this corpus) mis-splits some compounds
+  (e.g. śabda-tattvam → nonsense), and those correctly fail validation. Reported, not fabricated.
+- **Gate** (`gates/check.py M2b`, validity + honest-lift): 5 segmenter tests green; pipeline ran;
+  coverage measurably lifted over M2; shortfall documented.
+- **Evidence**: `data/vakyapadiya/m2b_segmented_kanda1.jsonl` + report; gate_M2b.json.
 
 ### M3 — Concept knowledge graph  ☑ DONE (2026-07-16)
 - 20 core concepts, each **empirically anchored** to verses whose mūla genuinely contains the

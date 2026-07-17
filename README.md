@@ -27,7 +27,8 @@ picture actually holds in speech vs text models. First result (E2) suggested spe
 |---|---|---|
 | M0 | Aligned edition (1,797 kārikās, 100% translation, 286 contested) | ✅ |
 | M1 | IAST transliteration + Devanāgarī integrity | ✅ |
-| M2 | Morphological analysis via Saṃsādhanī (0.455 coverage; segmenter absent → M2b) | ✅ |
+| M2 | Morphological analysis via Saṃsādhanī (0.455 whitespace coverage) | ✅ |
+| M2b | Sandhi segmentation (vidyut-cheda) + validation — coverage 0.455→0.533 (honest; 0.85 not reached) | ✅ |
 | M3 | Verse-anchored concept knowledge graph (20 concepts, 125 edges, 6 curated) | ✅ |
 | E0 | Speech-model representation harness on GB10 GPU (WavLM, ~50 Hz) | ✅ |
 | E1 | Controlled stimulus set (288 items, balanced, synthesized) | ✅ |

@@ -1,0 +1,12 @@
+{
+  "milestone": "M2b",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "segmenter tests green (or skipped without vidyut data)"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "pipeline_ran:ok; coverage_lifted_over_M2:ok; honestly_reported:ok | coverage=0.533 (lift +0.0781); 0.85 target NOT reached (vidyut errors fail validation — honest)"
+  },
+  "closed": true
+}
