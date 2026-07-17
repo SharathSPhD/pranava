@@ -1,0 +1,17 @@
+{
+  "e2e": {
+    "encoder_dim": 1024,
+    "n_sphota_tokens": 5,
+    "d_model": 768,
+    "device": "cuda:0"
+  },
+  "overfit": {
+    "loss_before": 3.3121,
+    "loss_after": 0.0005,
+    "target": "ramah",
+    "emitted": "ramah",
+    "exact_match": true
+  },
+  "elapsed_s": 101.3,
+  "note": "Phase 0 vertical slice: audio\u2192Parakeet\u2192SphotaProjector\u2192prabhasa core\u2192bytes; projector trains the frozen core (overfit)."
+}

@@ -23,3 +23,6 @@ data/experiments/features/
 data/stimuli/wav_vf/
 data/stimuli/wav_ea/
 .vidyut-data/
+# ALM heavy artifacts (checkpoints kept out of git)
+data/alm/*.pt
+data/alm/checkpoints/

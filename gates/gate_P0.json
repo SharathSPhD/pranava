@@ -1,0 +1,12 @@
+{
+  "milestone": "P0",
+  "code_gate": {
+    "verdict": "pass",
+    "evidence": "ALM modules + tests present"
+  },
+  "domain_gate": {
+    "verdict": "pass",
+    "evidence": "e2e_on_cuda:ok; encoder_frames_to_core:ok; overfit_loss_dropped:ok; overfit_exact_emit:ok | enc_dim=1024 tokens=5 loss 3.3121→0.0005 emit='ramah'"
+  },
+  "closed": true
+}

@@ -326,6 +326,42 @@ def gate_E7() -> dict:
     return {"code_gate": code, "domain_gate": dom}
 
 
+def gate_P0() -> dict:
+    """ALM vertical slice (audio→Parakeet→projector→prabhasa core→text) runs + trains on GB10.
+
+    The heavy pieces run in prabhasa/nemo-gb10 (mamba_ssm + NeMo). Evidence is
+    data/alm/p0_manifest.json produced by `scripts/alm/in_container.sh python
+    scripts/alm/p0_demo.py`. code_gate: the ALM modules + tests exist; domain_gate: the manifest
+    shows a real end-to-end run and a successful overfit (loss drop + exact emit).
+    """
+    mods = [ROOT / "src/pranava/alm" / f for f in
+            ("core_adapter.py", "projector.py", "encoder.py", "pipeline.py")]
+    tests = [ROOT / "tests/alm" / f for f in
+             ("test_core_adapter.py", "test_projector_overfit.py", "test_pipeline_e2e.py")]
+    code = _verdict(all(p.exists() for p in mods + tests),
+                    "ALM modules + tests present" if all(p.exists() for p in mods + tests)
+                    else "missing ALM modules/tests")
+    man_p = ROOT / "data/alm/p0_manifest.json"
+    if man_p.exists():
+        m = json.loads(man_p.read_text())
+        e2e, over = m.get("e2e", {}), m.get("overfit", {})
+        checks = {
+            "e2e_on_cuda": str(e2e.get("device", "")).startswith("cuda"),
+            "encoder_frames_to_core": e2e.get("encoder_dim", 0) > 0
+            and e2e.get("d_model") == 768 and e2e.get("n_sphota_tokens", 0) >= 1,
+            "overfit_loss_dropped": over.get("loss_after", 9) < 0.5 * over.get("loss_before", 1),
+            "overfit_exact_emit": over.get("exact_match") is True,
+        }
+        dom = _verdict(all(checks.values()),
+                       "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
+                       + f" | enc_dim={e2e.get('encoder_dim')} tokens={e2e.get('n_sphota_tokens')} "
+                         f"loss {over.get('loss_before')}→{over.get('loss_after')} "
+                         f"emit={over.get('emitted')!r}")
+    else:
+        dom = _verdict(False, "p0_manifest.json missing — run scripts/alm/p0_demo.py in-container")
+    return {"code_gate": code, "domain_gate": dom}
+
+
 def gate_E4() -> dict:
     """Consolidated research report exists, is honest (reports the correction), and is grounded."""
     paper = ROOT / "PAPER.md"
@@ -430,7 +466,7 @@ def r_ok(holism: dict) -> bool:
 GATES = {
     "M0": gate_M0, "M1": gate_M1, "M2": gate_M2, "M2b": gate_M2b, "M3": gate_M3,
     "E0": gate_E0, "E1": gate_E1, "E2": gate_E2, "E5": gate_E5, "E6": gate_E6,
-    "E4": gate_E4, "E7": gate_E7, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
+    "E4": gate_E4, "E7": gate_E7, "P0": gate_P0, "X0": gate_X0, "X1": gate_X1, "X2": gate_X2,
 }
 
 
