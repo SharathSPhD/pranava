@@ -179,10 +179,13 @@ def main(epochs: int = 3, lr: float = 3e-4, r: int = 8, eos_weight: float = 3.0,
         fair = eval_fair(core, proj, bias, val_rows, dev)
         fair_hist.append(fair)
         print(json.dumps({"epoch": ep, "train_loss": hist[-1], **fair}), flush=True)
-        # checkpoint every epoch (phase-specific name; never clobbers other phases)
-        torch.save({"projector": proj.state_dict(), "lora": lora_state_dict(core.model),
-                    "d_enc": d_enc, "d_model": core.d_model, "r": r, "epoch": ep},
-                   ROOT / "data/alm/xl_ckpt.pt")
+        # keep the BEST checkpoint by fair val CER (1B smoke showed per-epoch overfitting on small data)
+        if not fair_hist[:-1] or fair["val_cer_norm_fair"] < min(f["val_cer_norm_fair"] for f in fair_hist[:-1]):
+            torch.save({"projector": proj.state_dict(), "lora": lora_state_dict(core.model),
+                        "d_enc": d_enc, "d_model": core.d_model, "r": r, "epoch": ep,
+                        "val_cer_norm_fair": fair["val_cer_norm_fair"]},
+                       ROOT / "data/alm/xl_ckpt.pt")
+            print(json.dumps({"checkpoint_saved": ep, "best_cer_norm": fair["val_cer_norm_fair"]}), flush=True)
 
     metrics = {"method": f"XL instruct SFT (projector+LoRA r={r}, eos_weight={eos_weight})",
                "corpus": "speech_corpus_indic_xl", "epochs": epochs,

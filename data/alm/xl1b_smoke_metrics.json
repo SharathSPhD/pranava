@@ -1,0 +1,25 @@
+{
+  "method": "1.13B XL instruct SFT (projector+MegatronLoRA r=16, eos_weight=3.0)",
+  "corpus": "speech_corpus_indic_xl",
+  "epochs": 2,
+  "n_lora_params": 8454144,
+  "n_train_clips": 542,
+  "train_loss_history": [
+    0.379,
+    0.1643
+  ],
+  "fair_eval_history": [
+    {
+      "val_cer_norm_fair": 0.4614,
+      "val_cer_raw_fair": 0.4846
+    },
+    {
+      "val_cer_norm_fair": 0.4983,
+      "val_cer_raw_fair": 0.5549
+    }
+  ],
+  "val_cer_norm_fair": 0.4983,
+  "val_cer_raw_fair": 0.5549,
+  "protocol": "free greedy decode, 64-byte budget, stop at model EOS — no gold-length oracle",
+  "wall_hours": 0.14
+}

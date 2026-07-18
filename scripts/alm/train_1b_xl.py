@@ -137,6 +137,7 @@ def main(epochs: int = 2, lr: float = 2e-4, r: int = 16, eos_weight: float = 3.0
         return ce(logits[:, -n:, :].reshape(-1, core.vocab_size), ids.reshape(-1))
 
     hist, fair_hist = [], []
+    best = float("inf")
     for ep in range(epochs):
         proj.train()
         batch = epoch_examples(seed=ep)
@@ -156,9 +157,14 @@ def main(epochs: int = 2, lr: float = 2e-4, r: int = 16, eos_weight: float = 3.0
         fair = eval_fair(core, proj, bias, val_rows, dev)
         fair_hist.append(fair)
         print(json.dumps({"epoch": ep, "train_loss": hist[-1], **fair}), flush=True)
-        torch.save({"projector": proj.state_dict(), "lora": megatron_lora_state_dict(core._model),
-                    "d_enc": d_enc, "d_model": core.d_model, "r": r, "epoch": ep},
-                   ROOT / "data/alm/xl1b_ckpt.pt")
+        # keep the BEST checkpoint by fair val CER — the smoke run showed tiny-data epochs overfit
+        if fair["val_cer_norm_fair"] < best:
+            best = fair["val_cer_norm_fair"]
+            torch.save({"projector": proj.state_dict(), "lora": megatron_lora_state_dict(core._model),
+                        "d_enc": d_enc, "d_model": core.d_model, "r": r, "epoch": ep,
+                        "val_cer_norm_fair": best},
+                       ROOT / "data/alm/xl1b_ckpt.pt")
+            print(json.dumps({"checkpoint_saved": ep, "best_cer_norm": best}), flush=True)
 
     metrics = {"method": f"1.13B XL instruct SFT (projector+MegatronLoRA r={r}, eos_weight={eos_weight})",
                "corpus": "speech_corpus_indic_xl", "epochs": epochs, "n_lora_params": n_lora,
