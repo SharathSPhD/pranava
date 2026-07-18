@@ -44,6 +44,19 @@ MENU: list[Candidate] = [
     Candidate("lens_guided_decoding", "Steer the sphoṭa layer during decode toward meaning",
               {"steer_layer": 13}, 2),
     Candidate("more_epochs", "Longer projector+LoRA schedule (20+ epochs)", {"epochs": 20}, 1),
+    # ---- 2026-07-18 campaign (post benchmark correction: fair free-decode cer_norm is the target) ----
+    Candidate("xl_corpus", "16× corpus: TTS the full PSALM paninian_v1 fixture (~10k clips)",
+              {"data": "speech_corpus_indic_xl"}, 3),
+    Candidate("xl_200m_eos", "Retrain 200M projector+LoRA on XL corpus, EOS-weighted, fair eval",
+              {"where": "gb10", "corpus": "xl", "eos_weight": 3.0}, 3),
+    Candidate("xl_1b_lora", "1.13B + Megatron-LoRA (mlp+attn) on XL corpus (RTX 5090)",
+              {"where": "5090", "corpus": "xl", "r": 16}, 3),
+    Candidate("steering_uptake", "Port prabodha write-steering to the sphoṭa band; readback-verified uptake",
+              {"band": [21, 23], "reuse": "prabodha.steering"}, 2),
+    Candidate("nyaya_guardrail", "pramāṇa/nyāya legality gate inside decoding (steer or re-decode on failure)",
+              {"reuse": "pramana.validators"}, 2),
+    Candidate("fusion_v2", "Causal cross-modal integration metric for the sphoṭa-lens (replace CKA)",
+              {"method": "causal_mediation"}, 2),
 ]
 
 
@@ -55,6 +68,24 @@ def leaderboard_cer(model_substr: str = "ours") -> float | None:
         if model_substr in r.get("model", "") and r.get("cer") is not None:
             return float(r["cer"])
     return None
+
+
+FAIR_BOARD = ROOT / "data" / "benchmark" / "alm_vs_alm.json"
+
+
+def fair_cer_norm(model_substr: str = "ours") -> float | None:
+    """Best (lowest) transliteration-normalized CER for our model on the FAIR multi-ALM leaderboard.
+
+    This is the campaign objective post benchmark-correction (2026-07-18): free decode, no
+    gold-length oracle, scheme-neutral metric — the number that must beat the open generalists
+    (Voxtral 0.187) for an honest 'top of the leaderboard' claim."""
+    if not FAIR_BOARD.exists():
+        return None
+    b = json.loads(FAIR_BOARD.read_text())
+    ours = [r.get("cer_norm") for r in b.get("leaderboard", [])
+            if model_substr in r.get("model", "") and r.get("cer_norm") is not None
+            and "oracle" not in r.get("model", "")]  # oracle-capped rows don't count
+    return min(ours) if ours else None
 
 
 def cer_to_tier(prev_cer: float | None, new_cer: float | None) -> int:
@@ -79,8 +110,11 @@ def build_selector() -> tuple[EFESelector, set[str]]:
     consumed = set()
     for e in ledger:
         if e.get("kind") == "observation":
-            sel.update(e["candidate_id"], Observation(primary_tier=int(e["primary_tier"])))
             consumed.add(e["candidate_id"])
+            tier = e.get("primary_tier")
+            if tier is None:  # legacy/free-form entries (e.g. milestone notes) count as consumed only
+                continue
+            sel.update(e["candidate_id"], Observation(primary_tier=int(tier)))
     return sel, consumed
 
 

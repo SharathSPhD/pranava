@@ -2038,5 +2038,413 @@
       "cer_raw": 0.9231,
       "cer_norm": 0.2143
     }
+  ],
+  "Śabda-ALM instruct+EOS — free decode (ours)": [
+    {
+      "id": "u00010",
+      "pred": "vidyO vanam vidyO vanam vadizyataH",
+      "gold": "vidye vane BavizyataH",
+      "cer_raw": 0.7619,
+      "cer_norm": 0.8182
+    },
+    {
+      "id": "u00012",
+      "pred": "naraH gfhetvanam gacCet",
+      "gold": "naraH gfham paWet",
+      "cer_raw": 0.4706,
+      "cer_norm": 0.4444
+    },
+    {
+      "id": "u00030",
+      "pred": "vidya bAvaH bASvam addidyate",
+      "gold": "vidye bAle aBavatAm",
+      "cer_raw": 0.8947,
+      "cer_norm": 0.8
+    },
+    {
+      "id": "u00045",
+      "pred": "PalAni gfham gamizyanti gfeakam KAdan",
+      "gold": "PalAni gfhe Bavizyanti",
+      "cer_raw": 0.8182,
+      "cer_norm": 0.8333
+    },
+    {
+      "id": "u00049",
+      "pred": "vane dadI sitAm sidde sitAm siddagganye dadIyoudad dIdI side vas",
+      "gold": "vane sitAyAm avadetAm",
+      "cer_raw": 2.2857,
+      "cer_norm": 2.2381
+    },
+    {
+      "id": "u00050",
+      "pred": "PalAni aSvale gamizyanti agam apaWan",
+      "gold": "PalAnyaSvena gamizyanti",
+      "cer_raw": 0.7391,
+      "cer_norm": 0.75
+    },
+    {
+      "id": "u00067",
+      "pred": "sitAH guruRAnlRalAm Palam gacCan",
+      "gold": "sitAH guruRA jalam KAdanti",
+      "cer_raw": 0.5385,
+      "cer_norm": 0.5185
+    },
+    {
+      "id": "u00074",
+      "pred": "aSvaH bAle KAdikam KAdataH",
+      "gold": "aSvaH bAlena KAdizyati",
+      "cer_raw": 0.5,
+      "cer_norm": 0.5217
+    },
+    {
+      "id": "u00087",
+      "pred": "vanam kanyA Palam adadIta",
+      "gold": "vanam kanyAyAH Palam agacCat",
+      "cer_raw": 0.2857,
+      "cer_norm": 0.2667
+    },
+    {
+      "id": "u00103",
+      "pred": "kanytipustrakam bAle bApatati",
+      "gold": "kanyA bAle paWet",
+      "cer_raw": 1.0,
+      "cer_norm": 0.8824
+    },
+    {
+      "id": "u00110",
+      "pred": "bAlaH sitAm adadata",
+      "gold": "bAlO sitAyAm vasetAm",
+      "cer_raw": 0.5,
+      "cer_norm": 0.381
+    },
+    {
+      "id": "u00115",
+      "pred": "guruH jalam jalam jalam jalam jalam jalam jalam jalam jalam jala",
+      "gold": "guruH rAme jalam paWet",
+      "cer_raw": 2.2273,
+      "cer_norm": 2.087
+    },
+    {
+      "id": "u00122",
+      "pred": "kanyA jalam adadIk jalam adadIdAsam jale adadIkam addadya jalam",
+      "gold": "kanyA nadyE jalam adatta",
+      "cer_raw": 1.8333,
+      "cer_norm": 1.68
+    },
+    {
+      "id": "u00129",
+      "pred": "vidya gude KAde KAde KAde KAde KAdam KAdet",
+      "gold": "vidyA gurO KAdet",
+      "cer_raw": 1.8125,
+      "cer_norm": 1.7778
+    },
+    {
+      "id": "u00189",
+      "pred": "nadI aSvam jale jalam dadIdAdadIdadIdadIdadIdadIdadIdadIdadIdadI",
+      "gold": "nadyaSvAya jalam dadIta",
+      "cer_raw": 1.9565,
+      "cer_norm": 1.913
+    },
+    {
+      "id": "u00191",
+      "pred": "kanyAH jalam jalam agacCan",
+      "gold": "kanyAH jalena Palam agacCan",
+      "cer_raw": 0.1481,
+      "cer_norm": 0.1724
+    },
+    {
+      "id": "u00204",
+      "pred": "sitAm rAme jale rAmAH rAme jalam dadIdadIdadIdadIdadIdadIdadIdad",
+      "gold": "sitAH rAmeRa jalam KAdeyuH",
+      "cer_raw": 1.7692,
+      "cer_norm": 1.6667
+    },
+    {
+      "id": "u00210",
+      "pred": "narO PalAt Palam apaWatAm",
+      "gold": "narO Palam apaWatAm",
+      "cer_raw": 0.3158,
+      "cer_norm": 0.3182
+    },
+    {
+      "id": "u00217",
+      "pred": "nadyO jale pustakam jale jalam jale adadAtAlam jale adadIdAte pu",
+      "gold": "nadyO jale pustakam adadAtAm",
+      "cer_raw": 1.2857,
+      "cer_norm": 1.2414
+    },
+    {
+      "id": "u00219",
+      "pred": "vanam pustakam pustyte pustakam paWati",
+      "gold": "vanam pustake Palam paWizyati",
+      "cer_raw": 0.5862,
+      "cer_norm": 0.5161
+    },
+    {
+      "id": "u00238",
+      "pred": "jalam adadIdadIdadIdadIdadIdadIdadIdadIdadIdadIdadIdadIdadIdadId",
+      "gold": "jalam bAle adatta",
+      "cer_raw": 3.1765,
+      "cer_norm": 3.1176
+    },
+    {
+      "id": "u00239",
+      "pred": "vidyAH Pale adadadadadAt Palam adadIdadIdadIdadIdadIdadIdadIdadI",
+      "gold": "vidyA Palam avadata",
+      "cer_raw": 2.4737,
+      "cer_norm": 2.4
+    },
+    {
+      "id": "u00257",
+      "pred": "jalAni vidyAm avasate avasati",
+      "gold": "jalAnyaSve vaderan",
+      "cer_raw": 1.0556,
+      "cer_norm": 1.0
+    },
+    {
+      "id": "u00277",
+      "pred": "sitA Pale jalam Pale jalam Pale adatta",
+      "gold": "sitA Pale jalam aKAdat",
+      "cer_raw": 0.8182,
+      "cer_norm": 0.75
+    },
+    {
+      "id": "u00288",
+      "pred": "naraH pustakam Palam KAdet",
+      "gold": "naraH pustakena Palam KAdet",
+      "cer_raw": 0.1111,
+      "cer_norm": 0.1034
+    },
+    {
+      "id": "u00294",
+      "pred": "vane bAle pustap bAKa bAmya bAayaH bAle pustakam KAdataH",
+      "gold": "vane bAlena pustakam KAdataH",
+      "cer_raw": 1.0357,
+      "cer_norm": 1.0345
+    },
+    {
+      "id": "u00296",
+      "pred": "aSvaH guruRAmati",
+      "gold": "aSvaH gurO paWati",
+      "cer_raw": 0.2941,
+      "cer_norm": 0.2632
+    },
+    {
+      "id": "u00353",
+      "pred": "guruH gfham gupusizyati",
+      "gold": "guruH gfham paWizyati",
+      "cer_raw": 0.1905,
+      "cer_norm": 0.2273
+    },
+    {
+      "id": "u00372",
+      "pred": "aSvaH gfham gfhe vasizyati",
+      "gold": "aSvaH gfhe Bavizyati",
+      "cer_raw": 0.4,
+      "cer_norm": 0.381
+    },
+    {
+      "id": "u00383",
+      "pred": "rAmAH vidyAm apaWan",
+      "gold": "rAmAH vidyAm apaWan",
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
+    },
+    {
+      "id": "u00385",
+      "pred": "jale pustakam paWatakam paWatakam paWatakam paWatakam paWatakam",
+      "gold": "jale vidyAyAm pustakam paWataH",
+      "cer_raw": 1.4333,
+      "cer_norm": 1.4194
+    },
+    {
+      "id": "u00421",
+      "pred": "jale site pustakam site pustakam site pustakam site pustakam sit",
+      "gold": "jale sitAyAH gacCetAm",
+      "cer_raw": 2.4286,
+      "cer_norm": 2.1818
+    },
+    {
+      "id": "u00424",
+      "pred": "vidyAH pustI pustI pust e paWan gamizyanti",
+      "gold": "vidyA gfhe pustakam adatta",
+      "cer_raw": 0.9615,
+      "cer_norm": 1.0
+    },
+    {
+      "id": "u00449",
+      "pred": "vidye gurO pustake gurO pusaye adadIdApaWataH",
+      "gold": "vidye gurave pustakam adadAtAm",
+      "cer_raw": 0.7667,
+      "cer_norm": 0.7667
+    },
+    {
+      "id": "u00451",
+      "pred": "rAmAH gurum gammAtfzaragam gamam gacCan",
+      "gold": "rAmAH guroH gacCanti",
+      "cer_raw": 1.25,
+      "cer_norm": 1.1905
+    },
+    {
+      "id": "u00453",
+      "pred": "rAmAH aSvam adadIraSam agacCan",
+      "gold": "rAmaH aSvam akuruta",
+      "cer_raw": 0.8421,
+      "cer_norm": 0.8421
+    },
+    {
+      "id": "u00463",
+      "pred": "kanye pustakam pustakam pustakam pustakam pustakam pustakam pust",
+      "gold": "kanye pustake Palam dadIyAtAm",
+      "cer_raw": 1.5172,
+      "cer_norm": 1.3667
+    },
+    {
+      "id": "u00464",
+      "pred": "aSvAH rAme Palam paWeyuddAlaH rAme Palam paWetAm Palam paWetAm r",
+      "gold": "aSvAH rAme Palam paWeyuH",
+      "cer_raw": 1.6667,
+      "cer_norm": 1.6923
+    },
+    {
+      "id": "u00467",
+      "pred": "jalAni kanyAyAm Palam vane Palam dadIkanyAm paWeyuH",
+      "gold": "jalAni kanyAyE Palam dAsyante",
+      "cer_raw": 0.931,
+      "cer_norm": 0.8387
+    },
+    {
+      "id": "u00488",
+      "pred": "gfhaH vanAdam dadIzyan",
+      "gold": "gfhARyaSvena jalam KAdeyuH",
+      "cer_raw": 0.6538,
+      "cer_norm": 0.5556
+    },
+    {
+      "id": "u00494",
+      "pred": "jalAni Pale pustakAnyagfetenaH Pale pustI Palam paWetAm Pale pus",
+      "gold": "jalAni Pale pustakam paWeyuH",
+      "cer_raw": 1.3571,
+      "cer_norm": 1.3667
+    },
+    {
+      "id": "u00503",
+      "pred": "kanyAm addedyAm addedyAm addedyAm addedyAm addedyAm addedyAm add",
+      "gold": "kanye aSvAya dadIyAtAm",
+      "cer_raw": 2.1364,
+      "cer_norm": 2.0909
+    },
+    {
+      "id": "u00507",
+      "pred": "Pale aSvam KAdizyataH",
+      "gold": "Pale aSvam KAdizyataH",
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
+    },
+    {
+      "id": "u00509",
+      "pred": "kanyA bAgam",
+      "gold": "kanyA bAlam KAdet",
+      "cer_raw": 0.4118,
+      "cer_norm": 0.4444
+    },
+    {
+      "id": "u00515",
+      "pred": "kanyA nare apayat",
+      "gold": "kanyA naram apaSyat",
+      "cer_raw": 0.1579,
+      "cer_norm": 0.1579
+    },
+    {
+      "id": "u00521",
+      "pred": "aSvaH vane dadItaSvam dadIdAnApaye dadIdAne vadete vanAt dadIzya",
+      "gold": "aSvAH vanAya dadIran",
+      "cer_raw": 2.35,
+      "cer_norm": 2.3
+    },
+    {
+      "id": "u00525",
+      "pred": "gfha kanyAyAH Palam agacCalam agacCalam agacCataH",
+      "gold": "gfhARi kanyayA Palam agacCan",
+      "cer_raw": 1.0,
+      "cer_norm": 0.9333
+    },
+    {
+      "id": "u00530",
+      "pred": "pustige a adyam paWatakam dadIya dadIya dadIya dadIdAgaming agas",
+      "gold": "pustake aSvam paWataH",
+      "cer_raw": 2.2857,
+      "cer_norm": 2.1818
+    },
+    {
+      "id": "u00542",
+      "pred": "aSvaH kanyayaH jalam jale jalam dadIyataH",
+      "gold": "aSvaH kanyAyE jalam datte",
+      "cer_raw": 0.8,
+      "cer_norm": 0.6923
+    },
+    {
+      "id": "u00545",
+      "pred": "guruH vane agacCan",
+      "gold": "guruH vanam aKAdat",
+      "cer_raw": 0.3889,
+      "cer_norm": 0.4211
+    },
+    {
+      "id": "u00546",
+      "pred": "kanye gurO guruRA gacCataH",
+      "gold": "kanye guroH gacCetAm",
+      "cer_raw": 0.55,
+      "cer_norm": 0.5238
+    },
+    {
+      "id": "u00547",
+      "pred": "bAlaH nadIe jalam KAdizyati",
+      "gold": "bAlaH nadyA jalam KAdizyati",
+      "cer_raw": 0.0741,
+      "cer_norm": 0.0714
+    },
+    {
+      "id": "u00555",
+      "pred": "vanam KAdadI gamiz Palam gamiz Palam gamiz gamizyati",
+      "gold": "vanam gfhAt Palam gamizyati",
+      "cer_raw": 1.0741,
+      "cer_norm": 1.0357
+    },
+    {
+      "id": "u00557",
+      "pred": "narO kanyAyAm kadad kanyAedam dadIya kanyayA kam vaseke kanyac k",
+      "gold": "narO kanyAyAm BavataH",
+      "cer_raw": 2.1905,
+      "cer_norm": 2.0
+    },
+    {
+      "id": "u00559",
+      "pred": "nadyO guruRA pustakam paWetAm guptena pustakam paWetakam guptaka",
+      "gold": "nadyO gurO pustakam paWetAm",
+      "cer_raw": 1.4074,
+      "cer_norm": 1.2333
+    },
+    {
+      "id": "u00587",
+      "pred": "naraH kanyayA jalam paWati",
+      "gold": "naraH kanyAyAm jalam paWati",
+      "cer_raw": 0.0741,
+      "cer_norm": 0.0357
+    },
+    {
+      "id": "u00593",
+      "pred": "rAmaH vidyaya vidyaya vidyaya dadIyudadatta vidya vidyaya dadIya",
+      "gold": "rAmaH vidyAyAm vasati",
+      "cer_raw": 2.2381,
+      "cer_norm": 2.1429
+    },
+    {
+      "id": "u00599",
+      "pred": "vane rAme Palam rAme Palam rAmam rAme Palam KAgam zaccan",
+      "gold": "vane rAmeRa Palam gacCataH",
+      "cer_raw": 1.3462,
+      "cer_norm": 1.3214
+    }
   ]
 }

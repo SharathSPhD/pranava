@@ -119,12 +119,17 @@ class Megatron1BCore:
         return self._run_core(inputs_embeds)[1]
 
     @torch.no_grad()
-    def greedy_from_embeds(self, prefix_embeds: torch.Tensor, max_new: int = 48) -> list[int]:
+    def greedy_from_embeds(self, prefix_embeds: torch.Tensor, max_new: int = 48,
+                           stop_token: int | None = None) -> list[int]:
+        """Greedy decode; stops early at ``stop_token`` (e.g. the instruct EOS sentinel) if given —
+        same surface as SanskritCore.greedy_from_embeds so instruct/eval code ports unchanged."""
         x = prefix_embeds.to(self.device)
         out: list[int] = []
         for _ in range(max_new):
             logits = self.forward_embeds(x)[0, -1]
             nxt = int(torch.argmax(logits).item())
+            if stop_token is not None and nxt == stop_token:
+                break
             out.append(nxt)
             ids = torch.tensor([[nxt]], device=self.device, dtype=torch.long)
             nxt_emb = self.embed_tokens(ids)

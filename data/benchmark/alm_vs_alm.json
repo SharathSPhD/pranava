@@ -52,6 +52,16 @@
       "note": null
     },
     {
+      "model": "Śabda-ALM instruct+EOS — free decode (ours)",
+      "params": "200M core + 0.6B enc",
+      "alm_type": "specialist (Sanskrit fine-tuned, EOS-trained instruct decode)",
+      "cer_norm": 1.0329,
+      "cer_raw": 1.0789,
+      "n_scored": 58,
+      "unique_outputs": 58,
+      "note": "free decode, stop at the model's own EOS sentinel — no gold-length oracle"
+    },
+    {
       "model": "Śabda-ALM specialist — free decode (ours)",
       "params": "200M core + 0.6B enc",
       "alm_type": "specialist (Sanskrit fine-tuned)",

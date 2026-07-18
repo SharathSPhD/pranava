@@ -9,233 +9,1466 @@
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Devanagari:wght@600;700&display=swap" rel="stylesheet">
 <script src="config.js"></script>
 <style>
-  :root{--ink:#0E1020;--panel:#16182B;--line:#2A2E4C;--saffron:#E8A13A;--amber:#F2D9A8;
-        --paper:#E7E3D6;--muted:#9195B8;--violet:#7A67F0;--green:#4CB07A;--red:#c0392b}
-  *{box-sizing:border-box}
-  body{margin:0;background:radial-gradient(120% 80% at 50% -10%,#181a30 0%,var(--ink) 60%);
-    color:var(--paper);font-family:"IBM Plex Sans",system-ui,sans-serif;min-height:100vh;
-    display:flex;flex-direction:column;align-items:center;padding:2rem 1.2rem}
-  .glyph{font-family:"Noto Serif Devanagari",serif;font-size:2.4rem;color:var(--saffron);text-shadow:0 0 44px #e8a13a55}
-  h1{font-family:"Spectral",serif;font-weight:600;font-size:clamp(1.6rem,5vw,2.4rem);margin:.4rem 0 .2rem;text-align:center}
-  .sub{color:var(--muted);text-align:center;max-width:52ch;margin:0 0 1.4rem;line-height:1.45}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:1.5rem;
-    width:100%;max-width:660px;box-shadow:0 20px 60px #0006}
-  .bar{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:660px;margin-bottom:.9rem;
-    font-size:.8rem;color:var(--muted);gap:.6rem;flex-wrap:wrap}
-  .tag{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
-    padding:.25rem .6rem;border-radius:999px;border:1px solid var(--line)}
-  .tag.admin{color:var(--saffron);border-color:#5a4420}.tag.guest{color:var(--green);border-color:#274a37}
-  .tag.user{color:var(--violet);border-color:#3a3470}
-  .ask{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 .55rem}
-  .tasks{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
-  .chip{font-size:.9rem;padding:.5rem .85rem;border-radius:999px;border:1px solid var(--line);
-    background:transparent;color:var(--paper);cursor:pointer;transition:.15s}
-  .chip:hover{border-color:var(--saffron)} .chip.on{background:var(--saffron);color:#20160a;font-weight:600}
-  .stage{display:flex;flex-direction:column;align-items:center;gap:.85rem;padding:.4rem 0}
-  .mic{width:100px;height:100px;border-radius:50%;border:none;cursor:pointer;font-size:1.9rem;
-    background:radial-gradient(circle at 50% 35%,#F4B65A,var(--saffron));color:#20160a;box-shadow:0 8px 30px #e8a13a40;transition:.15s}
-  .mic:hover{transform:translateY(-2px)} .mic.on{background:radial-gradient(circle at 50% 35%,#e0584a,var(--red));color:#fff;animation:pulse 1.25s infinite}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 #c0392b55}50%{box-shadow:0 0 0 16px #c0392b00}}
-  .hint{color:var(--muted);font-size:.85rem} .file{color:var(--muted);font-size:.85rem}
-  .answer{margin-top:1.2rem;border-top:1px solid var(--line);padding-top:1.1rem;display:none} .answer.show{display:block}
-  .meta{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--saffron);display:flex;gap:1rem;flex-wrap:wrap}
-  .txt{font-family:"Spectral",serif;font-size:1.5rem;line-height:1.35;margin:.5rem 0 .2rem;word-break:break-word}
-  .playing{color:var(--green);font-size:.8rem;font-family:"IBM Plex Mono",monospace}
-  input,button.act{font-family:"IBM Plex Sans";font-size:.95rem}
-  .in{background:#0E1020;border:1px solid var(--line);color:var(--paper);border-radius:9px;padding:.65rem .8rem;width:100%}
-  button.act{background:var(--saffron);color:#20160a;font-weight:600;border:none;border-radius:9px;padding:.65rem 1.1rem;cursor:pointer}
-  button.ghost{background:transparent;border:1px solid var(--line);color:var(--paper);border-radius:9px;padding:.5rem .9rem;cursor:pointer;font-size:.85rem}
-  .replay{display:grid;gap:.6rem;grid-template-columns:1fr 1fr}
-  .demo{border:1px solid var(--line);border-radius:12px;padding:.7rem .8rem;cursor:pointer;background:#141731}
-  .demo:hover{border-color:var(--saffron)} .demo .t{font-family:"IBM Plex Mono";font-size:.68rem;color:var(--saffron);text-transform:uppercase;letter-spacing:.1em}
-  .demo .a{font-family:"Spectral",serif;font-size:1.05rem;margin-top:.2rem}
-  .row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
-  .note{color:var(--muted);font-size:.82rem;line-height:1.5}
-  a{color:var(--amber)} footer{margin-top:1.8rem;color:var(--muted);font-size:.85rem;text-align:center;line-height:1.6}
-  .hidden{display:none}
+  :root {
+    --ink: #0E1020;
+    --panel: #16182B;
+    --line: #2A2E4C;
+    --saffron: #E8A13A;
+    --amber: #F2D9A8;
+    --paper: #E7E3D6;
+    --muted: #9195B8;
+    --violet: #7A67F0;
+    --green: #4CB07A;
+    --red: #c0392b;
+    --accent-dark: #14110f;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: radial-gradient(120% 80% at 50% -10%, #181a30 0%, var(--ink) 60%);
+    color: var(--paper);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    padding-bottom: 5rem;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .hero {
+    text-align: center;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .glyph {
+    font-family: "Noto Serif Devanagari", serif;
+    font-size: clamp(2rem, 6vw, 3rem);
+    color: var(--saffron);
+    text-shadow: 0 0 44px #e8a13a55;
+    margin: 0;
+    line-height: 1;
+  }
+
+  h1 {
+    font-family: "Spectral", serif;
+    font-weight: 600;
+    font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+    margin: 0.6rem 0 0.4rem;
+    text-align: center;
+  }
+
+  .sub {
+    color: var(--muted);
+    text-align: center;
+    max-width: 52ch;
+    margin: 0;
+    line-height: 1.45;
+    font-size: 0.95rem;
+  }
+
+  .bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.6rem;
+    width: 100%;
+    box-shadow: 0 20px 60px #0006;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.65rem;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    font-weight: 500;
+  }
+
+  .tag.admin { color: var(--saffron); border-color: #5a4420; }
+  .tag.guest { color: var(--green); border-color: #274a37; }
+  .tag.user { color: var(--violet); border-color: #3a3470; }
+
+  .ask {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 1rem;
+    font-weight: 500;
+  }
+
+  .task-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .task-card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1rem;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .task-card:hover {
+    border-color: var(--saffron);
+  }
+
+  .task-card.active {
+    background: var(--saffron);
+    border-color: var(--saffron);
+    color: var(--accent-dark);
+  }
+
+  .task-card.active .task-deva {
+    color: var(--accent-dark);
+  }
+
+  .task-card.active .task-label {
+    color: var(--accent-dark);
+    font-weight: 600;
+  }
+
+  .task-card.active .task-meaning {
+    color: var(--accent-dark);
+    opacity: 0.85;
+  }
+
+  .task-deva {
+    font-family: "Noto Serif Devanagari", serif;
+    font-size: 1.5rem;
+    color: var(--saffron);
+    font-weight: 700;
+  }
+
+  .task-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  .task-meaning {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.2;
+  }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem 0;
+  }
+
+  .mic-button {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 2.2rem;
+    background: radial-gradient(circle at 50% 35%, #F4B65A, var(--saffron));
+    color: var(--accent-dark);
+    box-shadow: 0 12px 40px #e8a13a40;
+    transition: all 0.2s ease;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mic-button:hover:not(.recording) {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 50px #e8a13a50;
+  }
+
+  .mic-button:focus-visible {
+    outline: 3px solid var(--saffron);
+    outline-offset: 4px;
+  }
+
+  .mic-button.recording {
+    background: radial-gradient(circle at 50% 35%, #e0584a, var(--red));
+    color: #fff;
+    animation: pulse 1.25s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 #c0392b55; }
+    50% { box-shadow: 0 0 0 20px #c0392b00; }
+  }
+
+  .waveform-container {
+    width: 100%;
+    height: 120px;
+    background: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px;
+    display: none;
+  }
+
+  .waveform-container.active {
+    display: block;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .recording-status {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--saffron);
+    font-weight: 500;
+    min-height: 1.2rem;
+  }
+
+  .controls {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.8rem;
+  }
+
+  .btn {
+    font-family: "IBM Plex Sans";
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--saffron);
+    outline-offset: 2px;
+  }
+
+  .btn.primary {
+    background: var(--saffron);
+    color: var(--accent-dark);
+  }
+
+  .btn.primary:hover {
+    background: var(--amber);
+  }
+
+  .btn.secondary {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--paper);
+  }
+
+  .btn.secondary:hover {
+    border-color: var(--saffron);
+    color: var(--saffron);
+  }
+
+  .file-input {
+    display: none;
+  }
+
+  .answer-display {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.2rem;
+    display: none;
+  }
+
+  .answer-display.show {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .meta {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .transliteration {
+    margin: 1rem 0;
+  }
+
+  .trans-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+    display: block;
+    font-weight: 500;
+  }
+
+  .trans-text {
+    font-family: "Spectral", serif;
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: var(--paper);
+    word-break: break-word;
+    padding: 0.8rem;
+    background: rgba(26, 27, 45, 0.5);
+    border-left: 3px solid var(--saffron);
+    border-radius: 4px;
+  }
+
+  .audio-control {
+    margin-top: 0.8rem;
+  }
+
+  .audio-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: rgba(26, 27, 45, 0.5);
+    border-radius: 6px;
+    margin-bottom: 0.8rem;
+  }
+
+  .audio-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    min-width: 80px;
+  }
+
+  audio {
+    flex: 1;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  audio:focus-visible {
+    outline: 2px solid var(--saffron);
+    outline-offset: 2px;
+  }
+
+  .hint {
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+    min-height: 1.2rem;
+  }
+
+  .error-message {
+    background: #3a0f0f;
+    border: 1px solid #6b2a2a;
+    color: #ff9999;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-top: 0.8rem;
+  }
+
+  .success-message {
+    background: rgba(76, 176, 122, 0.15);
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-top: 0.8rem;
+  }
+
+  .history-section {
+    display: none;
+  }
+
+  .history-section.open {
+    display: block;
+  }
+
+  .history-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    border: none;
+    color: var(--paper);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.6rem 0;
+    font-family: "IBM Plex Sans";
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .history-toggle:focus-visible {
+    outline: 2px solid var(--saffron);
+    outline-offset: 2px;
+  }
+
+  .history-toggle::before {
+    content: '▼';
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 0.8rem;
+  }
+
+  .history-toggle.collapsed::before {
+    transform: rotate(-90deg);
+  }
+
+  .history-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .history-item {
+    padding: 0.8rem;
+    background: rgba(26, 27, 45, 0.5);
+    border-left: 3px solid var(--saffron);
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+
+  .history-task {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+
+  .history-answer {
+    color: var(--paper);
+    word-break: break-word;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+
+  .history-time {
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .demo-clip {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.8rem;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .demo-clip:hover {
+    border-color: var(--saffron);
+    background: rgba(232, 161, 58, 0.05);
+  }
+
+  .demo-clip.active {
+    border-color: var(--saffron);
+    background: rgba(232, 161, 58, 0.1);
+  }
+
+  .demo-clip-id {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+
+  .demo-clip-preview {
+    font-size: 0.9rem;
+    color: var(--paper);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .demo-detail {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    display: none;
+  }
+
+  .demo-detail.show {
+    display: block;
+  }
+
+  .demo-task-answer {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    background: rgba(26, 27, 45, 0.5);
+    border-radius: 6px;
+  }
+
+  .demo-task-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+  }
+
+  .demo-gold {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .demo-answer {
+    font-family: "Spectral", serif;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: var(--paper);
+  }
+
+  .status-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(14, 16, 32, 0.95), transparent);
+    backdrop-filter: blur(4px);
+    border-top: 1px solid var(--line);
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+    font-family: "IBM Plex Mono", monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+  }
+
+  .status-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .status-indicator.ok {
+    background: var(--green);
+  }
+
+  .status-indicator.warn {
+    background: var(--saffron);
+  }
+
+  .status-indicator.error {
+    background: var(--red);
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .form-group {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .form-input {
+    background: var(--ink);
+    border: 1px solid var(--line);
+    color: var(--paper);
+    border-radius: 6px;
+    padding: 0.7rem 0.9rem;
+    font-family: "IBM Plex Sans";
+    font-size: 0.95rem;
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--saffron);
+    box-shadow: 0 0 0 3px rgba(232, 161, 58, 0.1);
+  }
+
+  .form-input::placeholder {
+    color: var(--muted);
+  }
+
+  .note {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .admin-section {
+    border: 1px solid #5a4420;
+    border-radius: 8px;
+    padding: 1rem;
+    background: rgba(232, 161, 58, 0.05);
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: var(--amber);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    margin-top: 1.5rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 1.6;
+    padding: 1rem 0;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  @media (max-width: 540px) {
+    body {
+      padding: 1rem 0.8rem;
+      padding-bottom: 4.5rem;
+    }
+
+    .card {
+      border-radius: 8px;
+      padding: 1.2rem;
+    }
+
+    .glyph {
+      font-size: 2rem;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    .task-grid {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .mic-button {
+      width: 100px;
+      height: 100px;
+      font-size: 1.8rem;
+    }
+
+    .status-bar {
+      gap: 1rem;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.7rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0s !important;
+      transition-duration: 0s !important;
+    }
+  }
 </style>
 </head>
 <body>
-  <div class="glyph">शब्द</div>
-  <h1>Speak, and it answers</h1>
-  <p class="sub" id="sub">A speech-to-speech Sanskrit audio language model.</p>
-
-  <div class="bar hidden" id="bar">
-    <span id="who"></span>
-    <span class="row"><span class="tag" id="tier">…</span><button class="ghost" id="signout">sign out</button></span>
-  </div>
-
-  <!-- LOGIN -->
-  <div class="card hidden" id="login">
-    <p class="ask">Sign in to continue</p>
-    <p class="note">Admins &amp; invited guests speak with the model live on the DGX/5090. Everyone else
-      hears stored demo replays. You'll get a magic-link email — no password.</p>
-    <div class="row" style="margin-top:1rem">
-      <input class="in" id="email" type="email" placeholder="you@email.com" style="flex:1;min-width:200px">
-      <button class="act" id="sendlink">Email me a link</button>
+  <div class="container">
+    <div class="hero">
+      <div class="glyph">शब्द</div>
+      <h1>Speak, and it answers</h1>
+      <p class="sub" id="sub">A speech-to-speech Sanskrit audio language model.</p>
     </div>
-    <p class="note" id="loginmsg" style="margin-top:.7rem"></p>
-  </div>
 
-  <!-- ADMIN panel -->
-  <div class="card hidden" id="admin" style="margin-bottom:1rem">
-    <p class="ask">Admin</p>
-    <div class="row">
-      <input class="in" id="guest" type="email" placeholder="invite guest email" style="flex:1;min-width:200px">
-      <button class="act" id="invite">Invite guest</button>
+    <div class="bar hidden" id="bar">
+      <span id="who"></span>
+      <span style="display: flex; align-items: center; gap: 0.8rem;">
+        <span class="tag" id="tier">…</span>
+        <button class="btn secondary" id="signout" aria-label="Sign out">sign out</button>
+      </span>
     </div>
-    <p class="note" id="adminmsg" style="margin-top:.6rem"></p>
-  </div>
 
-  <!-- LIVE (admin/guest) -->
-  <div class="card hidden" id="live">
-    <p class="ask">Ask the model to…</p>
-    <div class="tasks" id="tasks"></div>
-    <div class="stage">
-      <button class="mic" id="mic">🎙</button>
-      <div class="hint" id="hint">Tap to record · then it answers aloud</div>
-      <input class="file" type="file" id="file" accept="audio/*">
+    <!-- LOGIN -->
+    <div class="card hidden" id="login">
+      <p class="ask">Sign in to continue</p>
+      <p class="note">Admins &amp; invited guests speak with the model live. Everyone else hears stored demo replays. You'll get a magic-link email — no password.</p>
+      <div class="login-form">
+        <div class="form-group">
+          <input class="form-input" id="email" type="email" placeholder="you@email.com" aria-label="Email address">
+          <button class="btn primary" id="sendlink" aria-label="Send sign-in link">Email me a link</button>
+        </div>
+        <p class="note" id="loginmsg" style="margin: 0;"></p>
+      </div>
     </div>
-    <div class="answer" id="answer">
-      <div class="meta"><span id="m-task">transcribe</span><span id="m-lang">sa</span><span id="m-ms">— ms</span></div>
-      <div class="txt" id="m-txt">…</div>
-      <div class="playing" id="m-play"></div>
+
+    <!-- ADMIN PANEL -->
+    <div class="card admin-section hidden" id="admin">
+      <p class="ask">Admin: invite guests to speak live</p>
+      <div class="form-group">
+        <input class="form-input" id="guest" type="email" placeholder="invite guest email" aria-label="Guest email to invite">
+        <button class="btn primary" id="invite" aria-label="Invite guest">Invite</button>
+      </div>
+      <p class="note" id="adminmsg" style="margin: 0; margin-top: 0.6rem;"></p>
+    </div>
+
+    <!-- LIVE MODE (admin/guest) -->
+    <div class="card hidden" id="live">
+      <p class="ask">Choose a task, record, and listen</p>
+
+      <div class="task-grid" id="taskGrid"></div>
+
+      <div class="stage">
+        <button class="mic-button" id="mic" aria-label="Press to record" aria-pressed="false">🎙</button>
+        <div class="waveform-container" id="waveformContainer">
+          <canvas id="waveformCanvas"></canvas>
+        </div>
+        <div class="recording-status" id="recordingStatus"></div>
+        <div class="controls">
+          <div class="hint" id="hint">Tap to record · then it answers aloud</div>
+        </div>
+        <div class="controls">
+          <label class="btn secondary">
+            Upload audio
+            <input class="file-input" id="file" type="file" accept="audio/*" aria-label="Upload audio file">
+          </label>
+        </div>
+      </div>
+
+      <div class="answer-display" id="answer">
+        <div class="meta">
+          <span id="m-task">transcribe</span>
+          <span id="m-lang">sa</span>
+          <span id="m-ms">— ms</span>
+        </div>
+
+        <div class="transliteration">
+          <span class="trans-label">SLP1 romanization</span>
+          <div class="trans-text" id="m-slp1">…</div>
+        </div>
+
+        <div class="transliteration">
+          <span class="trans-label">Devanagari script</span>
+          <div class="trans-text" id="m-deva" style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.5rem;">…</div>
+        </div>
+
+        <div class="audio-control" id="audioContainer"></div>
+      </div>
+    </div>
+
+    <!-- REPLAY MODE (user) -->
+    <div class="card hidden" id="replay">
+      <p class="ask">Stored demos — hear the model answer</p>
+      <div class="demo-grid" id="demoClips"></div>
+      <div class="demo-detail" id="demoDetail">
+        <div id="demoTaskAnswers"></div>
+        <div id="demoAudioContainer"></div>
+      </div>
+      <p class="note" style="margin-top: 1rem;">Want to speak live? Ask the admin to invite your email.</p>
+    </div>
+
+    <!-- HISTORY PANEL (for live users) -->
+    <div class="card hidden" id="historyCard">
+      <button class="history-toggle collapsed" id="historyToggle" aria-expanded="false">
+        <span>Your recent interactions</span>
+        <span id="historyCount" style="color: var(--saffron); font-size: 0.9rem;"></span>
+      </button>
+      <div class="history-section" id="historySection">
+        <div class="history-list" id="historyList"></div>
+      </div>
+    </div>
+
+    <!-- ENDPOINT FALLBACK (dev mode) -->
+    <div class="card hidden" id="endpoint">
+      <p class="note">Auth is not configured yet. Dev mode: point at a running server.</p>
+      <div class="form-group" style="margin-top: 1rem;">
+        <input class="form-input" id="api" placeholder="https://your-alm-server" aria-label="Backend server URL">
+      </div>
+    </div>
+
+    <footer>
+      <a href="https://sharathsphd.github.io/pranava/">About</a> ·
+      <a href="https://github.com/SharathSPhD/pranava">Code</a> ·
+      <a href="https://github.com/SharathSPhD/pranava/blob/master/NSM.md">Architecture</a>
+    </footer>
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar" id="statusBar">
+    <div class="status-item">
+      <span class="status-indicator ok" id="statusHealth"></span>
+      <span id="statusModel">Model: …</span>
+    </div>
+    <div class="status-item">
+      <span id="statusLatency">Latency: —</span>
     </div>
   </div>
-
-  <!-- REPLAY (user) -->
-  <div class="card hidden" id="replay">
-    <p class="ask">Stored demos — hear the model answer</p>
-    <div class="replay" id="demos"></div>
-    <div class="answer" id="ranswer">
-      <div class="meta"><span id="r-task"></span><span id="r-gold"></span></div>
-      <div class="txt" id="r-txt">…</div>
-      <div class="playing" id="r-play"></div>
-    </div>
-    <p class="note" style="margin-top:.8rem">Want to speak with it live? Ask the admin to invite your email.</p>
-  </div>
-
-  <!-- ENDPOINT fallback (no Supabase configured) -->
-  <div class="card hidden" id="endpoint">
-    <p class="note">Auth is not configured yet. Dev mode: point at a running server and speak.</p>
-    <input class="in" id="api" placeholder="https://your-alm-server" style="margin-top:.6rem">
-  </div>
-
-  <footer>
-    <a href="https://sharathsphd.github.io/pranava/">About</a> ·
-    <a href="https://github.com/SharathSPhD/pranava">Code</a> ·
-    <a href="https://github.com/SharathSPhD/pranava/blob/master/NSM.md">Architecture</a>
-  </footer>
 
 <script type="module">
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-const $=id=>document.getElementById(id);
-const CFG=window.PRANAVA_CONFIG||{};
-const TASKS=[["transcribe","transcribe it"],["kriya","name the action"],["karta","name the agent"],
-  ["karma","name the object"],["karana","name the means"],["language","name the language"]];
-let task="transcribe", sb=null, gateway="";
 
-// task chips
-const tasksEl=$('tasks');
-TASKS.forEach(([k,label],i)=>{const b=document.createElement('button');b.className='chip'+(i===0?' on':'');
-  b.textContent=label;b.onclick=()=>{task=k;[...tasksEl.children].forEach(c=>c.classList.toggle('on',c===b));};
-  tasksEl.appendChild(b);});
+const $ = id => document.getElementById(id);
+const CFG = window.PRANAVA_CONFIG || {};
 
-function show(id,on=true){ $(id).classList.toggle('hidden',!on); }
+const TASKS = [
+  { key: "transcribe", label: "transcribe", deva: "लेखन", meaning: "write it out" },
+  { key: "kriya", label: "kriya", deva: "क्रिया", meaning: "name the action" },
+  { key: "karta", label: "karta", deva: "कर्ता", meaning: "name the agent" },
+  { key: "karma", label: "karma", deva: "कर्म", meaning: "name the object" },
+  { key: "karana", label: "karana", deva: "करण", meaning: "name the means" },
+  { key: "language", label: "language", deva: "भाषा", meaning: "name the language" },
+];
 
-// ---- no Supabase configured → endpoint dev mode (never regress to broken) ----
-if(!CFG.SUPABASE_URL||!CFG.SUPABASE_ANON_KEY){
-  show('endpoint'); show('live');
-  const api=()=>($('api').value.trim().replace(/\/$/,'')||location.origin);
-  wireLive(()=>api());
+let task = "transcribe";
+let sb = null;
+let gateway = "";
+let session = null;
+let recordingStartTime = 0;
+let audioAnalyser = null;
+let animationId = null;
+let lastLatency = 0;
+let backendHealth = false;
+
+// SLP1 to Devanagari transliterator (deterministic, handles vowel diacritics + consonant clusters)
+function slp1ToDeva(slp1) {
+  if (!slp1) return slp1;
+
+  const CONSONANTS = new Set("kKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzsh");
+  const VOWELS = new Set("aAiIuUfFxXeEoO");
+  const MODIFIERS = new Set("M_H~");
+
+  const CONS_MAP = {
+    "k": "क", "K": "ख", "g": "ग", "G": "घ", "N": "ङ",
+    "c": "च", "C": "छ", "j": "ज", "J": "झ", "Y": "ञ",
+    "w": "ट", "W": "ठ", "q": "ड", "Q": "ढ", "R": "ण",
+    "t": "त", "T": "थ", "d": "द", "D": "ध", "n": "न",
+    "p": "प", "P": "फ", "b": "ब", "B": "भ", "m": "म",
+    "y": "य", "r": "र", "l": "ल", "v": "व",
+    "S": "ष", "z": "ष", "s": "स", "h": "ह",
+  };
+
+  const VOWEL_MAP = {
+    "a": "", "A": "ा", "i": "ि", "I": "ी", "u": "ु", "U": "ू",
+    "f": "ृ", "F": "ॄ", "x": "ॢ", "X": "ॣ", "e": "े", "E": "ै", "o": "ो", "O": "ौ",
+  };
+
+  const MODIFIER_MAP = {
+    "M": "ं", "H": "ः", "_": "्", "~": "ँ",
+  };
+
+  let result = "";
+  let i = 0;
+
+  while (i < slp1.length) {
+    const ch = slp1[i];
+
+    if (CONSONANTS.has(ch)) {
+      result += CONS_MAP[ch] || ch;
+      i++;
+
+      if (i < slp1.length && VOWELS.has(slp1[i])) {
+        const vowel = slp1[i];
+        result += VOWEL_MAP[vowel];
+        i++;
+      } else if (i < slp1.length && CONSONANTS.has(slp1[i])) {
+        result += "्"; // virama before next consonant
+      } else if (i === slp1.length) {
+        result += "्"; // virama for word-final consonant
+      }
+    } else if (MODIFIERS.has(ch)) {
+      // Remove virama if modifier follows
+      if (result.endsWith("्")) {
+        result = result.slice(0, -1);
+      }
+      result += MODIFIER_MAP[ch];
+      i++;
+    } else {
+      result += ch;
+      i++;
+    }
+  }
+
+  return result;
+}
+
+// Initialize task cards
+function initTasks() {
+  const grid = $("taskGrid");
+  grid.innerHTML = "";
+  TASKS.forEach((t, idx) => {
+    const card = document.createElement("button");
+    card.className = "task-card" + (idx === 0 ? " active" : "");
+    card.innerHTML = `
+      <div class="task-deva">${t.deva}</div>
+      <div class="task-label">${t.key}</div>
+      <div class="task-meaning">${t.meaning}</div>
+    `;
+    card.onclick = () => {
+      task = t.key;
+      [...grid.children].forEach(c => c.classList.toggle("active", c === card));
+    };
+    grid.appendChild(card);
+  });
+}
+
+// Waveform visualization
+function initWaveform() {
+  const canvas = $("waveformCanvas");
+  const container = $("waveformContainer");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  canvas.width = container.offsetWidth - 24;
+  canvas.height = 100;
+
+  function drawWaveform(analyser) {
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    analyser.getByteFrequencyData(dataArray);
+
+    ctx.fillStyle = "rgba(14, 16, 32, 1)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#E8A13A";
+    const barWidth = (canvas.width / bufferLength) * 2.5;
+    let x = 0;
+
+    for (let i = 0; i < bufferLength; i++) {
+      const barHeight = (dataArray[i] / 255) * canvas.height;
+      ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+      x += barWidth + 1;
+    }
+
+    animationId = requestAnimationFrame(() => drawWaveform(analyser));
+  }
+
+  return drawWaveform;
+}
+
+const drawWaveform = initWaveform();
+
+// Fetch backend health
+async function updateStatus() {
+  if (!gateway) {
+    setStatusIndicator("health", "error");
+    return;
+  }
+  try {
+    const r = await fetch(gateway.replace(/\/$/, "") + "/health");
+    if (!r.ok) throw new Error("Health check failed");
+    const data = await r.json();
+    backendHealth = true;
+    setStatusIndicator("health", "ok");
+    const modelName = data.model || "Unknown model";
+    $("statusModel").textContent = `Model: ${modelName.substring(0, 40)}`;
+  } catch (e) {
+    backendHealth = false;
+    setStatusIndicator("health", "error");
+    $("statusModel").textContent = "Model: offline";
+  }
+}
+
+function setStatusIndicator(id, state) {
+  const indicator = document.querySelector(`#status${id.charAt(0).toUpperCase() + id.slice(1)} .status-indicator`);
+  if (indicator) {
+    indicator.className = "status-indicator " + state;
+  }
+}
+
+function setLatency(ms) {
+  lastLatency = ms;
+  $("statusLatency").textContent = `Latency: ${ms}ms`;
+}
+
+function show(id, on = true) {
+  $(id).classList.toggle("hidden", !on);
+}
+
+// Main routing
+async function boot() {
+  const { data: { session: s } } = await sb.auth.getSession();
+  sb.auth.onAuthStateChange((_e, s) => route(s));
+  route(s);
+
+  $("sendlink").onclick = async () => {
+    const email = $("email").value.trim();
+    if (!email) return;
+    const { error } = await sb.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: location.href }
+    });
+    $("loginmsg").textContent = error ? ("Error: " + error.message) : ("Check " + email + " for a sign-in link.");
+  };
+
+  $("signout").onclick = async () => {
+    await sb.auth.signOut();
+    location.reload();
+  };
+
+  $("invite").onclick = async () => {
+    const g = $("guest").value.trim();
+    if (!g) return;
+    const { data, error } = await sb.rpc("invite_guest", { guest_email: g });
+    $("adminmsg").textContent = error ? ("Error: " + error.message) : ("Invited " + g + " — they get live access on sign-in.");
+  };
+}
+
+async function route(s) {
+  ["login", "admin", "live", "replay", "historyCard"].forEach(x => show(x, false));
+  if (!s) {
+    show("login");
+    show("bar", false);
+    return;
+  }
+
+  session = s;
+  show("bar");
+  $("who").textContent = s.user.email;
+
+  // Get tier
+  let tier = "user";
+  const { data } = await sb.from("user_tiers").select("tier").eq("user_id", s.user.id).maybeSingle();
+  if (data && data.tier) tier = data.tier;
+  const tg = $("tier");
+  tg.textContent = tier;
+  tg.className = "tag " + tier;
+
+  if (tier === "admin" || tier === "guest") {
+    if (tier === "admin") show("admin");
+    const { data: cfg } = await sb.from("runtime_config").select("value").eq("key", "alm_gateway_url").maybeSingle();
+    gateway = (cfg && cfg.value) || "";
+    show("live");
+    show("historyCard");
+    updateStatus();
+    setInterval(updateStatus, 30000);
+    $("hint").textContent = gateway ? "Tap to record · then it answers aloud" : "Backend offline — ask admin to start tunnel";
+    wireLive(s);
+  } else {
+    show("replay");
+    loadReplay();
+  }
+}
+
+// LIVE MODE
+function wireLive(s) {
+  async function send(blob) {
+    const base = gateway;
+    if (!base) {
+      $("hint").textContent = "No live backend available.";
+      showError("Backend is offline. Ask the admin to start the tunnel.");
+      return;
+    }
+
+    const t0 = Date.now();
+    show("answer", false);
+    $("recordingStatus").textContent = "listening…";
+    $("hint").textContent = "processing…";
+
+    try {
+      const r = await fetch(base.replace(/\/$/, "") + "/speak?task=" + task, {
+        method: "POST",
+        body: blob,
+      });
+
+      const ms = Date.now() - t0;
+      setLatency(ms);
+
+      const ct = r.headers.get("content-type") || "";
+      let text = decodeURIComponent(escape(r.headers.get("X-Transcript") || "")) || "(no answer)";
+      const lang = r.headers.get("X-Language") || "?";
+
+      // Clean up encoding artifacts
+      text = text.replace(/Â/g, "").replace(/â/g, "");
+
+      $("m-txt").textContent = task; // Use for reference
+      $("m-lang").textContent = lang;
+      $("m-ms").textContent = ms + " ms";
+      $("m-slp1").textContent = text;
+
+      // Transliterate to Devanagari
+      const devaText = slp1ToDeva(text);
+      $("m-deva").textContent = devaText;
+
+      const audioContainer = $("audioContainer");
+      audioContainer.innerHTML = "";
+
+      // Input audio player
+      if (blob.type.includes("audio")) {
+        const inputAudio = new Audio(URL.createObjectURL(blob));
+        const inputDiv = document.createElement("div");
+        inputDiv.className = "audio-item";
+        inputDiv.innerHTML = `<span class="audio-label">Your voice</span>`;
+        const audioEl = document.createElement("audio");
+        audioEl.controls = true;
+        audioEl.src = URL.createObjectURL(blob);
+        inputDiv.appendChild(audioEl);
+        audioContainer.appendChild(inputDiv);
+      }
+
+      // Output audio player
+      if (ct.includes("audio")) {
+        const b = await r.blob();
+        const outputDiv = document.createElement("div");
+        outputDiv.className = "audio-item";
+        outputDiv.innerHTML = `<span class="audio-label">Model answers</span>`;
+        const audioEl = document.createElement("audio");
+        audioEl.controls = true;
+        audioEl.src = URL.createObjectURL(b);
+        outputDiv.appendChild(audioEl);
+        audioContainer.appendChild(outputDiv);
+
+        // Auto-play the model's answer
+        setTimeout(() => audioEl.play(), 300);
+      }
+
+      show("answer");
+
+      // Log to history
+      if (s) {
+        await sb.from("speak_history").insert({
+          user_id: s.user.id,
+          task,
+          answer: text,
+          lang,
+        });
+        loadHistory();
+      }
+
+      $("recordingStatus").textContent = "";
+      $("hint").textContent = "Tap to record again";
+    } catch (e) {
+      showError("Could not reach the live backend. Is the tunnel running?");
+      $("recordingStatus").textContent = "";
+      $("hint").textContent = "Tap to record again";
+    }
+  }
+
+  $("file").onchange = e => {
+    if (e.target.files[0]) send(e.target.files[0]);
+  };
+
+  let rec, chunks = [];
+  const micBtn = $("mic");
+
+  micBtn.onclick = async () => {
+    if (rec && rec.state === "recording") {
+      rec.stop();
+      return;
+    }
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      rec = new MediaRecorder(stream);
+      chunks = [];
+
+      const waveformContainer = $("waveformContainer");
+      const canvas = $("waveformCanvas");
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const source = audioContext.createMediaStreamSource(stream);
+      audioAnalyser = audioContext.createAnalyser();
+      source.connect(audioAnalyser);
+
+      rec.ondataavailable = e => chunks.push(e.data);
+      rec.onstop = () => {
+        send(new Blob(chunks, { type: "audio/webm" }));
+        stream.getTracks().forEach(t => t.stop());
+        micBtn.classList.remove("recording");
+        micBtn.setAttribute("aria-pressed", "false");
+        micBtn.textContent = "🎙";
+        waveformContainer.classList.remove("active");
+        if (animationId) cancelAnimationFrame(animationId);
+        $("recordingStatus").textContent = "";
+      };
+
+      rec.start();
+      recordingStartTime = Date.now();
+      micBtn.classList.add("recording");
+      micBtn.setAttribute("aria-pressed", "true");
+      micBtn.textContent = "⏹";
+      $("recordingStatus").textContent = "Recording…";
+      $("hint").textContent = "Recording — tap to stop";
+
+      // Start waveform visualization
+      waveformContainer.classList.add("active");
+      if (drawWaveform) drawWaveform(audioAnalyser);
+    } catch (e) {
+      showError("Microphone access denied. Try using the file picker instead.");
+      $("hint").textContent = "Microphone blocked — use the file picker";
+    }
+  };
+}
+
+// HISTORY
+async function loadHistory() {
+  if (!session) return;
+
+  const { data: items } = await sb.from("speak_history")
+    .select("*")
+    .eq("user_id", session.user.id)
+    .order("created_at", { ascending: false })
+    .limit(20);
+
+  const historyList = $("historyList");
+  historyList.innerHTML = "";
+
+  if (!items || items.length === 0) {
+    historyList.innerHTML = "<p class='note'>No recorded interactions yet.</p>";
+    return;
+  }
+
+  $("historyCount").textContent = `(${items.length})`;
+
+  items.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "history-item";
+    const taskObj = TASKS.find(t => t.key === item.task);
+    const taskLabel = taskObj ? taskObj.deva : item.task;
+    const time = new Date(item.created_at).toLocaleString();
+    div.innerHTML = `
+      <div class="history-task">${item.task}</div>
+      <div class="history-answer">${(item.answer || "").substring(0, 100)}</div>
+      <div class="history-time">${time}</div>
+    `;
+    historyList.appendChild(div);
+  });
+}
+
+$("historyToggle").onclick = (e) => {
+  const btn = e.target.closest(".history-toggle");
+  const section = $("historySection");
+  const isOpen = btn.classList.contains("collapsed");
+  btn.classList.toggle("collapsed");
+  btn.setAttribute("aria-expanded", isOpen);
+  section.classList.toggle("open", isOpen);
+  if (isOpen) loadHistory();
+};
+
+// REPLAY
+async function loadReplay() {
+  let items = [];
+  try {
+    items = await (await fetch("demo/demo.json")).json();
+  } catch (e) {}
+
+  const clipsContainer = $("demoClips");
+  clipsContainer.innerHTML = "";
+
+  if (!items.length) {
+    clipsContainer.innerHTML = "<p class='note' style='grid-column: 1/-1;'>Demo artifacts are being prepared.</p>";
+    return;
+  }
+
+  // Group by clip_id
+  const byClip = {};
+  items.forEach(it => {
+    if (!byClip[it.clip_id]) byClip[it.clip_id] = [];
+    byClip[it.clip_id].push(it);
+  });
+
+  Object.keys(byClip).sort().forEach((clipId, idx) => {
+    const clip = document.createElement("button");
+    clip.className = "demo-clip" + (idx === 0 ? " active" : "");
+    const firstItem = byClip[clipId][0];
+    const preview = (firstItem.answer || "").substring(0, 20) + "…";
+    clip.innerHTML = `
+      <div class="demo-clip-id">clip ${clipId}</div>
+      <div class="demo-clip-preview">${preview}</div>
+    `;
+    clip.onclick = () => {
+      [...clipsContainer.children].forEach(c => c.classList.remove("active"));
+      clip.classList.add("active");
+      showDemoDetail(clipId, byClip[clipId]);
+    };
+    clipsContainer.appendChild(clip);
+  });
+
+  // Show first clip by default
+  if (items.length > 0) showDemoDetail(items[0].clip_id, byClip[items[0].clip_id]);
+}
+
+function showDemoDetail(clipId, items) {
+  const detail = $("demoDetail");
+  const tasksDiv = $("demoTaskAnswers");
+  const audioDiv = $("demoAudioContainer");
+
+  tasksDiv.innerHTML = "";
+  audioDiv.innerHTML = "";
+
+  // Group by task
+  const byTask = {};
+  items.forEach(it => {
+    if (!byTask[it.task]) byTask[it.task] = [];
+    byTask[it.task].push(it);
+  });
+
+  // Show tasks
+  Object.keys(byTask).forEach(taskKey => {
+    const taskItems = byTask[taskKey];
+    const taskObj = TASKS.find(t => t.key === taskKey);
+    taskItems.forEach(it => {
+      const div = document.createElement("div");
+      div.className = "demo-task-answer";
+      const deva = slp1ToDeva(it.answer || "");
+      div.innerHTML = `
+        <div class="demo-task-label">${taskKey}</div>
+        ${it.gold ? `<div class="demo-gold">Gold: ${it.gold}</div>` : ""}
+        <div class="demo-answer" style="margin-bottom: 0.4rem;">${(it.answer || "").substring(0, 150)}</div>
+        <div class="demo-answer" style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.2rem;">${deva}</div>
+      `;
+      tasksDiv.appendChild(div);
+    });
+  });
+
+  // Show audio
+  const firstItem = items[0];
+  if (firstItem.audio_in) {
+    const inDiv = document.createElement("div");
+    inDiv.className = "audio-item";
+    inDiv.innerHTML = `<span class="audio-label">Input</span>`;
+    const audioEl = document.createElement("audio");
+    audioEl.controls = true;
+    audioEl.src = firstItem.audio_in;
+    inDiv.appendChild(audioEl);
+    audioDiv.appendChild(inDiv);
+  }
+
+  if (firstItem.audio_out) {
+    const outDiv = document.createElement("div");
+    outDiv.className = "audio-item";
+    outDiv.innerHTML = `<span class="audio-label">Output</span>`;
+    const audioEl = document.createElement("audio");
+    audioEl.controls = true;
+    audioEl.src = firstItem.audio_out;
+    outDiv.appendChild(audioEl);
+    audioDiv.appendChild(outDiv);
+  }
+
+  detail.classList.add("show");
+}
+
+function showError(msg) {
+  const existing = document.querySelector(".error-message");
+  if (existing) existing.remove();
+  const div = document.createElement("div");
+  div.className = "error-message";
+  div.textContent = msg;
+  $("live").appendChild(div);
+  setTimeout(() => div.remove(), 5000);
+}
+
+// BOOT
+if (!CFG.SUPABASE_URL || !CFG.SUPABASE_ANON_KEY) {
+  show("endpoint");
+  show("live");
+  initTasks();
+
+  const getApi = () => ($("api").value.trim().replace(/\/$/, "") || location.origin);
+  gateway = getApi();
+
+  $("api").oninput = () => {
+    gateway = getApi();
+  };
+
+  wireLive(null);
 } else {
-  sb=createClient(CFG.SUPABASE_URL,CFG.SUPABASE_ANON_KEY);
+  sb = createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY);
+  initTasks();
   boot();
 }
 
-async function boot(){
-  const {data:{session}}=await sb.auth.getSession();
-  sb.auth.onAuthStateChange((_e,s)=>route(s));
-  route(session);
-  $('sendlink').onclick=async()=>{
-    const email=$('email').value.trim(); if(!email)return;
-    const {error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:location.href}});
-    $('loginmsg').textContent=error?('Error: '+error.message):('Check '+email+' for a sign-in link.');
-  };
-  $('signout').onclick=async()=>{await sb.auth.signOut();location.reload();};
-  $('invite').onclick=async()=>{
-    const g=$('guest').value.trim(); if(!g)return;
-    const {data,error}=await sb.rpc('invite_guest',{guest_email:g});
-    $('adminmsg').textContent=error?('Error: '+error.message):('Invited '+g+' — they get live access on sign-in.');
-  };
-}
+// Initialize status
+updateStatus();
 
-async function route(session){
-  ['login','admin','live','replay'].forEach(x=>show(x,false));
-  if(!session){ show('login'); show('bar',false); return; }
-  show('bar'); $('who').textContent=session.user.email;
-  // tier
-  let tier='user';
-  const {data}=await sb.from('user_tiers').select('tier').eq('user_id',session.user.id).maybeSingle();
-  if(data&&data.tier) tier=data.tier;
-  const tg=$('tier'); tg.textContent=tier; tg.className='tag '+tier;
-  if(tier==='admin'||tier==='guest'){
-    if(tier==='admin') show('admin');
-    // live gateway URL from runtime_config
-    const {data:cfg}=await sb.from('runtime_config').select('value').eq('key','alm_gateway_url').maybeSingle();
-    gateway=(cfg&&cfg.value)||"";
-    show('live');
-    $('hint').textContent=gateway?'Tap to record · then it answers aloud':'Live backend offline — admin must start the tunnel';
-    wireLive(()=>gateway, session);
-  } else {
-    show('replay'); loadReplay();
-  }
-}
-
-// ---- LIVE: record → /speak on the gateway → play spoken answer ----
-function wireLive(getBase, session){
-  async function send(blob){
-    const base=getBase(); if(!base){ $('hint').textContent='No live backend available.'; return; }
-    $('answer').classList.add('show'); $('m-txt').textContent='…'; $('m-play').textContent=''; $('m-task').textContent=task;
-    $('hint').textContent='listening…';
-    try{
-      const r=await fetch(base.replace(/\/$/,'')+'/speak?task='+task,{method:'POST',body:blob});
-      const ct=r.headers.get('content-type')||'';
-      const t=decodeURIComponent(escape(r.headers.get('X-Transcript')||''))||'(no answer)';
-      $('m-txt').textContent=t; $('m-lang').textContent=r.headers.get('X-Language')||'?';
-      $('m-ms').textContent=(r.headers.get('X-Ms')||'?')+' ms';
-      if(ct.includes('audio')){const b=await r.blob();const a=new Audio(URL.createObjectURL(b));
-        $('m-play').textContent='▶ playing the answer…';a.onended=()=>$('m-play').textContent='';a.play();}
-      if(sb&&session) sb.from('speak_history').insert({user_id:session.user.id,task,answer:t,lang:r.headers.get('X-Language')});
-      $('hint').textContent='tap to record again';
-    }catch(e){ $('m-txt').textContent=''; $('hint').textContent='could not reach the live backend'; }
-  }
-  $('file').onchange=e=>{ if(e.target.files[0]) send(e.target.files[0]); };
-  let rec,chunks=[];
-  $('mic').onclick=async()=>{const b=$('mic');
-    if(rec&&rec.state==='recording'){rec.stop();return;}
-    try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-      rec=new MediaRecorder(stream);chunks=[];rec.ondataavailable=e=>chunks.push(e.data);
-      rec.onstop=()=>{send(new Blob(chunks,{type:'audio/webm'}));stream.getTracks().forEach(t=>t.stop());
-        b.classList.remove('on');b.textContent='🎙';};
-      rec.start();b.classList.add('on');b.textContent='⏹';$('hint').textContent='recording — tap to stop';
-    }catch(e){$('hint').textContent='microphone blocked — use the file picker';}};
-}
-
-// ---- REPLAY: stored demo artifacts (static demo/demo.json) ----
-async function loadReplay(){
-  let items=[];
-  try{ items=await (await fetch('demo/demo.json')).json(); }catch(e){}
-  const g=$('demos'); g.innerHTML='';
-  const label={transcribe:'transcribe',kriya:'action',karta:'agent',karma:'object'};
-  items.forEach(it=>{const d=document.createElement('div');d.className='demo';
-    d.innerHTML=`<div class="t">${label[it.task]||it.task}</div><div class="a">${(it.answer||'').replace(/</g,'&lt;')}</div>`;
-    d.onclick=()=>{$('ranswer').classList.add('show');$('r-task').textContent=it.task;
-      $('r-gold').textContent='gold: '+(it.gold||'');$('r-txt').textContent=it.answer||'';
-      const a=new Audio(it.audio_out);$('r-play').textContent='▶ playing…';a.onended=()=>$('r-play').textContent='';a.play();};
-    g.appendChild(d);});
-  if(!items.length) $('demos').innerHTML='<p class="note">Demo artifacts are being prepared.</p>';
-}
 </script>
 </body>
 </html>

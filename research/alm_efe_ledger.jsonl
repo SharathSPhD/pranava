@@ -11,3 +11,4 @@
 {"kind": "observation", "candidate_id": "nsm_layer_c", "result": "gold-free pramana gate; ascertained 0.40 acc vs rejected 0.0 (rejections 100% precise); high-precision low-recall", "tier": 2, "gate": "NC"}
 {"kind": "observation", "candidate_id": "lora_1b_5090", "result": "1.13B Megatron core + projector on multilingual corpus, RTX 5090: CER 0.682 vs 200M+LoRA 0.742 (scale helps); projector-only, LoRA-on-Megatron is next", "tier": 2, "gate": "SC"}
 {"kind": "observation", "candidate_id": "alm_vs_alm", "result": "genuine apples-to-apples: 200M specialist 0.565 CER vs Qwen2-Audio-7B 15.86 (1 identical hallucination for all 58 clips, doesn't attend to audio); caught+fixed a fabricated 1.0", "tier": 2, "gate": "AA"}
+{"kind": "proposal", "candidate_id": "xl_corpus", "action": "smoke", "efe": -3.7361, "objective": "fair cer_norm (alm_vs_alm.json), beat Voxtral 0.187", "campaign": "2026-07-18 level-up"}
