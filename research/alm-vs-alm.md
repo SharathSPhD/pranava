@@ -1,5 +1,33 @@
 # Apples-to-apples — Śabda-ALM vs open audio language models
 
+## Update (2026-07-18, later): the specialist NOW TOPS the fair leaderboard — honestly
+After the correction below exposed the two harness bugs, the campaign fixed the real deficits it
+revealed (16× training data from PSALM's full gold-kāraka fixture; EOS-weighted instruct training;
+LoRA on the fully-trained 1.13B Megatron core; gradient clipping) — and re-entered the same fair
+benchmark: identical frozen 58-clip val, free greedy decode, 64-byte budget, stop at the model's own
+EOS, no oracle, per-clip records, host-side normalized scoring identical for every model.
+
+| model | cer_norm | cer_raw |
+|---|---|---|
+| **Śabda-ALM 1.13B+LoRA XL (ours)** | **0.0759** | **0.081** |
+| Voxtral-Mini-3B-2507 | 0.187 | 0.948 |
+| Qwen2.5-Omni-3B Thinker | 0.213 | 6.764\* |
+| Qwen2-Audio-7B-Instruct | 0.431 | 0.649 |
+
+Trained on 3,207 clips (partial XL corpus), 2 epochs, 0.48 GPU-hours on an RTX 5090 (screen tier,
+single seed; confirm tier on the full ~10k-clip corpus follows). Per-clip predictions:
+`data/benchmark/alm_vs_alm_records.json`; metrics `data/alm/xl1b_metrics.json`; checkpoint
+`data/alm/xl1b_ckpt.pt` (best-by-val, epoch 1).
+
+**Honest caveats.** (1) The val clips are synthesized with the same indic-parler-tts voice as the
+training corpus — in-distribution for the specialist, out-of-distribution for the generalists; every
+model hears identical audio, but this benchmark measures *this corpus*, not general Sanskrit ASR.
+(2) Screen tier = one seed. (3) The 200M free-decode numbers below stand unchanged — scale + data +
+EOS training is what closed the gap, exactly the deficits the correction identified. The trajectory:
+1.82 (free, broken EOS) → 1.03 (instruct EOS) → 0.46 (1B smoke, 542 clips) → **0.076** (1B screen,
+3.2k clips). During training we also caught a live batch-1 Adam divergence (loss 0.31→2.3/step) —
+fixed with grad clipping 1.0; the failed run is in the ledger, not hidden.
+
 ## Correction (2026-07-18) — the earlier result here was wrong
 The previously committed conclusion — *"the 200M specialist Śabda-ALM (CER 0.565) decisively beats 7B
 Qwen2-Audio (CER 15.86), 28×, because the generalist can't do Sanskrit and ignores the audio"* — does
