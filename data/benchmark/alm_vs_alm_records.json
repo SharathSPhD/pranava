@@ -2457,17 +2457,17 @@
     },
     {
       "id": "u00012",
-      "pred": "naraH gfhe paWet",
+      "pred": "naraH gfham paWet",
       "gold": "naraH gfham paWet",
-      "cer_raw": 0.1176,
-      "cer_norm": 0.1111
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00030",
-      "pred": "vidye bAle aBavatAm",
+      "pred": "vidye aBavatAm",
       "gold": "vidye bAle aBavatAm",
-      "cer_raw": 0.0,
-      "cer_norm": 0.0
+      "cer_raw": 0.2632,
+      "cer_norm": 0.25
     },
     {
       "id": "u00045",
@@ -2492,17 +2492,17 @@
     },
     {
       "id": "u00067",
-      "pred": "sitAH gurO jalam KAdanti",
+      "pred": "sitAH guruRA jalam KAdanti",
       "gold": "sitAH guruRA jalam KAdanti",
-      "cer_raw": 0.1154,
-      "cer_norm": 0.1111
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00074",
-      "pred": "aSvaH bAlena KAdizyati",
+      "pred": "aSvaH bAle KAdizyati",
       "gold": "aSvaH bAlena KAdizyati",
-      "cer_raw": 0.0,
-      "cer_norm": 0.0
+      "cer_raw": 0.0909,
+      "cer_norm": 0.087
     },
     {
       "id": "u00087",
@@ -2520,38 +2520,38 @@
     },
     {
       "id": "u00110",
-      "pred": "bAlaH sitAyAm apaSyat",
+      "pred": "bAlO sitAyAm asataH",
       "gold": "bAlO sitAyAm vasetAm",
-      "cer_raw": 0.45,
-      "cer_norm": 0.2857
+      "cer_raw": 0.2,
+      "cer_norm": 0.1429
     },
     {
       "id": "u00115",
-      "pred": "guruH rAme jalam paWet",
+      "pred": "gfham rAme jalam paWet",
       "gold": "guruH rAme jalam paWet",
+      "cer_raw": 0.1818,
+      "cer_norm": 0.1739
+    },
+    {
+      "id": "u00122",
+      "pred": "kanyA nadyE jalam adatta",
+      "gold": "kanyA nadyE jalam adatta",
       "cer_raw": 0.0,
       "cer_norm": 0.0
     },
     {
-      "id": "u00122",
-      "pred": "kanyA nadyA jalam adadata",
-      "gold": "kanyA nadyE jalam adatta",
-      "cer_raw": 0.125,
-      "cer_norm": 0.12
-    },
-    {
       "id": "u00129",
-      "pred": "vidyA guruRA KAdet",
+      "pred": "vidyA gurO KAdet",
       "gold": "vidyA gurO KAdet",
-      "cer_raw": 0.1875,
-      "cer_norm": 0.1667
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00189",
-      "pred": "nadyaSvAya jalam dadIyate",
+      "pred": "nadyaSvAya jalam dadIta",
       "gold": "nadyaSvAya jalam dadIta",
-      "cer_raw": 0.1304,
-      "cer_norm": 0.1304
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00191",
@@ -2562,10 +2562,10 @@
     },
     {
       "id": "u00204",
-      "pred": "sitAH rAmeRa jalam KAdeyuH",
+      "pred": "sitAH rAme jalam KAdeyuH",
       "gold": "sitAH rAmeRa jalam KAdeyuH",
-      "cer_raw": 0.0,
-      "cer_norm": 0.0
+      "cer_raw": 0.0769,
+      "cer_norm": 0.0741
     },
     {
       "id": "u00210",
@@ -2597,10 +2597,10 @@
     },
     {
       "id": "u00239",
-      "pred": "vidyA Pale adatta",
+      "pred": "vidyA Palam avadata",
       "gold": "vidyA Palam avadata",
-      "cer_raw": 0.2632,
-      "cer_norm": 0.25
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00257",
@@ -2611,10 +2611,10 @@
     },
     {
       "id": "u00277",
-      "pred": "sitA bAle jalam aKAdat",
+      "pred": "sitA Pale jalam aKAdat",
       "gold": "sitA Pale jalam aKAdat",
-      "cer_raw": 0.0909,
-      "cer_norm": 0.0833
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00288",
@@ -2625,10 +2625,10 @@
     },
     {
       "id": "u00294",
-      "pred": "vane bAlena pustakam paWataH",
+      "pred": "vane bAlena pustakam KAdataH",
       "gold": "vane bAlena pustakam KAdataH",
-      "cer_raw": 0.1071,
-      "cer_norm": 0.1379
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00296",
@@ -2639,24 +2639,24 @@
     },
     {
       "id": "u00353",
-      "pred": "guruH gfhe paWizyati",
+      "pred": "gfham gfham paWizyati",
       "gold": "guruH gfham paWizyati",
-      "cer_raw": 0.0952,
-      "cer_norm": 0.0909
+      "cer_raw": 0.1905,
+      "cer_norm": 0.1818
     },
     {
       "id": "u00372",
-      "pred": "aSvaH gfhe Bavizyati",
+      "pred": "aSvO gfhe vasizyataH",
       "gold": "aSvaH gfhe Bavizyati",
-      "cer_raw": 0.0,
-      "cer_norm": 0.0
+      "cer_raw": 0.3,
+      "cer_norm": 0.2857
     },
     {
       "id": "u00383",
-      "pred": "rAmAH vidyAm apaSyan",
+      "pred": "rAmAH vidyAm apaWan",
       "gold": "rAmAH vidyAm apaWan",
-      "cer_raw": 0.1053,
-      "cer_norm": 0.1
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00385",
@@ -2667,38 +2667,38 @@
     },
     {
       "id": "u00421",
-      "pred": "jale sitAyAH gacCetAm",
+      "pred": "jale sitayA gacCetAm",
       "gold": "jale sitAyAH gacCetAm",
+      "cer_raw": 0.0952,
+      "cer_norm": 0.0455
+    },
+    {
+      "id": "u00424",
+      "pred": "vidyAH gfhe pustakam adadata",
+      "gold": "vidyA gfhe pustakam adatta",
+      "cer_raw": 0.1154,
+      "cer_norm": 0.1154
+    },
+    {
+      "id": "u00449",
+      "pred": "vidye gfhe pustakam adadAtAm",
+      "gold": "vidye gurave pustakam adadAtAm",
+      "cer_raw": 0.1333,
+      "cer_norm": 0.1
+    },
+    {
+      "id": "u00451",
+      "pred": "rAmAH guroH gacCanti",
+      "gold": "rAmAH guroH gacCanti",
       "cer_raw": 0.0,
       "cer_norm": 0.0
     },
     {
-      "id": "u00424",
-      "pred": "vidyA gfhe pustakam adadAta",
-      "gold": "vidyA gfhe pustakam adatta",
-      "cer_raw": 0.0769,
-      "cer_norm": 0.0769
-    },
-    {
-      "id": "u00449",
-      "pred": "vidye gfhAya pustakam adadAtAm",
-      "gold": "vidye gurave pustakam adadAtAm",
-      "cer_raw": 0.1667,
-      "cer_norm": 0.1333
-    },
-    {
-      "id": "u00451",
-      "pred": "rAmAnyguruH gurum gacCanti",
-      "gold": "rAmAH guroH gacCanti",
-      "cer_raw": 0.4,
-      "cer_norm": 0.381
-    },
-    {
       "id": "u00453",
-      "pred": "rAmAH aSve BaveyuH",
+      "pred": "rAmAH aSvam akurvata",
       "gold": "rAmaH aSvam akuruta",
-      "cer_raw": 0.4737,
-      "cer_norm": 0.4737
+      "cer_raw": 0.1579,
+      "cer_norm": 0.1053
     },
     {
       "id": "u00463",
@@ -2716,10 +2716,10 @@
     },
     {
       "id": "u00467",
-      "pred": "jalAni kanyAyAm Palam dAsyante",
+      "pred": "jalAni kanyAyE Palam dAsyante",
       "gold": "jalAni kanyAyE Palam dAsyante",
-      "cer_raw": 0.069,
-      "cer_norm": 0.0323
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00488",
@@ -2744,59 +2744,59 @@
     },
     {
       "id": "u00507",
-      "pred": "Pale aSve KAdizyataH",
+      "pred": "Pale aSvam KAdizyataH",
       "gold": "Pale aSvam KAdizyataH",
-      "cer_raw": 0.0952,
-      "cer_norm": 0.087
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00509",
-      "pred": "kanyA bAle KAdet",
+      "pred": "kanyA bAlam KAdet",
       "gold": "kanyA bAlam KAdet",
-      "cer_raw": 0.1176,
-      "cer_norm": 0.1111
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00515",
-      "pred": "kanyA naram paSyet",
+      "pred": "kanyASnAt",
       "gold": "kanyA naram apaSyat",
-      "cer_raw": 0.1053,
-      "cer_norm": 0.1053
+      "cer_raw": 0.6316,
+      "cer_norm": 0.5789
     },
     {
       "id": "u00521",
-      "pred": "aSvAH vane dadIran",
+      "pred": "aSvAH vanAya dadIran",
       "gold": "aSvAH vanAya dadIran",
-      "cer_raw": 0.15,
-      "cer_norm": 0.15
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00525",
-      "pred": "gfhARi kanyAyAH Palam agacCan",
+      "pred": "gfhARi kanyayA Palam agacCan",
       "gold": "gfhARi kanyayA Palam agacCan",
-      "cer_raw": 0.0714,
-      "cer_norm": 0.0333
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00530",
-      "pred": "pustake aSve KAdataH",
+      "pred": "pustake aSvam paWataH",
       "gold": "pustake aSvam paWataH",
-      "cer_raw": 0.2381,
-      "cer_norm": 0.2727
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00542",
-      "pred": "aSvaH kanyAyAm jalam datte",
+      "pred": "aSvaH kanyAyE jalam datte",
       "gold": "aSvaH kanyAyE jalam datte",
-      "cer_raw": 0.08,
-      "cer_norm": 0.0385
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00545",
-      "pred": "guruH vane Palam aKAdat",
+      "pred": "guruH vanam aKAdat",
       "gold": "guruH vanam aKAdat",
-      "cer_raw": 0.2778,
-      "cer_norm": 0.3158
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00546",
@@ -2821,17 +2821,17 @@
     },
     {
       "id": "u00557",
-      "pred": "narO kanyAyAm Palam paWataH",
+      "pred": "narO kanyAyAm BavataH",
       "gold": "narO kanyAyAm BavataH",
-      "cer_raw": 0.381,
-      "cer_norm": 0.3913
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00559",
-      "pred": "nadyaH gurO pustakam paWetAm",
+      "pred": "nadyO gfhe pustakam paWetAm",
       "gold": "nadyO gurO pustakam paWetAm",
-      "cer_raw": 0.0741,
-      "cer_norm": 0.0333
+      "cer_raw": 0.1111,
+      "cer_norm": 0.1
     },
     {
       "id": "u00587",
@@ -2842,10 +2842,10 @@
     },
     {
       "id": "u00593",
-      "pred": "rAmaH vidyAyAm Bavati",
+      "pred": "rAmaH vidyAyAm vasati",
       "gold": "rAmaH vidyAyAm vasati",
-      "cer_raw": 0.0952,
-      "cer_norm": 0.1429
+      "cer_raw": 0.0,
+      "cer_norm": 0.0
     },
     {
       "id": "u00599",

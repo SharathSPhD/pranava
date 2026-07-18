@@ -10,12 +10,12 @@
     {
       "model": "Śabda-ALM 1.13B+LoRA XL — free decode (ours)",
       "params": "1.13B core + 0.6B enc (8.4M LoRA)",
-      "alm_type": "specialist (Sanskrit fine-tuned, XL corpus screen tier)",
-      "cer_norm": 0.0759,
-      "cer_raw": 0.081,
+      "alm_type": "specialist (Sanskrit fine-tuned, full 10k-clip XL corpus, confirm tier)",
+      "cer_norm": 0.0392,
+      "cer_raw": 0.0446,
       "n_scored": 58,
       "unique_outputs": 58,
-      "note": "free greedy decode, stop at model EOS, no oracle; trained on 3207 clips (partial XL), 0.48 GPU-h"
+      "note": "free greedy decode, model EOS, no oracle; 9,959 train clips (5.77h), 3ep best-ckpt@ep1, 1.35 GPU-h"
     },
     {
       "model": "Voxtral-Mini-3B-2507 (Mistral, open)",

@@ -9,15 +9,19 @@ EOS, no oracle, per-clip records, host-side normalized scoring identical for eve
 
 | model | cer_norm | cer_raw |
 |---|---|---|
-| **Śabda-ALM 1.13B+LoRA XL (ours)** | **0.0759** | **0.081** |
+| **Śabda-ALM 1.13B+LoRA XL (ours)** | **0.0392** | **0.0446** |
 | Voxtral-Mini-3B-2507 | 0.187 | 0.948 |
 | Qwen2.5-Omni-3B Thinker | 0.213 | 6.764\* |
 | Qwen2-Audio-7B-Instruct | 0.431 | 0.649 |
 
-Trained on 3,207 clips (partial XL corpus), 2 epochs, 0.48 GPU-hours on an RTX 5090 (screen tier,
-single seed; confirm tier on the full ~10k-clip corpus follows). Per-clip predictions:
-`data/benchmark/alm_vs_alm_records.json`; metrics `data/alm/xl1b_metrics.json`; checkpoint
-`data/alm/xl1b_ckpt.pt` (best-by-val, epoch 1).
+**Confirm tier** — trained on the full XL corpus (9,959 train clips / 5.77 h native-Sanskrit TTS from
+PSALM's gold-kāraka fixture; 58-clip val frozen), 3 epochs, best checkpoint by fair val CER at epoch 1
+(epoch 2 overfit to 0.086 — best-ckpt kept ep1), 1.35 GPU-hours on an RTX 5090. **4.8× lower CER than
+the best open ALM (Voxtral 0.187).** Data-scaling curve, all under the identical fair protocol:
+1.82 (free, EOS untrained) → 1.03 (instruct+EOS) → 0.46 (1B, 542 clips) → 0.076 (1B, 3.2k) →
+**0.039 (1B, 10k)**. Per-clip predictions: `data/benchmark/alm_vs_alm_records.json`; metrics
+`data/alm/xl1b_metrics.json`; checkpoint `data/alm/xl1b_ckpt.pt`. Single seed (screen→confirm, not yet
+multi-seed).
 
 **Honest caveats.** (1) The val clips are synthesized with the same indic-parler-tts voice as the
 training corpus — in-distribution for the specialist, out-of-distribution for the generalists; every

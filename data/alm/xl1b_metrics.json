@@ -1,25 +1,30 @@
 {
   "method": "1.13B XL instruct SFT (projector+MegatronLoRA r=16, eos_weight=3.0)",
   "corpus": "speech_corpus_indic_xl",
-  "epochs": 2,
+  "epochs": 3,
   "n_lora_params": 8454144,
-  "n_train_clips": 3207,
+  "n_train_clips": 9959,
   "train_loss_history": [
-    0.1988,
-    0.0609
+    0.1479,
+    0.0415,
+    0.0262
   ],
   "fair_eval_history": [
     {
-      "val_cer_norm_fair": 0.1612,
-      "val_cer_raw_fair": 0.175
+      "val_cer_norm_fair": 0.0543,
+      "val_cer_raw_fair": 0.0551
     },
     {
-      "val_cer_norm_fair": 0.0759,
-      "val_cer_raw_fair": 0.081
+      "val_cer_norm_fair": 0.0392,
+      "val_cer_raw_fair": 0.0446
+    },
+    {
+      "val_cer_norm_fair": 0.0862,
+      "val_cer_raw_fair": 0.0937
     }
   ],
-  "val_cer_norm_fair": 0.0759,
-  "val_cer_raw_fair": 0.081,
+  "val_cer_norm_fair": 0.0862,
+  "val_cer_raw_fair": 0.0937,
   "protocol": "free greedy decode, 64-byte budget, stop at model EOS — no gold-length oracle",
-  "wall_hours": 0.48
+  "wall_hours": 1.35
 }
