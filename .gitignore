@@ -42,3 +42,4 @@ data/alm/_indic_probe.wav
 data/alm/speech_corpus_indic_xl/wav/
 data/alm/speech_corpus_indic_xl/feats/
 data/alm/speech_corpus_indic_xl/shard_*.jsonl
+!docs/paper.pdf
