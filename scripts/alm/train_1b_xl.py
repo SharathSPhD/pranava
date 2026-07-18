@@ -82,7 +82,7 @@ def eval_fair(core, proj, bias, val_rows, dev) -> dict:
             "val_cer_raw_fair": round(float(np.mean(crs)), 4)}
 
 
-def main(epochs: int = 2, lr: float = 2e-4, r: int = 16, eos_weight: float = 3.0,
+def main(epochs: int = 2, lr: float = 1e-4, r: int = 16, eos_weight: float = 3.0,
          per_epoch_extractive: int = 8000) -> int:
     t_start = time.time()
     core = Megatron1BCore().load()
@@ -107,7 +107,8 @@ def main(epochs: int = 2, lr: float = 2e-4, r: int = 16, eos_weight: float = 3.0
         except Exception as e:
             print(f"projector warm-start skipped: {e}", flush=True)
 
-    opt = torch.optim.Adam(list(proj.parameters()) + lora_params, lr=lr)
+    trainable = list(proj.parameters()) + lora_params
+    opt = torch.optim.Adam(trainable, lr=lr)
     w = torch.ones(core.vocab_size, device=dev)
     w[EOS] = eos_weight
     ce = torch.nn.CrossEntropyLoss(weight=w)
@@ -146,6 +147,7 @@ def main(epochs: int = 2, lr: float = 2e-4, r: int = 16, eos_weight: float = 3.0
             opt.zero_grad()
             L = loss_on(ex)
             L.backward()
+            torch.nn.utils.clip_grad_norm_(trainable, 1.0)  # batch-1 Adam diverged without this
             opt.step()
             run += float(L.item())
             if (i + 1) % 1000 == 0:

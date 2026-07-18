@@ -129,7 +129,8 @@ def main(epochs: int = 3, lr: float = 3e-4, r: int = 8, eos_weight: float = 3.0,
         except Exception as e:  # shape mismatch (different encoder) → cold start, honestly reported
             print(f"warm-start skipped: {e}", flush=True)
 
-    opt = torch.optim.Adam(list(proj.parameters()) + lora_params, lr=lr)
+    trainable = list(proj.parameters()) + lora_params
+    opt = torch.optim.Adam(trainable, lr=lr)
     w = torch.ones(core.vocab_size, device=dev)
     w[EOS] = eos_weight  # make 'stop' as learnable as content — the anti-ramble fix
     ce = torch.nn.CrossEntropyLoss(weight=w)
@@ -168,6 +169,7 @@ def main(epochs: int = 3, lr: float = 3e-4, r: int = 8, eos_weight: float = 3.0,
             opt.zero_grad()
             L = loss_on(ex)
             L.backward()
+            torch.nn.utils.clip_grad_norm_(trainable, 1.0)  # batch-1 Adam needs clipping (1B lesson)
             opt.step()
             run += float(L.item())
             if (i + 1) % 2000 == 0:
