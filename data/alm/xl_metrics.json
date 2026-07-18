@@ -1,0 +1,29 @@
+{
+  "method": "XL instruct SFT (projector+LoRA r=8, eos_weight=3.0)",
+  "corpus": "speech_corpus_indic_xl",
+  "epochs": 3,
+  "n_train_clips": 9959,
+  "train_loss_history": [
+    0.0712,
+    0.0353,
+    0.0268
+  ],
+  "fair_eval_history": [
+    {
+      "val_cer_norm_fair": 0.7703,
+      "val_cer_raw_fair": 0.7778
+    },
+    {
+      "val_cer_norm_fair": 0.6242,
+      "val_cer_raw_fair": 0.6275
+    },
+    {
+      "val_cer_norm_fair": 0.9453,
+      "val_cer_raw_fair": 0.9447
+    }
+  ],
+  "val_cer_norm_fair": 0.9453,
+  "val_cer_raw_fair": 0.9447,
+  "protocol": "free greedy decode, 64-byte budget, stop at model EOS — no gold-length oracle",
+  "wall_hours": 0.95
+}
