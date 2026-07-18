@@ -38,3 +38,7 @@ data/alm/*.log
 data/alm/speech_corpus_indic/wav/
 data/alm/speech_corpus_indic/feats/
 data/alm/_indic_probe.wav
+# XL speech corpus — large binaries (manifest.jsonl + datasheet.json stay tracked for provenance)
+data/alm/speech_corpus_indic_xl/wav/
+data/alm/speech_corpus_indic_xl/feats/
+data/alm/speech_corpus_indic_xl/shard_*.jsonl

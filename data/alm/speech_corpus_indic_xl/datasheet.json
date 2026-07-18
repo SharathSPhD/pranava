@@ -1,0 +1,8 @@
+{
+  "n_items": 10017,
+  "n_train": 9959,
+  "n_val": 58,
+  "total_hours": 5.767,
+  "provenance": "v1 corpus (600 items, 58-clip val FROZEN) + expansion shards from the remaining unique sentences of PSALM paninian_v1.jsonl (gold kāraka by construction), same indic-parler-tts voice/protocol",
+  "note": "expansion adds TRAIN only; val is byte-identical to v1 so benchmarks stay comparable"
+}
