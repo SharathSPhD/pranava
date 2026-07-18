@@ -181,7 +181,9 @@ The original paper claimed: under a decodability-trajectory design, speech carri
 
 The autoresearch loop (Expected-Free-Energy selector) proposed tightening the CI via scaling. With a properly crossed 240-item design (8 templates × 6 objects × 8 verbs, valid grouped CV), **the effect vanished** (Δ = −0.001, CI [−0.075, 0.071]). The earlier subset had only 2 templates (degenerate grouped-CV) and context→verb correlations that let the text probe decode early, faking low text-holism.
 
-**Net result (E6/E7):** No speech-vs-text holism difference. Both modalities show late-resolving holism (valid metric); speech does not exceed it (null replicated at power).
+**Net result (E6/E7):** the earlier "speech is more holistic" claim was **falsified** by our own pre-registered scaling replication. No speech-vs-text holism difference survives at power; both modalities show late-resolving holism (valid metric), speech does not exceed it. Our Navya-Nyāya epistemic layer (X1, reusing the *pramāṇa* auditor) independently classifies the retracted claim as **savyabhichāra** (the inconclusive/straying hetu — a correlation that does not survive control) and *satpratipakṣa* (a counterbalanced thesis), matching the empirical verdict. This false-positive-and-correction, surfaced by the autoresearch loop, is reported in full as a methodological result rather than buried.
+
+This ALM work sits atop **Pillar I** — a complete, tested, verse-anchored digital critical edition of the *Vākyapadīya* (M0: 1,797 kārikās with translation, commentary, IAST, morphology, concept graph; no fabricated translations), which supplies the philology and the gold *kāraka* labels the corpus is built from.
 
 This finding is retained here **not as a failure to hide but as evidence of the methodology**: the correction was our own loop's work, and it took rigor to surface it. The discipline of pre-registration + grouped-CV + autoresearch (not just replication) caught a compelling false positive.
 
@@ -226,7 +228,16 @@ We do **not** claim:
 
 ---
 
-## 6. Reproducibility & Gating
+## 6. Limitations
+
+1. **Synthetic, single-voice audio.** The corpus is `indic-parler-tts` Sanskrit (no native human Sanskrit speech is publicly available at scale). The val set shares that voice — in-distribution for the specialist, out-of-distribution for the generalists. Every model hears identical audio, but the benchmark measures *this corpus*, not general Sanskrit ASR; cross-voice and human-speech generalization are unquantified.
+2. **Single seed; screen→confirm, not multi-seed.** The leaderboard number is one training run per tier. Variance is unmeasured; we report the tier honestly (RULES-style: claims only at the tier run).
+3. **The specialist's edge is scale + data + EOS, not the small core.** The 200M model plateaus at 0.624; the win is the 1.13B core with LoRA on the expanded corpus. We do not claim a small-model advantage.
+4. **Steering loads but does not utter.** H-SU2/H-SU3 failed: concept loading into the workspace is real and readback-verified (5.11× control) but does not surface as the spoken word, and the loading that maximizes uptake breaches the *svātantrya* entropy budget. This is a measured workspace, not solved controllable generation.
+5. **Nyāya-at-decode is untested here.** The XL retrain drove *kāraka* exact-match to 0 (a transcription/extraction objective tradeoff), so the guardrail had nothing to bite; its value awaits a *kāraka*-weighted checkpoint.
+6. **The philosophical bridge is human-auditable.** Whether the layer-13 locus *is* paśyantī, or the ALM *is* sphoṭa, is an interpretive claim offered with its evidence — not a proof of Bhartṛhari's metaphysics (see §5).
+
+## 7. Reproducibility & Gating
 
 ### 6.1 Pre-registration
 
@@ -284,7 +295,7 @@ python scripts/alm/p3_nyaya_guardrail.py  # produces data/alm/p3ng_results.json
 
 ---
 
-## 7. Conclusion
+## 8. Conclusion
 
 Pranava delivers:
 

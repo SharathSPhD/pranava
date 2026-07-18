@@ -94,70 +94,72 @@ def decodability_with_fusion(core, samples: list[tuple[torch.Tensor, int, str, s
 
 
 @torch.no_grad()
-def causal_integration(core, samples: list[tuple[torch.Tensor, int, str, str]]) -> dict:
-    """Measure causal integration per layer: ablate audio at layer ℓ, measure text-decodability drop.
+def _text_rep_for_ablation(core, emb: torch.Tensor, n_aud: int, li: int) -> np.ndarray:
+    """Final-layer text-position rep with audio ablated (mean-collapsed) at layer li. Label-independent."""
+    x = emb.to(core.torch_device)
+    if li == 0:
+        x = x.clone()
+        x[:, :n_aud] = x[:, :n_aud].mean(dim=1, keepdim=True)
+    else:
+        for bi in range(li - 1):
+            x = core.model.blocks[bi](x)
+        x = x.clone()
+        x[:, :n_aud] = x[:, :n_aud].mean(dim=1, keepdim=True)
+        for bi in range(li - 1, len(core.model.blocks)):
+            x = core.model.blocks[bi](x)
+    x = core.model.norm_f(x)
+    T = emb.shape[1]
+    if T > n_aud:
+        return x[0, n_aud:].mean(dim=0).detach().float().cpu().numpy()
+    return np.zeros(core.d_model)
 
-    Returns:
-        {
-            "baseline_decodability": float,
-            "integration_by_layer": [float, ...],  # intact - cut for each layer
-            "peak_layer": int,
-        }
-    """
-    labels = np.array([s[2] for s in samples])
+
+@torch.no_grad()
+def collect_ablation_acts(core, samples: list[tuple[torch.Tensor, int, str, str]]):
+    """Run ALL the expensive forward passes ONCE (label-independent).
+
+    Returns (acts_intact (N,d), acts_ablated_by_layer [n_layers × (N,d)], groups (N,)). Permutation
+    testing then re-scores these cached activations with shuffled labels — no re-forwarding (the old
+    code re-ran every ablation forward 101×; the hidden states never depend on the labels)."""
     groups = np.array([s[3] for s in samples])
-    classes, y = np.unique(labels, return_inverse=True)
-
-    # Baseline: intact forward, text-decodability from final layer
-    baseline_acc = decodability_with_fusion(core, samples)
-
-    # Per-layer ablation
+    intact = []
+    for emb, n_aud, _, _ in samples:
+        final = core.features_per_layer(emb)[-1]
+        T = emb.shape[1]
+        intact.append(final[0, n_aud:].mean(dim=0).detach().float().cpu().numpy()
+                      if T > n_aud else np.zeros(core.d_model))
+    acts_intact = np.stack(intact)
     n_layers = len(core.features_per_layer(samples[0][0]))
-    causal = []
-
+    acts_ablated = []
     for li in range(n_layers):
-        # Ablate audio positions at layer li by replacing with mean
-        ablated_reps = []
-        for emb, n_aud, _, _ in samples:
-            # Ablate at layer li
-            x = emb.to(core.torch_device)
-            if li == 0:
-                # Ablate input embeddings: audio positions → mean
-                x = x.clone()
-                x[:, :n_aud] = x[:, :n_aud].mean(dim=1, keepdim=True)
-            else:
-                # Forward to layer li-1, then ablate
-                for bi in range(li - 1):
-                    x = core.model.blocks[bi](x)
-                # Now ablate at output of block li-1
-                x = x.clone()
-                x[:, :n_aud] = x[:, :n_aud].mean(dim=1, keepdim=True)
-                # Continue forward
-                for bi in range(li - 1, len(core.model.blocks)):
-                    x = core.model.blocks[bi](x)
+        acts_ablated.append(np.stack([_text_rep_for_ablation(core, emb, n_aud, li)
+                                      for emb, n_aud, _, _ in samples]))
+    return acts_intact, acts_ablated, groups
 
-            # Extract text-position reps at final layer
-            x = core.model.norm_f(x)
-            T = emb.shape[1]
-            if T > n_aud:
-                text_rep = x[0, n_aud:].mean(dim=0).detach().float().cpu().numpy()
-            else:
-                text_rep = np.zeros(core.d_model)
-            ablated_reps.append(text_rep)
 
-        # Probe on ablated reps
-        acts_ablated = np.stack(ablated_reps)
-        acc_ablated = _grouped_cv_acc(acts_ablated, y, groups) if len(np.unique(y)) >= 2 else float("nan")
-
-        # Integration = baseline - ablated (how much did ablation hurt?)
+def score_integration(acts_intact, acts_ablated, groups, y) -> dict:
+    """Integration_by_layer = decodability(intact) − decodability(cut at ℓ), for given labels y (cheap)."""
+    if len(np.unique(y)) < 2:
+        return {"baseline_decodability": float("nan"),
+                "integration_by_layer": [0.0] * len(acts_ablated), "peak_layer": 0}
+    baseline_acc = _grouped_cv_acc(acts_intact, y, groups)
+    causal = []
+    for acts in acts_ablated:
+        acc_ablated = _grouped_cv_acc(acts, y, groups)
         importance = baseline_acc - (acc_ablated if not np.isnan(acc_ablated) else baseline_acc)
         causal.append(max(0.0, importance))
-
     peak = int(np.argmax(causal)) if causal else 0
+    return {"baseline_decodability": baseline_acc, "integration_by_layer": causal, "peak_layer": peak}
+
+
+@torch.no_grad()
+def causal_integration(core, samples: list[tuple[torch.Tensor, int, str, str]]) -> dict:
+    """Convenience wrapper: collect (once) + score with the true labels."""
+    labels = np.array([s[2] for s in samples])
+    _, y = np.unique(labels, return_inverse=True)
+    acts_intact, acts_ablated, groups = collect_ablation_acts(core, samples)
     return {
-        "baseline_decodability": baseline_acc,
-        "integration_by_layer": causal,
-        "peak_layer": peak,
+        **score_integration(acts_intact, acts_ablated, groups, y),
     }
 
 
@@ -206,23 +208,20 @@ def main(n_clips: int = 100, n_permutations: int = 100, min_per_class: int = 6) 
             emb = torch.cat([audio_tok, core.embed_tokens(ids)], dim=1)
             samples.append((emb, int(audio_tok.shape[1]), ex.kriya, ex.template))
 
-    print("Computing causal integration (fusion-v2) curve...", flush=True)
-    fusion_v2 = causal_integration(core, samples)
+    print("Collecting ablation activations ONCE (GPU forwards; label-independent)...", flush=True)
+    acts_intact, acts_ablated, groups = collect_ablation_acts(core, samples)
+    labels = np.array([s[2] for s in samples])
+    _, y = np.unique(labels, return_inverse=True)
+    fusion_v2 = score_integration(acts_intact, acts_ablated, groups, y)
 
-    print("Computing permutation chance level (100 shuffles)...", flush=True)
+    print("Computing permutation chance level (100 shuffles; cheap re-scoring of cached acts)...", flush=True)
+    rng = np.random.default_rng(0)
     chance_curves = []
     for perm_idx in range(n_permutations):
         if perm_idx % 20 == 0:
             print(f"  Permutation {perm_idx}/{n_permutations}...", flush=True)
-        # Shuffle labels
-        labels = np.array([s[2] for s in samples])
-        shuffled_labels = np.random.permutation(labels)
-        shuffled_samples = [
-            (samples[i][0], samples[i][1], shuffled_labels[i], samples[i][3])
-            for i in range(len(samples))
-        ]
-        perm_fusion = causal_integration(core, shuffled_samples)
-        chance_curves.append(perm_fusion["integration_by_layer"])
+        y_shuf = rng.permutation(y)
+        chance_curves.append(score_integration(acts_intact, acts_ablated, groups, y_shuf)["integration_by_layer"])
 
     # Compute chance statistics
     chance_curves_arr = np.array(chance_curves)  # (n_perms, n_layers)

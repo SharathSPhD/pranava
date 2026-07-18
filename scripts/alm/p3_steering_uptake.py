@@ -192,9 +192,9 @@ def main(n_clips: int = 40, alphas: list[float] = None, seed: int = 42) -> int:
         # Baseline (no steering, α=0)
         _, baseline_logits = greedy_steered_with_logits(core, prefix_embeds, band, None, 0.0)
 
-        # Random control direction (same seed, deterministic)
-        rng = random.Random(seed + clip_idx)
-        random_dir = torch.randn(core.d_model, generator=torch.Generator(device=dev).manual_seed(seed + clip_idx))
+        # Random control direction (same seed, deterministic; CPU generator → move to device)
+        gen = torch.Generator().manual_seed(seed + clip_idx)
+        random_dir = torch.randn(core.d_model, generator=gen)
         random_dir = (random_dir / (random_dir.norm() + 1e-8)).to(dev).detach()
 
         # Concept direction
