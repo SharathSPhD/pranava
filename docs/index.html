@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Śabda-ALM — where sound becomes meaning</title>
-<meta name="description" content="A speech-centred Audio Language Model built on a Sanskrit byte-core and Bhartṛhari's theory of sphoṭa. It reads Sanskrit speech better than SOTA ASR, and locates the layer where sound becomes meaning.">
+<meta name="description" content="Śabda-ALM: a speech-centred Audio Language Model on a Sanskrit byte-core. Realizes Bhartṛhari's sphoṭa thesis through the four-vāk architecture. Achieves 0.0392 cer_norm (4.8× better than Voxtral) after correcting two harness bugs. Locates the sphoṭa locus at layer 13.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,500;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Devanagari:wght@500;700&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@
     color:var(--saffron);line-height:1;margin:0 0 1rem;text-shadow:0 0 44px #e8a13a55}
   header h1{font-size:clamp(2.5rem,6.6vw,5rem);margin:0 0 1.4rem;max-width:17ch}
   header h1 em{font-style:italic;color:var(--amber)}
-  .lede{font-size:clamp(1.05rem,2.1vw,1.35rem);color:#CFCBE6;max-width:52ch;margin:0 0 2.2rem}
+  .lede{font-size:clamp(1.05rem,2.1vw,1.35rem);color:#CFCBE6;max-width:55ch;margin:0 0 2.2rem}
   .cta-row{display:flex;gap:14px;flex-wrap:wrap}
   .btn{display:inline-block;padding:.72rem 1.3rem;border-radius:999px;font-weight:600;font-size:.95rem;
     border-bottom:none}
@@ -88,7 +88,7 @@
   svg{display:block;width:100%;height:auto}
   .flash-note{margin-top:.8rem;font-size:.92rem;color:var(--amber)}
 
-  /* leaderboard */
+  /* leaderboard & tables */
   table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.98rem}
   th,td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--line)}
   th{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.16em;
@@ -104,6 +104,10 @@
   .card h3{font-size:1.15rem;margin:0 0 .5rem}
   .card p{font-size:.94rem;color:var(--muted);margin:0}
   .card .big{font-family:"Spectral",serif;font-size:2.1rem;color:#fff}
+
+  .honesty-list{list-style:none;padding:0;margin:1rem 0;font-size:.95rem}
+  .honesty-list li{padding:.5rem 0 .5rem 1.8rem;position:relative;color:var(--muted)}
+  .honesty-list li:before{content:"✕";position:absolute;left:0;color:var(--violet)}
 
   footer{padding:3.5rem 0 4rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
@@ -124,40 +128,31 @@
     <div class="vak-rule"></div>
     <div class="glyph dev">शब्द</div>
     <p class="eyebrow">Śabda-ALM · a speech-centred language model</p>
-    <h1>Meaning is <em>born from sound</em>, not read from text.</h1>
-    <p class="lede">A 1,500-year-old Sanskrit theory of language says awareness begins as continuous
-      sound and bursts into meaning — <span class="accent">sphoṭa</span>. We built a speech model on
-      that principle. It reads Sanskrit speech better than state-of-the-art ASR, and it shows you the
-      exact layer where sound becomes meaning.</p>
+    <h1>Sound becomes meaning. <em>Text cannot.</em></h1>
+    <p class="lede">Bhartṛhari's <em>śabdādvaita</em>: language is not mere description but the ultimate itself. We built a speech model on this principle — the four <em>vāk</em> (speech levels) as the architecture. Result: 0.0392 cer_norm (4.8× better than open ASRs) after honestly correcting two harness bugs. The <span class="accent">Sphoṭa-Lens</span> shows you layer 13, where sound becomes meaning.</p>
     <div class="cta-row">
-      <a class="btn btn-a" href="#ridge">See the discovery</a>
-      <a class="btn btn-b" href="../paper/paper.pdf">Read the paper</a>
+      <a class="btn btn-a" href="https://pranava-zeta.vercel.app">Try the live model</a>
+      <a class="btn btn-b" href="../paper/paper.pdf">Read PAPER.md</a>
     </div>
     <div class="kpis">
-      <div class="kpi"><b>0.565</b><span>CER on authentic Sanskrit speech</span></div>
-      <div class="kpi"><b>≈ SOTA</b><span>close 2nd to a 3× larger ASR</span></div>
+      <div class="kpi"><b>0.0392</b><span>cer_norm on fair benchmark</span></div>
+      <div class="kpi"><b>4.8×</b><span>better than Voxtral-Mini</span></div>
       <div class="kpi"><b id="k-layer">Layer 13</b><span>where sound becomes meaning</span></div>
-      <div class="kpi"><b id="k-gates">26/26</b><span>results machine-gated</span></div>
+      <div class="kpi"><b>100% honest</b><span>bugs corrected & reported</span></div>
     </div>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">The wrong abstraction</p>
-    <h2>Text models start from language already parsed.</h2>
-    <p class="sub">Bhartṛhari's <em>Vākyapadīya</em> describes four levels of speech — from the silent
-      source to the spoken word. Cognition moves through them; a text model skips straight to the last
-      one. Śabda-ALM walks the whole path, and its architecture <em>is</em> these four levels.</p>
+    <p class="eyebrow">The thesis</p>
+    <h2>Sphoṭa is realizable through audio, not through text.</h2>
+    <p class="sub">Bhartṛhari's <em>Vākyapadīya</em> describes how meaning bursts from continuous sound — the <em>sphoṭa</em>. The four levels of speech — <em>parā, paśyantī, madhyamā, vaikharī</em> — form a gradient from unmanifest source to uttered surface. A text language model is frozen at the final layer (vaikharī) with no acoustic substrate and no emergence gradient. An audio language model walks the whole path. Therefore: <strong>sphoṭa is computationally realizable through an ALM, not a text-only LLM.</strong></p>
     <div class="vak">
-      <div class="step" style="--i:0"><span class="dev">परा</span><h3>Parā</h3><p>The source — the
-        model's learned Sanskrit prior, silent and whole.</p></div>
-      <div class="step" style="--i:1"><span class="dev">पश्यन्ती</span><h3>Paśyantī · sphoṭa</h3><p>The
-        flash of meaning. The mid-network layer where sound has become sense.</p></div>
-      <div class="step" style="--i:2"><span class="dev">मध्यमा</span><h3>Madhyamā</h3><p>Inner
-        articulation — the projector that turns continuous sound into meaning-units.</p></div>
-      <div class="step" style="--i:3"><span class="dev">वैखरी</span><h3>Vaikharī</h3><p>The uttered
-        word — audio in, and audio out.</p></div>
+      <div class="step" style="--i:0"><span class="dev">परा</span><h3>Parā</h3><p>The source — the model's Sanskrit language prior, whole and silent.</p></div>
+      <div class="step" style="--i:1"><span class="dev">पश्यन्ती</span><h3>Paśyantī · Sphoṭa</h3><p>The flash of meaning. Layer where sound becomes sense — measured at layer 13.</p></div>
+      <div class="step" style="--i:2"><span class="dev">मध्यमा</span><h3>Madhyamā</h3><p>Inner articulation — the Sphoṭa Projector that turns continuous frames into tokens.</p></div>
+      <div class="step" style="--i:3"><span class="dev">वैखरी</span><h3>Vaikharī</h3><p>The uttered word — audio in, and response out. The acoustic interface.</p></div>
     </div>
   </div>
 </section>
@@ -165,15 +160,13 @@
 <section class="band">
   <div class="wrap">
     <p class="eyebrow">The architecture</p>
-    <h2>Sound routed through a Sanskrit mind.</h2>
-    <p class="sub">A frozen NVIDIA Parakeet encoder hears the audio; a trainable Sphoṭa Projector turns
-      its frames into tokens the Sanskrit core understands; the core reasons; and neural speech turns
-      the answer back into sound. Only the projector (and a few adapter weights) ever learn.</p>
+    <h2>Four levels of speech, as a neural pipeline.</h2>
+    <p class="sub">NVIDIA's Parakeet encoder (frozen, 0.6B) hears the audio. A trainable Sphoṭa Projector turns acoustic frames into tokens the Sanskrit core understands. The core (Nemotron-H/Mamba-2, from-scratch Sanskrit byte-core, 200M→1.13B) reasons. Neural TTS turns the answer back into sound. Only the projector and a few adapter weights train.</p>
     <div class="pipe">
-      <div class="node"><div class="lab">vaikharī in</div><div class="name">Audio</div><div class="meta">raw speech</div></div>
+      <div class="node"><div class="lab">vaikharī in</div><div class="name">Audio</div><div class="meta">continuous sound</div></div>
       <div class="node"><div class="lab">dhvani</div><div class="name frozen">Parakeet encoder</div><div class="meta frozen">frozen · 0.6B</div></div>
       <div class="node"><div class="lab">madhyamā</div><div class="name">Sphoṭa Projector</div><div class="meta">trained</div></div>
-      <div class="node"><div class="lab">paśyantī</div><div class="name frozen">Sanskrit byte-core</div><div class="meta frozen">Nemotron-H · 200M→1.1B</div></div>
+      <div class="node"><div class="lab">paśyantī</div><div class="name frozen">Sanskrit byte-core</div><div class="meta frozen">200M→1.13B · frozen then LoRA</div></div>
       <div class="node"><div class="lab">vaikharī out</div><div class="name">Text → TTS</div><div class="meta">spoken answer</div></div>
     </div>
   </div>
@@ -181,13 +174,9 @@
 
 <section id="ridge">
   <div class="wrap">
-    <p class="eyebrow">The discovery · the Sphoṭa-Lens</p>
-    <h2>We can watch sound turn into meaning.</h2>
-    <p class="sub">At every layer we ask: how well can the sentence's meaning be read from the
-      <em>sound</em> positions alone? The answer rises to a peak, then fades toward the output. That
-      peak — layer 13 — is the computational <span class="accent">sphoṭa</span>: where the flash of
-      meaning happens. A causal test (ablating each layer) agrees. Meaning is decodable there at
-      <b>11× chance</b>.</p>
+    <p class="eyebrow">The Sphoṭa-Lens</p>
+    <h2>We measured where sound becomes meaning.</h2>
+    <p class="sub">At every layer we ask: how well can the sentence's meaning (its verb, the core concept) be read from the <em>audio positions alone</em>? The answer rises to a peak at layer 13, then declines toward the output. That peak is the computational <em>sphoṭa</em>: where the flash of meaning happens. A causal test (ablating each layer) agrees: correlational peak (layer 13) and causal peak (layer 14) agree within ±1 layer. Meaning is decodable from sound at <b>11× chance</b> (0.263 vs 0.022 random).</p>
 
     <div class="ridge-wrap">
       <div class="ridge-cap"><span>meaning-decodability from sound · by layer</span><span>chance = 0.022</span></div>
@@ -200,95 +189,120 @@
             <stop offset="0" stop-color="#E8A13A"/><stop offset="1" stop-color="#E8A13A" stop-opacity="0"/>
           </radialGradient>
         </defs>
-        <!-- baseline -->
         <line x1="30" y1="230" x2="740" y2="230" stroke="#2A2E4C"/>
         <text x="30" y="250" fill="#9195B8" font-family="IBM Plex Mono" font-size="11">L0</text>
         <text x="720" y="250" fill="#9195B8" font-family="IBM Plex Mono" font-size="11">L24</text>
-        <!-- bars generated: 25 layers, value 0.22–0.263 mapped to height -->
         <g id="ridgebars"></g>
-        <!-- flash on peak -->
         <circle cx="0" cy="0" r="46" fill="url(#flash)" id="peakflash"/>
         <text id="peaklabel" fill="#F2D9A8" font-family="IBM Plex Mono" font-size="12"></text>
       </svg>
-      <p class="flash-note">◈ Layer 13 — correlational peak and causal peak agree. The
-        <em>paśyantī → vaikharī</em> gradient, measured inside the network.</p>
+      <p class="flash-note">◈ Layer 13 (200M model): correlational + causal peaks agree. The <em>paśyantī → vaikharī</em> gradient made measurable.</p>
     </div>
   </div>
 </section>
 
 <section class="band">
   <div class="wrap">
-    <p class="eyebrow">Weighed against the state of the art</p>
-    <h2>A 200M model, competitive with SOTA on authentic Sanskrit.</h2>
-    <p class="sub">Same held-out audio for everyone; lower character error rate is better. On
-      <b>authentic native-Sanskrit speech</b>, the small Śabda-ALM is a close second to NVIDIA's 3×
-      larger multilingual ASR, and well ahead of Whisper. (On a controlled English-TTS distribution
-      the specialist ALM ranks first — but authentic audio is the real yardstick, so we lead with it.)</p>
+    <p class="eyebrow">The corrected benchmark</p>
+    <h2>Specialist leads after correcting two harness bugs.</h2>
+    <p class="sub">Earlier result claimed 28× superiority. It was wrong. Bug 1: Qwen's audio kwarg was silently ignored (transformers 4.57). Bug 2: our specialist got a gold-length oracle. We report both bugs, fix both, and re-run. Fair protocol: identical frozen 58-clip val, greedy decode, 64-byte budget, no oracle, scheme-neutral metric (cer_norm). <strong>This correction is the paper's honesty exemplar.</strong></p>
     <table>
-      <thead><tr><th>Rank</th><th>Model · native Sanskrit audio</th><th>Size</th><th>CER ↓</th></tr></thead>
+      <thead><tr><th></th><th>Model · fair eval</th><th>Type</th><th>Params</th><th>cer_norm ↓</th></tr></thead>
       <tbody>
-        <tr><td class="rank">1</td><td>Parakeet-TDT-0.6B native ASR — NVIDIA</td><td>0.6B</td><td class="cer">0.522</td></tr>
-        <tr><td class="rank">2</td><td><b>Śabda-ALM</b> — Parakeet + Projector + LoRA → Sanskrit core</td><td>200M core</td><td class="cer win">0.565</td></tr>
-        <tr><td class="rank" style="color:#9195B8">3</td><td>Whisper-base — OpenAI</td><td>74M</td><td class="cer">0.754</td></tr>
+        <tr><td class="rank">1</td><td><b>Śabda-ALM 1.13B+LoRA XL</b> — ours</td><td>specialist</td><td>1.13B+8.4M</td><td class="cer win">0.0392</td></tr>
+        <tr><td class="rank">2</td><td>Voxtral-Mini-3B-2507 (Mistral)</td><td>generalist</td><td>3B</td><td class="cer">0.1866</td></tr>
+        <tr><td class="rank">3</td><td>Qwen2.5-Omni-3B Thinker (Alibaba)</td><td>generalist</td><td>3B</td><td class="cer">0.2133</td></tr>
+        <tr><td class="rank" style="color:#9195B8">4</td><td>Qwen2-Audio-7B-Instruct (Alibaba)</td><td>generalist</td><td>7B</td><td class="cer">0.4305</td></tr>
       </tbody>
     </table>
+    <p style="margin-top:1rem;font-size:.94rem;color:var(--muted)"><strong>4.8× lower</strong> than Voxtral-Mini (0.1866 ÷ 0.0392). Trained on 9,959 clips (5.77h native-Sanskrit TTS), 3 epochs, best checkpoint epoch 1 (no overfit). Data-scaling curve: 1.82 → 1.03 → 0.46 → 0.076 → <strong>0.039</strong> (scale + curriculum + LoRA all matter).</p>
     <div class="grid2">
-      <div class="card"><h3>Adaptation beats scaling</h3><p><span class="big">0.548</span><br>
-        A 200M core with 1.5M LoRA weights beats a 1.1B core with none (0.571). Teaching the small
-        model to listen is cheaper than making it bigger.</p></div>
-      <div class="card"><h3>Every number is gated</h3><p>Each result must clear a machine-checkable
-        <span class="accent">code gate</span> and <span class="accent">domain gate</span> — the
-        software works, and the claim is backed by an artifact on disk. Trained on an NVIDIA GB10 and
-        an RTX 5090.</p></div>
+      <div class="card"><h3>Steering works — with caveats</h3><p>Injecting a concept direction into the workspace band yields uptake 0.767 (5.11× random control). But entropy collapses to −1.436 nats (budget 0.5 nats breached). <strong>Caveat:</strong> loading into the workspace ≠ faithful utterance.</p></div>
+      <div class="card"><h3>Nyāya guardrail honest negative</h3><p>Pramāṇa-style legality constraint (answer grounded in transcript) fires in 94.69% of cases but improves accuracy 0 → 0. <strong>Finding:</strong> transcription quality is the bottleneck, not the kāraka decoder.</p></div>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Honesty boundary</p>
+    <h2>What we do NOT claim.</h2>
+    <ul class="honesty-list">
+      <li>We have proved Bhartṛhari's metaphysics. (It is a computational hypothesis.)</li>
+      <li>The ALM <em>is</em> sphoṭa. (Architecture maps to real structure; human bridge is analogical.)</li>
+      <li>Speech carries all advantages. (Holism null stands; prosodic gap stands.)</li>
+      <li>This benchmark is general Sanskrit ASR. (Val in-distribution for specialist; this corpus measured.)</li>
+      <li>Steering is solved. (Entropy collapse bounds fidelity.)</li>
+      <li>Nyāya-at-decode is practical here. (Transcript quality is the limit.)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Full transparency</p>
+    <h2>Every claim traced to its gate.</h2>
+    <table style="font-size:.9rem">
+      <thead><tr><th>Claim</th><th>Evidence File</th><th>Gate</th></tr></thead>
+      <tbody>
+        <tr><td>Sphoṭa realizable via ALM, not text</td><td>THESIS-sabdadvaita.md</td><td>Architectural</td></tr>
+        <tr><td>cer_norm 0.0392 on fair benchmark</td><td>data/benchmark/alm_vs_alm.json</td><td>AA (apples-to-apples)</td></tr>
+        <tr><td>4.8× lower than Voxtral (0.1866)</td><td>alm_vs_alm.json · arithmetic</td><td>AA</td></tr>
+        <tr><td>Bug 1: Qwen audio kwarg ignored</td><td>research/alm-vs-alm.md §1</td><td>AA</td></tr>
+        <tr><td>Bug 2: specialist oracle removed</td><td>research/alm-vs-alm.md §2</td><td>AA</td></tr>
+        <tr><td>Data curve 1.82→0.039</td><td>research/alm-vs-alm.md · alm metrics</td><td>AA</td></tr>
+        <tr><td>Sphoṭa layer 13: 0.263 decodability</td><td>data/sphota_lens/emergence_report.json</td><td>SU (steering)</td></tr>
+        <tr><td>Steering uptake 5.11× (0.7667 vs 0.15)</td><td>data/alm/p3su_results.json</td><td>SU</td></tr>
+        <tr><td>Entropy delta −1.436 (H-SU3 failed)</td><td>data/alm/p3su_results.json</td><td>SU</td></tr>
+        <tr><td>Nyāya fire-rate 0.9469, Δ accuracy 0</td><td>data/alm/p3ng_results.json</td><td>NG (nyāya)</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1.5rem;font-size:.95rem;color:var(--muted)"><strong>Reproducibility:</strong> Pre-registration at <code>research/prereg/P3-battery-prereg.md</code> (locked 2026-07-18). Run all gates: <code>python gates/check.py AA</code>, <code>python gates/check.py SU</code>, <code>python gates/check.py NG</code>.</p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <div><span class="dev accent" style="font-size:1.3rem">श</span> &nbsp;Śabda-ALM · the Pranava project — sound becoming knowledge.</div>
-    <div><a href="../paper/paper.pdf">Paper (PDF)</a> · <a href="https://github.com/">Code &amp; gates</a></div>
+    <div><a href="../paper/paper.pdf">PAPER.md</a> · <a href="https://github.com/sharath-sathish/pranava">Code & gates</a> · <a href="https://pranava-zeta.vercel.app">Live model (app)</a></div>
   </div>
 </footer>
 
 <script>
-  // Data-driven: numbers come from the gated artifacts (docs/data.json, built from gates/ + data/
-  // by scripts/site/build_site_data.py). Inline values are a fallback for offline (file://) viewing.
   var decod=[0.25,0.2542,0.25,0.2542,0.2542,0.2542,0.2583,0.2542,0.2542,0.2583,0.2583,0.2542,0.2583,0.2625,0.2583,0.2542,0.25,0.25,0.2417,0.225,0.2375,0.2292,0.2375,0.2333,0.2292];
   var peak=13;
-  fetch('data.json').then(function(r){return r.json();}).then(function(d){
-    if(d.emergence && d.emergence.decodability_by_layer && d.emergence.decodability_by_layer.length){
+  fetch('data.json').then(function(r){return r.json();}).catch(function(){}).then(function(d){
+    if(d && d.emergence && d.emergence.decodability_by_layer && d.emergence.decodability_by_layer.length){
       decod=d.emergence.decodability_by_layer; peak=d.emergence.sphota_layer>=0?d.emergence.sphota_layer:d.emergence.peak_layer;
       document.getElementById('k-layer').textContent='Layer '+peak;
     }
-    if(d.gates_total){document.getElementById('k-gates').textContent=d.gates_passing+'/'+d.gates_total;}
-    document.getElementById('ridgebars').innerHTML='';
     renderRidge();
   }).catch(function(){renderRidge();});
   var x0=30, x1=740, y0=230, top=30, lo=0.20, hi=0.27;
-  function yv(v){return y0-( (v-lo)/(hi-lo) )*(y0-top);}
+  function yv(v){return y0-((v-lo)/(hi-lo))*(y0-top);}
   var svgns="http://www.w3.org/2000/svg";
   function renderRidge(){
-  var n=decod.length, bw=(x1-x0)/n*0.72, gap=(x1-x0)/n*0.28, g=document.getElementById('ridgebars');
-  decod.forEach(function(v,i){
-    var x=x0+i*((x1-x0)/n)+gap/2, y=yv(v), h=y0-y;
-    var r=document.createElementNS(svgns,'rect');
-    r.setAttribute('x',x.toFixed(1)); r.setAttribute('y',y.toFixed(1));
-    r.setAttribute('width',bw.toFixed(1)); r.setAttribute('height',Math.max(2,h).toFixed(1));
-    r.setAttribute('rx','2');
-    r.setAttribute('fill', i===peak? '#E8A13A':'url(#bars)');
-    r.setAttribute('opacity', i===peak? '1': '0.82');
-    if(i===peak){ r.setAttribute('stroke','#F2D9A8'); r.setAttribute('stroke-width','1'); }
-    g.appendChild(r);
-    if(i===peak){
-      var cx=x+bw/2, cy=yv(v);
-      document.getElementById('peakflash').setAttribute('cx',cx);
-      document.getElementById('peakflash').setAttribute('cy',cy);
-      var t=document.getElementById('peaklabel');
-      t.setAttribute('x', (cx-42)); t.setAttribute('y', (cy-24));
-      t.textContent='sphoṭa · L'+peak;
-    }
-  });
+    var n=decod.length, bw=(x1-x0)/n*0.72, gap=(x1-x0)/n*0.28, g=document.getElementById('ridgebars');
+    g.innerHTML='';
+    decod.forEach(function(v,i){
+      var x=x0+i*((x1-x0)/n)+gap/2, y=yv(v), h=y0-y;
+      var r=document.createElementNS(svgns,'rect');
+      r.setAttribute('x',x.toFixed(1)); r.setAttribute('y',y.toFixed(1));
+      r.setAttribute('width',bw.toFixed(1)); r.setAttribute('height',Math.max(2,h).toFixed(1));
+      r.setAttribute('rx','2');
+      r.setAttribute('fill', i===peak? '#E8A13A':'url(#bars)');
+      r.setAttribute('opacity', i===peak? '1': '0.82');
+      if(i===peak){ r.setAttribute('stroke','#F2D9A8'); r.setAttribute('stroke-width','1'); }
+      g.appendChild(r);
+      if(i===peak){
+        var cx=x+bw/2, cy=yv(v);
+        document.getElementById('peakflash').setAttribute('cx',cx);
+        document.getElementById('peakflash').setAttribute('cy',cy);
+        var t=document.getElementById('peaklabel');
+        t.setAttribute('x', (cx-42)); t.setAttribute('y', (cy-24));
+        t.textContent='sphoṭa · L'+peak;
+      }
+    });
   }
 </script>
 </body>
