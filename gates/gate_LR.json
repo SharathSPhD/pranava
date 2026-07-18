@@ -5,8 +5,8 @@
     "evidence": "LoRA module + trainer present"
   },
   "domain_gate": {
-    "verdict": "pass",
-    "evidence": "lora_params>0:ok; loss_decreased:ok; beats_projector_only:ok; cer_meaningful:ok | CER 0.5701 vs projector-only 0.7745 (1474560 LoRA params)"
+    "verdict": "fail",
+    "evidence": "lora_params>0:ok; loss_decreased:FAIL; beats_projector_only:ok; cer_meaningful:FAIL | CER 0.7048 vs projector-only 0.7745 (1474560 LoRA params)"
   },
-  "closed": true
+  "closed": false
 }

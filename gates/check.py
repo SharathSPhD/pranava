@@ -505,7 +505,8 @@ def gate_APP() -> dict:
             "health_endpoint": "/health" in s,
             "no_future_annotations": not any(  # the FastAPI gotcha (ignore the explanatory comment)
                 ln.strip() == "from __future__ import annotations" for ln in s.splitlines()),
-            "frontend_calls_api": web.exists() and "/transcribe" in w and "MediaRecorder" in w,
+            # frontend contract evolved: /transcribe (v1 text app) → /speak (S2S app, AX). Either is live.
+            "frontend_calls_api": web.exists() and ("/speak" in w or "/transcribe" in w) and "MediaRecorder" in w,
             "deploy_smoke_recorded": (ROOT / "data/alm/multilingual_leaderboard.json").exists()
             or (ROOT / "data/benchmark/multilingual_leaderboard.json").exists(),
         }
@@ -547,30 +548,43 @@ def gate_IT() -> dict:
 
 
 def gate_AA() -> dict:
-    """Apples-to-apples: a GENUINE run of another ALM (Qwen2-Audio), with per-item predictions as proof."""
+    """Apples-to-apples ALM benchmark: several ALMs genuinely run on identical Sanskrit audio, scored by a
+    scheme-neutral (transliteration-folded) CER. Asserts SOUND METHODOLOGY — audio actually reaching each
+    model (per-clip outputs vary), per-clip evidence, and a fair metric — NOT a predetermined winner. The
+    honest result is that a correctly-wired 7B generalist (Qwen2-Audio) beats the 200M specialist's fair
+    free-decode; the specialist only leads when handed a gold-length oracle."""
     lb = ROOT / "data/benchmark/alm_vs_alm.json"
     rec = ROOT / "data/benchmark/alm_vs_alm_records.json"
     doc = ROOT / "research/alm-vs-alm.md"
     code_ok = (ROOT / "scripts/alm/benchmark_alm_vs_alm.py").exists()
-    code = _verdict(code_ok, "ALM-vs-ALM benchmark present" if code_ok else "missing benchmark")
+    code = _verdict(code_ok, "multi-ALM benchmark present" if code_ok else "missing benchmark")
     if lb.exists() and rec.exists():
         d = json.loads(lb.read_text())
         recs = json.loads(rec.read_text())
-        ev = d.get("qwen_evidence", {})
-        scored = [x for x in recs if "qwen_pred" in x]
-        ours = next((r for r in d["leaderboard"] if "ours" in r["model"]), {})
-        qwen = next((r for r in d["leaderboard"] if "Qwen" in r["model"]), {})
+        board = [r for r in d.get("leaderboard", []) if r.get("cer_norm") is not None and r.get("n_scored", 0) > 0]
+        gens = [r for r in board if str(r.get("alm_type", "")).startswith("generalist")]
+        preds_ok = all(len(recs.get(r["model"], [])) >= 50 for r in board)
+        # every scored generalist must genuinely condition on audio (the audios=→audio= fix): >1 unique out
+        audio_ok = bool(gens) and all(r.get("unique_outputs", 0) > 1 for r in gens)
+        fair_ok = "cer_norm" in str(d.get("primary_metric", "")) and all("cer_norm" in r for r in board)
+        doc_txt = doc.read_text() if doc.exists() else ""
         checks = {
-            "competitor_is_an_alm": "Qwen2-Audio" in qwen.get("model", ""),  # ALM, not TTS/ASR
-            "genuinely_ran": len(scored) >= 50 and ev.get("items_errored", 99) == 0,
-            "real_predictions_saved": all("qwen_pred" in x for x in scored) and len(scored) > 0,
-            "specialist_wins": ours.get("cer", 9) < qwen.get("cer", 0),
-            "failure_documented": doc.exists() and "1 unique output" in doc.read_text(),
+            "multiple_alms_scored": len(board) >= 2,
+            "has_generalist_competitor": len(gens) >= 1,
+            "generalists_condition_on_audio": audio_ok,          # proves the audio-drop bug is fixed
+            "per_clip_predictions_saved": preds_ok,
+            "fair_normalized_metric": fair_ok,
+            "writeup_documents_audio_fix": ("audio=" in doc_txt and "audios" in doc_txt),
         }
+
+        def _short(m):
+            return m.split("(")[0].split("—")[0].strip()
+
+        best = min(board, key=lambda r: r["cer_norm"])
+        summ = ", ".join(f"{_short(r['model'])}={r['cer_norm']}" for r in board)
         dom = _verdict(all(checks.values()),
                        "; ".join(f"{k}:{'ok' if v else 'FAIL'}" for k, v in checks.items())
-                       + f" | ours {ours.get('cer')} vs Qwen {qwen.get('cer')} "
-                         f"({ev.get('unique_qwen_outputs')} unique of {len(scored)})")
+                       + f" | best(norm): {_short(best['model'])} {best['cer_norm']} | {summ}")
     else:
         dom = _verdict(False, "alm_vs_alm.json / records missing")
     return {"code_gate": code, "domain_gate": dom}

@@ -2,11 +2,11 @@
   "milestone": "AA",
   "code_gate": {
     "verdict": "pass",
-    "evidence": "ALM-vs-ALM benchmark present"
+    "evidence": "multi-ALM benchmark present"
   },
   "domain_gate": {
     "verdict": "pass",
-    "evidence": "competitor_is_an_alm:ok; genuinely_ran:ok; real_predictions_saved:ok; specialist_wins:ok; failure_documented:ok | ours 0.5649 vs Qwen 15.8615 (1 unique of 58)"
+    "evidence": "multiple_alms_scored:ok; has_generalist_competitor:ok; generalists_condition_on_audio:ok; per_clip_predictions_saved:ok; fair_normalized_metric:ok; writeup_documents_audio_fix:ok | best(norm): Voxtral-Mini-3B-2507 0.1866 | Voxtral-Mini-3B-2507=0.1866, Qwen2.5-Omni-3B Thinker=0.2133, Qwen2-Audio-7B-Instruct=0.4305, Śabda-ALM specialist=0.5061, Śabda-ALM specialist=1.8188"
   },
   "closed": true
 }

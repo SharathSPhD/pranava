@@ -1,0 +1,98 @@
+
+====================
+== NeMo Framework ==
+====================
+
+NVIDIA Release  (build 284211632)
+Container image Copyright (c) 2025, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+Copyright (c) 2014-2024 Facebook Inc.
+Copyright (c) 2011-2014 Idiap Research Institute (Ronan Collobert)
+Copyright (c) 2012-2014 Deepmind Technologies    (Koray Kavukcuoglu)
+Copyright (c) 2011-2012 NEC Laboratories America (Koray Kavukcuoglu)
+Copyright (c) 2011-2013 NYU                      (Clement Farabet)
+Copyright (c) 2006-2010 NEC Laboratories America (Ronan Collobert, Leon Bottou, Iain Melvin, Jason Weston)
+Copyright (c) 2006      Idiap Research Institute (Samy Bengio)
+Copyright (c) 2001-2004 Idiap Research Institute (Ronan Collobert, Samy Bengio, Johnny Mariethoz)
+Copyright (c) 2015      Google Inc.
+Copyright (c) 2015      Yangqing Jia
+Copyright (c) 2013-2016 The Caffe contributors
+All rights reserved.
+
+Various files include modifications (c) NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+GOVERNING TERMS: The software and materials are governed by the NVIDIA Software License Agreement
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/)
+and the Product-Specific Terms for NVIDIA AI Products
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-ai-products/).
+
+/usr/local/lib/python3.12/dist-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loaded 58 val clips
+
+=== Śabda-ALM (Parakeet+Projector+LoRA→Sanskrit core, ours) ===
+  cer_norm=1.9478 cer_raw=2.1583 scored=58 unique=58
+
+=== Qwen2-Audio-7B-Instruct (Alibaba, open) ===
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:23<01:32, 23.10s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:47<01:11, 23.68s/it]Loading checkpoint shards:  60%|██████    | 3/5 [01:09<00:46, 23.03s/it]Loading checkpoint shards:  80%|████████  | 4/5 [01:28<00:21, 21.65s/it]Loading checkpoint shards: 100%|██████████| 5/5 [01:38<00:00, 17.26s/it]Loading checkpoint shards: 100%|██████████| 5/5 [01:38<00:00, 19.69s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+  cer_norm=0.457 cer_raw=0.6493 scored=58 unique=57
+
+=== Ultravox v0.5 Llama-3.2-1B (Fixie, open) ===
+A new version of the following files was downloaded from https://huggingface.co/fixie-ai/ultravox-v0_5-llama-3_2-1b:
+- ultravox_config.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+  note: ultravox unavailable: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct.
+401 Client Error. (Request ID: Root=1-6a5ab8d3-30e4c5f97b2de445159b5128;f186d2a4-1db8-4975-8be3-ca7d6bd398cb)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-1B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+  cer_norm=None cer_raw=None scored=0 unique=0
+
+{
+  "task": "held-out Sanskrit audio → romanized text (CER, lower=better)",
+  "n_items": 58,
+  "audio_corpus": "native Sanskrit (indic-parler-tts TTS)",
+  "primary_metric": "cer_norm (transliteration-folded ASCII phonetic skeleton — scheme-neutral, fair)",
+  "secondary_metric": "cer_raw (against SLP1 gold as-is; favors the SLP1-native specialist)",
+  "decode": "all models: greedy, fixed 64-token budget, no gold-length oracle",
+  "comparison": "specialist vs open generalist ALMs, identical audio + identical scoring",
+  "leaderboard": [
+    {
+      "model": "Qwen2-Audio-7B-Instruct (Alibaba, open)",
+      "params": "7B",
+      "alm_type": "generalist (no Sanskrit training)",
+      "cer_norm": 0.457,
+      "cer_raw": 0.6493,
+      "n_scored": 58,
+      "unique_outputs": 57,
+      "audio_conditioned": true,
+      "note": null
+    },
+    {
+      "model": "Śabda-ALM (Parakeet+Projector+LoRA→Sanskrit core, ours)",
+      "params": "200M core + 0.6B enc",
+      "alm_type": "specialist (Sanskrit fine-tuned)",
+      "cer_norm": 1.9478,
+      "cer_raw": 2.1583,
+      "n_scored": 58,
+      "unique_outputs": 58,
+      "audio_conditioned": null,
+      "note": null
+    },
+    {
+      "model": "Ultravox v0.5 Llama-3.2-1B (Fixie, open)",
+      "params": "0.68B",
+      "alm_type": "generalist (40+ langs, no Sanskrit)",
+      "cer_norm": null,
+      "cer_raw": null,
+      "n_scored": 0,
+      "unique_outputs": 0,
+      "audio_conditioned": false,
+      "note": "ultravox unavailable: You are trying to access a gated repo.\nMake sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct.\n401 Client Error. (Request ID: Root=1-6a5ab8d3-30e4c5f97b2de445159b5128;f186d2a4-1db8-4975-8be3-ca7d6bd398cb)\n\nCannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct/resolve/main/config.json.\nAccess to model meta-llama/Llama-3.2-1B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in."
+    }
+  ],
+  "note": "Genuine multi-ALM comparison. Earlier runs fed Qwen no audio (audios= kwarg silently ignored in transformers 4.57) → a single canned hallucination (CER 15.9); that was a harness bug. Fixed to audio= (audio verified to reach the model: per-clip outputs vary and differ from a zero-audio control). Per-clip predictions for every model in alm_vs_alm_records.json."
+}
+
+Wrote /work/pranava/data/benchmark/alm_vs_alm.json and alm_vs_alm_records.json
