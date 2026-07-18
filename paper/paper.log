@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.28)  17 JUL 2026 20:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.28)  18 JUL 2026 19:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -270,8 +270,7 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 8.
  (/home/sharaths/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count314
-)
-No file paper.aux.
+) (./paper.aux)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
@@ -292,6 +291,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -333,6 +333,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package hyperref Info: Link coloring ON on input line 15.
+ (./paper.out) (./paper.out)
 \@outlinefile=\write3
 \openout3 = `paper.out'.
 
@@ -345,79 +346,198 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 17.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Reference `sec:arch' on page 1 undefined on input line 55.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 22.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\to' on input line 22.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 22.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 34.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leftrightarrow' on input line 34.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 34.
+
+
+Overfull \hbox (40.39043pt too wide) in paragraph at lines 37--47
+ [][] 
+ []
 
 [1
 
 {/home/sharaths/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Reference `sec:results' on page 2 undefined on input line 58.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 52.
 
 
-LaTeX Warning: Reference `sec:lens' on page 2 undefined on input line 61.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\times' on input line 52.
 
 
-Overfull \hbox (21.21268pt too wide) in paragraph at lines 61--63
-[]\OT1/cmr/m/n/10.95 The \OT1/cmr/bx/n/10.95 Spho[]a-Lens \OT1/cmr/m/n/10.95 (\TS1/cmr/m/n/10.95 §[]\OT1/cmr/m/n/10.95 ), a correlational-plus-causal in-stru-ment that lo-calises meaning-emergence-
- []
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 52.
 
 
-Overfull \hbox (14.97304pt too wide) detected at line 86
-[] [] [] [] [] [] [] [] [] \OML/cmm/m/it/10.95 :
+Overfull \hbox (5.36891pt too wide) in paragraph at lines 57--58
+[]\OT1/cmr/bx/n/10.95 Bug 2: \OT1/cmr/m/n/10.95 Spe-cial-ist re-ceived gold-length or-a-cle (de-code $[]([]) + 4$ bytes, trun-cate to $[]([])$).
  []
 
 [2]
 
-LaTeX Warning: Reference `tab:claims' on page 3 undefined on input line 115.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 92.
 
 
-Underfull \hbox (badness 1715) in paragraph at lines 124--124
-[]$\OT1/cmr/m/n/10 200$M ALM is com-pet-i-tive with $0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 6$B
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\times' on input line 92.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 92.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 108.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\Delta' on input line 108.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 108.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 108.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 108.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]\OT1/cmr/m/n/10 Spho[]a re-al-iz-able via
  []
 
 
-LaTeX Warning: Reference `tab:cer' on page 3 undefined on input line 138.
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]\OT1/cmr/m/n/10 THESIS-
+ []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Overfull \hbox (6.6184pt too wide) in paragraph at lines 119--120
+[]\OT1/cmr/m/n/10 Architectural| 
+ []
 
 
-LaTeX Warning: Reference `tab:sota' on page 3 undefined on input line 158.
+Underfull \hbox (badness 1221) in paragraph at lines 120--120
+[]\OT1/cmr/m/n/10 cer[]norm 0.0392 on fair
+ []
 
-[3] [4] [5] (./paper.aux)
+
+Underfull \hbox (badness 6220) in paragraph at lines 122--122
+[]\OT1/cmr/m/n/10 Bug 1: Qwen kwarg
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--122
+[]\OT1/cmr/m/n/10 alm-vs-alm.md
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 123--123
+[]\OT1/cmr/m/n/10 alm-vs-alm.md
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--124
+[]\OT1/cmr/m/n/10 alm-vs-alm.md
+ []
+
+
+Overfull \hbox (24.8294pt too wide) in paragraph at lines 125--125
+[]\OT1/cmr/m/n/10 emergence[]report.json| 
+ []
+
+
+Underfull \hbox (badness 6842) in paragraph at lines 126--126
+[]\OT1/cmr/m/n/10 Workspace band lay-ers
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 126--126
+[]\OT1/cmr/m/n/10 P3-sphota-
+ []
+
+
+Overfull \hbox (1.32938pt too wide) in paragraph at lines 127--127
+[]\OT1/cmr/m/n/10 p3su[]results.json| 
+ []
+
+
+Overfull \hbox (1.32938pt too wide) in paragraph at lines 128--128
+[]\OT1/cmr/m/n/10 p3su[]results.json| 
+ []
+
+
+Underfull \hbox (badness 7907) in paragraph at lines 129--129
+[]\OT1/cmr/m/n/10 Ny^^Vaya fire-rate 0.9469,
+ []
+
+
+Overfull \hbox (2.38495pt too wide) in paragraph at lines 129--129
+[]\OT1/cmr/m/n/10 p3ng[]results.json| 
+ []
+
+
+Overfull \hbox (15.4518pt too wide) in paragraph at lines 130--131
+[]\OT1/cmr/m/n/10 Methodological| 
+ []
+
+[3]
+Overfull \hbox (28.93025pt too wide) in paragraph at lines 148--149
+\OT1/cmr/bx/n/10.95 Pre-registration. \OT1/cmr/m/n/10.95 All hy-pothe-ses locked be-fore bat-tery run: \OT1/cmtt/m/n/10.95 research/prereg/P3-battery-prereg.md
+ []
+
+[4]
+Overfull \hbox (4.43942pt too wide) in paragraph at lines 168--169
+\OT1/cmr/m/n/10.95 workspace, steer-ing up-take 5.11$\OMS/cmsy/m/n/10.95 ^^B$\OT1/cmr/m/n/10.95 ); (3) a fair bench-mark prov-ing spe-cial-ist com-pet-i-tive-ness (cer[]norm
+ []
+
+[5] (./paper.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `paper.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `paper.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  4FE79A4428F044822D65F0AD675A97E7;1295.
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: 36C7C210772265FF5177ED2BF78BC261;3319.
  ) 
 Here is how much of TeX's memory you used:
- 10396 strings out of 469514
- 156978 string characters out of 5470586
- 585309 words of memory out of 5000000
- 38918 multiletter control sequences out of 15000+600000
- 639789 words of font info for 86 fonts, out of 8000000 for 9000
+ 10426 strings out of 469514
+ 157404 string characters out of 5470586
+ 588320 words of memory out of 5000000
+ 38935 multiletter control sequences out of 15000+600000
+ 641770 words of font info for 93 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,14n,79p,250b,547s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/sharaths/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on paper.pdf (5 pages, 166632 bytes).
+ 75i,12n,79p,1604b,518s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/sharaths/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </home/sharaths/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on paper.pdf (5 pages, 151390 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
- 72 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 142 PDF objects out of 1000 (max. 8388607)
+ 113 compressed objects within 2 object streams
+ 22 named destinations out of 1000 (max. 500000)
+ 97 words of extra memory for PDF output out of 10000 (max. 10000000)
 
