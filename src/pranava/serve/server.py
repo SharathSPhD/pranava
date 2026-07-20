@@ -81,9 +81,17 @@ TASKS = {
 }
 
 
-def _answer(wav: np.ndarray, sr: int, task: str = "transcribe", max_new: int = 96) -> str:
-    """Audio → the model's text answer to `task` (paśyantī → text). Instruction-conditioned when the
-    instruction checkpoint is loaded; otherwise a plain transcription."""
+def _answer(wav: np.ndarray, sr: int, task: str = "transcribe", max_new: int = 96, instruction: str = None) -> str:
+    """Audio → the model's text answer to `task` or `instruction` (paśyantī → text).
+    Instruction-conditioned when the instruction checkpoint is loaded; otherwise a plain transcription.
+
+    Args:
+        wav: audio waveform (float32)
+        sr: sample rate
+        task: task key to look up in TASKS dict (used if instruction is None)
+        max_new: max new tokens to generate
+        instruction: direct instruction string (overrides task lookup if provided)
+    """
     from pranava.alm.instruct import EOS, build_prefix
 
     torch, core, proj, enc, bias = (_STATE[k] for k in ("torch", "core", "proj", "enc", "bias"))
@@ -91,7 +99,9 @@ def _answer(wav: np.ndarray, sr: int, task: str = "transcribe", max_new: int = 9
         frames = enc.encode(wav, sr=sr)
         tokens = proj(frames, structural_bias=bias)
         if _STATE.get("instruction_model"):
-            prefix = build_prefix(core, tokens, TASKS.get(task, TASKS["transcribe"]))
+            # Use direct instruction if provided, else look up task in TASKS dict
+            inst_text = instruction if instruction is not None else TASKS.get(task, TASKS["transcribe"])
+            prefix = build_prefix(core, tokens, inst_text)
             out = core.greedy_from_embeds(prefix, max_new=max_new, stop_token=EOS)
         else:  # multilingual / projector-only checkpoint: transcription only
             out = core.greedy_from_embeds(tokens, max_new=max_new)
@@ -191,6 +201,78 @@ def build_app():
             return JSONResponse({"text": clean, "language": lang, "task": task,
                                  "speech_out": False, "note": "TTS head unavailable on this server"},
                                 headers=headers)
+        from fastapi.responses import Response
+        return Response(content=audio, media_type="audio/wav", headers=headers)
+
+    # Instruction → canonical task key mapping for /chat
+    INSTRUCTION_SHORTCUTS = {
+        "transcribe": "transcribe",
+        "kriya": "kriya",
+        "karta": "karta",
+        "karma": "karma",
+        "karana": "karana",
+        "language": "language",
+        "translate_en": "transcribe",  # Will pass custom instruction to build_prefix
+        "translate_sa": "transcribe",
+    }
+
+    @app.post("/chat")
+    async def chat(request: Request, instruction: str = "transcribe the speech", history: str = ""):
+        """Bilingual instruction-following chat (v1: single-turn, no memory).
+
+        Raw audio in body. Query params:
+          - instruction: spoken task instruction (default: "transcribe the speech")
+            shortcuts: transcribe/kriya/karta/karma/karana/language/translate_en/translate_sa
+            or free-form text instruction
+          - history: ignored (placeholder for v2 multi-turn)
+
+        Returns audio/wav with the model's spoken answer and metadata in CORS-exposed headers:
+          - X-Transcript: the answer in SLP1 romanization
+          - X-Language: detected language (sa/en/?)
+          - X-Instruction: the instruction that was used
+          - X-Ms: round-trip latency
+          - X-Chat-Mode: single-turn (single-turn v1, not streaming)
+        """
+        t0 = time.time()
+        wav, sr = _read_audio(await request.body())
+
+        # Map shortcut keys to canonical instructions if needed
+        task_key = INSTRUCTION_SHORTCUTS.get(instruction, None)
+        if task_key:
+            # Known task — use canonical instruction string from TASKS
+            canonical_instruction = TASKS[task_key]
+            # Special case: translate_en / translate_sa use custom instructions
+            if instruction == "translate_en":
+                canonical_instruction = "translate to english"
+            elif instruction == "translate_sa":
+                canonical_instruction = "translate to sanskrit"
+        else:
+            # Free-form instruction — use as-is
+            canonical_instruction = instruction
+
+        text = _answer(wav, sr, task="transcribe", max_new=448, instruction=canonical_instruction)
+        clean, lang = _clean(text)
+        audio = _speak(clean)
+
+        headers = {
+            "X-Transcript": clean.encode("ascii", "ignore").decode() or "-",
+            "X-Language": lang,
+            "X-Instruction": canonical_instruction[:80],  # Truncate for header safety
+            "X-Chat-Mode": "single-turn",
+            "X-Ms": str(round((time.time() - t0) * 1000)),
+            "Access-Control-Expose-Headers": "X-Transcript,X-Language,X-Instruction,X-Chat-Mode,X-Ms"
+        }
+
+        if audio is None:  # TTS unavailable — degrade to text, honestly
+            return JSONResponse({
+                "text": clean,
+                "language": lang,
+                "instruction": canonical_instruction,
+                "chat_mode": "single-turn",
+                "speech_out": False,
+                "note": "TTS head unavailable on this server"
+            }, headers=headers)
+
         from fastapi.responses import Response
         return Response(content=audio, media_type="audio/wav", headers=headers)
 

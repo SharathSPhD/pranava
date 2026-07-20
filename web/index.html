@@ -78,66 +78,278 @@
     display: block;
   }
 
-  .task-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+  .thread-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 1rem;
+    background: rgba(26, 27, 45, 0.4);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    scroll-behavior: smooth;
   }
 
-  .task-card {
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 1.2rem;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  .thread-empty {
     text-align: center;
+    color: var(--muted);
+    padding: 2rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .message-turn {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
+    animation: fadeIn 0.3s ease-in-out;
   }
 
-  .task-card:hover {
+  .message-role {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    font-weight: 500;
+  }
+
+  .message-bubble {
+    background: rgba(14, 16, 32, 0.8);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--saffron);
+    border-radius: 6px;
+    padding: 1rem;
+    word-break: break-word;
+  }
+
+  .message-text {
+    font-family: "Spectral", serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--parchment);
+    margin-bottom: 0.6rem;
+  }
+
+  .message-deva {
+    font-family: "Noto Serif Devanagari", serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--amber);
+    margin-bottom: 0.6rem;
+  }
+
+  .message-meta {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .latency-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(232, 161, 58, 0.1);
+    border: 1px solid var(--saffron);
+    border-radius: 12px;
+    font-size: 0.65rem;
+    color: var(--saffron);
+  }
+
+  .message-audio {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+  }
+
+  .message-audio audio {
+    flex: 1;
+    height: 24px;
+    border-radius: 4px;
+  }
+
+  .composer {
+    position: sticky;
+    bottom: 0;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .instruction-selector {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .instruction-chip {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 0.8rem;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .instruction-chip:hover {
     border-color: var(--saffron);
-    background: rgba(232, 161, 58, 0.05);
+    color: var(--saffron);
   }
 
-  .task-card.active {
+  .instruction-chip.active {
     background: var(--saffron);
     border-color: var(--saffron);
     color: var(--accent-dark);
   }
 
-  .task-deva {
+  .instruction-chip-deva {
     font-family: "Noto Serif Devanagari", serif;
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 0.85rem;
   }
 
-  .task-label {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 500;
+  .instruction-advanced {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
   }
 
-  .task-meaning {
+  .instruction-toggle {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
     font-size: 0.8rem;
-    line-height: 1.2;
+    font-family: "IBM Plex Mono", monospace;
+    padding: 0;
+    transition: color 0.2s ease;
   }
 
-  .answer-display {
-    margin-top: 1.5rem;
-    border-top: 1px solid var(--line);
-    padding-top: 1.2rem;
+  .instruction-toggle:hover {
+    color: var(--saffron);
+  }
+
+  .instruction-input {
+    background: var(--ink);
+    border: 1px solid var(--line);
+    color: var(--parchment);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 400px;
     display: none;
   }
 
-  .answer-display.show {
+  .instruction-input.show {
     display: block;
-    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .instruction-input:focus {
+    outline: none;
+    border-color: var(--saffron);
+    box-shadow: 0 0 0 3px rgba(232, 161, 58, 0.1);
+  }
+
+  .capability-banner {
+    background: rgba(76, 176, 122, 0.1);
+    border: 1px solid var(--success);
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--parchment);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .capability-banner.dismissible {
+    position: relative;
+  }
+
+  .capability-dismiss {
+    background: none;
+    border: none;
+    color: var(--saffron);
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    padding: 0;
+  }
+
+  .thinking-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .thinking-dots {
+    display: inline-flex;
+    gap: 0.2rem;
+  }
+
+  .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--saffron);
+    animation: pulse 1.4s infinite;
+  }
+
+  .dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  @media (max-width: 640px) {
+    .thread-container {
+      max-height: 500px;
+    }
+
+    .composer {
+      gap: 0.8rem;
+    }
+
+    .instruction-selector {
+      gap: 0.4rem;
+    }
+
+    .instruction-chip {
+      font-size: 0.7rem;
+      padding: 0.4rem 0.8rem;
+    }
   }
 
   .meta {
@@ -444,7 +656,7 @@
       <a href="index.html" class="nav-logo">शब्द</a>
       <nav>
         <ul class="nav-menu">
-          <li><a href="index.html" class="active">LISTEN</a></li>
+          <li><a href="index.html" class="active">CHAT</a></li>
           <li><a href="https://qbz506-vakya-vallari.static.hf.space/edition.html" target="_blank">EDITION</a></li>
           <li><a href="lens.html">LENS</a></li>
           <li><a href="vak.html">VĀK</a></li>
@@ -492,47 +704,67 @@
       <p class="note" id="adminmsg" style="margin: 0; margin-top: 0.6rem;"></p>
     </div>
 
-    <!-- LIVE MODE -->
+    <!-- LIVE MODE — CHAT THREAD -->
     <div class="card hidden" id="live">
-      <p style="font-family: IBM Plex Mono; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); margin: 0 0 1.2rem; font-weight: 500;">Choose a task, record, and listen</p>
-
-      <div class="task-grid" id="taskGrid"></div>
-
-      <div class="stage">
-        <button class="mic-button" id="mic" aria-label="Press to record" aria-pressed="false">🎙</button>
-        <div class="waveform-container" id="waveformContainer">
-          <canvas id="waveformCanvas"></canvas>
+      <div class="capability-banner" id="capabilityBanner">
+        <div>
+          <strong>Bilingual instruction-following ALM:</strong> transcription + kāraka analysis live today; translation instructions are experimental until the bilingual instruct round lands.
         </div>
-        <div class="recording-status" id="recordingStatus"></div>
-        <div class="controls">
-          <div class="hint" id="hint">Tap to record · then it answers aloud</div>
+        <button class="capability-dismiss" id="dismissBanner" aria-label="Dismiss">✕</button>
+      </div>
+
+      <div class="thread-container" id="threadContainer">
+        <div class="thread-empty">Say something in Sanskrit or English — it will answer and speak back to you.</div>
+      </div>
+
+      <div class="composer" id="composer">
+        <div class="instruction-selector" id="instructionSelector">
+          <button class="instruction-chip active" data-instruction="transcribe">
+            <span>Transcribe</span>
+          </button>
+          <button class="instruction-chip" data-instruction="kriya">
+            <span class="instruction-chip-deva">क्रिया</span>
+            <span>Action</span>
+          </button>
+          <button class="instruction-chip" data-instruction="karta">
+            <span class="instruction-chip-deva">कर्ता</span>
+            <span>Agent</span>
+          </button>
+          <button class="instruction-chip" data-instruction="karma">
+            <span class="instruction-chip-deva">कर्म</span>
+            <span>Object</span>
+          </button>
+          <button class="instruction-chip" data-instruction="karana">
+            <span class="instruction-chip-deva">करण</span>
+            <span>Means</span>
+          </button>
+          <button class="instruction-chip" data-instruction="language">
+            <span class="instruction-chip-deva">भाषा</span>
+            <span>Language</span>
+          </button>
+          <button class="instruction-chip" data-instruction="translate_en">
+            <span>Translate→EN</span>
+          </button>
+          <button class="instruction-chip" data-instruction="translate_sa">
+            <span>Translate→SA</span>
+          </button>
+          <button class="instruction-toggle" id="advancedToggle" aria-label="Toggle custom instruction input">+ Advanced</button>
         </div>
-        <div class="controls">
+
+        <input class="instruction-input" id="instructionInput" type="text" placeholder="Or type a custom instruction…">
+
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+          <button class="mic-button" id="mic" aria-label="Press to record" aria-pressed="false">🎙</button>
+          <div class="waveform-container" id="waveformContainer">
+            <canvas id="waveformCanvas"></canvas>
+          </div>
+          <div class="recording-status" id="recordingStatus"></div>
+          <div class="hint" id="hint">Tap to record · Speak in Sanskrit or English…</div>
           <label class="btn secondary">
             Upload audio
             <input style="display: none;" id="file" type="file" accept="audio/*">
           </label>
         </div>
-      </div>
-
-      <div class="answer-display" id="answer">
-        <div class="meta">
-          <span id="m-task">task</span>
-          <span id="m-lang">sa</span>
-          <span id="m-ms">— ms</span>
-        </div>
-
-        <div>
-          <span class="trans-label">Transliteration (SLP1)</span>
-          <div class="trans-text" id="m-slp1">…</div>
-        </div>
-
-        <div style="margin-top: 1.2rem;">
-          <span class="trans-label">Devanagari script</span>
-          <div class="trans-text" id="m-deva" style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.5rem;">…</div>
-        </div>
-
-        <div id="audioContainer"></div>
       </div>
     </div>
 
@@ -580,23 +812,15 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const $ = id => document.getElementById(id);
 const CFG = window.PRANAVA_CONFIG || {};
 
-const TASKS = [
-  { key: "transcribe", label: "transcribe", deva: "लेखन", meaning: "write it out" },
-  { key: "kriya", label: "kriya", deva: "क्रिया", meaning: "name the action" },
-  { key: "karta", label: "karta", deva: "कर्ता", meaning: "name the agent" },
-  { key: "karma", label: "karma", deva: "कर्म", meaning: "name the object" },
-  { key: "karana", label: "karana", deva: "करण", meaning: "name the means" },
-  { key: "language", label: "language", deva: "भाषा", meaning: "name the language" },
-];
-
-let task = "transcribe";
+let instruction = "transcribe";  // Current instruction selector
 let sb = null;
 let gateway = "";
 let session = null;
 let recordingStartTime = 0;
 let audioAnalyser = null;
 let animationId = null;
-let lastLatency = 0;
+let thread = [];  // In-memory conversation thread: [{user_audio, user_transcript, user_lang, model_text, model_audio, model_lang, instruction, latency_ms, timestamp}, ...]
+let isThinking = false;
 
 function slp1ToDeva(slp1) {
   if (!slp1) return slp1;
@@ -658,23 +882,95 @@ function slp1ToDeva(slp1) {
   return result;
 }
 
-function initTasks() {
-  const grid = $("taskGrid");
-  grid.innerHTML = "";
-  TASKS.forEach((t, idx) => {
-    const card = document.createElement("button");
-    card.className = "task-card" + (idx === 0 ? " active" : "");
-    card.innerHTML = `
-      <div class="task-deva">${t.deva}</div>
-      <div class="task-label">${t.key}</div>
-      <div class="task-meaning">${t.meaning}</div>
-    `;
-    card.onclick = () => {
-      task = t.key;
-      [...grid.children].forEach(c => c.classList.toggle("active", c === card));
+function initInstructionSelector() {
+  // Set up instruction chip selection
+  $$(".instruction-chip").forEach(chip => {
+    chip.onclick = () => {
+      instruction = chip.dataset.instruction;
+      $("instructionInput").value = "";  // Clear custom instruction
+      $("instructionInput").classList.remove("show");
+      $("advancedToggle").textContent = "+ Advanced";
+      $$(".instruction-chip").forEach(c => c.classList.toggle("active", c === chip));
     };
-    grid.appendChild(card);
   });
+
+  // Advanced / custom instruction toggle
+  $("advancedToggle").onclick = () => {
+    const input = $("instructionInput");
+    const isShown = input.classList.contains("show");
+    if (isShown) {
+      input.classList.remove("show");
+      $("advancedToggle").textContent = "+ Advanced";
+      if (input.value) instruction = input.value;
+      else instruction = "transcribe";  // Reset to first chip
+    } else {
+      input.classList.add("show");
+      input.focus();
+      $("advancedToggle").textContent = "- Advanced";
+    }
+  };
+
+  $("instructionInput").onchange = () => {
+    instruction = $("instructionInput").value || "transcribe";
+    $$(".instruction-chip").forEach(c => c.classList.remove("active"));
+  };
+}
+
+const $$ = selector => Array.from(document.querySelectorAll(selector));
+
+function renderThread() {
+  const container = $("threadContainer");
+  if (thread.length === 0) {
+    container.innerHTML = '<div class="thread-empty">Say something in Sanskrit or English — it will answer and speak back to you.</div>';
+    return;
+  }
+
+  container.innerHTML = thread.map((turn, idx) => {
+    const slp1Deva = slp1ToDeva(turn.model_text || "");
+    const turnHtml = `
+      <div class="message-turn">
+        <div class="message-role">Your voice</div>
+        <div class="message-bubble">
+          <div class="message-text">🎵 Audio recorded</div>
+          <div class="message-meta">
+            <span>${new Date(turn.timestamp).toLocaleTimeString()}</span>
+          </div>
+          ${turn.user_audio ? `
+            <div class="message-audio">
+              <audio controls style="flex: 1;">
+                <source src="${URL.createObjectURL(turn.user_audio)}">
+              </audio>
+            </div>
+          ` : ''}
+        </div>
+      </div>
+      <div class="message-turn">
+        <div class="message-role">Model's answer <span style="color: var(--muted);">(${turn.instruction})</span></div>
+        <div class="message-bubble">
+          ${turn.model_text ? `
+            <div class="message-text">${turn.model_text}</div>
+            ${slp1Deva ? `<div class="message-deva">${slp1Deva}</div>` : ''}
+          ` : '<div class="message-text">…</div>'}
+          <div class="message-meta">
+            <span>${new Date(turn.timestamp).toLocaleTimeString()}</span>
+            <span class="latency-chip">⏱ ${turn.latency_ms}ms</span>
+            <span>${turn.model_lang}</span>
+          </div>
+          ${turn.model_audio ? `
+            <div class="message-audio">
+              <audio controls autoplay style="flex: 1;">
+                <source src="${URL.createObjectURL(turn.model_audio)}">
+              </audio>
+            </div>
+          ` : ''}
+        </div>
+      </div>
+    `;
+    return turnHtml;
+  }).join("");
+
+  // Auto-scroll to bottom
+  container.scrollTop = container.scrollHeight;
 }
 
 function initWaveform() {
@@ -751,6 +1047,11 @@ async function boot() {
     const { data, error } = await sb.rpc("invite_guest", { guest_email: g });
     $("adminmsg").textContent = error ? ("Error: " + error.message) : ("Invited " + g + " — live access on sign-in.");
   };
+
+  // Capability banner dismiss
+  $("dismissBanner").onclick = () => {
+    $("capabilityBanner").style.display = "none";
+  };
 }
 
 async function route(s) {
@@ -797,67 +1098,60 @@ function wireLive(s) {
       return;
     }
 
+    if (isThinking) return;  // Prevent double-send
+    isThinking = true;
+
     const t0 = Date.now();
-    show("answer", false);
-    $("recordingStatus").textContent = "listening…";
-    $("hint").textContent = "processing…";
+    $("recordingStatus").textContent = "thinking…";
+    $("hint").innerHTML = '<div class="thinking-indicator">Processing<div class="thinking-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
 
     try {
-      const r = await fetch(base.replace(/\/$/, "") + "/speak?task=" + task, {
+      const params = new URLSearchParams();
+      params.append("instruction", instruction);
+      const r = await fetch(base.replace(/\/$/, "") + "/chat?" + params.toString(), {
         method: "POST",
         body: blob,
       });
 
       const ms = Date.now() - t0;
 
+      if (!r.ok) {
+        throw new Error(`Server responded with ${r.status}`);
+      }
+
       const ct = r.headers.get("content-type") || "";
       let text = decodeURIComponent(escape(r.headers.get("X-Transcript") || "")) || "(no answer)";
       const lang = r.headers.get("X-Language") || "?";
+      const usedInstruction = r.headers.get("X-Instruction") || instruction;
+      const chatMode = r.headers.get("X-Chat-Mode") || "unknown";
 
       text = text.replace(/Â/g, "").replace(/â/g, "");
 
-      $("m-task").textContent = task;
-      $("m-lang").textContent = lang;
-      $("m-ms").textContent = ms + " ms";
-      $("m-slp1").textContent = text;
-
-      const devaText = slp1ToDeva(text);
-      $("m-deva").textContent = devaText;
-
-      const audioContainer = $("audioContainer");
-      audioContainer.innerHTML = "";
-
-      if (blob.type.includes("audio")) {
-        const inputDiv = document.createElement("div");
-        inputDiv.className = "audio-item";
-        inputDiv.innerHTML = `<span class="audio-label">Your voice</span>`;
-        const audioEl = document.createElement("audio");
-        audioEl.controls = true;
-        audioEl.src = URL.createObjectURL(blob);
-        inputDiv.appendChild(audioEl);
-        audioContainer.appendChild(inputDiv);
-      }
+      // Add turn to thread
+      const turn = {
+        user_audio: blob,
+        user_transcript: "(audio input)",
+        user_lang: "?",
+        model_text: text,
+        model_audio: null,
+        model_lang: lang,
+        instruction: usedInstruction,
+        latency_ms: ms,
+        timestamp: new Date().toISOString(),
+      };
 
       if (ct.includes("audio")) {
-        const b = await r.blob();
-        const outputDiv = document.createElement("div");
-        outputDiv.className = "audio-item";
-        outputDiv.innerHTML = `<span class="audio-label">Model answers</span>`;
-        const audioEl = document.createElement("audio");
-        audioEl.controls = true;
-        audioEl.src = URL.createObjectURL(b);
-        outputDiv.appendChild(audioEl);
-        audioContainer.appendChild(outputDiv);
-
-        setTimeout(() => audioEl.play(), 300);
+        turn.model_audio = await r.blob();
       }
 
-      show("answer");
+      thread.push(turn);
+      renderThread();
 
-      if (s) {
+      // Log to Supabase history
+      if (s && sb) {
         await sb.from("speak_history").insert({
           user_id: s.user.id,
-          task,
+          task: usedInstruction,
           answer: text,
           lang,
         });
@@ -865,11 +1159,14 @@ function wireLive(s) {
       }
 
       $("recordingStatus").textContent = "";
-      $("hint").textContent = "Tap to record again";
+      $("hint").textContent = "Tap to record again · Speak in Sanskrit or English…";
     } catch (e) {
-      showError("Could not reach the live backend. Is the tunnel running?");
+      console.error("Chat error:", e);
+      showError("Could not reach the live backend. Is the tunnel running? " + (e.message || ""));
       $("recordingStatus").textContent = "";
-      $("hint").textContent = "Tap to record again";
+      $("hint").textContent = "Tap to record again · Speak in Sanskrit or English…";
+    } finally {
+      isThinking = false;
     }
   }
 
@@ -1079,7 +1376,7 @@ function showError(msg) {
 if (!CFG.SUPABASE_URL || !CFG.SUPABASE_ANON_KEY) {
   show("endpoint");
   show("live");
-  initTasks();
+  initInstructionSelector();
 
   const getApi = () => ($("api").value.trim().replace(/\/$/, "") || location.origin);
   gateway = getApi();
@@ -1091,7 +1388,7 @@ if (!CFG.SUPABASE_URL || !CFG.SUPABASE_ANON_KEY) {
   wireLive(null);
 } else {
   sb = createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY);
-  initTasks();
+  initInstructionSelector();
   boot();
 }
 
