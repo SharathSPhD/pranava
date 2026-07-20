@@ -153,7 +153,7 @@ def run_sabda(ds: str, rows):
                     t = t.to(core.torch_device)
                 audio = proj(t, structural_bias=bias)
                 prefix = build_prefix(core, audio, cfg["sabda_instr"])
-                out = core.greedy_from_embeds(prefix, max_new=cfg["max_new"], stop_token=EOS)
+                out = core.greedy_from_embeds(prefix, max_new=cfg["max_new"], stop_token=EOS, no_repeat_ngram=6)
                 pred = bytes(b for b in out if 9 <= b < 127).decode("latin-1", "ignore").strip()
             except Exception as e:
                 per.append({"id": r["id"], "pred": "", "gold": r["text"], "note": f"input_error: {e}"})

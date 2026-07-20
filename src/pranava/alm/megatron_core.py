@@ -120,14 +120,34 @@ class Megatron1BCore:
 
     @torch.no_grad()
     def greedy_from_embeds(self, prefix_embeds: torch.Tensor, max_new: int = 48,
-                           stop_token: int | None = None) -> list[int]:
-        """Greedy decode; stops early at ``stop_token`` (e.g. the instruct EOS sentinel) if given —
-        same surface as SanskritCore.greedy_from_embeds so instruct/eval code ports unchanged."""
+                           stop_token: int | None = None,
+                           no_repeat_ngram: int | None = None) -> list[int]:
+        """Greedy decode; stops early at ``stop_token`` (the instruct EOS sentinel) if given.
+
+        ``no_repeat_ngram=n`` bans completing any byte n-gram already emitted (standard decode
+        hygiene — long-form real-speech decoding loops without it; baselines' generate() stacks
+        carry their own repetition handling). Falls back to the next-best non-repeating byte."""
         x = prefix_embeds.to(self.device)
         out: list[int] = []
+        seen: set[tuple[int, ...]] = set()
         for _ in range(max_new):
             logits = self.forward_embeds(x)[0, -1]
-            nxt = int(torch.argmax(logits).item())
+            if no_repeat_ngram and len(out) >= no_repeat_ngram - 1:
+                prefix_gram = tuple(out[-(no_repeat_ngram - 1):])
+                order = torch.argsort(logits, descending=True)
+                nxt = None
+                for cand in order[:16].tolist():
+                    if stop_token is not None and cand == stop_token:
+                        nxt = cand
+                        break
+                    if prefix_gram + (cand,) not in seen:
+                        nxt = cand
+                        break
+                if nxt is None:
+                    nxt = int(order[0].item())
+                seen.add(prefix_gram + (nxt,))
+            else:
+                nxt = int(torch.argmax(logits).item())
             if stop_token is not None and nxt == stop_token:
                 break
             out.append(nxt)

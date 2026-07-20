@@ -95,7 +95,7 @@ def eval_fair(core, proj, bias, rows, dev, slp1: bool, max_new: int = 448, limit
             continue
         audio = proj(t, structural_bias=bias)
         prefix = build_prefix(core, audio, "transcribe the speech")
-        out = core.greedy_from_embeds(prefix, max_new=max_new, stop_token=EOS)
+        out = core.greedy_from_embeds(prefix, max_new=max_new, stop_token=EOS, no_repeat_ngram=6)
         pred = bytes(b for b in out if 9 <= b < 127).decode("latin-1", "ignore").strip()
         p, g = _fold(pred, slp1), _fold(r["text"], slp1)
         cns.append(_lev(p, g) / max(1, len(g)))
@@ -121,7 +121,7 @@ def main(epochs: int = 2, lr: float = 1e-4, r: int = 16, eos_weight: float = 3.0
     d_enc = int(np.load(first_npy).shape[-1])
     proj = SphotaProjector(d_enc=d_enc, d_model=core.d_model, downsample=4).to(dev)
 
-    warm = next((p for p in (ROOT / "data/alm/sh1b_ckpt.pt", ROOT / "data/alm/xl1b_ckpt.pt") if p.exists()), None)
+    warm = next((p for p in (ROOT / "data/alm/bi1b_ckpt.pt", ROOT / "data/alm/sh1b_ckpt.pt", ROOT / "data/alm/xl1b_ckpt.pt") if p.exists()), None)
     if warm:
         blob = torch.load(warm, map_location=dev, weights_only=True)
         try:
@@ -158,6 +158,8 @@ def main(epochs: int = 2, lr: float = 1e-4, r: int = 16, eos_weight: float = 3.0
 
     hist, evals, best = [], [], float("inf")
     for ep in range(epochs):
+        for g in opt.param_groups:  # per-epoch decay: 1e-4 -> xN(0.6) — epoch-1 collapse fix
+            g["lr"] = lr * (0.6 ** ep)
         proj.train()
         order = list(range(len(train_rows)))
         random.Random(ep).shuffle(order)
