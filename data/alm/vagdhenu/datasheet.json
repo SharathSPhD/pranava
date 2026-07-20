@@ -1,0 +1,15 @@
+{
+  "counts": {
+    "train": 1247,
+    "test": 220
+  },
+  "hours": {
+    "train": 4.5,
+    "test": 0.84
+  },
+  "n_sessions": 20,
+  "n_test_sessions": 3,
+  "split_rule": "sessions sorted; every 7th session (idx%7==0) = TEST — deterministic, leakage-safe (Su-śrotā convention: hold out by session), no cherry-picking",
+  "provenance": "prathoshap/vagdhenu-data (CC-BY-4.0) — REAL human Sanskrit chant, native SLP1",
+  "note": "single-speaker corpus: measures chant-domain accuracy, NOT speaker generalization"
+}
