@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Śabda-ALM · BENCHMARKS · leaderboard</title>
+<meta name="description" content="Fair Sanskrit ASR benchmark: own-benchmark SOTA + public benchmark (Shrutilipi) in progress.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Devanagari:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .benchmark-section {
+    margin-bottom: 3rem;
+  }
+
+  .caveat-box {
+    background: rgba(212, 175, 55, 0.1);
+    border: 2px solid var(--accent-gold);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .caveat-box h3 {
+    margin-top: 0;
+    color: var(--accent-gold);
+  }
+
+  .leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .leaderboard-table thead {
+    background: rgba(232, 161, 58, 0.1);
+    border-bottom: 2px solid var(--saffron);
+  }
+
+  .leaderboard-table th {
+    padding: 1rem;
+    text-align: left;
+    color: var(--saffron);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .leaderboard-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--parchment);
+  }
+
+  .leaderboard-table tbody tr:hover {
+    background: rgba(232, 161, 58, 0.05);
+  }
+
+  .rank {
+    font-weight: 600;
+    color: var(--saffron);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1.1rem;
+  }
+
+  .model-name {
+    font-weight: 500;
+  }
+
+  .model-ours {
+    color: var(--saffron);
+  }
+
+  .metric {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.9rem;
+  }
+
+  .metric-best {
+    color: var(--success);
+    font-weight: 600;
+  }
+
+  .metric-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .alm-type {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .specialist-badge {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    background: rgba(76, 176, 122, 0.2);
+    color: var(--success);
+    border: 1px solid var(--success);
+    border-radius: 4px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .progress-section {
+    background: rgba(76, 176, 122, 0.08);
+    border: 1px solid var(--success);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .progress-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .progress-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--success);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  .progress-title {
+    font-size: 1.3rem;
+    color: var(--parchment);
+    margin-bottom: 0.6rem;
+  }
+
+  .progress-subtitle {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .column-span-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    padding: 0.6rem;
+  }
+
+  @media (max-width: 768px) {
+    .leaderboard-table {
+      font-size: 0.9rem;
+    }
+
+    .leaderboard-table th, .leaderboard-table td {
+      padding: 0.8rem 0.6rem;
+    }
+
+    .model-name {
+      word-break: break-word;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">शब्द</a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">LISTEN</a></li>
+          <li><a href="https://qbz506-vakya-vallari.static.hf.space/edition.html" target="_blank">EDITION</a></li>
+          <li><a href="lens.html">LENS</a></li>
+          <li><a href="vak.html">VĀK</a></li>
+          <li><a href="benchmarks.html" class="active">BENCHMARKS</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="glyph">रणक्षेत्र</div>
+      <h1>Benchmarks</h1>
+      <p class="sub">Sanskrit audio-to-text recognition: own-benchmark leaderboard (in-distribution) and public benchmark (Shrutilipi, real speech) in progress.</p>
+    </div>
+
+    <!-- OWN-BENCHMARK SECTION -->
+    <section class="benchmark-section">
+      <h2>Own-Benchmark: Held-Out Specialist Corpus</h2>
+      <p style="margin-bottom: 0.6rem;"><strong>Task:</strong> Convert held-out Sanskrit audio → romanized text (lower CER is better).</p>
+      <p><strong>Audio source:</strong> Native Sanskrit (indic-parler-tts TTS voice) — 58 clips, controlled phonetic coverage.</p>
+      <p><strong>Metric:</strong> CER (character error rate) under the "ASCII phonetic skeleton" scheme — transliteration-folded, scheme-neutral, fair to all models.</p>
+
+      <div class="caveat-box">
+        <h3>⚠ Caveat: Own-Benchmark Scope</h3>
+        <p style="margin: 0;">This leaderboard measures <strong>in-distribution performance:</strong> the same TTS voice for all models, identical audio, identical scoring. It shows the specialist ALM's strength on a controlled task. <strong>It does NOT claim to measure general Sanskrit ASR or real-world robustness.</strong> The public benchmark (Shrutilipi, real human speech) will test generalization.</p>
+      </div>
+
+      <div class="caveat-box" style="background: rgba(76, 176, 122, 0.08); border-color: var(--success);">
+        <h3 style="color: var(--success);">✓ How We Fixed the Bugs</h3>
+        <p style="margin: 0;">Earlier runs fed Qwen2-Audio no audio (the <code>audio=</code> kwarg was silently ignored in transformers 4.57 — a harness bug). That produced a single canned hallucination (CER 15.9 vs 0.44 now). We fixed it to pass audio explicitly. Our specialist also had a gold-length oracle; we retrained with free decode + EOS stop. These corrections are the honest exemplar: errors found, fixed, reported.</p>
+      </div>
+
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th style="width: 5%;">#</th>
+            <th style="width: 35%;">Model</th>
+            <th style="width: 12%;">Params</th>
+            <th style="width: 15%;">Type</th>
+            <th style="width: 12%;">CER (norm)</th>
+            <th style="width: 21%;">Note</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody">
+          <!-- Populated by JavaScript -->
+        </tbody>
+      </table>
+
+      <p style="font-size: 0.85rem; color: var(--muted); margin-top: 1rem;">Full per-clip predictions: <code>data/benchmark/alm_vs_alm_records.json</code>. The correction itself (fixing harness bugs) is the honesty exemplar for benchmarking.</p>
+    </section>
+
+    <!-- PUBLIC BENCHMARK SECTION -->
+    <section class="benchmark-section">
+      <h2>Public Benchmark: Shrutilipi-Sanskrit (Real Human Speech)</h2>
+      <p>Evaluation against real Sanskrit speech corpus (Shrutilipi, by <a href="https://github.com/SharathSPhD/pranava" target="_blank">community contribution</a>). This tests robustness beyond TTS, real accent variation, and generalization.</p>
+
+      <div id="shrutilipiBenchmark"></div>
+    </section>
+
+    <footer style="text-align: center; padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--line);">
+      <p>Benchmarking methodology and full logs: <code>research/alm-vs-alm.md</code>, <code>research/alm_efe_ledger.jsonl</code> (audit trail). Per-model per-clip breakdowns in <code>data/benchmark/alm_vs_alm_records.json</code>.</p>
+    </footer>
+  </main>
+
+<script>
+(async () => {
+  // Load own-benchmark
+  try {
+    const res = await fetch("data/benchmarks.json");
+    const data = await res.json();
+
+    const tbody = document.getElementById("leaderboardBody");
+    const leaderboard = data.leaderboard || [];
+
+    leaderboard.forEach((entry, idx) => {
+      const row = document.createElement("tr");
+      const isOurs = entry.model.includes("Śabda-ALM");
+
+      const typeClass = entry.alm_type.includes("specialist") ? "specialist-badge" : "";
+      const typeHtml = `<span class="${typeClass}" style="background: ${typeClass ? 'rgba(76, 176, 122, 0.2)' : 'transparent'}; color: ${typeClass ? 'var(--success)' : 'var(--muted)'};">${entry.alm_type}</span>`;
+
+      const cerClass = idx === 0 ? "metric-best" : "";
+      const isBest = idx === 0 ? " ★" : "";
+
+      row.innerHTML = `
+        <td class="rank">${idx + 1}</td>
+        <td class="model-name" style="color: ${isOurs ? 'var(--saffron)' : 'var(--parchment)'};">${isOurs ? "🔴 " : ""}${entry.model}</td>
+        <td><span class="metric">${entry.params}</span></td>
+        <td>${typeHtml}</td>
+        <td class="metric ${cerClass}">${entry.cer_norm.toFixed(4)}${isBest}</td>
+        <td><span class="metric-note">${entry.note ? entry.note.substring(0, 60) + "…" : ""}</span></td>
+      `;
+      tbody.appendChild(row);
+    });
+
+  } catch (e) {
+    console.error("Failed to load benchmarks:", e);
+  }
+
+  // Load public benchmark (if available)
+  try {
+    const res = await fetch("data/shrutilipi_leaderboard.json");
+    if (res.ok) {
+      const data = await res.json();
+      const div = document.getElementById("shrutilipiBenchmark");
+
+      // Render public leaderboard
+      const table = document.createElement("table");
+      table.className = "leaderboard-table";
+      table.innerHTML = `
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Model</th>
+            <th>CER (real speech)</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody id="shrutilipiBody"></tbody>
+      `;
+      div.appendChild(table);
+
+      const tbody = table.querySelector("#shrutilipiBody");
+      const entries = data.leaderboard || [];
+      entries.forEach((entry, idx) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="rank">${idx + 1}</td>
+          <td class="model-name">${entry.model}</td>
+          <td class="metric ${idx === 0 ? "metric-best" : ""}">${entry.cer ? entry.cer.toFixed(4) : "—"}</td>
+          <td><span class="metric-note">${entry.note || ""}</span></td>
+        `;
+        tbody.appendChild(row);
+      });
+    } else {
+      showPublicBenchmarkPlaceholder();
+    }
+  } catch (e) {
+    showPublicBenchmarkPlaceholder();
+  }
+
+  function showPublicBenchmarkPlaceholder() {
+    const div = document.getElementById("shrutilipiBenchmark");
+    div.innerHTML = `
+      <div class="progress-section">
+        <div class="progress-icon">🔄</div>
+        <div class="progress-label">Evaluation in Progress</div>
+        <div class="progress-title">Shrutilipi-Sanskrit Benchmark</div>
+        <div class="progress-subtitle">
+          Real Sanskrit speech corpus evaluation is underway.<br>
+          Results will appear here when complete.
+        </div>
+        <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--muted);">
+          This benchmark tests robustness against real human speakers, accent variation, and recording conditions — beyond TTS. It is the true test of generalization.
+        </p>
+      </div>
+    `;
+  }
+})();
+</script>
+</body>
+</html>

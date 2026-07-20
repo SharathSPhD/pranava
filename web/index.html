@@ -3,220 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Śabda-ALM · speak, and it answers</title>
-<meta name="description" content="A speech-to-speech Sanskrit audio language model. Sign in to speak with it live, or hear stored demos.">
+<title>Śabda-ALM · LISTEN · speak and hear</title>
+<meta name="description" content="Speak with the Sanskrit audio language model live, or hear stored demos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Devanagari:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <script src="config.js"></script>
 <style>
-  :root {
-    --ink: #0E1020;
-    --panel: #16182B;
-    --line: #2A2E4C;
-    --saffron: #E8A13A;
-    --amber: #F2D9A8;
-    --paper: #E7E3D6;
-    --muted: #9195B8;
-    --violet: #7A67F0;
-    --green: #4CB07A;
-    --red: #c0392b;
-    --accent-dark: #14110f;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    background: radial-gradient(120% 80% at 50% -10%, #181a30 0%, var(--ink) 60%);
-    color: var(--paper);
-    font-family: "IBM Plex Sans", system-ui, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.5rem 1rem;
-    padding-bottom: 5rem;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 680px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-  }
-
-  .hero {
-    text-align: center;
-    margin: 1rem 0 1.5rem;
-  }
-
-  .glyph {
-    font-family: "Noto Serif Devanagari", serif;
-    font-size: clamp(2rem, 6vw, 3rem);
-    color: var(--saffron);
-    text-shadow: 0 0 44px #e8a13a55;
-    margin: 0;
-    line-height: 1;
-  }
-
-  h1 {
-    font-family: "Spectral", serif;
-    font-weight: 600;
-    font-size: clamp(1.5rem, 4.5vw, 2.2rem);
-    margin: 0.6rem 0 0.4rem;
-    text-align: center;
-  }
-
-  .sub {
-    color: var(--muted);
-    text-align: center;
-    max-width: 52ch;
-    margin: 0;
-    line-height: 1.45;
-    font-size: 0.95rem;
-  }
-
-  .bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 0.8rem;
-    font-size: 0.8rem;
-    color: var(--muted);
-    gap: 0.6rem;
-    flex-wrap: wrap;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 1.6rem;
-    width: 100%;
-    box-shadow: 0 20px 60px #0006;
-    animation: fadeIn 0.3s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .tag {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.65rem;
-    border-radius: 20px;
-    border: 1px solid var(--line);
-    font-weight: 500;
-  }
-
-  .tag.admin { color: var(--saffron); border-color: #5a4420; }
-  .tag.guest { color: var(--green); border-color: #274a37; }
-  .tag.user { color: var(--violet); border-color: #3a3470; }
-
-  .ask {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 0 0 1rem;
-    font-weight: 500;
-  }
-
-  .task-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 0.8rem;
-    margin-bottom: 1.4rem;
-  }
-
-  .task-card {
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 1rem;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .task-card:hover {
-    border-color: var(--saffron);
-  }
-
-  .task-card.active {
-    background: var(--saffron);
-    border-color: var(--saffron);
-    color: var(--accent-dark);
-  }
-
-  .task-card.active .task-deva {
-    color: var(--accent-dark);
-  }
-
-  .task-card.active .task-label {
-    color: var(--accent-dark);
-    font-weight: 600;
-  }
-
-  .task-card.active .task-meaning {
-    color: var(--accent-dark);
-    opacity: 0.85;
-  }
-
-  .task-deva {
-    font-family: "Noto Serif Devanagari", serif;
-    font-size: 1.5rem;
-    color: var(--saffron);
-    font-weight: 700;
-  }
-
-  .task-label {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--paper);
-    font-weight: 500;
-  }
-
-  .task-meaning {
-    font-size: 0.8rem;
-    color: var(--muted);
-    line-height: 1.2;
-  }
-
-  .stage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 1.2rem 0;
-  }
+  .card { margin-bottom: 1.6rem; }
 
   .mic-button {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     background: radial-gradient(circle at 50% 35%, #F4B65A, var(--saffron));
     color: var(--accent-dark);
-    box-shadow: 0 12px 40px #e8a13a40;
+    box-shadow: 0 12px 40px rgba(232, 161, 58, 0.4);
     transition: all 0.2s ease;
     font-weight: bold;
     position: relative;
@@ -224,8 +29,8 @@
   }
 
   .mic-button:hover:not(.recording) {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 50px #e8a13a50;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 56px rgba(232, 161, 58, 0.5);
   }
 
   .mic-button:focus-visible {
@@ -234,19 +39,28 @@
   }
 
   .mic-button.recording {
-    background: radial-gradient(circle at 50% 35%, #e0584a, var(--red));
+    background: radial-gradient(circle at 50% 35%, #e0584a, var(--warning));
     color: #fff;
     animation: pulse 1.25s infinite;
   }
 
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 #c0392b55; }
-    50% { box-shadow: 0 0 0 20px #c0392b00; }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.5); }
+    50% { box-shadow: 0 0 0 24px rgba(192, 57, 43, 0); }
+  }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 0;
   }
 
   .waveform-container {
     width: 100%;
-    height: 120px;
+    max-width: 500px;
+    height: 100px;
     background: var(--ink);
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -264,60 +78,54 @@
     display: block;
   }
 
-  .recording-status {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.85rem;
-    color: var(--saffron);
-    font-weight: 500;
-    min-height: 1.2rem;
+  .task-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
   }
 
-  .controls {
-    display: flex;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 0.8rem;
-  }
-
-  .btn {
-    font-family: "IBM Plex Sans";
-    font-size: 0.9rem;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    border: none;
+  .task-card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.2rem;
+    background: transparent;
     cursor: pointer;
     transition: all 0.2s ease;
-    font-weight: 500;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
   }
 
-  .btn:focus-visible {
-    outline: 2px solid var(--saffron);
-    outline-offset: 2px;
+  .task-card:hover {
+    border-color: var(--saffron);
+    background: rgba(232, 161, 58, 0.05);
   }
 
-  .btn.primary {
+  .task-card.active {
     background: var(--saffron);
+    border-color: var(--saffron);
     color: var(--accent-dark);
   }
 
-  .btn.primary:hover {
-    background: var(--amber);
+  .task-deva {
+    font-family: "Noto Serif Devanagari", serif;
+    font-size: 1.6rem;
+    font-weight: 700;
   }
 
-  .btn.secondary {
-    background: transparent;
-    border: 1px solid var(--line);
-    color: var(--paper);
+  .task-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
   }
 
-  .btn.secondary:hover {
-    border-color: var(--saffron);
-    color: var(--saffron);
-  }
-
-  .file-input {
-    display: none;
+  .task-meaning {
+    font-size: 0.8rem;
+    line-height: 1.2;
   }
 
   .answer-display {
@@ -333,26 +141,16 @@
   }
 
   .meta {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--saffron);
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
     margin-bottom: 0.8rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--saffron);
     font-weight: 500;
-  }
-
-  .meta span {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
-
-  .transliteration {
-    margin: 1rem 0;
   }
 
   .trans-label {
@@ -368,18 +166,14 @@
 
   .trans-text {
     font-family: "Spectral", serif;
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     line-height: 1.5;
-    color: var(--paper);
+    color: var(--parchment);
     word-break: break-word;
-    padding: 0.8rem;
-    background: rgba(26, 27, 45, 0.5);
-    border-left: 3px solid var(--saffron);
+    padding: 1rem;
+    background: rgba(26, 27, 45, 0.6);
+    border-left: 4px solid var(--saffron);
     border-radius: 4px;
-  }
-
-  .audio-control {
-    margin-top: 0.8rem;
   }
 
   .audio-item {
@@ -393,16 +187,17 @@
   }
 
   .audio-label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--muted);
-    min-width: 80px;
+    font-family: "IBM Plex Mono", monospace;
+    min-width: 90px;
+    font-weight: 500;
   }
 
   audio {
     flex: 1;
     height: 28px;
     border-radius: 4px;
-    cursor: pointer;
   }
 
   audio:focus-visible {
@@ -412,16 +207,24 @@
 
   .hint {
     color: var(--muted);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     text-align: center;
     min-height: 1.2rem;
   }
 
+  .recording-status {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--saffron);
+    font-weight: 500;
+    min-height: 1.2rem;
+  }
+
   .error-message {
-    background: #3a0f0f;
-    border: 1px solid #6b2a2a;
+    background: rgba(192, 57, 43, 0.2);
+    border: 1px solid var(--warning);
     color: #ff9999;
-    padding: 0.8rem;
+    padding: 1rem;
     border-radius: 6px;
     font-size: 0.85rem;
     line-height: 1.4;
@@ -430,35 +233,133 @@
 
   .success-message {
     background: rgba(76, 176, 122, 0.15);
-    border: 1px solid var(--green);
-    color: var(--green);
-    padding: 0.8rem;
+    border: 1px solid var(--success);
+    color: var(--success);
+    padding: 1rem;
     border-radius: 6px;
     font-size: 0.85rem;
     line-height: 1.4;
     margin-top: 0.8rem;
   }
 
-  .history-section {
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .form-group {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .form-input {
+    background: var(--ink);
+    border: 1px solid var(--line);
+    color: var(--parchment);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 0.95rem;
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--saffron);
+    box-shadow: 0 0 0 3px rgba(232, 161, 58, 0.1);
+  }
+
+  .form-input::placeholder {
+    color: var(--muted);
+  }
+
+  .note {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .controls {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .demo-clip {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1rem;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .demo-clip:hover {
+    border-color: var(--saffron);
+    background: rgba(232, 161, 58, 0.05);
+  }
+
+  .demo-clip.active {
+    border-color: var(--saffron);
+    background: rgba(232, 161, 58, 0.1);
+  }
+
+  .demo-clip-id {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+  }
+
+  .demo-clip-preview {
+    font-size: 0.85rem;
+    color: var(--parchment);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .demo-detail {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
     display: none;
   }
 
-  .history-section.open {
+  .demo-detail.show {
     display: block;
   }
 
   .history-toggle {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.8rem;
     background: transparent;
     border: none;
-    color: var(--paper);
+    color: var(--parchment);
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 500;
     padding: 0.6rem 0;
-    font-family: "IBM Plex Sans";
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
     width: 100%;
     justify-content: space-between;
   }
@@ -493,21 +394,11 @@
     background: rgba(26, 27, 45, 0.5);
     border-left: 3px solid var(--saffron);
     border-radius: 4px;
-    font-size: 0.85rem;
-  }
-
-  .history-task {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--saffron);
-    font-weight: 500;
-    margin-bottom: 0.3rem;
+    font-size: 0.8rem;
   }
 
   .history-answer {
-    color: var(--paper);
+    color: var(--parchment);
     word-break: break-word;
     line-height: 1.3;
     margin-bottom: 0.3rem;
@@ -515,296 +406,95 @@
 
   .history-time {
     color: var(--muted);
-    font-size: 0.75rem;
-  }
-
-  .demo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 0.8rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .demo-clip {
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 0.8rem;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: center;
-  }
-
-  .demo-clip:hover {
-    border-color: var(--saffron);
-    background: rgba(232, 161, 58, 0.05);
-  }
-
-  .demo-clip.active {
-    border-color: var(--saffron);
-    background: rgba(232, 161, 58, 0.1);
-  }
-
-  .demo-clip-id {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--saffron);
-    margin-bottom: 0.3rem;
-    font-weight: 500;
-  }
-
-  .demo-clip-preview {
-    font-size: 0.9rem;
-    color: var(--paper);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .demo-detail {
-    margin-top: 1.2rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--line);
-    display: none;
-  }
-
-  .demo-detail.show {
-    display: block;
-  }
-
-  .demo-task-answer {
-    margin-bottom: 1rem;
-    padding: 0.8rem;
-    background: rgba(26, 27, 45, 0.5);
-    border-radius: 6px;
-  }
-
-  .demo-task-label {
-    font-family: "IBM Plex Mono", monospace;
     font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--saffron);
-    margin-bottom: 0.4rem;
-    font-weight: 500;
   }
 
-  .demo-gold {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-bottom: 0.3rem;
-  }
-
-  .demo-answer {
-    font-family: "Spectral", serif;
-    font-size: 1.1rem;
-    line-height: 1.4;
-    color: var(--paper);
-  }
-
-  .status-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(14, 16, 32, 0.95), transparent);
-    backdrop-filter: blur(4px);
-    border-top: 1px solid var(--line);
-    padding: 0.8rem 1rem;
+  .bar {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    font-size: 0.75rem;
-    font-family: "IBM Plex Mono", monospace;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .status-item {
-    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.4rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.9rem;
     color: var(--muted);
   }
 
-  .status-indicator {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    display: inline-block;
-  }
-
-  .status-indicator.ok {
-    background: var(--green);
-  }
-
-  .status-indicator.warn {
-    background: var(--saffron);
-  }
-
-  .status-indicator.error {
-    background: var(--red);
-  }
-
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .form-group {
-    display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
-
-  .form-input {
-    background: var(--ink);
-    border: 1px solid var(--line);
-    color: var(--paper);
-    border-radius: 6px;
-    padding: 0.7rem 0.9rem;
-    font-family: "IBM Plex Sans";
-    font-size: 0.95rem;
-    flex: 1;
-    min-width: 220px;
-  }
-
-  .form-input:focus {
-    outline: none;
-    border-color: var(--saffron);
-    box-shadow: 0 0 0 3px rgba(232, 161, 58, 0.1);
-  }
-
-  .form-input::placeholder {
-    color: var(--muted);
-  }
-
-  .note {
-    color: var(--muted);
-    font-size: 0.85rem;
-    line-height: 1.5;
-  }
-
-  .admin-section {
-    border: 1px solid #5a4420;
-    border-radius: 8px;
-    padding: 1rem;
-    background: rgba(232, 161, 58, 0.05);
-    margin-bottom: 1rem;
-  }
-
-  a {
-    color: var(--amber);
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  footer {
-    margin-top: 1.5rem;
-    color: var(--muted);
-    font-size: 0.8rem;
-    text-align: center;
-    line-height: 1.6;
-    padding: 1rem 0;
-  }
-
-  .hidden {
-    display: none !important;
-  }
-
-  @media (max-width: 540px) {
-    body {
-      padding: 1rem 0.8rem;
-      padding-bottom: 4.5rem;
-    }
-
-    .card {
-      border-radius: 8px;
-      padding: 1.2rem;
-    }
-
-    .glyph {
+  @media (max-width: 640px) {
+    .mic-button {
+      width: 110px;
+      height: 110px;
       font-size: 2rem;
     }
 
-    h1 {
-      font-size: 1.4rem;
-    }
-
     .task-grid {
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
 
-    .mic-button {
-      width: 100px;
-      height: 100px;
-      font-size: 1.8rem;
-    }
-
-    .status-bar {
-      gap: 1rem;
-      padding: 0.6rem 0.8rem;
-      font-size: 0.7rem;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0s !important;
-      transition-duration: 0s !important;
+    .waveform-container {
+      max-width: 100%;
     }
   }
 </style>
 </head>
 <body>
-  <div class="container">
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">शब्द</a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="active">LISTEN</a></li>
+          <li><a href="https://qbz506-vakya-vallari.static.hf.space/edition.html" target="_blank">EDITION</a></li>
+          <li><a href="lens.html">LENS</a></li>
+          <li><a href="vak.html">VĀK</a></li>
+          <li><a href="benchmarks.html">BENCHMARKS</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
     <div class="hero">
       <div class="glyph">शब्द</div>
       <h1>Speak, and it answers</h1>
-      <p class="sub" id="sub">A speech-to-speech Sanskrit audio language model.</p>
+      <p class="sub">A speech-to-speech Sanskrit audio language model. Sign in to speak live, or hear stored demos.</p>
     </div>
 
     <div class="bar hidden" id="bar">
       <span id="who"></span>
       <span style="display: flex; align-items: center; gap: 0.8rem;">
         <span class="tag" id="tier">…</span>
-        <button class="btn secondary" id="signout" aria-label="Sign out">sign out</button>
+        <button class="btn secondary" id="signout">sign out</button>
       </span>
     </div>
 
     <!-- LOGIN -->
     <div class="card hidden" id="login">
-      <p class="ask">Sign in to continue</p>
-      <p class="note">Admins &amp; invited guests speak with the model live. Everyone else hears stored demo replays. You'll get a magic-link email — no password.</p>
+      <p style="font-family: IBM Plex Mono; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); margin: 0 0 1rem; font-weight: 500;">Sign in to continue</p>
+      <p class="note">Admins and invited guests speak with the model live. Everyone else hears stored demo replays. You'll get a magic-link email — no password.</p>
       <div class="login-form">
         <div class="form-group">
-          <input class="form-input" id="email" type="email" placeholder="you@email.com" aria-label="Email address">
-          <button class="btn primary" id="sendlink" aria-label="Send sign-in link">Email me a link</button>
+          <input class="form-input" id="email" type="email" placeholder="you@email.com">
+          <button class="btn primary" id="sendlink">Email me a link</button>
         </div>
         <p class="note" id="loginmsg" style="margin: 0;"></p>
       </div>
     </div>
 
     <!-- ADMIN PANEL -->
-    <div class="card admin-section hidden" id="admin">
-      <p class="ask">Admin: invite guests to speak live</p>
+    <div class="card hidden" id="admin" style="border: 1px solid #5a4420; background: rgba(232, 161, 58, 0.05);">
+      <p style="font-family: IBM Plex Mono; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); margin: 0 0 1rem; font-weight: 500;">Admin: invite guests to speak live</p>
       <div class="form-group">
-        <input class="form-input" id="guest" type="email" placeholder="invite guest email" aria-label="Guest email to invite">
-        <button class="btn primary" id="invite" aria-label="Invite guest">Invite</button>
+        <input class="form-input" id="guest" type="email" placeholder="invite guest email">
+        <button class="btn primary" id="invite">Invite</button>
       </div>
       <p class="note" id="adminmsg" style="margin: 0; margin-top: 0.6rem;"></p>
     </div>
 
-    <!-- LIVE MODE (admin/guest) -->
+    <!-- LIVE MODE -->
     <div class="card hidden" id="live">
-      <p class="ask">Choose a task, record, and listen</p>
+      <p style="font-family: IBM Plex Mono; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); margin: 0 0 1.2rem; font-weight: 500;">Choose a task, record, and listen</p>
 
       <div class="task-grid" id="taskGrid"></div>
 
@@ -820,35 +510,35 @@
         <div class="controls">
           <label class="btn secondary">
             Upload audio
-            <input class="file-input" id="file" type="file" accept="audio/*" aria-label="Upload audio file">
+            <input style="display: none;" id="file" type="file" accept="audio/*">
           </label>
         </div>
       </div>
 
       <div class="answer-display" id="answer">
         <div class="meta">
-          <span id="m-task">transcribe</span>
+          <span id="m-task">task</span>
           <span id="m-lang">sa</span>
           <span id="m-ms">— ms</span>
         </div>
 
-        <div class="transliteration">
-          <span class="trans-label">SLP1 romanization</span>
+        <div>
+          <span class="trans-label">Transliteration (SLP1)</span>
           <div class="trans-text" id="m-slp1">…</div>
         </div>
 
-        <div class="transliteration">
+        <div style="margin-top: 1.2rem;">
           <span class="trans-label">Devanagari script</span>
           <div class="trans-text" id="m-deva" style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.5rem;">…</div>
         </div>
 
-        <div class="audio-control" id="audioContainer"></div>
+        <div id="audioContainer"></div>
       </div>
     </div>
 
-    <!-- REPLAY MODE (user) -->
+    <!-- REPLAY MODE -->
     <div class="card hidden" id="replay">
-      <p class="ask">Stored demos — hear the model answer</p>
+      <p style="font-family: IBM Plex Mono; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); margin: 0 0 1rem; font-weight: 500;">Stored demos — hear the model answer</p>
       <div class="demo-grid" id="demoClips"></div>
       <div class="demo-detail" id="demoDetail">
         <div id="demoTaskAnswers"></div>
@@ -857,42 +547,32 @@
       <p class="note" style="margin-top: 1rem;">Want to speak live? Ask the admin to invite your email.</p>
     </div>
 
-    <!-- HISTORY PANEL (for live users) -->
+    <!-- HISTORY PANEL -->
     <div class="card hidden" id="historyCard">
       <button class="history-toggle collapsed" id="historyToggle" aria-expanded="false">
         <span>Your recent interactions</span>
         <span id="historyCount" style="color: var(--saffron); font-size: 0.9rem;"></span>
       </button>
-      <div class="history-section" id="historySection">
+      <div id="historySection" style="display: none;">
         <div class="history-list" id="historyList"></div>
       </div>
     </div>
 
-    <!-- ENDPOINT FALLBACK (dev mode) -->
+    <!-- DEV MODE -->
     <div class="card hidden" id="endpoint">
       <p class="note">Auth is not configured yet. Dev mode: point at a running server.</p>
       <div class="form-group" style="margin-top: 1rem;">
-        <input class="form-input" id="api" placeholder="https://your-alm-server" aria-label="Backend server URL">
+        <input class="form-input" id="api" placeholder="https://your-alm-server">
       </div>
     </div>
+  </main>
 
-    <footer>
-      <a href="https://sharathsphd.github.io/pranava/">About</a> ·
-      <a href="https://github.com/SharathSPhD/pranava">Code</a> ·
-      <a href="https://github.com/SharathSPhD/pranava/blob/master/NSM.md">Architecture</a>
-    </footer>
-  </div>
-
-  <!-- STATUS BAR -->
-  <div class="status-bar" id="statusBar">
-    <div class="status-item">
-      <span class="status-indicator ok" id="statusHealth"></span>
-      <span id="statusModel">Model: …</span>
-    </div>
-    <div class="status-item">
-      <span id="statusLatency">Latency: —</span>
-    </div>
-  </div>
+  <footer>
+    <a href="https://sharathsphd.github.io/pranava/">About</a> ·
+    <a href="https://github.com/SharathSPhD/pranava">Code</a> ·
+    <a href="https://github.com/SharathSPhD/pranava/blob/master/NSM.md">Architecture</a> ·
+    <a href="https://sharathsphd.github.io/pranava/paper.pdf">Paper</a>
+  </footer>
 
 <script type="module">
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
@@ -917,9 +597,7 @@ let recordingStartTime = 0;
 let audioAnalyser = null;
 let animationId = null;
 let lastLatency = 0;
-let backendHealth = false;
 
-// SLP1 to Devanagari transliterator (deterministic, handles vowel diacritics + consonant clusters)
 function slp1ToDeva(slp1) {
   if (!slp1) return slp1;
 
@@ -961,12 +639,11 @@ function slp1ToDeva(slp1) {
         result += VOWEL_MAP[vowel];
         i++;
       } else if (i < slp1.length && CONSONANTS.has(slp1[i])) {
-        result += "्"; // virama before next consonant
+        result += "्";
       } else if (i === slp1.length) {
-        result += "्"; // virama for word-final consonant
+        result += "्";
       }
     } else if (MODIFIERS.has(ch)) {
-      // Remove virama if modifier follows
       if (result.endsWith("्")) {
         result = result.slice(0, -1);
       }
@@ -981,7 +658,6 @@ function slp1ToDeva(slp1) {
   return result;
 }
 
-// Initialize task cards
 function initTasks() {
   const grid = $("taskGrid");
   grid.innerHTML = "";
@@ -1001,7 +677,6 @@ function initTasks() {
   });
 }
 
-// Waveform visualization
 function initWaveform() {
   const canvas = $("waveformCanvas");
   const container = $("waveformContainer");
@@ -1009,7 +684,7 @@ function initWaveform() {
 
   const ctx = canvas.getContext("2d");
   canvas.width = container.offsetWidth - 24;
-  canvas.height = 100;
+  canvas.height = 80;
 
   function drawWaveform(analyser) {
     const bufferLength = analyser.frequencyBinCount;
@@ -1037,44 +712,19 @@ function initWaveform() {
 
 const drawWaveform = initWaveform();
 
-// Fetch backend health
 async function updateStatus() {
-  if (!gateway) {
-    setStatusIndicator("health", "error");
-    return;
-  }
+  if (!gateway) return;
   try {
     const r = await fetch(gateway.replace(/\/$/, "") + "/health");
     if (!r.ok) throw new Error("Health check failed");
     const data = await r.json();
-    backendHealth = true;
-    setStatusIndicator("health", "ok");
-    const modelName = data.model || "Unknown model";
-    $("statusModel").textContent = `Model: ${modelName.substring(0, 40)}`;
-  } catch (e) {
-    backendHealth = false;
-    setStatusIndicator("health", "error");
-    $("statusModel").textContent = "Model: offline";
-  }
-}
-
-function setStatusIndicator(id, state) {
-  const indicator = document.querySelector(`#status${id.charAt(0).toUpperCase() + id.slice(1)} .status-indicator`);
-  if (indicator) {
-    indicator.className = "status-indicator " + state;
-  }
-}
-
-function setLatency(ms) {
-  lastLatency = ms;
-  $("statusLatency").textContent = `Latency: ${ms}ms`;
+  } catch (e) {}
 }
 
 function show(id, on = true) {
   $(id).classList.toggle("hidden", !on);
 }
 
-// Main routing
 async function boot() {
   const { data: { session: s } } = await sb.auth.getSession();
   sb.auth.onAuthStateChange((_e, s) => route(s));
@@ -1099,7 +749,7 @@ async function boot() {
     const g = $("guest").value.trim();
     if (!g) return;
     const { data, error } = await sb.rpc("invite_guest", { guest_email: g });
-    $("adminmsg").textContent = error ? ("Error: " + error.message) : ("Invited " + g + " — they get live access on sign-in.");
+    $("adminmsg").textContent = error ? ("Error: " + error.message) : ("Invited " + g + " — live access on sign-in.");
   };
 }
 
@@ -1115,7 +765,6 @@ async function route(s) {
   show("bar");
   $("who").textContent = s.user.email;
 
-  // Get tier
   let tier = "user";
   const { data } = await sb.from("user_tiers").select("tier").eq("user_id", s.user.id).maybeSingle();
   if (data && data.tier) tier = data.tier;
@@ -1139,7 +788,6 @@ async function route(s) {
   }
 }
 
-// LIVE MODE
 function wireLive(s) {
   async function send(blob) {
     const base = gateway;
@@ -1161,30 +809,25 @@ function wireLive(s) {
       });
 
       const ms = Date.now() - t0;
-      setLatency(ms);
 
       const ct = r.headers.get("content-type") || "";
       let text = decodeURIComponent(escape(r.headers.get("X-Transcript") || "")) || "(no answer)";
       const lang = r.headers.get("X-Language") || "?";
 
-      // Clean up encoding artifacts
       text = text.replace(/Â/g, "").replace(/â/g, "");
 
-      $("m-txt").textContent = task; // Use for reference
+      $("m-task").textContent = task;
       $("m-lang").textContent = lang;
       $("m-ms").textContent = ms + " ms";
       $("m-slp1").textContent = text;
 
-      // Transliterate to Devanagari
       const devaText = slp1ToDeva(text);
       $("m-deva").textContent = devaText;
 
       const audioContainer = $("audioContainer");
       audioContainer.innerHTML = "";
 
-      // Input audio player
       if (blob.type.includes("audio")) {
-        const inputAudio = new Audio(URL.createObjectURL(blob));
         const inputDiv = document.createElement("div");
         inputDiv.className = "audio-item";
         inputDiv.innerHTML = `<span class="audio-label">Your voice</span>`;
@@ -1195,7 +838,6 @@ function wireLive(s) {
         audioContainer.appendChild(inputDiv);
       }
 
-      // Output audio player
       if (ct.includes("audio")) {
         const b = await r.blob();
         const outputDiv = document.createElement("div");
@@ -1207,13 +849,11 @@ function wireLive(s) {
         outputDiv.appendChild(audioEl);
         audioContainer.appendChild(outputDiv);
 
-        // Auto-play the model's answer
         setTimeout(() => audioEl.play(), 300);
       }
 
       show("answer");
 
-      // Log to history
       if (s) {
         await sb.from("speak_history").insert({
           user_id: s.user.id,
@@ -1278,7 +918,6 @@ function wireLive(s) {
       $("recordingStatus").textContent = "Recording…";
       $("hint").textContent = "Recording — tap to stop";
 
-      // Start waveform visualization
       waveformContainer.classList.add("active");
       if (drawWaveform) drawWaveform(audioAnalyser);
     } catch (e) {
@@ -1288,7 +927,6 @@ function wireLive(s) {
   };
 }
 
-// HISTORY
 async function loadHistory() {
   if (!session) return;
 
@@ -1312,10 +950,9 @@ async function loadHistory() {
     const div = document.createElement("div");
     div.className = "history-item";
     const taskObj = TASKS.find(t => t.key === item.task);
-    const taskLabel = taskObj ? taskObj.deva : item.task;
     const time = new Date(item.created_at).toLocaleString();
     div.innerHTML = `
-      <div class="history-task">${item.task}</div>
+      <div class="history-task" style="font-family: IBM Plex Mono; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); font-weight: 500; margin-bottom: 0.3rem;">${item.task}</div>
       <div class="history-answer">${(item.answer || "").substring(0, 100)}</div>
       <div class="history-time">${time}</div>
     `;
@@ -1325,15 +962,14 @@ async function loadHistory() {
 
 $("historyToggle").onclick = (e) => {
   const btn = e.target.closest(".history-toggle");
-  const section = $("historySection");
+  const section = btn.nextElementSibling;
   const isOpen = btn.classList.contains("collapsed");
   btn.classList.toggle("collapsed");
   btn.setAttribute("aria-expanded", isOpen);
-  section.classList.toggle("open", isOpen);
+  section.style.display = isOpen ? "block" : "none";
   if (isOpen) loadHistory();
 };
 
-// REPLAY
 async function loadReplay() {
   let items = [];
   try {
@@ -1348,7 +984,6 @@ async function loadReplay() {
     return;
   }
 
-  // Group by clip_id
   const byClip = {};
   items.forEach(it => {
     if (!byClip[it.clip_id]) byClip[it.clip_id] = [];
@@ -1372,7 +1007,6 @@ async function loadReplay() {
     clipsContainer.appendChild(clip);
   });
 
-  // Show first clip by default
   if (items.length > 0) showDemoDetail(items[0].clip_id, byClip[items[0].clip_id]);
 }
 
@@ -1384,32 +1018,28 @@ function showDemoDetail(clipId, items) {
   tasksDiv.innerHTML = "";
   audioDiv.innerHTML = "";
 
-  // Group by task
   const byTask = {};
   items.forEach(it => {
     if (!byTask[it.task]) byTask[it.task] = [];
     byTask[it.task].push(it);
   });
 
-  // Show tasks
   Object.keys(byTask).forEach(taskKey => {
     const taskItems = byTask[taskKey];
-    const taskObj = TASKS.find(t => t.key === taskKey);
     taskItems.forEach(it => {
       const div = document.createElement("div");
       div.className = "demo-task-answer";
       const deva = slp1ToDeva(it.answer || "");
       div.innerHTML = `
-        <div class="demo-task-label">${taskKey}</div>
-        ${it.gold ? `<div class="demo-gold">Gold: ${it.gold}</div>` : ""}
-        <div class="demo-answer" style="margin-bottom: 0.4rem;">${(it.answer || "").substring(0, 150)}</div>
+        <div class="demo-task-label" style="font-family: IBM Plex Mono; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); margin-bottom: 0.4rem; font-weight: 500;">${taskKey}</div>
+        ${it.gold ? `<div class="demo-gold" style="font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem;">Gold: ${it.gold}</div>` : ""}
+        <div class="demo-answer" style="margin-bottom: 0.4rem; font-size: 0.9rem;">${(it.answer || "").substring(0, 150)}</div>
         <div class="demo-answer" style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.2rem;">${deva}</div>
       `;
       tasksDiv.appendChild(div);
     });
   });
 
-  // Show audio
   const firstItem = items[0];
   if (firstItem.audio_in) {
     const inDiv = document.createElement("div");
@@ -1446,7 +1076,6 @@ function showError(msg) {
   setTimeout(() => div.remove(), 5000);
 }
 
-// BOOT
 if (!CFG.SUPABASE_URL || !CFG.SUPABASE_ANON_KEY) {
   show("endpoint");
   show("live");
@@ -1466,7 +1095,6 @@ if (!CFG.SUPABASE_URL || !CFG.SUPABASE_ANON_KEY) {
   boot();
 }
 
-// Initialize status
 updateStatus();
 
 </script>

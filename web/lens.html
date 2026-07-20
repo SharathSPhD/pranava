@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Śabda-ALM · LENS · Sphoṭa emergence</title>
+<meta name="description" content="Sphoṭa-Lens: measure the locus where meaning emerges from sound. Real curves, honest status: correlational peak 13 + causal design failed (peak 0).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Devanagari:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .instrument-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .chart-wrapper {
+    background: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.5rem;
+    overflow-x: auto;
+  }
+
+  svg {
+    font-family: "Spectral", serif;
+    font-size: 12px;
+  }
+
+  .axis-label {
+    fill: var(--muted);
+    font-size: 11px;
+  }
+
+  .grid-line {
+    stroke: var(--line);
+    stroke-dasharray: 2,2;
+    stroke-width: 0.5;
+  }
+
+  .curve-emergence {
+    stroke: var(--saffron);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .curve-causal {
+    stroke: var(--warning);
+    fill: none;
+    stroke-width: 2;
+    stroke-dasharray: 4,2;
+    stroke-linecap: round;
+  }
+
+  .chance-line {
+    stroke: var(--muted);
+    fill: none;
+    stroke-width: 1;
+    stroke-dasharray: 1,2;
+  }
+
+  .peak-marker {
+    stroke: var(--accent-gold);
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .dot {
+    fill: var(--saffron);
+  }
+
+  .text-annotation {
+    fill: var(--amber);
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .legend {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .legend-color {
+    width: 24px;
+    height: 2px;
+    border-radius: 1px;
+  }
+
+  .status-box {
+    background: rgba(76, 176, 122, 0.08);
+    border: 2px solid var(--success);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .status-box h3 {
+    margin-top: 0;
+    color: var(--success);
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-right: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .status-badge.open {
+    background: rgba(76, 176, 122, 0.2);
+    color: var(--success);
+    border: 1px solid var(--success);
+  }
+
+  .status-badge.mixed {
+    background: rgba(212, 175, 55, 0.2);
+    color: var(--accent-gold);
+    border: 1px solid var(--accent-gold);
+  }
+
+  .status-badge.failed {
+    background: rgba(192, 57, 43, 0.2);
+    color: var(--warning);
+    border: 1px solid var(--warning);
+  }
+
+  .workspace-viz {
+    display: grid;
+    grid-template-columns: repeat(25, 1fr);
+    gap: 2px;
+    margin: 1rem 0;
+  }
+
+  .layer-bar {
+    height: 20px;
+    border-radius: 2px;
+    border: 1px solid var(--line);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .layer-bar.workspace {
+    border: 2px solid var(--saffron);
+    background: rgba(232, 161, 58, 0.3);
+  }
+
+  .layer-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 0.2rem;
+  }
+
+  .steering-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .steering-card {
+    background: rgba(22, 24, 43, 0.6);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .steering-alpha {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--saffron);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+
+  .steering-label {
+    font-size: 0.9rem;
+    color: var(--parchment);
+    margin-bottom: 0.3rem;
+  }
+
+  .steering-result {
+    font-size: 1.2rem;
+    color: var(--success);
+    font-weight: 500;
+  }
+
+  .steering-result.failed {
+    color: var(--warning);
+  }
+
+  @media (max-width: 768px) {
+    .chart-wrapper {
+      padding: 1rem;
+    }
+
+    svg {
+      font-size: 10px;
+    }
+
+    .workspace-viz {
+      grid-template-columns: repeat(15, 1fr);
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">शब्द</a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">LISTEN</a></li>
+          <li><a href="https://qbz506-vakya-vallari.static.hf.space/edition.html" target="_blank">EDITION</a></li>
+          <li><a href="lens.html" class="active">LENS</a></li>
+          <li><a href="vak.html">VĀK</a></li>
+          <li><a href="benchmarks.html">BENCHMARKS</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="glyph">लेंस</div>
+      <h1>Sphoṭa-Lens</h1>
+      <p class="sub">The instrument to measure where meaning emerges from sound. Real data, honest caveats: the correlational locus is clear; the causal story is mixed.</p>
+    </div>
+
+    <!-- STATUS BOX: Honest claim status -->
+    <div class="status-box">
+      <h3>Interior Sphoṭa Locus (paśyantī layer)</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        <span class="status-badge open">OPEN</span>
+      </div>
+      <p style="margin: 1rem 0 0 0; font-size: 0.95rem;">
+        <strong>Evidence:</strong> Correlational peak at layer 13 (decodability of kriyā from audio positions, above chance); one causal ablation design agrees.
+        <strong style="color: var(--warning);">But</strong> the pre-registered fusion-v2 causal design FAILED (peak at layer 0, not interior). The paśyantī locus is real under correlation, causally mixed under current designs.
+      </p>
+      <p style="margin: 0.6rem 0 0 0; font-size: 0.9rem; color: var(--muted);">
+        Caveat: single model family; probe is linear. The honest interior locus claim remains open — more causal designs needed.
+      </p>
+    </div>
+
+    <!-- EMERGENCE: Decodability curve -->
+    <section>
+      <h2>Emergence: Decodability by Layer</h2>
+      <p>The kriyā (action) becomes decodable from audio positions at layer 13. The curve stays above chance (0.0222) across all layers, peaking at layer 13 (0.2625).</p>
+
+      <div class="chart-wrapper">
+        <svg id="emergenceChart" viewBox="0 0 900 300" style="width: 100%; min-height: 300px;">
+          <!-- Will be rendered by JavaScript -->
+        </svg>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-color" style="background: var(--saffron);"></div>
+          <span><strong>Decodability</strong> — linear probe accuracy for kriyā from audio positions</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: var(--muted);"></div>
+          <span><strong>Chance</strong> — baseline (1/45 classes ≈ 0.0222)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: var(--accent-gold);"></div>
+          <span><strong>Peak layer 13</strong> — sphoṭa locus (correlational)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKSPACE BAND -->
+    <section>
+      <h2>Workspace: The paśyantī Band</h2>
+      <p>Layers 21–23 form the fused workspace where audio (dhvani) and text (pada) representations converge into whole meaning (sphoṭa). Below: the layer-by-layer fusion scores and articulation trends.</p>
+
+      <h3 style="font-size: 1.1rem; margin-top: 2rem;">Layer composition (workspace band highlighted)</h3>
+      <div class="workspace-viz" id="workspaceViz"></div>
+
+      <h3 style="font-size: 1.1rem; margin-top: 2rem;">Fusion and Articulation by Layer</h3>
+      <div class="chart-wrapper">
+        <svg id="workspaceChart" viewBox="0 0 900 280" style="width: 100%; min-height: 280px;">
+          <!-- Will be rendered by JavaScript -->
+        </svg>
+      </div>
+
+      <div class="legend" style="margin-top: 1rem;">
+        <div class="legend-item">
+          <div class="legend-color" style="background: var(--saffron);"></div>
+          <span><strong>Fusion</strong> — convergence of audio & text representations (peaks early, layer 1)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: var(--success);"></div>
+          <span><strong>Articulation</strong> — phonetic detail concentration (rises toward output, layers 21–23 high)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: var(--accent-gold); opacity: 0.7;"></div>
+          <span><strong>Workspace band [21, 23]</strong> — where fused meaning takes sonic form</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEERING: Writable workspace -->
+    <section>
+      <h2>Steering: The Workspace is Writable</h2>
+      <p>The workspace band layers [21, 23] can be steered: injecting a concept vector into these layers changes the model's output. Below: uptake at different steering strengths (α).</p>
+
+      <h3 style="font-size: 1.1rem; margin: 1.5rem 0;">Steering uptake by α (concept vs random control)</h3>
+      <div class="steering-grid" id="steeringGrid"></div>
+
+      <div style="background: rgba(192, 57, 43, 0.1); border: 1px solid var(--warning); border-radius: 6px; padding: 1rem; margin-top: 1.5rem; font-size: 0.9rem;">
+        <strong style="color: var(--warning);">Caveat (honest):</strong> Uptake at α=4.0 breaches the svātantrya entropy budget (H-SU3 failed). Concept-loading ≠ faithful utterance under high α. This is a real limit: you can write to the workspace, but unconstrained writes don't yield coherent speech. The tradeoff is reported, not hidden.
+      </div>
+    </section>
+
+    <!-- SUMMARY TABLE -->
+    <section>
+      <h2>What the Sphoṭa-Lens Shows</h2>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--saffron);">
+            <th style="text-align: left; padding: 0.8rem; color: var(--saffron); font-weight: 600;">Dimension</th>
+            <th style="text-align: left; padding: 0.8rem; color: var(--saffron); font-weight: 600;">Finding</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--line);">
+            <td style="padding: 0.8rem; color: var(--parchment);"><strong>Correlational locus</strong></td>
+            <td style="padding: 0.8rem; color: var(--amber);">Layer 13 — kriyā decodable from audio ≫ chance (0.2625 vs 0.0222)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--line);">
+            <td style="padding: 0.8rem; color: var(--parchment);"><strong>Causal locus</strong></td>
+            <td style="padding: 0.8rem; color: var(--warning);">Pre-registered fusion-v2: peak at layer 0 (not interior). Other ablations: layer 14. Mixed evidence.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--line);">
+            <td style="padding: 0.8rem; color: var(--parchment);"><strong>Workspace band</strong></td>
+            <td style="padding: 0.8rem; color: var(--parchment);">Layers 21–23 — fusion peak + high articulation. Fused representation stabilizes for output.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--line);">
+            <td style="padding: 0.8rem; color: var(--parchment);"><strong>Steering uptake</strong></td>
+            <td style="padding: 0.8rem; color: var(--success);">Constrainable (2.46× control at baseline), but high α breaches entropy budget. Writable, not freely rewritable.</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.8rem; color: var(--parchment);"><strong>Interpretation</strong></td>
+            <td style="padding: 0.8rem; color: var(--parchment);">Sphoṭa emerges correlatively; causality needs more designs. The paśyantī locus (pre-articulate, whole meaning) is real under correlation — open under causation.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer style="text-align: center; padding: 2rem 0; color: var(--muted);">
+      <p>Sphoṭa-Lens instruments: <em>emergence_report.json</em> (correlational + causal curves, layer 13 peak) and <em>sphota_lens_report.json</em> (workspace band, fusion, articulation, steering uptake). Full methodology in research/P3-sphota-lens.md and research/alm_efe_ledger.jsonl (audit trail).</p>
+    </footer>
+  </main>
+
+<script>
+// Load and render charts
+(async () => {
+  // Fetch lens data
+  const lensResp = await fetch("data/lens.json");
+  const lensData = await lensResp.json();
+  const emergence = lensData.emergence;
+  const workspace = lensData.workspace;
+
+  // ===== EMERGENCE CHART =====
+  renderEmergenceChart(emergence);
+
+  // ===== WORKSPACE BAND VIZ =====
+  renderWorkspaceViz(workspace);
+
+  // ===== WORKSPACE CHART (Fusion + Articulation) =====
+  renderWorkspaceChart(workspace);
+
+  // ===== STEERING GRID =====
+  renderSteeringGrid(workspace);
+})();
+
+function renderEmergenceChart(emergence) {
+  const canvas = document.getElementById("emergenceChart");
+  const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+  const width = 900 - margin.left - margin.right;
+  const height = 260 - margin.top - margin.bottom;
+
+  const data = emergence.decodability_by_layer;
+  const chance = emergence.chance;
+  const peakLayer = emergence.peak_layer;
+
+  const maxVal = Math.max(...data, chance) * 1.1;
+  const xScale = width / (data.length - 1);
+  const yScale = height / maxVal;
+
+  let svg = canvas.innerHTML = "";
+
+  // Grid
+  for (let i = 0; i <= 4; i++) {
+    const y = (height - (i * height / 4)) + margin.top;
+    const val = (i * maxVal / 4).toFixed(4);
+    canvas.innerHTML += `<line x1="${margin.left}" y1="${y}" x2="${width + margin.left}" y2="${y}" class="grid-line"/>`;
+    canvas.innerHTML += `<text x="${margin.left - 8}" y="${y + 4}" class="axis-label" text-anchor="end">${val}</text>`;
+  }
+
+  // Chance line
+  const chancey = height - (chance * yScale) + margin.top;
+  canvas.innerHTML += `<line x1="${margin.left}" y1="${chancey}" x2="${width + margin.left}" y2="${chancey}" class="chance-line"/>`;
+  canvas.innerHTML += `<text x="${margin.left - 8}" y="${chancey - 4}" class="axis-label" text-anchor="end" fill="var(--muted)">chance</text>`;
+
+  // Curve
+  let path = "M";
+  data.forEach((val, i) => {
+    const x = margin.left + i * xScale;
+    const y = margin.top + height - (val * yScale);
+    path += `${x},${y} L`;
+  });
+  canvas.innerHTML += `<path d="${path.slice(0, -2)}" class="curve-emergence"/>`;
+
+  // Peak marker
+  const peakX = margin.left + peakLayer * xScale;
+  const peakY = margin.top + height - (data[peakLayer] * yScale);
+  canvas.innerHTML += `<circle cx="${peakX}" cy="${peakY}" r="5" class="peak-marker"/>`;
+  canvas.innerHTML += `<text x="${peakX}" y="${peakY - 12}" class="text-annotation" text-anchor="middle">L${peakLayer} (0.2625)</text>`;
+
+  // Axes
+  canvas.innerHTML += `<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${height + margin.top}" stroke="var(--line)" stroke-width="1"/>`;
+  canvas.innerHTML += `<line x1="${margin.left}" y1="${height + margin.top}" x2="${width + margin.left}" y2="${height + margin.top}" stroke="var(--line)" stroke-width="1"/>`;
+
+  // X-axis label
+  canvas.innerHTML += `<text x="${margin.left + width/2}" y="${height + margin.top + 28}" class="axis-label" text-anchor="middle" fill="var(--saffron)">Layer</text>`;
+  canvas.innerHTML += `<text x="20" y="${margin.top - 8}" class="axis-label" fill="var(--saffron)">Accuracy</text>`;
+
+  // Layer labels (every 5th)
+  for (let i = 0; i < data.length; i += 5) {
+    const x = margin.left + i * xScale;
+    canvas.innerHTML += `<text x="${x}" y="${height + margin.top + 18}" class="axis-label" text-anchor="middle">${i}</text>`;
+  }
+}
+
+function renderWorkspaceViz(workspace) {
+  const viz = document.getElementById("workspaceViz");
+  const bandLayers = new Set(workspace.workspace_band);
+  const fusion = workspace.fusion_by_layer;
+
+  viz.innerHTML = "";
+  for (let i = 0; i < fusion.length; i++) {
+    const div = document.createElement("div");
+    const isWorkspace = bandLayers.has(i);
+    div.className = `layer-bar ${isWorkspace ? "workspace" : ""}`;
+    div.style.background = `linear-gradient(to right, rgba(232, 161, 58, ${fusion[i] * 0.5}), transparent)`;
+    div.title = `Layer ${i}: fusion = ${fusion[i].toFixed(3)}`;
+
+    const label = document.createElement("div");
+    label.className = "layer-label";
+    label.textContent = i;
+
+    div.appendChild(label);
+    viz.appendChild(div);
+  }
+}
+
+function renderWorkspaceChart(workspace) {
+  const canvas = document.getElementById("workspaceChart");
+  const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+  const width = 900 - margin.left - margin.right;
+  const height = 240 - margin.top - margin.bottom;
+
+  const fusion = workspace.fusion_by_layer;
+  const articulation = workspace.articulation_by_layer;
+
+  const maxVal = 1;
+  const xScale = width / (fusion.length - 1);
+  const yScale = height / maxVal;
+
+  canvas.innerHTML = "";
+
+  // Grid
+  for (let i = 0; i <= 4; i++) {
+    const y = (height - (i * height / 4)) + margin.top;
+    const val = (i * maxVal / 4).toFixed(2);
+    canvas.innerHTML += `<line x1="${margin.left}" y1="${y}" x2="${width + margin.left}" y2="${y}" class="grid-line"/>`;
+    canvas.innerHTML += `<text x="${margin.left - 8}" y="${y + 4}" class="axis-label" text-anchor="end">${val}</text>`;
+  }
+
+  // Fusion curve
+  let fusionPath = "M";
+  fusion.forEach((val, i) => {
+    const x = margin.left + i * xScale;
+    const y = margin.top + height - (val * yScale);
+    fusionPath += `${x},${y} L`;
+  });
+  canvas.innerHTML += `<path d="${fusionPath.slice(0, -2)}" class="curve-emergence"/>`;
+
+  // Articulation curve
+  let artPath = "M";
+  articulation.forEach((val, i) => {
+    const x = margin.left + i * xScale;
+    const y = margin.top + height - (val * yScale);
+    artPath += `${x},${y} L`;
+  });
+  canvas.innerHTML += `<path d="${artPath.slice(0, -2)}" class="curve-causal"/>`;
+
+  // Workspace band shading
+  const band = workspace.workspace_band;
+  if (band && band.length === 2) {
+    const x1 = margin.left + band[0] * xScale;
+    const x2 = margin.left + band[1] * xScale;
+    canvas.innerHTML += `<rect x="${x1}" y="${margin.top}" width="${x2 - x1}" height="${height}" fill="rgba(232, 161, 58, 0.08)"/>`;
+  }
+
+  // Axes
+  canvas.innerHTML += `<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${height + margin.top}" stroke="var(--line)" stroke-width="1"/>`;
+  canvas.innerHTML += `<line x1="${margin.left}" y1="${height + margin.top}" x2="${width + margin.left}" y2="${height + margin.top}" stroke="var(--line)" stroke-width="1"/>`;
+
+  canvas.innerHTML += `<text x="${margin.left + width/2}" y="${height + margin.top + 28}" class="axis-label" text-anchor="middle" fill="var(--saffron)">Layer</text>`;
+  canvas.innerHTML += `<text x="20" y="${margin.top - 8}" class="axis-label" fill="var(--saffron)">Score</text>`;
+
+  for (let i = 0; i < fusion.length; i += 5) {
+    const x = margin.left + i * xScale;
+    canvas.innerHTML += `<text x="${x}" y="${height + margin.top + 18}" class="axis-label" text-anchor="middle">${i}</text>`;
+  }
+}
+
+function renderSteeringGrid(workspace) {
+  const grid = document.getElementById("steeringGrid");
+  const steering = workspace.steering;
+
+  grid.innerHTML = "";
+
+  // Baseline
+  const baseCard = document.createElement("div");
+  baseCard.className = "steering-card";
+  baseCard.innerHTML = `
+    <div class="steering-alpha">Baseline</div>
+    <div class="steering-label">Uptake measure</div>
+    <div class="steering-result">2.46×</div>
+    <div class="steering-label" style="font-size: 0.75rem; margin-top: 0.4rem;">vs random control</div>
+  `;
+  grid.appendChild(baseCard);
+
+  // α = 2.0
+  const card2 = document.createElement("div");
+  card2.className = "steering-card";
+  card2.innerHTML = `
+    <div class="steering-alpha">α = 2.0</div>
+    <div class="steering-label">Output changed</div>
+    <div class="steering-result">${steering.output_changed_at_alpha["2.0"] ? "✓" : "✗"}</div>
+    <div class="steering-label" style="font-size: 0.75rem; margin-top: 0.4rem;">reproducible</div>
+  `;
+  grid.appendChild(card2);
+
+  // α = 4.0
+  const card4 = document.createElement("div");
+  card4.className = "steering-card";
+  card4.innerHTML = `
+    <div class="steering-alpha">α = 4.0</div>
+    <div class="steering-label">Output changed</div>
+    <div class="steering-result ${steering.output_changed_at_alpha["4.0"] ? "" : "failed"}">${steering.output_changed_at_alpha["4.0"] ? "✓" : "✗"}</div>
+    <div class="steering-label" style="font-size: 0.75rem; margin-top: 0.4rem; color: var(--warning);">entropy budget breach</div>
+  `;
+  grid.appendChild(card4);
+}
+</script>
+</body>
+</html>

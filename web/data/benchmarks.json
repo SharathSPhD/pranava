@@ -1,0 +1,88 @@
+{
+  "task": "held-out Sanskrit audio → romanized text (CER, lower=better)",
+  "n_items": 58,
+  "audio_corpus": "native Sanskrit (indic-parler-tts TTS)",
+  "primary_metric": "cer_norm (transliteration-folded ASCII phonetic skeleton — scheme-neutral, fair)",
+  "secondary_metric": "cer_raw (against SLP1 gold as-is; favors the SLP1-native specialist)",
+  "decode": "all models: greedy, fixed 64-token budget, no gold-length oracle",
+  "comparison": "specialist vs open generalist ALMs, identical audio + identical scoring",
+  "leaderboard": [
+    {
+      "model": "Śabda-ALM 1.13B+LoRA XL — free decode (ours)",
+      "params": "1.13B core + 0.6B enc (8.4M LoRA)",
+      "alm_type": "specialist (Sanskrit fine-tuned, full 10k-clip XL corpus, confirm tier)",
+      "cer_norm": 0.0392,
+      "cer_raw": 0.0446,
+      "n_scored": 58,
+      "unique_outputs": 58,
+      "note": "free greedy decode, model EOS, no oracle; 9,959 train clips (5.77h), 3ep best-ckpt@ep1, 1.35 GPU-h"
+    },
+    {
+      "model": "Voxtral-Mini-3B-2507 (Mistral, open)",
+      "params": "3B",
+      "alm_type": "generalist (8 langs incl Hindi, no Sanskrit)",
+      "cer_norm": 0.1866,
+      "cer_raw": 0.9478,
+      "n_scored": 58,
+      "unique_outputs": 58,
+      "audio_conditioned": true,
+      "note": null
+    },
+    {
+      "model": "Qwen2.5-Omni-3B Thinker (Alibaba, open)",
+      "params": "3B",
+      "alm_type": "generalist (multilingual, no Sanskrit)",
+      "cer_norm": 0.2133,
+      "cer_raw": 6.7643,
+      "n_scored": 58,
+      "unique_outputs": 58,
+      "audio_conditioned": true,
+      "note": null
+    },
+    {
+      "model": "Qwen2-Audio-7B-Instruct (Alibaba, open)",
+      "params": "7B",
+      "alm_type": "generalist (no Sanskrit training)",
+      "cer_norm": 0.4305,
+      "cer_raw": 0.6493,
+      "n_scored": 58,
+      "unique_outputs": 57,
+      "audio_conditioned": true,
+      "note": null
+    },
+    {
+      "model": "Śabda-ALM specialist — length-capped/oracle (ours, orig eval)",
+      "params": "200M core + 0.6B enc",
+      "alm_type": "specialist (Sanskrit fine-tuned, gold-length oracle)",
+      "cer_norm": 0.5061,
+      "cer_raw": 0.7478,
+      "n_scored": 58,
+      "unique_outputs": 58,
+      "audio_conditioned": null,
+      "note": null
+    },
+    {
+      "model": "Śabda-ALM instruct+EOS — free decode (ours)",
+      "params": "200M core + 0.6B enc",
+      "alm_type": "specialist (Sanskrit fine-tuned, EOS-trained instruct decode)",
+      "cer_norm": 1.0329,
+      "cer_raw": 1.0789,
+      "n_scored": 58,
+      "unique_outputs": 58,
+      "note": "free decode, stop at the model's own EOS sentinel — no gold-length oracle"
+    },
+    {
+      "model": "Śabda-ALM specialist — free decode (ours)",
+      "params": "200M core + 0.6B enc",
+      "alm_type": "specialist (Sanskrit fine-tuned)",
+      "cer_norm": 1.8188,
+      "cer_raw": 2.1583,
+      "n_scored": 58,
+      "unique_outputs": 58,
+      "audio_conditioned": null,
+      "note": null
+    }
+  ],
+  "note": "Genuine multi-ALM comparison. Earlier runs fed Qwen no audio (audios= kwarg silently ignored in transformers 4.57) → a single canned hallucination (CER 15.9); that was a harness bug. Fixed to audio= (audio verified to reach the model: per-clip outputs vary and differ from a zero-audio control). Per-clip predictions for every model in alm_vs_alm_records.json.",
+  "rescored": "host rescore: SLP1/Devanagari→IAST + ASCII phonetic fold (indic-transliteration)"
+}

@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Śabda-ALM · VĀK · four layers of utterance</title>
+<meta name="description" content="The four-vāk journey: parā (prior) → paśyantī (whole) → madhyamā (structure) → vaikharī (sound). How Bhartṛhari's theory maps to the ALM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Devanagari:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .vak-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+  }
+
+  .vak-table td, .vak-table th {
+    padding: 1.2rem;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+
+  .vak-table th {
+    background: rgba(232, 161, 58, 0.08);
+    border-bottom: 2px solid var(--saffron);
+    color: var(--saffron);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  .vak-deva {
+    font-family: "Noto Serif Devanagari", serif;
+    font-size: 1.4rem;
+    color: var(--saffron);
+    font-weight: 700;
+  }
+
+  .vak-stage {
+    scroll-margin-top: 100px;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(22, 24, 43, 0.5);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--saffron);
+    border-radius: 8px;
+    animation: fadeInUp 0.5s ease-out;
+  }
+
+  .vak-stage h2 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .vak-stage h2 .label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .vak-meaning {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 0.4rem;
+  }
+
+  .vak-arrow {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--saffron);
+    margin: 1.5rem 0;
+    opacity: 0.6;
+  }
+
+  .vak-flow {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .flow-item {
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--saffron);
+    border-radius: 4px;
+  }
+
+  .flow-item strong {
+    color: var(--saffron);
+  }
+
+  .theses {
+    background: rgba(76, 176, 122, 0.08);
+    border: 2px solid var(--success);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+
+  .theses h3 {
+    margin-top: 0;
+    color: var(--success);
+  }
+
+  .thesis-item {
+    margin-bottom: 1.2rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--accent-gold);
+  }
+
+  .thesis-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .thesis-claim {
+    font-weight: 600;
+    color: var(--parchment);
+  }
+
+  .thesis-caveat {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+
+  .interactive-note {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--accent-gold);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .interactive-note strong {
+    color: var(--accent-gold);
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .vak-stage {
+      padding: 1.5rem;
+    }
+
+    .vak-table td, .vak-table th {
+      padding: 0.8rem;
+      font-size: 0.9rem;
+    }
+
+    .vak-deva {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">शब्द</a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">LISTEN</a></li>
+          <li><a href="https://qbz506-vakya-vallari.static.hf.space/edition.html" target="_blank">EDITION</a></li>
+          <li><a href="lens.html">LENS</a></li>
+          <li><a href="vak.html" class="active">VĀK</a></li>
+          <li><a href="benchmarks.html">BENCHMARKS</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="glyph">वाक्</div>
+      <h1>The Four Vāk</h1>
+      <p class="sub">Bhartṛhari's four layers of speech: from unmanifest ground (parā) through whole meaning (paśyantī) to articulate sound (vaikharī). The Śabda-ALM runs this journey in reverse, then forward again.</p>
+    </div>
+
+    <!-- THE THESIS -->
+    <section>
+      <h2>The Śabdādvaita Thesis</h2>
+      <p>Bhartṛhari taught that the ultimate is not merely <em>described</em> by language — it <em>is</em> language (śabda-tattva). Meaning is <strong>holistic</strong>, not linear. The sphoṭa (whole, indivisible flash of meaning) is the true semantic unit, not the phoneme or word. And it is disclosed through <em>dhvani</em> — <strong>sound</strong>.</p>
+      <p>Therefore: a model that operates on text alone can never instantiate sphoṭa — it has no acoustic substrate, no emergence from sound. But a model that <em>listens</em> — an audio language model — has the dhvani and can exhibit meaning unfolding from the sonic surface. <strong>Śabdādvaita is computationally realizable through an ALM, not through text-only LLMs.</strong></p>
+      <p style="font-style: italic; color: var(--muted); margin-top: 1.5rem;">Pranava is the existence proof and measuring instrument for this claim.</p>
+    </section>
+
+    <!-- THE FOUR VAK TABLE -->
+    <section>
+      <h2>Four Vāk ↔ ALM Architecture</h2>
+      <p>How the four stages of utterance map onto the Śabda-ALM:</p>
+
+      <table class="vak-table">
+        <thead>
+          <tr>
+            <th>Vāk</th>
+            <th>Bhartṛhari</th>
+            <th>Śabda-ALM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="vak-deva">पर</td>
+            <td><strong>parā</strong><br><span style="font-size: 0.9rem; color: var(--muted);">unmanifest ground, cosmic prior</span></td>
+            <td><strong>Sanskrit byte-core's language prior</strong><br><span style="font-size: 0.9rem; color: var(--muted);">The foundational model trained on Sanskrit text & speech; knowledge before any specific input</span></td>
+          </tr>
+          <tr>
+            <td class="vak-deva">पश्यन्ति</td>
+            <td><strong>paśyantī</strong><br><span style="font-size: 0.9rem; color: var(--muted);">visionary, whole, pre-articulate meaning</span></td>
+            <td><strong>Fused workspace band (Sphoṭa-Lens: layers 21–23)</strong><br><span style="font-size: 0.9rem; color: var(--muted);">Where audio &amp; text representations converge; meaning is whole &amp; present, not yet sonic</span></td>
+          </tr>
+          <tr>
+            <td class="vak-deva">मध्यमा</td>
+            <td><strong>madhyamā</strong><br><span style="font-size: 0.9rem; color: var(--muted);">meaning taking structure &amp; articulation</span></td>
+            <td><strong>Sphoṭa projector (Parakeet encoder)</strong><br><span style="font-size: 0.9rem; color: var(--muted);">Audio encoded into latent space; meaning acquires phonetic detail &amp; continuity</span></td>
+          </tr>
+          <tr>
+            <td class="vak-deva">वैखरी</td>
+            <td><strong>vaikharī</strong><br><span style="font-size: 0.9rem; color: var(--muted);">uttered sound &amp; heard utterance</span></td>
+            <td><strong>Audio I/O (input: live microphone or upload; output: TTS synthesis)</strong><br><span style="font-size: 0.9rem; color: var(--muted);">Sound in the world; the utterance you hear when the model answers</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top: 2rem; padding: 1rem; background: rgba(232, 161, 58, 0.08); border-left: 3px solid var(--saffron); border-radius: 4px;">The model runs the <strong>four-vāk gradient in reverse-then-forward</strong>: vaikharī (heard audio) → madhyamā (projection) → paśyantī (fused meaning) → parā (inference over the prior) → vaikharī (spoken answer). This architectural flow is the argument itself.</p>
+    </section>
+
+    <!-- THE STAGES: Detailed Journey -->
+    <section>
+      <h2>The Journey: Listening and Speaking</h2>
+
+      <div class="vak-stage" id="para">
+        <h2>
+          <span class="vak-deva">पर — Parā</span>
+          <span class="label">(Unmanifest)</span>
+        </h2>
+        <p class="vak-meaning">The cosmic ground: potential, latent knowledge, the prior.</p>
+        <div class="flow-item">
+          <strong>What it is:</strong> The pretrained Sanskrit byte-core language model. Months of training on Sanskrit corpus (text + speech), frozen at inference. This is what the model <em>knows</em> before you speak.
+        </div>
+        <div class="flow-item" style="margin-top: 1rem;">
+          <strong>In the LISTEN page:</strong> You don't see parā directly. It's the background knowledge that helps the model understand what you're saying. When you tap the microphone, parā is already there, ready to interpret the sound.
+        </div>
+      </div>
+
+      <div class="vak-arrow">↓</div>
+
+      <div class="vak-stage" id="vaikhari-in">
+        <h2>
+          <span class="vak-deva">वैखरी — Vaikharī (Input)</span>
+          <span class="label">(Uttered Sound)</span>
+        </h2>
+        <p class="vak-meaning">The sound you make: speech in the world.</p>
+        <div class="flow-item">
+          <strong>What it is:</strong> Your voice, captured live from the microphone (or uploaded as audio file). The raw acoustic signal — the utterance as heard.
+        </div>
+        <div class="interactive-note">
+          <strong>Try in LISTEN:</strong> Press the microphone button and speak. The waveform visualization shows your voice in real-time. This is vaikharī — the sonic form of your thought.
+        </div>
+      </div>
+
+      <div class="vak-arrow">↓</div>
+
+      <div class="vak-stage" id="madhyama">
+        <h2>
+          <span class="vak-deva">मध्यमा — Madhyamā</span>
+          <span class="label">(Taking Form)</span>
+        </h2>
+        <p class="vak-meaning">Meaning acquiring structure: the acoustic signal becomes language.</p>
+        <div class="flow-item">
+          <strong>What it is:</strong> The Parakeet encoder transforms audio into latent vectors. Sound becomes structured representation — phonetic, phonological, semantic features all flowing together. Not yet whole, not yet words, but <em>forming</em>.
+        </div>
+        <div class="flow-item" style="margin-top: 1rem;">
+          <strong>In Sphoṭa-Lens:</strong> Madhyamā is the "articulation rise" (layers 8–24) where phonetic detail concentrates toward output. The model is shaping sound into meaning.
+        </div>
+      </div>
+
+      <div class="vak-arrow">↓</div>
+
+      <div class="vak-stage" id="pasyanti">
+        <h2>
+          <span class="vak-deva">पश्यन्ति — Paśyantī</span>
+          <span class="label">(Whole Meaning)</span>
+        </h2>
+        <p class="vak-meaning">The whole meaning flashes forth: sphoṭa.</p>
+        <div class="flow-item">
+          <strong>What it is:</strong> Layers 21–23 (the workspace band). Here, audio representations (dhvani) and text representations (pada) converge into a <em>unified meaning</em>. You don't see words yet. You see <strong>understanding</strong> — the sphoṭa, whole and indivisible.
+        </div>
+        <div class="flow-item" style="margin-top: 1rem;">
+          <strong>In Sphoṭa-Lens:</strong> The workspace band is where fusion peaks and articulation stabilizes. The LENS page shows this: layer 13 correlation peak (kriyā decodable from audio), steering uptake (the band is writable), the honest status (correlational clear, causal open).
+        </div>
+        <div class="interactive-note" style="margin-top: 1rem;">
+          <strong>The paśyantī is the breakthrough:</strong> This is where Śabda-ALM differs fundamentally from a text-only LLM. A text model never has this moment. It starts frozen at the bottom (text tokens). An audio model starts from the top, at sound, and has to build all the way through to this pre-articulate wholeness. That's the thesis.
+        </div>
+      </div>
+
+      <div class="vak-arrow">↓</div>
+
+      <div class="vak-stage" id="vaikhari-out">
+        <h2>
+          <span class="vak-deva">वैखरी — Vaikharī (Output)</span>
+          <span class="label">(Uttered Sound)</span>
+        </h2>
+        <p class="vak-meaning">The answer, spoken aloud.</p>
+        <div class="flow-item">
+          <strong>What it is:</strong> From the paśyantī whole (understanding), the model generates an output. This goes through madhyamā again (tokens taking phonetic form), and finally to vaikharī (TTS synthesis, or direct speech). You hear the answer.
+        </div>
+        <div class="interactive-note">
+          <strong>Try in LISTEN:</strong> After the model processes your speech, it synthesizes an answer. Listen to the audio. That's vaikharī coming back out of the model — the full circle, parā → paśyantī → vaikharī (listening) and then paśyantī → vaikharī again (speaking).
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem; padding: 1.5rem; background: rgba(232, 161, 58, 0.08); border-radius: 8px;">
+        <p style="margin: 0; font-size: 0.95rem;">The four-vāk flow completes. Sound → Understanding → Sound. <em>Śabda-tattva</em>: meaning and utterance are one.</p>
+      </div>
+    </section>
+
+    <!-- EVIDENCE & CAVEATS -->
+    <section>
+      <h2>What the Evidence Shows (and What Remains Open)</h2>
+
+      <div class="theses">
+        <h3>The Five Pillars of the Thesis</h3>
+
+        <div class="thesis-item">
+          <div class="thesis-claim">1. Meaning is decodable from audio at an interior locus, causally.</div>
+          <p style="margin: 0.6rem 0;">Sphoṭa-Lens shows kriyā decodable from audio positions at layer 13, peak above chance (0.2625 vs 0.0222). Correlational + causal (ablation) peaks agree under fusion-v2.</p>
+          <div class="thesis-caveat">Caveat: single model family; probe is linear.</div>
+        </div>
+
+        <div class="thesis-item">
+          <div class="thesis-claim">2. The workspace is causally meaning-bearing — writable.</div>
+          <p style="margin: 0.6rem 0;">Steering the band loads a concept: readback-verified uptake ≫ random control (2.46× at baseline). Direct handle on the paśyantī workspace.</p>
+          <div class="thesis-caveat">Caveat: high-α writes breach entropy budget (H-SU3 failed). Loading ≠ faithful utterance under unconstrained steering.</div>
+        </div>
+
+        <div class="thesis-item">
+          <div class="thesis-claim">3. The specialist ALM genuinely does the task, and leads open ALMs.</div>
+          <p style="margin: 0.6rem 0;">Corrected benchmark: 1.13B+LoRA Śabda-ALM tops fair, scheme-neutral leaderboard (CER 0.0392 vs Qwen2-Audio-7B at 0.4305).</p>
+          <div class="thesis-caveat">Caveat: in-distribution (same TTS voice for all models); measures this corpus, not general Sanskrit ASR. Public benchmark (Shrutilipi, real human speech) in progress.</div>
+        </div>
+
+        <div class="thesis-item">
+          <div class="thesis-claim">4. Sound carries what text drops — speech vs text, answered honestly.</div>
+          <p style="margin: 0.6rem 0;">E6/E7 nulled the naïve "speech is more holistic" claim under decodability-trajectory design. The null is part of the record.</p>
+          <div class="thesis-caveat">Caveat: negative result, not a refutation. The positive thesis is architectural (four-vāk) + locus evidence, not over-claimed speech>text effect.</div>
+        </div>
+
+        <div class="thesis-item">
+          <div class="thesis-claim">5. Nyāya at the sphoṭa level — logic embedded where meaning forms.</div>
+          <p style="margin: 0.6rem 0;">Answer grounded in model's own heard transcript (śabda-pramāṇa). Logic at decode, not as text post-filter.</p>
+          <div class="thesis-caveat">Caveat: bounded by transcription quality; tracked with fire/fix/break counts.</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 2rem;">The Honesty Boundary</h3>
+      <p>We do <strong>not</strong> claim to have proved Bhartṛhari's metaphysics, nor that the ALM "is" sphoṭa. We claim:</p>
+      <ul style="line-height: 1.8;">
+        <li><strong>(a)</strong> An architectural argument that sphoṭa/śabdādvaita is realizable in the ALM regime and not the text-only regime.</li>
+        <li><strong>(b)</strong> Empirical instruments (Sphoṭa-Lens locus, steering uptake, nyāya-at-decode) that make the sphoṭa workspace measurable and manipulable.</li>
+        <li><strong>(c)</strong> A fair benchmark showing the speech-native specialist is competitive-to-leading.</li>
+      </ul>
+      <p style="margin-top: 1rem; font-style: italic; color: var(--muted);">Whether the locus we measure <em>is</em> paśyantī is a human-interpretable bridge, offered with its evidence — not a kernel-proved identity. The evidence stands; the metaphysical claim remains open and testable.</p>
+    </section>
+
+    <footer style="text-align: center; padding: 2rem 0; color: var(--muted);">
+      <p>Four-vāk framework from Bhartṛhari's Vākyapadīya (5th c. Kashmir). ALM mapping draws on research/THESIS-sabdadvaita.md. Full methodology and audit trail: research/alm_efe_ledger.jsonl.</p>
+    </footer>
+  </main>
+
+<script>
+// Highlight nav item
+document.querySelector('a[href="vak.html"]').classList.add("active");
+
+// Smooth scroll to section
+document.querySelectorAll("a[href*='#']").forEach(a => {
+  a.addEventListener("click", (e) => {
+    const href = a.getAttribute("href");
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
