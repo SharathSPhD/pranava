@@ -43,3 +43,8 @@ data/alm/speech_corpus_indic_xl/wav/
 data/alm/speech_corpus_indic_xl/feats/
 data/alm/speech_corpus_indic_xl/shard_*.jsonl
 !docs/paper.pdf
+data/alm/shrutilipi_sa/wav/
+data/alm/shrutilipi_sa/feats/
+data/shrutilipi_sa/
+data/vagdhenu_raw/
+data/models/

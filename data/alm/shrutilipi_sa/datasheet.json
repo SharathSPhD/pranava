@@ -1,0 +1,16 @@
+{
+  "counts": {
+    "train": 10134,
+    "validation": 1408,
+    "test": 1474,
+    "filtered_train": 1398
+  },
+  "hours": {
+    "train": 26.72,
+    "validation": 6.55,
+    "test": 6.86
+  },
+  "provenance": "amithm3/shrutilipi (HF mirror of AI4Bharat Shrutilipi), config sa — REAL human Sanskrit (All India Radio). Public splits preserved; TEST NEVER FILTERED/TOUCHED.",
+  "text": "Devanagari cleaned (punct/digits/latin→space, NFC) then SLP1-transliterated (core-native). The same cleaning is applied to every model's output at scoring time.",
+  "train_filter": "duration 0.5–25s and 3–400 SLP1 chars (train only)"
+}

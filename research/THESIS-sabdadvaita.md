@@ -37,6 +37,15 @@ instrument.
 The model literally runs the vāk gradient in reverse-then-forward: vaikharī (heard audio) → madhyamā
 (projection) → paśyantī (fused workspace where meaning is whole) → vaikharī (spoken answer).
 
+## STATUS BOX (post adversarial review, 2026-07-19 — the honest scorecard)
+| Claim | Status |
+|---|---|
+| Interior sphoṭa locus (paśyantī layer) | **OPEN** — correlational peak 13 + one causal design agree; pre-registered fusion-v2 causal design FAILED (peak 0) |
+| Speech-vs-text holism | **FALSIFIED** (E6/E7 null at power; kept as methodological result) |
+| Workspace steering | **Constrainable, not freely writable** — loading 5.11× control but svātantrya budget breached; no utterance surfacing |
+| Specialist leaderboard | own-benchmark SOTA (in-distribution caveat); **public-benchmark test in progress (Shrutilipi-sa, real speech)** |
+| NSM Layer B (holistic extraction) | **OPEN** · Layer D (statefulness) **UNBUILT** |
+
 ## What we can SHOW (each a gate/experiment, with its honest caveat)
 1. **Meaning is decodable from the audio stream at an interior locus, causally.** Sphoṭa-Lens: kriyā
    decodable from audio positions ≫ chance, peak at an interior layer; correlational + causal
