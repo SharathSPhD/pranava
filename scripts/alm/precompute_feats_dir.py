@@ -15,8 +15,14 @@ ROOT = Path("/work/pranava") if Path("/work/pranava").exists() else Path(__file_
 
 
 def run(rel: str) -> None:
-    from pranava.alm.data import read_wav
+    import soundfile as sf  # reads FLAC (LibriSpeech) and WAV alike — pranava's read_wav is WAV-only
     from pranava.alm.encoder import ParakeetEncoder
+
+    def read_any(p: Path):
+        wav, sr = sf.read(str(p), dtype="float32")
+        if wav.ndim > 1:
+            wav = wav.mean(axis=1)
+        return wav.astype(np.float32), int(sr)
 
     base = ROOT / rel
     feats = base / "feats"
@@ -30,7 +36,7 @@ def run(rel: str) -> None:
             skipped += 1
             continue
         try:
-            wav, sr = read_wav(ROOT / r["wav"])
+            wav, sr = read_any(ROOT / r["wav"])
         except Exception as e:
             bad += 1
             print(json.dumps({"skip_unreadable": r["id"], "err": str(e)[:80]}), flush=True)

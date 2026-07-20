@@ -113,8 +113,12 @@ def main(epochs: int = 2, lr: float = 1e-4, r: int = 16, eos_weight: float = 3.0
     dev, bias = core.torch_device, core.structural_bias
     lora_params = inject_megatron_lora(core._model, r=r)
 
-    feats_any = next((SETS[s] / "feats" for s in SETS if (SETS[s] / "feats").exists()))
-    d_enc = int(np.load(next(feats_any.glob("*.npy"))).shape[-1])
+    # pick a feats dir that actually CONTAINS .npy files (an empty dir crashed the first launch)
+    first_npy = next((f for s in SETS for f in sorted((SETS[s] / "feats").glob("*.npy"))[:1]
+                      if (SETS[s] / "feats").exists()), None)
+    if first_npy is None:
+        raise SystemExit("no feats found in any corpus — run precompute_feats_dir.py first")
+    d_enc = int(np.load(first_npy).shape[-1])
     proj = SphotaProjector(d_enc=d_enc, d_model=core.d_model, downsample=4).to(dev)
 
     warm = next((p for p in (ROOT / "data/alm/sh1b_ckpt.pt", ROOT / "data/alm/xl1b_ckpt.pt") if p.exists()), None)
