@@ -98,24 +98,75 @@ The model literally runs the vāk gradient: vaikharī-heard (audio in) → madhy
 
 ### 3.0 External Test Results (Public Benchmarks)
 
-**Shrutilipi-Sanskrit (real human speech, public test set): POSITIVE — Beats Whisper-large-v3**
-- Corpus: amithm3/shrutilipi_sa (All India Radio, 1,474 clips, ≈7 hours)
-- Our result: **WER 1.1024 [CI 95% 1.0439–1.1681]** (CER 0.5476)
-- Whisper-large-v3: **WER 1.3254 [CI 95% 1.2583–1.3957]**
-- **Confidence intervals are disjoint — Śabda-ALM wins on real Sanskrit broadcast speech.**
+**Shrutilipi-Sanskrit (real human speech, public test set): POSITIVE — Beats Whisper-large-v3 on WER**
+- Corpus: amithm3/shrutilipi sa/test (All India Radio, 1,474 clips, ≈7 hours)
+- Śabda-ALM (ours): **WER 1.1024 [1.0399, 1.1665]**, CER 0.6897 [0.6109, 0.7664]
+- Whisper-large-v3: **WER 1.3254 [1.2573, 1.3974]**, CER 0.6402 [0.5585, 0.7266]
+- Qwen2-Audio-7B: WER 2.2338 [2.064, 2.4095], CER 1.2265 [1.0567, 1.417]
+- **WER intervals for the top two are disjoint — the ordering is real, not sampling noise.**
+- Reported against ourselves: Whisper attains the lower **CER**. We recover more words; Whisper
+  recovers more characters of the words it misses. Both metrics are shown, not just the favourable one.
 
-**LibriSpeech test-clean (English, standard ASR benchmark): NEGATIVE — Weak on English**
+**LibriSpeech test-clean (English, standard ASR benchmark): NEGATIVE — Not competitive**
 - Corpus: LibriSpeech, 2,620 clips, ≈18 hours
 - Our result: **WER 1.0996** (CER 0.8043) — **NOT competitive on English**
-- Diagnosis: English-shaped babble in predictions (see per-clip records in `data/benchmark/librispeech_records/`)
-- Root cause: weak audio→English conditioning under an 8.4M-param LoRA on a Sanskrit-dominant core
+- Diagnosis: English-shaped babble in predictions (per-clip records in `data/benchmark/librispeech_records/`)
+- Root cause — **measured, and it is not what we first assumed** (see §3.0.1): not adapter capacity
+  (three interventions falsified that) and not a missing English prior in the core (the frozen core
+  models English *better* than Sanskrit). It is **language interference in the shared adapter**.
 
 **Vagdhenu Chant (Vedic chant, held-out split): STRONG on chant**
 - Corpus: Vedic recitation, 220 clips, ≈1 hour
 - Our result: **CER 0.31** [CI 95% 0.2919–0.3289]
 - Interpretation: prosodic structure and repetition aid recognition
 
-**Net:** The specialist wins decisively on its native language and culture (Sanskrit, real speech; chant with prosody). It falters on out-of-domain audio (English), confirming the trade-off: specialization grants depth but sacrifices breadth.
+**Net:** The specialist wins on real Sanskrit broadcast speech (WER, disjoint CIs) and on chant. It is
+not competitive on English. The tempting summary — "specialization grants depth but sacrifices breadth"
+— is *not* what we measured, and §3.0.1 replaces it with the mechanism we actually found.
+
+### 3.0.1 Why English fails: interference, not capacity
+
+We tested the obvious explanation (the adapter is too small to learn audio→English conditioning) with
+three interventions, and falsified it:
+
+| Intervention | English val CER |
+|---|---|
+| v3 baseline (r=16, 6 epochs) | 0.799 |
+| v4: r=64 adapter, trained cold | collapse (1.0 — empty predictions) |
+| v5: r=64 rank-expansion warm-start + English weighted 2×, lr 2.5e-5, 4 epochs | 0.8016 (best) |
+
+Four times the adapter capacity and double the English gradient moved nothing.
+
+A text-only probe (`scripts/alm/probe_core_prior.py` → `data/alm/core_prior_probe.json`) found the
+real mechanism. Measuring teacher-forced next-byte cross-entropy of the frozen core on gold
+transcripts **with no audio at all** (n=200 per language):
+
+| Condition | English | Sanskrit |
+|---|---|---|
+| Frozen core, no adapter | **1.873** nats/byte | 2.675 |
+| + trained bilingual LoRA | **3.841** (worse) | 1.507 (better) |
+
+Two conclusions. First, the Sanskrit-pretrained core is *better* at English than at Sanskrit, so the
+deficit is not a missing English prior. Second, the adapter **raises** English cross-entropy above its
+own no-adapter baseline while lowering Sanskrit: it does not fail to learn English, it destroys English
+competence the core already had and spends that capacity on Sanskrit. That is language interference in
+a shared low-rank adapter, and it explains why widening the bottleneck cannot help — two languages are
+competing for it, and the one with more real audio and every warm-start in its favour wins.
+
+*Confound, stated:* the adapter was trained with an audio prefix present, so text-only evaluation is
+off-distribution for it. Both languages are measured under that identical condition and move in
+**opposite** directions, which interference predicts and a generic off-distribution penalty does not.
+
+*A fix we tried and falsified:* if interference were the whole story, attenuating the adapter should
+recover English. It does not — at scale 0.75 English degrades catastrophically (CER 0.80 → 5.37,
+runaway decoding) and Sanskrit worsens too (0.52 → 0.80), because the projector was trained jointly
+with a full-strength adapter and depends on it. The adapter is load-bearing for the audio path in
+both languages; there is no inference-time knob that separates them.
+
+**Honest scope.** A true remedy would require per-language adapters trained jointly with their own
+projector — which abandons the one-model-two-languages claim rather than supporting it. We therefore
+report the unified bilingual hypothesis as **not supported by these experiments**, and scope the
+positive claim to Sanskrit, where it is strong.
 
 ### 3.1 The Corrected Fair Benchmark: Architecture Supports Specialist
 
