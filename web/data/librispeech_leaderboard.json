@@ -5,6 +5,20 @@
   "protocol": "identical fold per dataset; free decode; bootstrap 95% CIs (1000)",
   "leaderboard": [
     {
+      "model": "Whisper-large-v3 (OpenAI)",
+      "n": 2620,
+      "wer_norm": 0.0299,
+      "wer_ci95": [
+        0.0271,
+        0.0331
+      ],
+      "cer_norm": 0.0127,
+      "cer_ci95": [
+        0.011,
+        0.0146
+      ]
+    },
+    {
       "model": "Sabda-ALM 1.13B+LoRA (ours)",
       "n": 2620,
       "wer_norm": 1.0996,
