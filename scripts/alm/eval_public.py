@@ -34,14 +34,17 @@ DATASETS = {
     "shrutilipi": {"dir": ROOT / "data/alm/shrutilipi_sa", "gold_slp1": True, "lang": "sa",
                    "whisper_lang": "sanskrit", "voxtral_lang": "hi",
                    "qwen_instr": "Transcribe this Sanskrit speech in Devanagari script. Output only the transcription.",
-                   "sabda_instr": "transcribe the speech", "max_new": 448},
+                   "sabda_instr": "transcribe the speech",
+                   "sabda_instr_lang": "transcribe the sanskrit speech", "max_new": 448},
     "vagdhenu": {"dir": ROOT / "data/alm/vagdhenu", "gold_slp1": True, "lang": "sa",
                  "whisper_lang": "sanskrit", "voxtral_lang": "hi",
                  "qwen_instr": "Transcribe this Sanskrit chant in Devanagari script. Output only the transcription.",
-                 "sabda_instr": "transcribe the speech", "max_new": 448},
+                 "sabda_instr": "transcribe the speech",
+                 "sabda_instr_lang": "transcribe the sanskrit speech", "max_new": 448},
     "librispeech": {"dir": ROOT / "data/alm/librispeech", "gold_slp1": False, "lang": "en",
                     "whisper_lang": "english", "voxtral_lang": "en",
                     "qwen_instr": "Transcribe this English speech. Output only the transcription.",
+                    "sabda_instr_lang": "transcribe the english speech",
                     "sabda_instr": "transcribe the speech", "max_new": 448},
 }
 
@@ -132,6 +135,10 @@ def run_sabda(ds: str, rows):
     proj = SphotaProjector(d_enc=blob["d_enc"], d_model=blob["d_model"], downsample=4).to(core.torch_device)
     proj.load_state_dict(blob["projector"]); proj.eval()
     bias = core.structural_bias
+    # use the instruction this checkpoint was TRAINED with — evaluating a language-tagged model with
+    # the untagged prompt (or vice versa) silently wrecks the result
+    instr = cfg["sabda_instr_lang"] if blob.get("lang_tagged") else cfg["sabda_instr"]
+    print(json.dumps({"lang_tagged_ckpt": bool(blob.get("lang_tagged")), "instruction": instr}))
     feats_dir = cfg["dir"] / "feats"
     enc = None
     per = []
@@ -152,7 +159,7 @@ def run_sabda(ds: str, rows):
                         t = t.unsqueeze(0)
                     t = t.to(core.torch_device)
                 audio = proj(t, structural_bias=bias)
-                prefix = build_prefix(core, audio, cfg["sabda_instr"])
+                prefix = build_prefix(core, audio, instr)
                 out = core.greedy_from_embeds(prefix, max_new=cfg["max_new"], stop_token=EOS, no_repeat_ngram=6)
                 pred = bytes(b for b in out if 9 <= b < 127).decode("latin-1", "ignore").strip()
             except Exception as e:

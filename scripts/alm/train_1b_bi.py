@@ -79,6 +79,15 @@ def load_split(name: str, split: str) -> list[dict]:
     return out
 
 
+def instr_for(row) -> str:
+    """Language-tagged instruction. Every BASELINE gets explicit language conditioning (Whisper
+    language=, Voxtral language=, Qwen "Transcribe this Sanskrit speech") while ours got the same
+    "transcribe the speech" for both languages — handicapping us AND denying the shared adapter the
+    one signal that could separate the two language regimes (the interference mechanism measured in
+    data/alm/core_prior_probe.json). Tag it."""
+    return "transcribe the english speech" if row["_set"] == "librispeech" else "transcribe the sanskrit speech"
+
+
 def _feat(row, dev):
     p = SETS[row["_set"]] / "feats" / f"{row['id']}.npy"
     return torch.from_numpy(np.load(p).astype(np.float32)).unsqueeze(0).to(dev) if p.exists() else None
@@ -94,7 +103,7 @@ def eval_fair(core, proj, bias, rows, dev, slp1: bool, max_new: int = 448, limit
         if t is None:
             continue
         audio = proj(t, structural_bias=bias)
-        prefix = build_prefix(core, audio, "transcribe the speech")
+        prefix = build_prefix(core, audio, instr_for(r))
         out = core.greedy_from_embeds(prefix, max_new=max_new, stop_token=EOS, no_repeat_ngram=6)
         pred = bytes(b for b in out if 9 <= b < 127).decode("latin-1", "ignore").strip()
         p, g = _fold(pred, slp1), _fold(r["text"], slp1)
@@ -105,9 +114,10 @@ def eval_fair(core, proj, bias, rows, dev, slp1: bool, max_new: int = 448, limit
             "wer": round(float(np.mean(wns)), 4) if wns else None, "n": len(cns)}
 
 
-def main(epochs: int = 2, lr: float = 2.5e-5, r: int = 64, eos_weight: float = 3.0) -> int:
-    # lr: r=64 has 4x the adapter params of r=16; lr 1e-4 (stable at r=16 across 6 epochs)
-    # drove TWO r=64 runs into EOS-collapse (val CER exactly 1.0) within one epoch — quarter it.
+def main(epochs: int = 2, lr: float = 1e-4, r: int = 16, eos_weight: float = 3.0) -> int:
+    # r/lr: r=64 is FALSIFIED as a lever (v4 cold -> EOS-collapse; v5 warm+EN-2x -> best en_val
+    # 0.8016 vs v3's 0.799). Back to the proven-stable r=16 @ lr 1e-4; the new variable is
+    # language-tagged instructions (instr_for), not capacity.
     t_start = time.time()
     core = Megatron1BCore().load()
     for p in core._model.parameters():
@@ -156,7 +166,7 @@ def main(epochs: int = 2, lr: float = 2.5e-5, r: int = 64, eos_weight: float = 3
     def loss_on(row):
         t = _feat(row, dev)
         audio = proj(t, structural_bias=bias)
-        prefix = build_prefix(core, audio, "transcribe the speech")
+        prefix = build_prefix(core, audio, instr_for(row))
         ids = torch.tensor([list(row["text"].encode("utf-8"))[:420] + [EOS]], dtype=torch.long, device=dev)
         seq = torch.cat([prefix, core.embed_tokens(ids[:, :-1])], dim=1)
         logits = core.logits_from_embeds(seq)
@@ -205,7 +215,7 @@ def main(epochs: int = 2, lr: float = 2.5e-5, r: int = 64, eos_weight: float = 3
         if macro is not None and macro < best:
             best = macro
             torch.save({"projector": proj.state_dict(), "lora": megatron_lora_state_dict(core._model),
-                        "d_enc": d_enc, "d_model": core.d_model, "r": r, "epoch": ep,
+                        "d_enc": d_enc, "d_model": core.d_model, "r": r, "epoch": ep, "lang_tagged": True,
                         "val_cer_norm_fair": best, "en_val": en, "sa_val": sa},
                        ROOT / "data/alm/bi1b_ckpt.pt")
             print(json.dumps({"checkpoint_saved": ep, "best_macro_cer": best}), flush=True)
