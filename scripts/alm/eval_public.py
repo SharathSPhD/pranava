@@ -221,10 +221,14 @@ def run_voxtral(ds: str, rows):
     per = []
     with torch.no_grad():
         for i, r in enumerate(rows):
-            inp = proc.apply_transcription_request(language=cfg["voxtral_lang"], audio=str(ROOT / r["wav"]), model_id=mid)
-            inp = inp.to(model.device)
-            out = model.generate(**inp, max_new_tokens=400)
-            pred = proc.batch_decode(out[:, inp.input_ids.shape[1]:], skip_special_tokens=True)[0].strip()
+            try:
+                inp = proc.apply_transcription_request(language=cfg["voxtral_lang"], audio=str(ROOT / r["wav"]), model_id=mid)
+                inp = inp.to(model.device)
+                out = model.generate(**inp, max_new_tokens=400)
+                pred = proc.batch_decode(out[:, inp.input_ids.shape[1]:], skip_special_tokens=True)[0].strip()
+            except Exception as e:  # defective clip (e.g. zero-length audio): honest full-error penalty,
+                pred = ""           # identical treatment to our own runner
+                print(json.dumps({"input_error": r["id"], "err": str(e)[:80]}), flush=True)
             per.append({"id": r["id"], "pred": pred, "gold": r["text"]})
             if (i + 1) % 100 == 0:
                 print(f"  {i+1}/{len(rows)}", flush=True)
@@ -237,7 +241,21 @@ def run_sushrota(ds: str, rows):
     import glob
     import nemo.collections.asr as nemo_asr
     cand = sorted(glob.glob(str(ROOT / "data/models/sushrota/**/*.nemo"), recursive=True))
-    model = nemo_asr.models.ASRModel.restore_from(cand[0], map_location="cuda").eval()
+    # NeMo 26.02: ASRModel is abstract here (setup_training_data etc.) — restore via the
+    # concrete class matching the .nemo (sushrota is a Conformer-CTC; try CTC first, then RNNT)
+    model, last = None, None
+    for cls_name in ("EncDecCTCModelBPE", "EncDecCTCModel", "EncDecRNNTBPEModel", "EncDecRNNTModel"):
+        cls = getattr(nemo_asr.models, cls_name, None)
+        if cls is None:
+            continue
+        try:
+            model = cls.restore_from(cand[0], map_location="cuda").eval()
+            print(json.dumps({"sushrota_loader": cls_name}), flush=True)
+            break
+        except Exception as e:
+            last = e
+    if model is None:
+        raise RuntimeError(f"sushrota restore failed with all concrete classes: {last}")
     per = []
     B = 16
     for i in range(0, len(rows), B):
