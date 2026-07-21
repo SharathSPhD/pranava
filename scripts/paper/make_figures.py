@@ -302,6 +302,50 @@ def figure_public_shrutilipi():
     print("  → docs/figures/06_public_shrutilipi.png")
     plt.close()
 
+def figure_language_interference():
+    """Figure 7: why English fails — the shared adapter degrades English below the bare core.
+
+    Teacher-forced byte cross-entropy on gold text, no audio (data/alm/core_prior_probe.json)."""
+    print("Generating language-interference figure...")
+    probe = load_json(DATA_ROOT / "alm" / "core_prior_probe.json")
+    c = probe["conditions"]
+    frozen = [c["frozen_core_no_lora"]["english"]["nats_per_byte"],
+              c["frozen_core_no_lora"]["sanskrit"]["nats_per_byte"]]
+    withl = [c["with_trained_lora"]["english"]["nats_per_byte"],
+             c["with_trained_lora"]["sanskrit"]["nats_per_byte"]]
+
+    fig, ax = plt.subplots(figsize=(8, 5), dpi=100)
+    x = np.arange(2)
+    w = 0.36
+    b1 = ax.bar(x - w / 2, frozen, w, label='Frozen core (no adapter)',
+                color='#888888', edgecolor='black', linewidth=1.1)
+    b2 = ax.bar(x + w / 2, withl, w, label='+ trained bilingual LoRA',
+                color='#A23B72', edgecolor='black', linewidth=1.1)
+    for bars in (b1, b2):
+        for bar in bars:
+            ax.text(bar.get_x() + bar.get_width() / 2., bar.get_height(),
+                    f'{bar.get_height():.2f}', ha='center', va='bottom',
+                    fontsize=10, fontweight='bold')
+    # the finding: English crosses ABOVE its no-adapter baseline
+    ax.annotate('adapter makes English WORSE\nthan no adapter at all',
+                xy=(0 + w / 2, withl[0]), xytext=(0.35, withl[0] + 0.55), fontsize=10,
+                bbox=dict(boxstyle='round,pad=0.5', facecolor='lightyellow', alpha=0.9),
+                arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.25'))
+    ax.set_xticks(x)
+    ax.set_xticklabels(['English (LibriSpeech text)', 'Sanskrit (Shrutilipi text)'],
+                       fontsize=11, fontweight='bold')
+    ax.set_ylabel('byte cross-entropy (nats/byte, lower is better)', fontsize=11, fontweight='bold')
+    ax.set_title('Why English fails: language interference in a shared adapter\n'
+                 f'Teacher-forced on gold text, no audio (n={probe["n_per_language"]} per language)',
+                 fontsize=12, fontweight='bold', pad=15)
+    ax.legend(fontsize=10)
+    ax.grid(True, alpha=0.3, axis='y', linestyle='--')
+    ax.set_ylim(0, max(withl + frozen) * 1.3)
+    plt.tight_layout()
+    fig.savefig(PROJECT_ROOT / "docs" / "figures" / "07_language_interference.png", dpi=100, bbox_inches='tight')
+    print("  → docs/figures/07_language_interference.png")
+    plt.close()
+
 def main():
     """Generate all figures."""
     print(f"\nGenerating figures for Śabda-ALM paper...")
@@ -315,6 +359,7 @@ def main():
         figure_sphotas_lens_emergence()
         figure_steering_uptake()
         figure_public_shrutilipi()
+        figure_language_interference()
         print(f"\n✓ All figures generated successfully!")
         return 0
     except Exception as e:

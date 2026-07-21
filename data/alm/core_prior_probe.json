@@ -1,0 +1,45 @@
+{
+  "probe": "teacher-forced byte cross-entropy of the frozen core on GOLD TEXT (no audio)",
+  "why": "separates H-prior (core is Sanskrit-only) from H-capacity (adapter too small)",
+  "n_per_language": 200,
+  "conditions": {
+    "frozen_core_no_lora": {
+      "english": {
+        "nats_per_byte": 1.8728,
+        "std": 0.4378,
+        "bits_per_byte": 2.7021,
+        "n": 200
+      },
+      "sanskrit": {
+        "nats_per_byte": 2.675,
+        "std": 0.2657,
+        "bits_per_byte": 3.8595,
+        "n": 200
+      }
+    },
+    "with_trained_lora": {
+      "english": {
+        "nats_per_byte": 3.8406,
+        "std": 0.3738,
+        "bits_per_byte": 5.5413,
+        "n": 200
+      },
+      "sanskrit": {
+        "nats_per_byte": 1.507,
+        "std": 0.5191,
+        "bits_per_byte": 2.1743,
+        "n": 200
+      }
+    }
+  },
+  "lora": {
+    "ckpt": "bi1b_ckpt.pt",
+    "r": 16,
+    "tensors": 144,
+    "val_cer_norm_fair": 0.6538
+  },
+  "verdict": {
+    "en_over_sa_nats_frozen": -0.8022,
+    "reading": "A large positive gap means the frozen core assigns English text far lower probability than Sanskrit text — LoRA must supply the English language model itself, on top of audio conditioning. That is H-prior: an architectural ceiling of a frozen monolingual core, not an adapter-capacity shortfall."
+  }
+}
