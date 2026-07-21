@@ -20,7 +20,6 @@ Writes data/alm/bi_instruct/{wav/, manifest.jsonl, datasheet.json}. GPU (host ve
 from __future__ import annotations
 
 import argparse
-import csv
 import json
 import re
 from pathlib import Path
@@ -38,8 +37,15 @@ _DEVA = re.compile(r"[ऀ-ॿ]")
 
 
 def load_pairs(limit_chars: int = 140) -> list[tuple[str, str]]:
-    en = [r[0] if r else "" for r in csv.reader((ITI / "train.en.csv").open(encoding="utf-8"))]
-    sn = [r[0] if r else "" for r in csv.reader((ITI / "train.sn.csv").open(encoding="utf-8"))]
+    # These ".csv" files are NOT csv — they are one sentence per LINE (the upstream loader,
+    # rahular/itihasa itihasa.py, does read().split("\n") and asserts equal counts). Parsing them
+    # with csv.reader split/merged rows differently in each file, which (a) blew the field-size
+    # limit, (b) desynced the two sides (67322 vs 75161 rows) so translate pairs silently
+    # mismatched, and (c) truncated sentences at commas. Line-split gives 75162 == 75162.
+    en = (ITI / "train.en.csv").read_text(encoding="utf-8").split("\n")
+    sn = (ITI / "train.sn.csv").read_text(encoding="utf-8").split("\n")
+    if len(en) != len(sn):
+        raise SystemExit(f"itihasa parallel corpus desynced: {len(en)} en vs {len(sn)} sn")
     pairs = []
     for e, s in zip(en, sn):
         e, s = e.strip(), s.strip()
