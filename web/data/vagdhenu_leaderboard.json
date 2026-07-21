@@ -1,0 +1,22 @@
+{
+  "dataset": "vagdhenu",
+  "lang": "sa",
+  "n_test": 220,
+  "protocol": "identical fold per dataset; free decode; bootstrap 95% CIs (1000)",
+  "leaderboard": [
+    {
+      "model": "Sabda-ALM 1.13B+LoRA (ours)",
+      "n": 220,
+      "wer_norm": 1.0071,
+      "wer_ci95": [
+        0.9645,
+        1.0546
+      ],
+      "cer_norm": 0.31,
+      "cer_ci95": [
+        0.2919,
+        0.3289
+      ]
+    }
+  ]
+}

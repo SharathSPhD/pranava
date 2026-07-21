@@ -34,7 +34,7 @@ Bhartṛhari's \emph{śabdādvaita}---language as the ultimate, not mere descrip
 
 \subsection{Fair Evaluation Protocol}
 
-Greedy decoding, fixed 64-byte budget, stop at model EOS. \textbf{Metric: cer\_norm} (transliteration-folded scheme-neutral phonetic skeleton). Bootstrap 95\% CIs via 1000 resamples. All models evaluated identically.
+Two protocols, both oracle-free with identical folded scoring (transliteration-folded scheme-neutral phonetic skeleton; SLP1/Devanagari$\to$IAST$\to$ASCII) and bootstrap 95\% CIs via 1000 resamples. \emph{Internal 58-clip benchmark:} greedy decode, fixed 64-byte budget, stop at model EOS. \emph{Public tests} (Shrutilipi, LibriSpeech, Vagdhenu): free greedy decode, budget 448 bytes, stop at model EOS, no-repeat-ngram~6 decode hygiene (baselines' generate() stacks carry their own repetition handling). All systems on a given test are scored in the same folded space.
 
 \section{Motivation: Śabdādvaita $\to$ Speech Cannot Be Text}
 
@@ -68,7 +68,13 @@ Vāk & Bhartṛhari & Śabda-ALM & Role \\
 
 \subsection{External Test Results (Public Benchmarks)}
 
-\textbf{Shrutilipi-Sanskrit (real speech):} \textbf{WER 1.10} [1.04–1.17] vs Whisper-large-v3 \textbf{1.33} [1.26–1.40] — disjoint CIs, Śabda-ALM wins on real human Sanskrit. \textbf{LibriSpeech (English):} \textbf{WER 1.10} — \textbf{NOT competitive}; weak audio$\to$English conditioning diagnosed via per-clip babble. \textbf{Vagdhenu Chant:} \textbf{CER 0.31} — strong on prosodic structure.
+\textbf{Shrutilipi-Sanskrit (real speech):} \textbf{WER 1.10} [1.04–1.17] vs Whisper-large-v3 \textbf{1.33} [1.26–1.40] — disjoint CIs, Śabda-ALM wins on real human Sanskrit. \textbf{LibriSpeech (English):} \textbf{WER 1.10} — \textbf{NOT competitive}; weak audio$\to$English conditioning diagnosed via per-clip babble. \textbf{Vagdhenu Chant:} \textbf{CER 0.31} — strong on prosodic structure. Figure~\ref{fig:public} shows the public Shrutilipi head-to-head.
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.72\textwidth]{../docs/figures/06_public_shrutilipi.png}
+\caption{PUBLIC Shrutilipi-Sanskrit test (All India Radio, $n{=}1474$): folded WER with bootstrap 95\% CIs. Śabda-ALM 1.10 [1.04, 1.17] vs Whisper-large-v3 1.33 [1.26, 1.40] — disjoint intervals.}
+\label{fig:public}
+\end{figure}
 
 \subsection{The Corrected Benchmark: Specialist Achieves cer\_norm 0.0392, 4.8$\times$ Better}
 
@@ -78,7 +84,7 @@ Vāk & Bhartṛhari & Śabda-ALM & Role \\
 \item \textbf{Bug 2:} Specialist received gold-length oracle (decode $\text{len}(\text{gold})+4$ bytes, truncate to $\text{len}(\text{gold})$). Generalists got fixed 64-token budget. Under fair constraint $\to$ specialist free-decode CER 1.82.
 \end{itemize}
 
-\textbf{Leaderboard (confirm tier).} Trained on full XL corpus (9,959 train clips, 5.77\,h native-Sanskrit TTS), 3 epochs, best checkpoint epoch 1, 1.35 GPU-h RTX 5090. Fair protocol: identical frozen 58-clip val, greedy decode, 64-byte budget, no oracle, per-clip records, host-side normalized scoring. Figure~\ref{fig:training} shows training trajectory; Figure~\ref{fig:leaderboard} shows final leaderboard with CIs (estimated).
+\textbf{Leaderboard (confirm tier).} Trained on full XL corpus (9,959 train clips, 5.77\,h native-Sanskrit TTS), 3 epochs, best checkpoint epoch 1, 1.35 GPU-h RTX 5090. Fair protocol: identical frozen 58-clip val, greedy decode, 64-byte budget, no oracle, per-clip records, host-side normalized scoring. Figure~\ref{fig:training} shows training trajectory; Figure~\ref{fig:leaderboard} shows the leaderboard with bootstrap 95\% CIs computed from per-clip records.
 
 \begin{table}[h]\centering\small
 \begin{tabular}{llll}
@@ -102,7 +108,7 @@ Qwen2-Audio-7B & generalist & 7B & 0.4305 \\
 
 \begin{figure}[h]\centering
 \includegraphics[width=0.85\textwidth]{../docs/figures/02_sanskrit_leaderboard.png}
-\caption{Leaderboard bar chart: Śabda-ALM (specialist) vs three open ALMs on fair 58-clip benchmark. Error bars are estimated CIs.}
+\caption{Leaderboard bar chart: Śabda-ALM (specialist) vs three open ALMs on fair 58-clip benchmark. Error bars are bootstrap 95\% CIs (1000 resamples over per-clip records).}
 \label{fig:leaderboard}
 \end{figure}
 

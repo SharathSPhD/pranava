@@ -1,0 +1,36 @@
+{
+  "dataset": "shrutilipi",
+  "lang": "sa",
+  "n_test": 1474,
+  "protocol": "identical fold per dataset; free decode; bootstrap 95% CIs (1000)",
+  "leaderboard": [
+    {
+      "model": "Sabda-ALM 1.13B+LoRA (ours)",
+      "n": 1474,
+      "wer_norm": 1.1024,
+      "wer_ci95": [
+        1.0439,
+        1.1681
+      ],
+      "cer_norm": 0.6897,
+      "cer_ci95": [
+        0.6197,
+        0.7688
+      ]
+    },
+    {
+      "model": "Whisper-large-v3 (OpenAI)",
+      "n": 1474,
+      "wer_norm": 1.3254,
+      "wer_ci95": [
+        1.2583,
+        1.3957
+      ],
+      "cer_norm": 0.6402,
+      "cer_ci95": [
+        0.5628,
+        0.7272
+      ]
+    }
+  ]
+}

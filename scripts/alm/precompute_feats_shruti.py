@@ -19,15 +19,26 @@ def main() -> int:
     rows = [json.loads(x) for x in (SH / "manifest.jsonl").open(encoding="utf-8") if x.strip()]
     enc = ParakeetEncoder().load()
     done = skipped = 0
+    bad = 0
     for r in rows:
         out = FEATS / f"{r['id']}.npy"
         if out.exists():
             skipped += 1
             continue
         wav, sr = read_wav(ROOT / r["wav"])
+        if wav is None or len(wav) < int(0.1 * sr):  # zero/near-zero-length audio (data defect) — log & skip
+            bad += 1
+            print(json.dumps({"skip_empty_audio": r["id"], "n_samples": 0 if wav is None else len(wav),
+                              "split": r.get("split")}), flush=True)
+            continue
         f = enc.encode(wav, sr=sr)
         f = f.cpu().numpy() if hasattr(f, "cpu") else np.asarray(f)
-        np.save(out, np.squeeze(f).astype(np.float16))
+        arr = np.squeeze(f).astype(np.float16)
+        if arr.ndim != 2 or arr.shape[0] < 1:
+            bad += 1
+            print(json.dumps({"skip_bad_feat": r["id"], "shape": list(arr.shape)}), flush=True)
+            continue
+        np.save(out, arr)
         done += 1
         if done % 500 == 0:
             print(json.dumps({"encoded": done, "skipped": skipped, "of": len(rows)}), flush=True)

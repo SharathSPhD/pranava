@@ -118,18 +118,22 @@ def run_sabda(rows):
     with torch.no_grad():
         for i, r in enumerate(rows):
             fp = feats_dir / f"{r['id']}.npy"
-            if fp.exists():
-                t = torch.from_numpy(np.load(fp).astype(np.float32)).unsqueeze(0).to(core.torch_device)
-            else:
-                if enc is None:
-                    enc = ParakeetEncoder().load()
-                wav = _read_wav16(ROOT / r["wav"])
-                t = enc.encode(wav, sr=16000)
-                if not torch.is_tensor(t):
-                    t = torch.from_numpy(np.asarray(t))
-                if t.dim() == 2:
-                    t = t.unsqueeze(0)
-                t = t.to(core.torch_device)
+            try:
+                if fp.exists():
+                    t = torch.from_numpy(np.load(fp).astype(np.float32)).unsqueeze(0).to(core.torch_device)
+                else:
+                    if enc is None:
+                        enc = ParakeetEncoder().load()
+                    wav = _read_wav16(ROOT / r["wav"])
+                    t = enc.encode(wav, sr=16000)
+                    if not torch.is_tensor(t):
+                        t = torch.from_numpy(np.asarray(t))
+                    if t.dim() == 2:
+                        t = t.unsqueeze(0)
+                    t = t.to(core.torch_device)
+            except Exception as e:  # defective clip (e.g. zero-length audio): honest full-error penalty
+                per.append({"id": r["id"], "pred": "", "gold": r["text"], "note": f"input_error: {e}"})
+                continue
             audio = proj(t, structural_bias=bias)
             prefix = build_prefix(core, audio, "transcribe the speech")
             out = core.greedy_from_embeds(prefix, max_new=448, stop_token=EOS)

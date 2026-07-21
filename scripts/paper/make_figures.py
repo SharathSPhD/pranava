@@ -73,29 +73,21 @@ def figure_sanskrit_leaderboard():
     """Figure 2: Sanskrit leaderboard - bar chart with bootstrap CI error bars."""
     print("Generating Sanskrit leaderboard figure...")
 
-    # Use alm_vs_alm.json for the main comparison
-    leaderboard_file = DATA_ROOT / "benchmark" / "alm_vs_alm.json"
-    leaderboard_data = load_json(leaderboard_file)
-
-    leaderboard = leaderboard_data["leaderboard"]
-
-    # Filter to only the fair models (XL 1.13B, Voxtral, Qwen2.5, Qwen2-Audio)
-    fair_models = [m for m in leaderboard if ("free decode" in (m.get("note") or "")) or m["model"].startswith("Voxtral") or "Qwen" in m["model"]][:4]
-
-    models = [m["model"].replace(" (ours)", "").replace(" (Mistral, open)", "").replace(" (Alibaba, open)", "") for m in fair_models]
-    cer_norms = [m["cer_norm"] for m in fair_models]
-
-    # Create synthetic CIs for models without them (based on typical ranges)
-    cis = []
-    for m in fair_models:
-        if "cer_norm" in m:
-            # Estimate CI as ±10% of the value (conservative estimate)
-            ce = m["cer_norm"]
-            ci_lower = ce * 0.85
-            ci_upper = ce * 1.15
-            cis.append((ci_lower, ci_upper))
-        else:
-            cis.append((m["cer_norm"], m["cer_norm"]))
+    # Per-clip records → REAL bootstrap 95% CIs (1000 resamples). No estimated error bars.
+    records = load_json(DATA_ROOT / "benchmark" / "alm_vs_alm_records.json")
+    wanted = ["Śabda-ALM 1.13B+LoRA XL — free decode (ours)",
+              "Voxtral-Mini-3B-2507 (Mistral, open)",
+              "Qwen2.5-Omni-3B Thinker (Alibaba, open)",
+              "Qwen2-Audio-7B-Instruct (Alibaba, open)"]
+    rng = np.random.default_rng(0)
+    models, cer_norms, cis = [], [], []
+    for name in wanted:
+        per = np.array([r["cer_norm"] for r in records[name]])
+        boot = [float(np.mean(per[rng.integers(0, len(per), len(per))])) for _ in range(1000)]
+        models.append(name.replace(" — free decode (ours)", " (ours)")
+                          .replace(" (Mistral, open)", "").replace(" (Alibaba, open)", ""))
+        cer_norms.append(float(np.mean(per)))
+        cis.append((float(np.percentile(boot, 2.5)), float(np.percentile(boot, 97.5))))
 
     errors = [(cer - ci[0], ci[1] - cer) for cer, ci in zip(cer_norms, cis)]
     errors = list(zip(*errors))
@@ -103,7 +95,7 @@ def figure_sanskrit_leaderboard():
     fig, ax = plt.subplots(figsize=(10, 6), dpi=100)
 
     x_pos = np.arange(len(models))
-    colors = ['#A23B72' if 'Śabda' in m else '#555555' for m in fair_models]
+    colors = ['#A23B72' if 'Śabda' in m else '#555555' for m in models]
 
     bars = ax.bar(x_pos, cer_norms, yerr=errors, capsize=5,
                    color=colors, alpha=0.8, edgecolor='black', linewidth=1.2, error_kw={'linewidth': 2})
@@ -275,6 +267,41 @@ def figure_steering_uptake():
     print(f"  → docs/figures/05_steering_uptake.png")
     plt.close()
 
+def figure_public_shrutilipi():
+    """Figure 6: PUBLIC Shrutilipi-Sanskrit test leaderboard (real human speech, n=1474).
+
+    WER with bootstrap 95% CIs straight from data/benchmark/shrutilipi_leaderboard.json
+    (produced by eval_public.py --score; nothing estimated)."""
+    print("Generating public Shrutilipi leaderboard figure...")
+    board = load_json(DATA_ROOT / "benchmark" / "shrutilipi_leaderboard.json")["leaderboard"]
+
+    models = [m["model"] for m in board]
+    wers = [m["wer_norm"] for m in board]
+    errs = list(zip(*[(m["wer_norm"] - m["wer_ci95"][0], m["wer_ci95"][1] - m["wer_norm"])
+                      for m in board]))
+    colors = ['#A23B72' if 'ours' in m else '#555555' for m in models]
+
+    fig, ax = plt.subplots(figsize=(8, 5), dpi=100)
+    x_pos = np.arange(len(models))
+    bars = ax.bar(x_pos, wers, yerr=errs, capsize=6, color=colors, alpha=0.85,
+                  edgecolor='black', linewidth=1.2, error_kw={'linewidth': 2})
+    for bar, m in zip(bars, board):
+        ax.text(bar.get_x() + bar.get_width() / 2., bar.get_height(),
+                f'{m["wer_norm"]:.3f}\n[{m["wer_ci95"][0]:.3f}, {m["wer_ci95"][1]:.3f}]',
+                ha='center', va='bottom', fontsize=10, fontweight='bold')
+    ax.set_ylabel('WER (folded)', fontsize=12, fontweight='bold')
+    ax.set_title(f'PUBLIC test: Shrutilipi-Sanskrit (All India Radio, n={board[0]["n"]})\n'
+                 'Free decode, identical folded scoring, bootstrap 95% CIs (1000 resamples)',
+                 fontsize=12, fontweight='bold', pad=15)
+    ax.set_xticks(x_pos)
+    ax.set_xticklabels(models, fontsize=10)
+    ax.grid(True, alpha=0.3, axis='y', linestyle='--')
+    ax.set_ylim(0, max(m["wer_ci95"][1] for m in board) * 1.25)
+    plt.tight_layout()
+    fig.savefig(PROJECT_ROOT / "docs" / "figures" / "06_public_shrutilipi.png", dpi=100, bbox_inches='tight')
+    print("  → docs/figures/06_public_shrutilipi.png")
+    plt.close()
+
 def main():
     """Generate all figures."""
     print(f"\nGenerating figures for Śabda-ALM paper...")
@@ -287,6 +314,7 @@ def main():
         figure_per_clip_cers()
         figure_sphotas_lens_emergence()
         figure_steering_uptake()
+        figure_public_shrutilipi()
         print(f"\n✓ All figures generated successfully!")
         return 0
     except Exception as e:
