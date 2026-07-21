@@ -707,8 +707,8 @@
     <!-- LIVE MODE — CHAT THREAD -->
     <div class="card hidden" id="live">
       <div class="capability-banner" id="capabilityBanner">
-        <div>
-          <strong>Bilingual instruction-following ALM:</strong> transcription + kāraka analysis live today; translation instructions are experimental until the bilingual instruct round lands.
+        <div id="capabilityText">
+          <strong>Checking which model is live…</strong> transcription + kāraka analysis are supported today; translation instructions are experimental until the bilingual instruct round lands.
         </div>
         <button class="capability-dismiss" id="dismissBanner" aria-label="Dismiss">✕</button>
       </div>
@@ -1014,6 +1014,23 @@ async function updateStatus() {
     const r = await fetch(gateway.replace(/\/$/, "") + "/health");
     if (!r.ok) throw new Error("Health check failed");
     const data = await r.json();
+    // Say which checkpoint is ACTUALLY loaded. The live demo and the benchmark model are not the
+    // same system: the leaderboard numbers come from the 1.13B bilingual checkpoint, while this
+    // gateway serves whatever /health reports. Driving the banner from /health means the page
+    // cannot claim a capability the running model does not have.
+    const el = document.getElementById("capabilityText");
+    if (el && data && data.checkpoint) {
+      const isBenchModel = /bi1b|sh1b|xl1b/.test(data.checkpoint);
+      const tasks = Array.isArray(data.tasks) ? data.tasks.join(", ") : "transcribe";
+      el.innerHTML = isBenchModel
+        ? `<strong>Live model:</strong> <code>${data.checkpoint}</code> — the same 1.13B bilingual
+           checkpoint benchmarked on the Benchmarks page. Tasks: ${tasks}.`
+        : `<strong>Live demo model:</strong> <code>${data.checkpoint}</code> (200M instruction model,
+           trained on synthetic Sanskrit speech). This is <em>not</em> the model behind the public
+           leaderboard — those results come from the 1.13B bilingual checkpoint, which needs a
+           larger GPU than this gateway. Expect weaker transcription here, especially on real
+           broadcast audio. Tasks: ${tasks}.`;
+    }
   } catch (e) {}
 }
 
