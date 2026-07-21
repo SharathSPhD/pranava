@@ -284,6 +284,13 @@
       const div = document.getElementById("shrutilipiBenchmark");
 
       // Render public leaderboard
+      const entries = data.leaderboard || [];
+      const fmt = (v) => (typeof v === "number" ? v.toFixed(4) : "—");
+      const ci = (a) => (Array.isArray(a) ? `[${a[0].toFixed(3)}, ${a[1].toFixed(3)}]` : "");
+      // ranked by WER (the JSON is sorted that way); CER shown alongside — Whisper edges us on
+      // CER while we lead on WER, and the page states that rather than hiding it
+      const bestCer = Math.min(...entries.map((e) => (typeof e.cer_norm === "number" ? e.cer_norm : Infinity)));
+
       const table = document.createElement("table");
       table.className = "leaderboard-table";
       table.innerHTML = `
@@ -291,8 +298,9 @@
           <tr>
             <th>#</th>
             <th>Model</th>
-            <th>CER (real speech)</th>
-            <th>Note</th>
+            <th>WER (95% CI)</th>
+            <th>CER (95% CI)</th>
+            <th>n</th>
           </tr>
         </thead>
         <tbody id="shrutilipiBody"></tbody>
@@ -300,17 +308,29 @@
       div.appendChild(table);
 
       const tbody = table.querySelector("#shrutilipiBody");
-      const entries = data.leaderboard || [];
       entries.forEach((entry, idx) => {
         const row = document.createElement("tr");
         row.innerHTML = `
           <td class="rank">${idx + 1}</td>
           <td class="model-name">${entry.model}</td>
-          <td class="metric ${idx === 0 ? "metric-best" : ""}">${entry.cer ? entry.cer.toFixed(4) : "—"}</td>
-          <td><span class="metric-note">${entry.note || ""}</span></td>
+          <td class="metric ${idx === 0 ? "metric-best" : ""}">${fmt(entry.wer_norm)}
+            <span class="metric-note">${ci(entry.wer_ci95)}</span></td>
+          <td class="metric ${entry.cer_norm === bestCer ? "metric-best" : ""}">${fmt(entry.cer_norm)}
+            <span class="metric-note">${ci(entry.cer_ci95)}</span></td>
+          <td>${entry.n ?? "—"}</td>
         `;
         tbody.appendChild(row);
       });
+
+      const caption = document.createElement("p");
+      caption.style.cssText = "margin-top:1rem;font-size:0.85rem;color:var(--muted);line-height:1.6;";
+      caption.innerHTML = `Ranked by word error rate on the public
+        <strong>${data.n_test ?? entries[0]?.n ?? "—"}</strong>-clip test split.
+        ${data.protocol ? data.protocol.charAt(0).toUpperCase() + data.protocol.slice(1) + "." : ""}
+        Non-overlapping confidence intervals between the top two systems indicate a real difference in
+        WER. Whisper-large-v3 attains the lower character error rate, so the two metrics disagree —
+        both are shown rather than the flattering one alone.`;
+      div.appendChild(caption);
     } else {
       showPublicBenchmarkPlaceholder();
     }
