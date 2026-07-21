@@ -5,17 +5,45 @@
   "protocol": "identical fold per dataset; free decode; bootstrap 95% CIs (1000)",
   "leaderboard": [
     {
+      "model": "Voxtral-Mini-3B-2507 (Mistral)",
+      "n": 2620,
+      "wer_norm": 0.0295,
+      "wer_ci95": [
+        0.0268,
+        0.0325
+      ],
+      "cer_norm": 0.0118,
+      "cer_ci95": [
+        0.0103,
+        0.0134
+      ]
+    },
+    {
       "model": "Whisper-large-v3 (OpenAI)",
       "n": 2620,
       "wer_norm": 0.0299,
       "wer_ci95": [
-        0.0271,
-        0.0331
+        0.0268,
+        0.0329
       ],
       "cer_norm": 0.0127,
       "cer_ci95": [
-        0.011,
-        0.0146
+        0.0109,
+        0.0147
+      ]
+    },
+    {
+      "model": "Qwen2-Audio-7B-Instruct (Alibaba)",
+      "n": 2620,
+      "wer_norm": 0.0747,
+      "wer_ci95": [
+        0.0644,
+        0.091
+      ],
+      "cer_norm": 0.0699,
+      "cer_ci95": [
+        0.0511,
+        0.1051
       ]
     },
     {
@@ -23,13 +51,13 @@
       "n": 2620,
       "wer_norm": 1.0996,
       "wer_ci95": [
-        1.0857,
-        1.1129
+        1.0858,
+        1.114
       ],
       "cer_norm": 0.8043,
       "cer_ci95": [
         0.795,
-        0.813
+        0.8133
       ]
     }
   ]
