@@ -79,11 +79,26 @@ def megatron_lora_state_dict(model: nn.Module) -> dict[str, torch.Tensor]:
 
 
 def load_megatron_lora(model: nn.Module, sd: dict[str, torch.Tensor]) -> int:
-    """Load a saved LoRA state dict into an injected model; returns #tensors loaded."""
+    """Load a saved LoRA state dict into an injected model; returns #tensors loaded.
+
+    Rank expansion: if the injected adapter has a larger r than the checkpoint, the old
+    weights land in the FIRST r_old ranks (A rows / B cols); the extra B cols stay zero,
+    so the loaded function is exactly the checkpoint's (scale alpha/r is 2 under the
+    default alpha=2r on both sides) while the extra ranks stay free to learn."""
     own = dict(model.named_parameters())
     n = 0
     for k, v in sd.items():
-        if k in own:
-            own[k].data.copy_(v.to(own[k].device, own[k].dtype))
-            n += 1
+        if k not in own:
+            continue
+        o = own[k]
+        v = v.to(o.device, o.dtype)
+        if o.shape == v.shape:
+            o.data.copy_(v)
+        elif k.endswith(".A") and o.shape[0] > v.shape[0] and o.shape[1] == v.shape[1]:
+            o.data[: v.shape[0]].copy_(v)
+        elif k.endswith(".B") and o.shape[1] > v.shape[1] and o.shape[0] == v.shape[0]:
+            o.data[:, : v.shape[1]].copy_(v)
+        else:
+            raise ValueError(f"load_megatron_lora: incompatible shape for {k}: {tuple(v.shape)} → {tuple(o.shape)}")
+        n += 1
     return n
