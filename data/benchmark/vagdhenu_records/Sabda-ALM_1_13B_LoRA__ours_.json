@@ -1,0 +1,1106 @@
+{
+  "model": "Sabda-ALM 1.13B+LoRA (ours)",
+  "is_slp1": true,
+  "per_clip": [
+    {
+      "id": "vg_te_00000",
+      "pred": "lakzmIryasya parigrahaH kamalaBUH so'nurakftamAMdraTaH pOtraScaMdraviBUzaRaH suraguruH SaSyaSca SayyA punaH mfgamAlaM varaM diramaM damaM namadIraM surakAH satrElokatuM bapAlanaparaH kuryAdaDariraM gamanaM sugargaM lakzmaRam",
+      "gold": "lakzmIryasya parigrahaH kamalaBUH sUnurgarutmAn raTaH pOtraScaMdraviBUzaRaH suraguru SezaSca SayyA punaH brahmAMqaM varamaMdiraM suragaRAH yasya praBoH sevakAH sa trElokyakuwuMbapAlanaparaH kuryAdDarirmaMgalam"
+    },
+    {
+      "id": "vg_te_00001",
+      "pred": "brahmAvayogiriSakze Sewa garuqa devendra kAmAyuruH candrArko varuRAnala umayuramUru varuna nAlamunayo mayUritarajyaH sastrIkAH surapuMgavAH pratidinaM kurvaMtu no maMgalam",
+      "gold": "brahmA vAyugirISaSezagaruqA deveMdrakAmO guruH caMdrArkO varuRAnalO manuyamO vitteSaviGneSvarO nAsatyO nirftirmarudgaRayutAH parjanyamitrAdayaH sastrIkAH surapuMgavAH pratidinaM kurvaMtu no maMgalam"
+    },
+    {
+      "id": "vg_te_00002",
+      "pred": "viSvAmitraparASarO vaGravagovagastyaH pulasTyaH kfto SrImAn datrimAnAdatfmAndavyo jamadagnitvayujamaDigato'tamaBradvAjAdayastApasAH SrImadvizRupadAM bujagam",
+      "gold": "viSvAmitraparASarOrvaBfgavo'gastyaH pulastyaH kratuH SrImAnatrimarIcyucaTyapulahAH SaktirvasizWo'MgirAH mAMqavyo jamadagnigOtamaBaradvAjAdayastApasAH SrImadvizRupadAMbujEkaSaraRAH kurvaMtu no maMgalam"
+    },
+    {
+      "id": "vg_te_00003",
+      "pred": "mAMDAtA nahuzoMbarIzasagarO rAjaH pfTurhariyAH yaH trimAnDArmasuto nalo daSarTo rAmo yajAtrEduHha ityAdya buBUva ityadyA Buvi boDu ityAyAdyaByaviBUtiH ityA'Dya BuviBUH jaSa cataM kurvaMtu no maMgalam",
+      "gold": "mAMDAtA nahuzo'MbarIzasagarO rAjA pfTurhEhayaH SrImAn Darmasuto naLo daSaraTo rAmo yayAtiryaduH ikzvAkuSca viBIzaRaSca BarataScottAnapAdaDruvO ityAdyA Buvi BUBujaSca satataM kurvaMtu no maMgalam"
+    },
+    {
+      "id": "vg_te_00004",
+      "pred": "SrIme rahimAvASca mandaragiriH kElASaSElastaTA mAheMdramAlayaSca vinDyaM SavijYaM SatA'haM sa hastyAdArivargagaM maDanagirarvaRagam",
+      "gold": "SrImerurhimavAMSca maMdaragiriH kElAsaSElastaTA mAheMdro malayaSca viMDyanizaDO siMhastaTA rEvataH sahyAdrirvaragaMDamAdanagirirmEnAkagomAMtakO ityAdyA Buvi BUDarASca satataM kurvaMtu no maMgalam"
+    },
+    {
+      "id": "vg_te_00005",
+      "pred": "gaMgAsIMsi duHsarvasvate ca munA gAvaridArma kfzRAjABImaratI ca PagulsarayO SrIgaMdaki kowimatI kAverikapi lAprayAgakiI kAvalIprayAkakiigomatI pa kurvantu no maMgalam",
+      "gold": "gaMgAsiMDusarasvatI ca yamunA godAvarI narmadA kfzRA BImaraTI ca PalgusarayUH SrIgaMqakI gomatI kAverIkapilAprayAgakiwijAnetrAvatItyAdayo nadyaH SrIharipAdapaMkajaBavaH kurvaMtu no maMgalam"
+    },
+    {
+      "id": "vg_te_00006",
+      "pred": "vedAMScopanizadgaRASca viDAsaMgAspurARAM vitAH vedAntAM tarasi hAsaM smftInAM gaRAH kvAyaM saNGAH SrIvizRorguRAnAmakIrtanaparAH kurvantu no maMgalam",
+      "gold": "vedAScopanizadgaRASca viviDAH sAMgAH purARAnvitA vedAMtA api maMtrataMtrasahitAstarkAH smftInAM gaRAH kAvyAlaMkftinItinAwakayutAH SabdASca nAnAviDAH SrIvizRorguRanAmakIrtanaparAH kurvaMtu no maMgalam"
+    },
+    {
+      "id": "vg_te_00007",
+      "pred": "ADityAdinavagrahAH SuBakArameSAdayoH rASayoH nakzatrARi sayogakASca tiTayaH sadgaRAH mAsadA rutavatastaTEvAdivasAH saMDyAstaTA rAtrayaH",
+      "gold": "AdityAdinavagrahAH SuBakarA mezAdayo rASayo nakzatrARi sayogakASca tiTayastaddevatAstadgaRAH mAsAbdA ftavastaTEva divasAH saMDyAstaTA rAtrayaH sarve sTAvarajaMgamAH pratidinaM kurvaMtu no maMgalam"
+    },
+    {
+      "id": "vg_te_00008",
+      "pred": "ityetadvaramaMgalASraTakamitaM SrIrAjarAjeSvareRa AKyAdaM jagatAmaDiBiSaplaRaM sarvASu daDuM sa tatsaMsadAH suvAyaH paWe ti DarmArTADisamastaM sanDAsya paPite Darma tAdisamaH sa mastavAn citaH pallaMqaM prApnotyasO mAnavaH",
+      "gold": "ityetad varamaMgalAzwakamidaM SrIrAjarAjeSvareRA'KyAtaM jagatAmaBIzwaPaladaM sarvASuBaDvaMsanam mAMgalyAdiSuBakriyAsu satataM saMDyAsu vA yaH paWet DarmArTAdisamastavAMCitaPalaM prApnotyasO mAnavaH"
+    },
+    {
+      "id": "vg_te_00009",
+      "pred": "iti SrIrAjarAjeSvarayati virAwacittaM maMgalAzwakaM saMpUrRam",
+      "gold": "iti SrIrAjarAjeSvarayati viracitaM maMgalAzwakaM saMpUrRam"
+    },
+    {
+      "id": "vg_te_00010",
+      "pred": "kAMtAya kalyARAguREkaDAM nenavaDyunATapfTimaprahAya nArAyaRAya kila kAraRAyasIri prARanATAya namaskAro'm",
+      "gold": "kAntAya kalyARaguREkaDAmne navadyunATapratimapraBAya nArAyaRAyAKilakAraRAya SrIprARanATAya namaskaromi"
+    },
+    {
+      "id": "vg_te_00011",
+      "pred": "AnakulAM gulamulalalalAsA yatpAlitaM nityaM mAnavalAtmanA tasmE namAvalAt tasmAni mAne radanIlaBAsI kfzRAyAkfzRAramaRaprIyAyAH",
+      "gold": "anAkulaM gokulamullalAsa yatpAlitaM nityamanAvilAtma tasmE namo nIradanIlaBAse kfzRAya kfzRAramaRapriyAya"
+    },
+    {
+      "id": "vg_te_00012",
+      "pred": "apitfloko'yavizayo viharisaM tItamoharAntimaguhArAnti muhurAtni daSyAdfSaM no viSatAM jayantI tIM tAvyakeratarjinanATa tadIpi tam",
+      "gold": "api trilokyA bahirullasantI tamo harantI muhurAntaraM ca diSyAddfSaM no viSadAM jayantI maDvasya kIrtirdinanATadIptim"
+    },
+    {
+      "id": "vg_te_00013",
+      "pred": "tamondunadAM vApalakOstatvatpratiBepAkftigOgaRena yadAsya SiTAMSuBavAggurUMstAMstrivikramAryAn praRamAmIvaryAm",
+      "gold": "tamonudA''nandamavApa lokastattvapradIpAkftigogaRena yadAsyaSItAMSuBuvA gurUMstAMstrivikramAryAn praRamAmi varyAn"
+    },
+    {
+      "id": "vg_te_00014",
+      "pred": "mukuMdaBaktiyEH guruBaktijAyE satAM prasatyE ca nirantarAyE garIyA sImaM Svaguro viSudDAM vakzyAmi vAyoravatAralIlAm",
+      "gold": "mukundaBaktyE guruBaktijAyE satAM prasattyE ca nirantarAyE garIyasIM viSvagurorviSudDAM vakzyAmi vAyoravatAralIlAm"
+    },
+    {
+      "id": "vg_te_00015",
+      "pred": "tAM mantravarRErvaridAnIM yAM SarvaveMtra pUravErapi vaktukArme saMkziRRuvAkye maRqado saMTo guRAdyAH karuRAM kriyAsu sa ho",
+      "gold": "tAM mantravarREranuvarRanIyAM SarvendrapUvErapi vaktukAme saMkzipnuvAkye mayi mandabudDO santo guRAQyAH karuRAM kriyAsuH"
+    },
+    {
+      "id": "vg_te_00016",
+      "pred": "uccAvacAyena samastacezwAH kiM tatra citraM caritaM nivedya me kantatrasiritaMnivedayam kiYntatamaSalokaSiKAhAmanenAm mAnuvISudye caristAnuvAdaH",
+      "gold": "uccAvacA yena samastacezwAH kiM tatra citraM caritaM nivedyam kintUttamaSlokaSiKAmaRInAM manoviSudDyE caritAnuvAdaH"
+    },
+    {
+      "id": "vg_te_00017",
+      "pred": "mAlAkritastataScaritAkzaratnAyarUsOKkamudraste sakutUhalasya mApUrIkAramaTA paramaM hAMtA pArama kAmyanto muhAntamuhA ruhAM taTA muhurmahAntaH",
+      "gold": "mAlAkftastaccaritAKyaratnErasUkzmadfzweH sakutUhalasya pUrvAparIkAramaTAparaM vA kzAmyantu me hanta muhurmahAntaH"
+    },
+    {
+      "id": "vg_te_00018",
+      "pred": "SrIvalalABAGnA hyAMsamasureRqayAM saMBAvyatvaM tamaMtrilokyAm prARe SvaraH prARigaRaprARi garuH satAM kesarasIRogre BUtvA",
+      "gold": "SrIvallaBAjYAM sasurendrayAYcAM samBAvya samBAvyatamAM trilokyAm prAReSvaraH prARigaRapraRetA guruH satAM kesariRo gfhe'BUt"
+    },
+    {
+      "id": "vg_te_00019",
+      "pred": "yeye guRA nAma jagatprasidDAya nezuteSo'smannidarSayanti sAkzAnnamAH bAGAvatapraparahaM SrImantaM nomAntamaho",
+      "gold": "ye ye guRA nAma jagatprasidDA yaM tezu tezu sma nidarSayanti sAkzAnmahABAgavataprabarhaM SrImantamenaM hanumantamAhuH"
+    },
+    {
+      "id": "vg_te_00020",
+      "pred": "vijYAnabAMti kalA balena lIne druBAsanta santatito janendere mArgAt satAM sa tatitvajanena devA ca dattAM skaliti nirdoQa moKuM devASca darmuKaM devavAScaSaramuKaMgaM desaM dagamUM kaMwaM de vAScaturamuKyamuKamuKye",
+      "gold": "vijYAnaBAnumati kAlabalena lIne durBAzyasantamasasantatito jane'nDe mArgAt satAM sKalati Kinnahfdo mukundaM devAScaturmuKamuKAH SaraRaM prajagmuH"
+    },
+    {
+      "id": "vg_te_00021",
+      "pred": "nATaKakaloteriyugahItiranudbu horisurabhAnamapyanavatAramaRAmapyaRavAtaramanAvama vakzye",
+      "gold": "nATaH kalO triyugahUtiranudbuBUzurbrahmARamapyanavatAramanAdidikzuH sarvajYamanyamanavekzya sakAryavIryaM smerAnano BuvanajIvanamAbaBAze"
+    },
+    {
+      "id": "vg_te_00022",
+      "pred": "vidAnaM tamArga parimArgadaRqinaddena duHna dayivaSi raRAH karuRApatanaH anandayesumuKaBUmiBUriti BUmiBogAt rupAntareRamasadguRaM namasa guRanirRayena",
+      "gold": "vedAntamArgaparimArgaRadInadUnA dEvIH prajA viSaraRAH karuRApadaM naH AnandayeH sumuKa BUzitaBUmiBAgo rUpAntareRa mama sadguRanirRayena"
+    },
+    {
+      "id": "vg_te_00023",
+      "pred": "AdeSamAmelamimucalavaranamenaM balavalaramanenaM maRqatAM jalaravanarAmadaTamaruDAravAlImiva vihfda rAya cAM biBfM nijAnanojjIkfyuravArtitIryaSakti",
+      "gold": "AdeSamOlimaRimujjvalavarRamenaM badDAYjalirmarudanarGamaDatta mUrDnA hArAvalImiva hfdA vibuDendrayAcYAM biBrannijAnanujiGfkzuravAtitIrzat"
+    },
+    {
+      "id": "vg_te_00024",
+      "pred": "kAlAsaH evaM savartatAnAmAyAvacCinnAkulaM viviDasAM kulaMviviDodyAviDa sA tu kaluM viveda na sannata kftAnuvayaM basI yo laBe mahita tvayA",
+      "gold": "kAlaH sa eva samavartata nAma yAvaccintAkulaM viviDasADukulaM baBUva vedAntasantatakftAntarasaM na vidmaH Sreyo laBemahi kaTaM nu vayaM bateti"
+    },
+    {
+      "id": "vg_te_00025",
+      "pred": "tatprItaye rajatapiIwapurADivAsi devo viviSya puruzaM SuBaSuccanAya prApte mahAjanO keko'halena sakutUhalenEna sa kutUhi lInasakuto'halI kolAhalenAsakutO halIni pravftte",
+      "gold": "tatprItaye rajatapIWapurADivAsI devo viveSa puruzaM SuBasUcanAya prApte mahAya mahitAya mahAjanOGe kolAhalena sakutUhalini pravftte"
+    },
+    {
+      "id": "vg_te_00026",
+      "pred": "vizRvA na kuSalaM puruzaM pratyAyAya nijajanAni tarAmaM tryayaM janAn nitarAmftya uttuNgake tu SiKare sakftAM gArurANgaM tareRa taIvAkiliH samyayAtmA",
+      "gold": "AvizwavAnakuSalaM puruzaM prakftyA pratyAyayannijajanAn nitarAmanftyat uttuNgaketuSiKare sa kftANgahAro raNgAntare nawa ivAKilavismayAtmA"
+    },
+    {
+      "id": "vg_te_00027",
+      "pred": "ABAskzo sutrajanatAM SapaTAnuviDamucaEridaM vacanamudDftadavarudDaM vajYAne vaktateja vizvajanIna vfttavargayA iva BagavAna cirAdIH te",
+      "gold": "ABAzya so'tra janatAM SapaTAnuvidDamuccEridaM vacanamudDftadorbaBAze utpatsyate jagati viSvajanInavfttirviSvajYa eva BagavAnacirAdiheti"
+    },
+    {
+      "id": "vg_te_00028",
+      "pred": "sadvipavAriniDisaptakaBUtaDAryAmaDye pIkAMsO suvimalA viBAratanAmahaM KAnde kalA su vimala mandire kAle kAlo'minaravidyo masaM yaGeha KulAmolimanirdvijo'yo'BUt",
+      "gold": "sadvIpavAriniDisaptakaBUtaDAtryA maDye'pi karmaBuvi BAratanAmaKaRqe kAle kalO suvimalAnvayalabDajanmA sanmaDyagehakulamOlimaRirdvijo'BUt"
+    },
+    {
+      "id": "vg_te_00029",
+      "pred": "vedAdfSaraTatapIre SvarAByAM grAme viBUzitataraSivarUpyana nAma pAla he mAdfgrahurA dillavftA bahurAja dilA vftA BastasyA BavadurguRaH kalu lomaBUmiH",
+      "gold": "vedAdrisadrajatapIWapureSvarAByAM grAmo viBUzitataraH SivarUpyanAmA hemAdrirAjaviBurAjadilAvftABastasyABavadguruguRaH Kalu mUlaBUmiH"
+    },
+    {
+      "id": "vg_te_00030",
+      "pred": "aTa kadAcanA sundaranandanandAnasmitamuKeRa dfSyAM dayito durantAm mahamito nijabanDumoda mudIrudya tu vajYamudIrdu mudA prayayatu svajanEH saha dampati",
+      "gold": "aTa kadAcana sundaranandanasmitamuKendudfSAM dayitO nfRAm mahamito nijabanDumude mudA prayayatuH svajanEH saha dampatI"
+    },
+    {
+      "id": "vg_te_00031",
+      "pred": "svajanatA pagamagAma gamapratisa BAjita pUrvaka saMmfti sabhAjitapUrva kasa SaraRato niragAM ruBI he",
+      "gold": "svajanatApagamAgamasaNgamapratisaBAjitapUrvakasamBrame aviduzI jananIti sa bAlakaH SaraRato raRato niragAnnfBiH"
+    },
+    {
+      "id": "vg_te_00032",
+      "pred": "kaviniyA sa itAtantasAM sAMprataM svajanasaMprati svajYAnaM tvaraM tava saMprAptam iti viBupatike rutito rudito'rjunasya smitamanAkalumato'tra mAta nOt",
+      "gold": "kva nu yiyAsasi tAta na sAMprataM svajanasantyajanaM tava sAmpratam iti viBuH paTikErudito vrajan smitamanAkulamuttaramAtanot"
+    },
+    {
+      "id": "vg_te_00033",
+      "pred": "tvaritamityasa kAnanadevatA sadanaM nAma ramApatim api tataH prakawo laGunArIke lyUpadAntarasadamagatam",
+      "gold": "tvaritametya sa kAnanadevatAsadanamatra nanAma ramApatim api tataH pragato laGu nArikelyupapadAntarasadmagataM ca tam"
+    },
+    {
+      "id": "vg_te_00034",
+      "pred": "na linanAbARi BAlanasamadAgamavikasvara varAsu janamanojanAmaRo janma jamavipakzarujatapitipuraM prayayA vaso",
+      "gold": "nalinanABaniBAlanasaMmadAgamavikasvaraBAsvaralocanaH janamanonayanAmbujaBAskaro rajatapIWapuraM prayayAvasO"
+    },
+    {
+      "id": "vg_te_00035",
+      "pred": "suhAyameDagaRAti SayyAlAya vohariM tritayasya sakfttAyi mAH iti surAripi BUsuramaRqalEH samanamajasA sa vismayamIkzitAH",
+      "gold": "suhayameDagaRAtiSayAlavo harinamaskftayaH sukftA imAH iti surErapi BUsuramaRqalEH samanamat sa savismayamIkzitaH"
+    },
+    {
+      "id": "vg_te_00036",
+      "pred": "nihariMsatatannamAswa nanamAtyasO nacanapaSyantApi nAvaM tate iti viDAya vizayASatasannanusAraM samASrI kartavyA",
+      "gold": "na hi hariM satataM na namatyasO na ca na paSyati nApi na vandate api taTeti viDAya viSezataH sa nanu sADujanAn samaSikzayat"
+    },
+    {
+      "id": "vg_te_00037",
+      "pred": "anavalokya sutaM sutavAtasO labDasmutA sadA sumahIsurapuMgavaH moharapracata maSu SagatinarAn patitamUzaH",
+      "gold": "anavalokya sutaM sutavatsalo mfgayati sma mahIsurapuNgavaH muhurapfcCadamuzya gatiM narAn paTi paTi pragato'nupadaM drutam"
+    },
+    {
+      "id": "vg_te_00038",
+      "pred": "janasadAgatiH sUcitavaryamAn pratipadtuM rjawA paryAhat SarA dvijamahamaDupeRa manohara raMsimitamalavAQaM svitamanavArIM sitamaRa",
+      "gold": "janasadAgatisUcitavartmanA pratipadaM vrajatA parayA tfzA dvijamahAmaDupena manoharaM smitamalABi sutAnanavArijam"
+    },
+    {
+      "id": "vg_te_00039",
+      "pred": "vigaharahaH tayogaM manogamM kamyAM rudro ruRadAsu pUrAsayAyordfSoH aTatayaH pramadottitamapyadyAprapItinirudyajaraM gururabhra vyADirgururvrAvit",
+      "gold": "virahadUnatayodgamanonmuKaM nyaruRadaSru purA sa yayordfSoH aTa tayoH pramadotTitamapyadaH pratiniruDya giraM gururabravIt"
+    },
+    {
+      "id": "vg_te_00040",
+      "pred": "aTEza sallakadayAsu dAradayA sadA gamaH sTena nirAsakAma ya ramAvara vAsa BUvAvizAradvaSaradvaviSayA cintayadayatmanoDiyA",
+      "gold": "aTEza sallokadayAsuDArdrayA sadAgamastena nirAsakAmayA ramAvarAvAsaBuvA viSArado viSAlayA'cintayadAtmano DiyA"
+    },
+    {
+      "id": "vg_te_00041",
+      "pred": "ananyasaNgAQguRasaMgitAharerajanasya mAnandviviSitaSceti tam asaMGamasmATtaprakaIwikAruM yahaM nijaM bajaM pAramaH syAmaSramam",
+      "gold": "ananyasaNgAdguRasaNgitA harerjanasya mAnaM tu viSizwacezwitam asaNgamasmAtprakawIkaromyahaM nijaM Bajan pAramahaMsyamASramam"
+    },
+    {
+      "id": "vg_te_00042",
+      "pred": "mamapraBUrRA paratA hi SoBate dvicatuH suvizRuM yadadandAharaRam hArisvasAnanavacirAdasadBedo Bavet tatona saMcadan DAraaH",
+      "gold": "mama praBornAparaTA hi SoBate dvizatsu vizRuM yadadaRqaDAraRam harisvasA nanvacirAdasadBide Bavedato nAsmi ca daRqaDArakaH"
+    },
+    {
+      "id": "vg_te_00043",
+      "pred": "vicintayannitaTamanantacintakaH samastasaMsatsannyAsanimabDanizyayaH asAvanujYArTamaDarIMsamasTasaMvyApinamAtmajAya",
+      "gold": "vicintayannitTamanantacintakaH samastasanyAsanibadDaniScayaH asAvanujYArTamaTAnamadDariM samastasaMvyApinamAtmadAyagam"
+    },
+    {
+      "id": "vg_te_00044",
+      "pred": "nijena kiM na sItibfhuMsavastu praRataM vyaDAmi guroH kila nA vajgaguruH satajA jAgAma kilalokaSikzakaH",
+      "gold": "nije jane kiM namasIti pfcCati bruvan svavastupraRatiM vyaDAmiti guroH kilAnvezaRavAn jagadgurustadA jagAmAKilalokaSikzakaH"
+    },
+    {
+      "id": "vg_te_00045",
+      "pred": "yatriyatA tAm BavizyaM dAva vikzaRo BUriviragiti BUzaRaH nAma trAcca to'pi yajanna mAtf cucitta prekzya mudA rapstu putA",
+      "gold": "yatiryatAtmA Buvi kaScanABavadviBUzaRo BUriviraktiBUzaRaH na nAmamAtrAcCucimarTato'pi yaM jano'cyutaprekzamudAharatsPuwam"
+    },
+    {
+      "id": "vg_te_00046",
+      "pred": "pureSaKfzwanaH karasidDaH SudDimadvanAbalaye viSoDitAtmAM maDukftapravfttimAMSca cArakAScit parivacarAn mudAham",
+      "gold": "purEza kfzRAkarasidDaSudDimadvarAnnaBuktyA kila pARqavAlaye viSoDitAtmA maDukftpravfttimAMScacAra kAMScit parivatsarAn mudA"
+    },
+    {
+      "id": "vg_te_00047",
+      "pred": "aBUt kuSaSatrABfH sanAnapAtakandraM gatAdyapratisArato'ya te yaTA kuSastrA DfzwasirADiH sa padaM buDe'ya davarasya gahitam",
+      "gold": "aBUtkuSAstrAByasanaM na pAtakaM kramAgatAdvipratisArato yateH yaTA kuSastrADyasanaM muradvizaH padAmbuje vyADavarasya garhitam"
+    },
+    {
+      "id": "vg_te_00048",
+      "pred": "vinItaM mAnyA Siro viSAradAM sadEva tattvaM prapUBut sumAda rAt gururuviti tu pagatAn nijAM triM kadAciduccecewamupaharIgiriM sam",
+      "gold": "vinItamAmnAyaSiroviSAradaM sadEva tattvaM prabuButsumAdarAt gururviditvopagatAM nijAM mftiM kadAcidUce tamupahvare giram"
+    },
+    {
+      "id": "vg_te_00049",
+      "pred": "ahaM svayaM brahmaRakiM cidasti matpatiM citaM tava puMCatiM taraM vayaMsu ratAmasmABiH svaH SIH",
+      "gold": "ahaM svayaM brahma na kiYcidasti matparaM vijfmBeta yadA sPuwaM citiH itIha mAyAsamayopapAditaM niranvayaM suvrata mA sma viSvasIH"
+    },
+    {
+      "id": "vg_te_00050",
+      "pred": "vedAntavidyAnijarAjyapAlane saNkalpyamAno guruRAgarIyasIma aDaBracIta aDa Bfce ca aDab Bfceta pUraH sa vAriBirvArijarvari vAriraBaricidalasya aDavfzwiH purA sa variraBiravarjitaH",
+      "gold": "vedAntavidyAnijarAjyapAlane saNkalpyamAno guruRA garIyasi adaBracetA aBizicyate purA sa vAriBirvArijapUritEraTa"
+    },
+    {
+      "id": "vg_te_00051",
+      "pred": "AnandarUpasya parasya  pAtraM dIrAnaM dalaM dAIsi Sastrakftrastaya tAnandda tIrTe'padaM gurUditaM baBUva tasyAtyanurUpa kam",
+      "gold": "AnandarUpasya parasya pAtraDIrAnandasandAyisuSAstrakftsa yat AnandatIrTeti padaM gurUditaM baBUva tasyAtyanurUparUpakam"
+    },
+    {
+      "id": "vg_te_00052",
+      "pred": "kadAcidatopayogi yo yatisaH kAWo bindubIdDubiDo'pi durBUmidaBUmidurgarupo bfqidamudyataH amuzya SizyA'numAnaSikzitAstadA jIvISAnumAnASikzisTAstadadAjI kISaM gurubudDimudDatAH",
+      "gold": "kadAcidatropayayO yatiH saKA govindabudDerbahuSizyasaMvftaH amuzya SizyA anumAnaSikzitAstadA'jigIzan gurubudDimudDatAH"
+    },
+    {
+      "id": "vg_te_00053",
+      "pred": "BiDAsu sAjjyetanmanAmatftEH prAjyatASu prati pakzaBezaRam aKaRqadyadyavittamaKaRqyadya vitta mahadnihatya vyaktam KaRqaDIriM sapakzadakzaH paRiM virAjAdiva",
+      "gold": "BidA susADyetyanumAnamatra tEH prAyujyatASu pratipakzaBIzaRam aKaRqayadyvaktamaKaRqaDIridaM sa pakzadakzaH PaRinaM virAqiva"
+    },
+    {
+      "id": "vg_te_00054",
+      "pred": "aTApi miTyA vimataM tattvavivAdanirmuktavadat tvavidAnirmuKatavadyavAdityA vAditEH anena satyaM vimantamattavato yaTA GawAdityanumAnyagadyata",
+      "gold": "aTApi miTyA vimataM matatvato vivAdanirmuktavadityavAdi tEH anena satyaM vimataM matatvato yaTA GawAdItyanumA nyagadyata"
+    },
+    {
+      "id": "vg_te_00055",
+      "pred": "eto rativyApiti rAvadItIryadAsakotukasItuka sItuko ka sI tu na sa vEsma na Suktirukto'yaM dayatA mataM tadityAdi vaMdaM jagAyatantam tadIyaDAvadaM jigAya tantadItyAdivaMdanyaTA mattaM dadyatAM tadItayAdivdaM jIgAya witamaM taqitaM yadi vandaM jAgIyatan",
+      "gold": "hetorativyAptiravAdi tEryadA sakOtukEstUrRamasAvavismayaH na SuktirUpyAdi mataM yadanyaTA mataM tadityAdi vadan jigAya tAn"
+    },
+    {
+      "id": "vg_te_00056",
+      "pred": "tattve'pyatte vimatenoktaM tena M vaMdaM sTadDaM pratipAdakasvayam vicitya viSvAn viduzrasBAsvasO jagAmAnaM pyanumAnatirTatA",
+      "gold": "tattve'pyatattve vimate'numAM vadaMstadapratizWAM pratipAdukaH svayam vijitya viSvAnviduzaH saBAsvasO jagAma nAmnApyanumAnatIrTatAm"
+    },
+    {
+      "id": "vg_te_00057",
+      "pred": "samastavAdindragajapraBAM gadaH SaraRavAnyAM pratipakzakaM kaSya yA vedavicAraM yayA praTamAH samAyayA svadiSA garaH",
+      "gold": "samastavAdIndragajapraBaNgadaScarannavanyAM pratipakzakANkzayA vedadvizAM yaH praTamaH samAyayO savAdisiMho'tra sa budDisAgaraH"
+    },
+    {
+      "id": "vg_te_00058",
+      "pred": "tasyordururagvavatO jigiKiH yajYa niSAtamAdattamukundaDIrftato svaSizya sTane matAntare SudDe supAkzaDakzaM suKatIrTamArgaRam",
+      "gold": "tasyorudurgarvavato jigIzayA niSAtamAdatta mukundaDIrdrutam svaSizyahastena maWAnterezuDeH supakzadakzaM suKatIrTamArgaRam"
+    },
+    {
+      "id": "vg_te_00059",
+      "pred": "jEtiM pratijYAsu kutu halaKulaM dfQaM na kulaM DanurmAnaM kulam pratavarti naSAmya avandatopyatyaguruM garizWaDIH saropya pIWAya taM tava",
+      "gold": "jEtraM prajijYAsu kutUhalAkulaM nfRAM kulaM pratvaritaM niSAmayan avandatopetya guruM garizWaDIH sa rUpyapIWAyatanottamasTitam"
+    },
+    {
+      "id": "vg_te_00060",
+      "pred": "Etareyamata kiYcana sUktaM sUcayan sadasi tatra karezWaH SrotumicCati sa BAgavaDyasuKaBA vfdDyasukaBAvamitAvftA vaduvAca",
+      "gold": "EtareyamaTa kiYcana sUktaM sUcayan sadasi tatra garizWaH SrotumicCati saBA BagavadByaH sUktaBAvamiti tAvaduvAca"
+    },
+    {
+      "id": "vg_te_00061",
+      "pred": "varaM sOzWavagarizwamatoraRaM tulyamAtramatimAtra sulakzma yUrasa laGuSamamuzyoccAraRaMvidaDadaByaDyaTArTam",
+      "gold": "varRasOzWavagarizWamatUrRaM tulyamAtramatimAtrasulakzma vyUQahfjjaladaGozamamuzyoccAraRaM vidaDadaByaDitArTam"
+    },
+    {
+      "id": "vg_te_00062",
+      "pred": "lakzaRAnvitatayA vacanesmin netvaviDA gurumasAvatizite mAnamityA viviDAya DyAtetyatattu suKitamaparArTamavocan",
+      "gold": "lakzaRAnvitatayA vacane'smin devatAgurumasAvatiSete mAnamityapi viDAya DiyA te tattu sUktamaparArTamavocan"
+    },
+    {
+      "id": "vg_te_00063",
+      "pred": "syAtate tamapi saMBavitArTastryATarTaM SudIrzu vivittAdaSratamaM BavatArTaM sudfQa dAsarTamapiasya dvAzat vaMpaM sahasratayaM hi",
+      "gold": "syAttaTetTamapi samBavitArTastryarTatAM Srutizu vitta daSArTam BArataM nanu SatArTamapi syAdvEzRavaM padasahasratayaM hi"
+    },
+    {
+      "id": "vg_te_00064",
+      "pred": "ityudIrayati vistftacitte BUsurAhijI rava enam ucurrAhi jigIra SatakaM hariRAM nAma varRyatAmiti sahAsamuKAste",
+      "gold": "ityudIrayati vistftacitte BUsurA iha jigIzava enam UcurarTaSatakaM harinAmnAM varRyatAmiti sahAsamuKAste"
+    },
+    {
+      "id": "vg_te_00065",
+      "pred": "varanAyyamitata hasakalaM vasOzWahavAdanuvantuM pitftvavantu mite tava daMto bADamityatidfdroDiyudDo'yamApah",
+      "gold": "varRayAmi tadahaM sakalaM vaH sOzWavAdanuvadantu BavantaH taM vadantamiti te'Ta vadanto bAQamityatidfQodyamamApuH"
+    },
+    {
+      "id": "vg_te_00066",
+      "pred": "pratyayAprakftisaMGamaBaNgaiM Sad SazwravisTAM pratidarSya SudDadIzu diSi SrudDadeSikasrazwa disidasidanAByadAt sapadi viSvapadArTAn",
+      "gold": "pratyayaprakftisaNgamaBaNgIM SabdaSAstravihitAM pratidarSya SudDaDIH SrutiSiraHSatasidDAnaByaDAtsapadi viSvapadArTAn"
+    },
+    {
+      "id": "vg_te_00067",
+      "pred": "yAvadraTaH SatakanaM vizaNkaH santatoktIkftaduruparA deSaH varRitAvadfQa trivfjlalacittAH stAvadAkosalahfdoyKya Bavantaste",
+      "gold": "yAvadarTaSatakaM na viSaNkaH santatoktikfdapUrayadezaH varRitAvaDftidurbalacittAstAvadAkulahfdo hmaBavaMste"
+    },
+    {
+      "id": "vg_te_00068",
+      "pred": "saNgavedacaturaH itihAse SikzitAsu bahvopyatidfzwaH nEtadIritamahojagfhaste viSvasaNKyapayoMDugaRAva",
+      "gold": "sANgavedacaturA itihAse SikzitAH subahavo'pyatiDfzwAH nEtadIritamaho jagfhuste viSvasaMkzayapayo'nDugaRA vA"
+    },
+    {
+      "id": "vg_te_00069",
+      "pred": "devatAsu laBA pratiBAte mAnuzezU ca paleSukatAka kApa kA cimyAMsa myasa kalajanyAnamaste te bravanta iti tAMkila kila nemUH",
+      "gold": "devatAsvasulaBA pratiBA te mAnuzezu capalezu kaTA kA kzAmya sOmya sakalajYa namaste te bruvanta iti taM kila nemuH"
+    },
+    {
+      "id": "vg_te_00070",
+      "pred": "aTEva vate tataM tAntare badderiSaM dvizazwamanditam paramASramamASriyaM sa kalagnyaH sa dadarSa vizRutam",
+      "gold": "aTa hEmavate tawAntare badarIzaRqaviSezamaRqitam paramASramamASrayaM SriyaH sakalajYaH sa dadarSa viSrutam"
+    },
+    {
+      "id": "vg_te_00071",
+      "pred": "Simavarza ravipraBAsaH pratitAddi jASrayAH api vizRubadDaspfzlolasannuvaye yatra vicintaH prASaKinaH",
+      "gold": "himavarzaravipraBAsahAH pfTusatrapraTitA dvijASrayAH api vizRupadaspfSo'lasannuBaye yatra vicitraSAKinaH"
+    },
+    {
+      "id": "vg_te_00072",
+      "pred": "SravaRaM tat giraNga netfvijeSezu kamukteH SrIBakze SuBakaSiBirayutaM kamalezwatamasTirAntare rahipaM sEEsa parAmera me ca kEH",
+      "gold": "SravaRAmftagIrgaRErdvijEH SukamuKyEH SuBapakziBiryutam kamalezwatamasTirAntarErapi haMsEH paramEramecakEH"
+    },
+    {
+      "id": "vg_te_00073",
+      "pred": "sumAnanikareRa pUritaM svamanoBiH Satamalpabalagraham aparasparamatra saraprajannanOki munTamavAcu cita layam",
+      "gold": "sumanonikareRa pUritaM svamano'BIzwadamalpadurgamam aparasparamatsaraprajaM nanu vEkuRWamivAcyutAlayam"
+    },
+    {
+      "id": "vg_te_00074",
+      "pred": "tamimaM praveSantAM mASramaM dvyakarti Sado dala lakzaRam guRasAra vidAH kuto halAladAva lokya ityAcintayam",
+      "gold": "tamimaM praviSantamASramaM dvyaDikatriMSadudAralakzaRam guRasAravidaH kutUhalAdavalokyarzaya ityacintayan"
+    },
+    {
+      "id": "vg_te_00075",
+      "pred": "kanakAtulasAMannaBiH kamalAkzovimalino sannimuKA kamaLakara mahABuja ca pratyAnIko'yaM pUrvapUruzaH",
+      "gold": "kanakAtulatAlasanniBaH kamalAkzo vimalendusanmuKaH gajarAjagatirmahABujaH pratiyAn ko'yamapUrvapUruzaH"
+    },
+    {
+      "id": "vg_te_00076",
+      "pred": "atiSAntavapurnizAkAraH svayamekAntaH karAH vikAsarasvamekAMkaH iti nAsya guRArRavAkfterUpamAnaM Bavanezulo Bayate",
+      "gold": "atiSAntavapurniSAkaraH svayamekAntaKaro divAkaraH iti nAsya guRArRavAkfterupamAnaM Buvanezu laByate"
+    },
+    {
+      "id": "vg_te_00077",
+      "pred": "paramAsfmInANgataH Sramo nanu ca nanucCan nihAni niparamasvayamayamatanot na no SaBAva vigraho vipulaM vismayamAt notRiH na",
+      "gold": "paramASramiRAM gataSramo nanu cihnAni biBarti DIraDIH api mAnuzaBAvavigraho vipulaM vismayamAtanoti naH"
+    },
+    {
+      "id": "vg_te_00078",
+      "pred": "caturAscitaM caturaSItanAM svayaM pavano varttirUpa vfjYa SritonAta dirakzayA nyaTA na kalusyAn niKilAgrila kzam",
+      "gold": "caturaScaturAnanaH svayaM pavano vA vratirUpa Avrajan SrutinATadidfkzayAnyaTA na Kalu syAnniKilAgrayalakzmavAn"
+    },
+    {
+      "id": "vg_te_00079",
+      "pred": "avalokita lakzaRaH sa tEriti saYcintya kuto halAkulEH avilaM bagagatirnyASAmayata tarumArAtaH surApadapotam",
+      "gold": "avalokitalakzaRaH sa tEriti saYcintya kutUhalAkulEH avilambagatirnyaSAmayattarumArAtsurapAdapottamam"
+    },
+    {
+      "id": "vg_te_00080",
+      "pred": "pratiBA prahapa rakasadguREH nijErativismayaniyaminAM nAma nOnA puraDIkadA cidatavedanAya kaM vijane rupasaH sAdattamavane",
+      "gold": "pratiBApraBApramuKasadguRErnijErativismayaM niyaminAM mano nayan puruDIH kadAcidaTa vedanAyakaM vijane SanErupasasAda taM vane"
+    },
+    {
+      "id": "vg_te_00081",
+      "pred": "suviSizaSca SEza varRinaH pratiboDudurasyAnunaSya tat ucitA gurumAnasasya guru tAsi patetritIpaH sattetira mArgeRa sasyasatIrTaramarEramA nitA",
+      "gold": "suviSezaSezavadaSezavarRitapratibodDurasya nanu SizyatocitA gurumAnasasya gurutA'pi satpateriti sopasattiramarEramAnyata"
+    },
+    {
+      "id": "vg_te_00082",
+      "pred": "pura eva pUritamapUrya punarayaM kfzRayeza paramArTa saNKyayA baGavanaM na puramivAyataM pUrARi jaDAmatyaM ca gfhe tadA''Dutam",
+      "gold": "pura eva pUritamapUrayat punarnanu kfzRa eza paramArTasaNKyayA BagavanmanaH puramivAyataM purA nijaDAma tAM ca jagfhe tadadButam"
+    },
+    {
+      "id": "vg_te_00083",
+      "pred": "iti hAsaundarapurARasUtasatrapyapaYcarAtranijaBAvasa syutaM aSruRodAnaM taTa ravartmArTamapyagaRitAgAmavAle he",
+      "gold": "itihAsasundarapurARasUtrasatpriyapaYcarAtranijaBAvasaMyutam aSfRodanantahfdanantato'cirAtparamArTamapyagaRitAgamAvaleH"
+    },
+    {
+      "id": "vg_te_00084",
+      "pred": "rujapugavAsya parijAnatasvayaM sakalaM tadapyanyamannamanaM janmasu svakftorvanugraho baladAmuSatTAM viSize SaSaSezaSaryaH punaradIyam",
+      "gold": "fjupuNgavasya parijAnataH svayaM sakalaM tadapyalamanantajanmasu svakftorvanugrahabalAdamuzya tAM viSiSeza SezaSayanaH punarDiyam"
+    },
+    {
+      "id": "vg_te_00085",
+      "pred": "aTa bAdarAyaRaH sahAya sambadDaprayayO praRayo praRAntumaDyantarOhayutaH api nAdirAya na padoditaM harervapuruntaraM lakzitamASramAntare",
+      "gold": "aTa bAdarAyaRasahAyasampadA prayayO praRantumamitAntaro yutaH api nAdirAyaRapadoditaM harervapurantaraM lasitamASramAntare"
+    },
+    {
+      "id": "vg_te_00086",
+      "pred": "tamaH paSyadASaM vare'praBUtaDErjujanaM tvamiva hutaDIrjayannaYca vargalAkalitamajUnmi kelamajImekalaM vilasajjatAvalayamAdIpurozam",
+      "gold": "tamapaSyadASramavare praBUtaDIrjvalanaM jvalantamiva DUmavarjitam varavalkalAkalitamOYjimeKalaM vilasajjawAvalayamAdipUruzam"
+    },
+    {
+      "id": "vg_te_00087",
+      "pred": "atirujayendriyajayAdirUpeRAtapAsaH santataM vande nijarUpaBUtAnirapekzyanirmalapracurAtmasO sa ekatramApyanArTam",
+      "gold": "atidurjayendriyajayAdirUpiRA tapasA vasantamiva santataM vane nijarUpaBUtanirapekzanirmalapracurAtmasOKyaratamapyanAratam"
+    },
+    {
+      "id": "vg_te_00088",
+      "pred": "nyAnadvayena nalinInapraBAmoScApi paripUltAtvArisTena vismayo'yam tamavekzya Darma laBamARasevaratmARi seti BUri taramAnasevasmartA",
+      "gold": "nayanadvayena nalinapraBAmuzA pariPullatAvilasitena vismayAt tamavekzya DarmajamaDarmadurlaBaM manaseti BUritaramAnaso'smarat"
+    },
+    {
+      "id": "vg_te_00089",
+      "pred": "jagatAM ca turadazwa ajataM muKA pramuKa ye tvaM pralayamAnEnnAyayaH samamulasAMkamalayavake vEkalaM paramasayEravi kovEnalaM kamalparamuH sa yeza hi purARapUruzaH",
+      "gold": "jagatAM caturdaSatayaM caturmuKapramuKEryutaM pralayamAninAya yaH samamullasan kamalayEva kevalaM paramaH sa eza hi purARapUruzaH"
+    },
+    {
+      "id": "vg_te_00090",
+      "pred": "cODayantaM tava hantumAdArTatra majamajaM praRamya saha so'KyatIrTakavilokanAya ko veda nAya KapurasarAyuryayo",
+      "gold": "codayantamaTa gantumAdarAttatra DarmajamajaM praRamya saH sOKyatIrTakavilokanAyako vedanAyakapurassaro yayO"
+    },
+    {
+      "id": "vg_te_00091",
+      "pred": "ASramAntargatam ASramaM taramAne kfzRatASca SoBAnuvAdikAMgresadalaM cittavat kamalaM Bavati",
+      "gold": "ASramAntaramavApya kfzRataH SrAvyameza sakalaM ca SuSruvAn cittavfttimanuvfttimAn guroH sADvavetya gamanonmuKo'Bavat"
+    },
+    {
+      "id": "vg_te_00092",
+      "pred": "mandahAsaM rudrasudurAnana namadAnIyamabibanDyasaptami prAgaman mahaM ti",
+      "gold": "mandahAsamfdusundarAnanaM vandanIyamaBivandya satpatim prAjYamOlimaRiraByanujYayA tasya tAvadagamanmahAmatiH"
+    },
+    {
+      "id": "vg_te_00093",
+      "pred": "tasya vallaBa TamAsAvasaM BUrmanAsaM sa duzramAnasa syanena yAtyAjakzaramapi hyasAvidaM nEzaRAt virahitatoBavat",
+      "gold": "tasya vallaBatamA''sa vAsaBUrmAnasAtpfTulamAnasasya no nAtyajatkzaRamapi hyasAvidaM nEza nATavirahI tato'Bavat"
+    },
+    {
+      "id": "vg_te_00094",
+      "pred": "vIradfzwikftasaMBave brahmasAnDfzwikraTaM saMvadDaH tatra paTipATya brahappravartadAtarA sarvaDIH",
+      "gold": "vIradfzwikftasiMhaviBramaH SAntadfzwikftaSAntasammadaH tatra tatra paTi paTyaviBramaH parvatAdavatatAra sarvaDIH"
+    },
+    {
+      "id": "vg_te_00095",
+      "pred": "vAnarendra iva tIraRavAriDirvAsudeva ivartanrAjavAn BImasena eva sUnavaraya GftaM svajanamAnInAya saH",
+      "gold": "vAnarendra iva tIrRavAriDirvAsudeva iva ratnarAjavAn BImasena iva sUnavaryahfnnirvftiM svajanamAninAya saH"
+    },
+    {
+      "id": "vg_te_00096",
+      "pred": "agniSarmamuKAn ca yaSar mama kftasamma pratisamaM sa ravIRAM kfta samam kfzRa mAnadaya ityAvasI kftaM na maya kfzRAmasti malameyaH",
+      "gold": "agniSarmamuKapaYcazErdvijErannamAhftamalaM pfTak samam kftsnamAdadayamityavismayaH kftsnamattumalameza hi kzaye"
+    },
+    {
+      "id": "vg_te_00097",
+      "pred": "vyAsadevA kftayAtivalambBavaH sudevamagaReH sadguRam sADayati valamito janAn Baktirmanata sokyatam",
+      "gold": "vyAsadevahfdayAtivallaBaM vAsudevamagaReyasadguRam sADayat sakaladozavarjitaM jYAnaBaktidamanantasOKyadam"
+    },
+    {
+      "id": "vg_te_00098",
+      "pred": "uktaM kaTitaM mahadBiH yamuttamaM vedavAkyamunA vAdayan muhuH vijYayaM smftivacCedasya cArTamatyaguRasAt tasya CAtrArTam atiyuktayuktaM",
+      "gold": "uktamuktamaBiDeyamuttamaM vedavAkyamanuvAdayan muhuH vyaYjayat smftivacoBiraYjasA tasya cArTamatiyuktayuktimat"
+    },
+    {
+      "id": "vg_te_00099",
+      "pred": "bAlasaMGamapi bodaya duzpraRunirUpavacanaM ca paRqitEH aprameya rayadaM prasAdavatAsu myakAnti ca vipakzaBIzRam",
+      "gold": "bAlasaNGamapi boDayadBfSaM durnirUpavacanaM ca paRqitEH aprameyahfdayaM prasAdavat sOmyakAnti ca vipakzaBIzaRam"
+    },
+    {
+      "id": "vg_te_00100",
+      "pred": "sapadi samaskuruta BfSaM mADavaguRasADakoTotmADaraviH BfgukulatilakasTAnaM tApakaraH pApapAnTAnAm",
+      "gold": "sapadi samaskuruta BfSaM mADavaguRasADako'Ta maDvaraviH BfgukulatilakasTAnaM tApakaraH pApapAnTAnAm"
+    },
+    {
+      "id": "vg_te_00101",
+      "pred": "daSamatiH SaktScezWo BajanatAyE kutUhalanatA ye kutUQAlanata yE viviDasurvataM vAkyaM kAvyamevocce sanAya kastvakam",
+      "gold": "daSamatiSizyaH kaScit SuBajanatAyE kutUhalanatAyE viviDasuvfttaM vAkyaM kAvyamivoce sanAyakastavakam"
+    },
+    {
+      "id": "vg_te_00102",
+      "pred": "BUwan Dvajottamadvaye tezwatamanavadeSe taM navadillyAM sakalAM kalugilaM kiYcidapyaTa sfzO rujajAyA varRyate",
+      "gold": "BuvanAdButamaDvacezwitaM na vademApi surAyuzA vayam sakalaM Kalu kintu kiYcidapyaTa SuSrUzujanAya varRyate"
+    },
+    {
+      "id": "vg_te_00103",
+      "pred": "kvaciditi varedavima SrIba BUpaM kananaM pARqajanaM viDApayantam svamapi praticodayantAmucCekriyayAnokzetrIyAnokSalAn praboDayeti",
+      "gold": "kvacidISvaradevameza BUpaM KananaM pAnTajanaM viDApayantam svamapi praticodayantamUce kriyayA no'kuSalAn praboDayeti"
+    },
+    {
+      "id": "vg_te_00104",
+      "pred": "prakAraM prakawIkartumarAma virarAmaH viralA maTeyomatimAhAtmyAdvEva SeRRa KananakalaH",
+      "gold": "prakAraM prakawIkartumAraBya virarAma no mahIyomatimAhAtmyAdvEvaSyena Kanan KalaH"
+    },
+    {
+      "id": "vg_te_00105",
+      "pred": "nAnena nAnennanena RananennaUnanunnaH nAnannAnunnana nAsannunnAnana mannana",
+      "gold": "nAnenenAnenAnenonUnena nanu nunnAH nAnAnA no nUnaM nAnenAnUnanA'nunnaH"
+    },
+    {
+      "id": "vg_te_00106",
+      "pred": "yamaSezaBavapraBavaH smaratAmasuKADiraparito nicitramidam marutIdfSi BAnti hyastava neya mama rU ityadi sma vEraBavA praBa vasamarTAH",
+      "gold": "yamaSezaBavapraBavaH smaratAmasuKAbDirapEti na citramidam marutIdfSi BAnti hi yatstavane yamaSezaBavapraBavaH sma ratAH"
+    },
+    {
+      "id": "vg_te_00107",
+      "pred": "saYcarannaYcanIyaH kadAcid vibravizRupadDayAstatra vIraSEzaSErvftasya kaWivfzwayarizaqa si vizRubalaM SAtravAtaM kaTataH",
+      "gold": "saYcarannaYcanIyaH kadAcidviBurvizRupadyAstawaM vEzRavAgresaraH prApadAptErnijEreza SizyErvftastyaktaviSvaplavaM SAtravAtaNkataH"
+    },
+    {
+      "id": "vg_te_00108",
+      "pred": "imAM ca svapO rASayAnAtmavAkyAt salIlaM dayAlusaNsalilasyAtmatA niSi dfQrnanAdftyAca nAnyalaNgyAM tadA'tyanayattaM na danIMsyAM nadIM saMsftiM vA",
+      "gold": "imAnsvasvapUrvASrayAnAtmavAkyAt salIlaM dayAluH sa mUlASrayAtmA nizedDFnanAdftya cAnanyalaMNGyAM tadA'tyAyayat tAM nadIM saMsftiM vA"
+    },
+    {
+      "id": "vg_te_00109",
+      "pred": "vArayata vArayitavErisuhfdomUM nAraya tapAraagamArakAma pAtayatapArAgamAnAt pAragamAnata ta yavadatyuceH satarkarAjapuruzAnucitavAcA",
+      "gold": "vArayata vArayata vErisuhfdo'mUn mArayata mArayata pAragamanAt prAk Apatata Alapata ityavadaduccEH sa tvarakarAjapuruzAnucitavAcA"
+    },
+    {
+      "id": "vg_te_00110",
+      "pred": "na nadAjale patataH sA hasADAraRo na vyayaM BUtayA bahurjanAt BavatAM patiM kzirpitamidaM dfkzavataptiM rakzavapfciraTa",
+      "gold": "na jaqA jale patata sAhasAdaho na BayaM hi vo bahutayA'bahorjanAt BavatAM patiM kzitipatiM didfkzavaH pratiyAma kena kalahaM cikIrzaTa"
+    },
+    {
+      "id": "vg_te_00111",
+      "pred": "vacasIyanena saparARyarURAd BujagAna rena AI mantrabalAt udagatArayatparijanaM bfhad balaSat ca devasaritaSca samam AmAnyate",
+      "gold": "vacasetyanena sa parAn nyaruRad BujagAnnarendra iva mantrabalAt udatArayatparijanaM mftiBIsaritaSca devasaritaSca samam"
+    },
+    {
+      "id": "vg_te_00112",
+      "pred": "nirvikAracaritopi paripAlito'pi pale taH kfzakanikarasahasradayena sA sajjanundalasajjagadISasiMharArivasfgalAsamUhe",
+      "gold": "nirvikAracarito'pi parItaH krUrakiNkarasahasratayena sa vrajannudalasajjagadISaH siMharAqiva sfgAlasamUhe"
+    },
+    {
+      "id": "vg_te_00113",
+      "pred": "aprakampya upasaMhasurAEsiMhasaMhiMsA namannamunnantamaprAptamAtmana karAntikaM rupaprekzasODaSaKarErasitotparvItam",
+      "gold": "aprakampyavapuzaM surAsurEH siMhasaMhananamenamunnatam prAptamAtmanagarAntikaM nfpaH prekzya sODaSiKare sTito'bravIt"
+    },
+    {
+      "id": "vg_te_00114",
+      "pred": "ripunfpapradAne pratisaMkayA paTikapAwanakaM manidIkzitEH sumuKamepa so'parUzEH paruzEH puruzEHkaTaM yamabaTEriva siMhaH",
+      "gold": "ripunfpapraRiDipratiSaNkayA paTikapAwanakarmaRi dIkzitEH sumuKa me paruzEH puruzEH kaTaM yamaBawEriva nAsi vihiMsitaH"
+    },
+    {
+      "id": "vg_te_00115",
+      "pred": "aplavadevanadItarARaM tEn hanta kaTaM cikIrzasi kim tvam tannigadaM taM nigadAntamiti praBftihasmAha puruzottamadAsaH",
+      "gold": "aplavadevanadItaraRaM te hanta kaTaM ca cikIrzasi kiM tvam taM nigadantamiti praBftIha smAha mahApuruzottamadAsaH"
+    },
+    {
+      "id": "vg_te_00116",
+      "pred": "yosO devo viSvadIpa pradepa TakurmasarvaM tatparAnugraheRa yAmastAvat turaRamAS mudIItyadyAdyaM tadBAzayA citravAkyam",
+      "gold": "yo'sO devo viSvadIpaH pradIptaH kurmaH sarvaM tatparAnugraheRa yAmastAvat tUrRamASAmudIcImityAdyaM tadBAzayA citravAkyam"
+    },
+    {
+      "id": "vg_te_00117",
+      "pred": "gAmBIryaM dftivariyAM tftIvariyaM gamA piteqgayaM grayaM nirama pade SakalAyuktAm rAjAsya sPuwamapula BavA vismatetsma mE rAjArDaM sapadi samarpayAM baBUva",
+      "gold": "gAmBIryaM DftimuruvIryamAryaBAvaM tejo'grayaM giramapi deSakAlayuktAm rAjA'sya sPuwamupalaBya vismito'smE rAjyArDaM sapadi samarpayAmbaBUva"
+    },
+    {
+      "id": "vg_te_00118",
+      "pred": "daRqArhabudDivizayo nAmfpa UraSAnAM prajArahabuddIvaSayoH bapudvizayO yA vaBavitaMtrezaH nItiM prakASa itaM hatA vyaDAt saH",
+      "gold": "daRqArhabudDivizayo nfpapUruzARAM rAjyArhabudDivizayo'BavaditTamezaH nItiM prakASayitumeva vipatsu kAryAM gantuM praBuH prasaBato'pi taTA vyaDAtsaH"
+    },
+    {
+      "id": "vg_te_00119",
+      "pred": "kadAcicCorARAM nikaramavalokya BIpatatAM avasTApya svIyAn karagapatipadinArTamatikratuM carannetezveta nATamitahihAgAtayadaho vibuH sammohya prAgvijaya iva saMSaptakagaRAn",
+      "gold": "kadAciccorARAM nikaramavalokyABipatatA mavasTApya svIyAn karagapawapiRqArTamatikft carannetezvetAnaTa miTa ihAGAtayadaho viBuH sammohya prAgvijaya iva saMSaptakagaRAn"
+    },
+    {
+      "id": "vg_te_00120",
+      "pred": "anyatra ca OrAM nayantyapravaro sOSravAM catasaMKyAn prAptAM sujigAM suci gaMsya na drAvayata drAk",
+      "gold": "anyatra ca corAn Danyapravaro'sO SUrAn SatasaNKyAn prAptAn svajiGAMsUn ekena tu SizyeRAkfzwakuWArAn nistAqitayUTyAnadrAvayata drAk"
+    },
+    {
+      "id": "vg_te_00121",
+      "pred": "kvacicCicCAcata BramAdamasusaMGarza jAtamAnam saMsagrahaM ca tamAnAmanu",
+      "gold": "kvacicCilAcCawABramAdamuM sasaNGamatyajan avekzya dasyavaH punaH kutUhalAt tamAnaman"
+    },
+    {
+      "id": "vg_te_00122",
+      "pred": "satyoccedeSe ca cedicCayAtAM vyagram prAleyara lIlEzena syat",
+      "gold": "satyocCede secCAyAtaM vyAGrAkAraM dEtyavyAGram prAleyAdreH prAnte prAjYaH pARerlIlAleSenAsyat"
+    },
+    {
+      "id": "vg_te_00123",
+      "pred": "prApa sa nArAyaRataH suduzwalAtmapratIkzA yAsusaptamAH sahitO doziyataH yAsu saptaniH nihitaH",
+      "gold": "prApa sa nArAyaRataH SudDaSilAtmapratimAH yAsu sa padmAsahito dozyahitaH sannihitaH"
+    },
+    {
+      "id": "vg_te_00124",
+      "pred": "pArASaryaH paratattvaprasidDyEtAt paryArTaM paramaM BAratasya vyaktaM vaktuM niyunnukutsamasAkzAdena M daRqayan muktiM niyamanaH",
+      "gold": "pArASaryaH paratattvaprasidDyE tAtparyArTaM paramaM BAratasya vyaktaM vaktuM niyunakti sma sAkzAdenaM DanyaM Buvane manyamAnaH"
+    },
+    {
+      "id": "vg_te_00125",
+      "pred": "trIte sute trIzu tasya kzetre sudakzitrizu kzettrividAM varizWaH govindamAvaRqasya hAnugogaRAM punastuM gataraMgam punaH sugatarAMgaM punsatuM gAnDamAlam",
+      "gold": "tIrTezu tIrTezu ca sOKyatIrTaH kzetrezu ca kzetravidAM varizWaH govindamAvandya sahAnugo'gAd gaNgAM punastuNgataraNgamAlAm"
+    },
+    {
+      "id": "vg_te_00126",
+      "pred": "palErapetA mavlulokya sinDuM sarocanmaDvaM catarAdituM tena niSannAnaDikaM vizaRRAn nirIkzya SizyAnatara ca yetAm",
+      "gold": "plavErapetAmavalokya sinDuM sarojabanDuM ca tadA''ptasinDum tawe nizaRRAnaDikaM vizaRRAn nirIkzya SizyAnataratsa etAm"
+    },
+    {
+      "id": "vg_te_00127",
+      "pred": "nAvanarendrasya vilaNgitAdBya dehena vARareRdrasyviharatosya vIraturasyAM ime sma tad vapuzo nyaTAsya Saktyasya SAMkyeta vipatatAM tEH",
+      "gold": "na vAnarendrasya vilaNGitAbDeH na vA narendrasya viharturasyAm ime'smaraMstadvapuzo'nyaTA'sya Saktasya SaNkyeta vipat kaTaM tEH"
+    },
+    {
+      "id": "vg_te_00128",
+      "pred": "jagatpradepA ita gokara nAgeddivAkare maDvavAkreeza avyaktarUpe SryAmatyajan rAkasAhaM bujahIstanayanAM bujAnI",
+      "gold": "jagatpradIpAyitagogaRAQye divAkare maDvadivAkare ca avyaktarUpe Sriyamatyajan drAk sahAmbujEstannayanAmbujAni"
+    },
+    {
+      "id": "vg_te_00129",
+      "pred": "padaM paSorvA vinatAtanujasya tIrTvA nadIn tatanujjasyarTitvA anArdravAsAH sa kutUhalArADeriRaradeva muKErvavande",
+      "gold": "padaM paSorvA vinatAtanUjastIrtvA nadIM tAvadadInasatvaH anArdravAsAH sakutUhalArdrErnfdevaBUdevamuKErvavande"
+    },
+    {
+      "id": "vg_te_00130",
+      "pred": "BeterArtEratimAtramAtftaraM tarantarAkarIrApya TatarakErapyaTa tArakEH sahA'svitaBUpanunnEH SizyAn niratArayat",
+      "gold": "BItErarAteratimAtramatra natArakErapyaTa tArakEH saH svatejasA vismitaBUpanunnEH plavena SizyAn niratArayat tAm"
+    },
+    {
+      "id": "vg_te_00131",
+      "pred": "viSaNkawaM svastawanItawaM te dIpapradIptaM janatABiH pUrRam saYcodayat paRqitamaMqalAdyaM nATAvalokotkarzo DyaBapaSyan",
+      "gold": "viSaNkawaM svastawanItawaM te dIpapradIptaM janatABipUrRam saYcodayatpaRqitamaRqalAQyaM nATAvalokotkahfdo'ByapaSyan"
+    },
+    {
+      "id": "vg_te_00132",
+      "pred": "AmnAyamAmnAyAvidAM vidANgaM saBAva BedaM pravadantamatra dEvyAM saBayA mivapatamuyo'nimiparikzantaH sAkzAtskartAsakzAt suKatIrTamete",
+      "gold": "AmnAyamAmnAyavidAM vidagDaM saBAvaBedaM pravadantamatra dEvyAM saBAyAmiva padmayoniM prEkzanta sAkzAt suKatIrTamete"
+    },
+    {
+      "id": "vg_te_00133",
+      "pred": "prAptastato hastinarAjyaDAnImAsAnuvAse sa vAsavAsa yogyAn maTAntare nandati guRAntaraH sannekAntadeSe saritosamIpe",
+      "gold": "prAptastato hastinarAjaDAnIM mAsAnuvAseha sa vAsayogyAn maWAntare'nantaguRAntaraH sannekAntadeSe sarito'samIpe"
+    },
+    {
+      "id": "vg_te_00134",
+      "pred": "BittvA BuvaM devanadI jakAmaSAkA viSezeRa niHSevituM tam vARI jayatyapraSastayA gratA'TA SivAdivandyA na tadatra citram",
+      "gold": "BittvA BuvaM devanadI jagAma SAKAviSezeRa nizevituM tam vARI ca yatprezyatayA kftArTA SivAdivandyA na tadatra citram"
+    },
+    {
+      "id": "vg_te_00135",
+      "pred": "guruprabahasya padAra viMdvaM divorataH sA praRanAma mUtA aOdArya sOnadraya tanuM tanna tanno mata lakzyaSizyaretavisme tannAtIH",
+      "gold": "guruprabarhasya padAravindaM vidUrataH sA praRanAma mUrtA OdAryasOndaryatanuM tanuM tAmAlakzya SizyErativismitaM tEH"
+    },
+    {
+      "id": "vg_te_00136",
+      "pred": "tenopayAtena kadAcanATa vArARasIM pApAni vAraRena avAdi vARI balinaH svaSizyAn vilokya lIlAvasare liptAn",
+      "gold": "tenopayAtena kadAcanATa vArARasIM pApanivAraRena avAdi vARI balinaH svaSizyAn vilokya lIlAvasare'valiptAn"
+    },
+    {
+      "id": "vg_te_00137",
+      "pred": "yudDasije yugapadDi vIraM manyA BavantoBipatantu mAM drAk samastaSaktiM nyUnatarA sma DAjYAM sanirAkaroti",
+      "gold": "niyudDasidDyE yugapadDi vIrammanyA Bavanto'Bipatantu mAM drAk samastaSaktiM na yunakti yaH svAmatrAsmadAjYAM sa nirAkaroti"
+    },
+    {
+      "id": "vg_te_00138",
+      "pred": "itIrajanyaM paYcadaSeza yUnaH prAptAn prayudDAn yudDAya nyUyati yatAM yasya samarTatAsyAdi ti bruvARoSanakErjahAsa",
+      "gold": "itIrayan paYcadaSEza yUnaH prAptAn prayudDAn yugapannipAtya utTIyatAM yasya samarTatA syAditi bruvARo'SanakErjahAsa"
+    },
+    {
+      "id": "vg_te_00139",
+      "pred": "someravaM goravaMgaM te tavANgaM gaMgaMgaNgalurayaSca no gewa pUrAvindaSAmi te'dayA losvAmin muM cetyavadantastAdAte",
+      "gold": "sOmeravaM gOravamAvahanti tavANgamaNgANgulayaSca no'Nge purA vinaSyAma ito dayAlo svAmin vimuYcetyavadaMstadA te"
+    },
+    {
+      "id": "vg_te_00140",
+      "pred": "tenATa muktEradivismayastEravApyanAlocya hi tasvarUpam yad brUviraM Bena saSaM BuSagraM jagat sannayatnikAm am",
+      "gold": "tenATa muktErativismayastEravApyanAlocya hi tatsvarUpam yadBrUvijfmBeRa saSamBuSakraM jagat samastaM niyataM nikAmam"
+    },
+    {
+      "id": "vg_te_00141",
+      "pred": "sadAkyaM kASmka praSaMsAvasTapakzayuta yata praBaNgo'pyayamarTa jI kiSAyA DyAnasahAyakarmaRa prasAdasTAnadanatEtyodyoga ramARa prezayatAM sADanatayetyudAharat",
+      "gold": "sadAkzyamAkziptasamastapakzako yatiH praBuM ko'pyamarAvatIpadaH jigIzayA jYAnasahAyakarmaRaH prasADyatAM sADanatetyudAharat"
+    },
+    {
+      "id": "vg_te_00142",
+      "pred": "saMsADitArTe BagavatyavatIrTaM saMsada jYAnapadArTaM mugraDIH jYAtasa tejYAnyAsu cennana sparDo Gawete tenirAkfte Satam",
+      "gold": "saMsADitArTe BagavatyayuktivitpapracCa sa jYAnapadArTamugraDIH jYAtaH sa te jYAnyasi cenna cenna saH praSno Gaweteti nirAkftEza tam"
+    },
+    {
+      "id": "vg_te_00143",
+      "pred": "vitatamatamantaM sADayantaMsadasi sadasyareje vyAKyayA vyAsaSaSi sadfSyaSaH sa kalasamayihastAM BojabanaMdi Saradi ca SarataSaradI ca nfzadi cinta SaridicandraSacandrikAsampade",
+      "gold": "vitatatamatamo'ntaM sADayantyA nitAntaM sadasi sadasi reje vyAKyayA vyAsaSizyaH sakalasamayihastAmBojabanDABinandI Saradi Saradi candraScandrikAsampadeva"
+    },
+    {
+      "id": "vg_te_00144",
+      "pred": "jananaM samaye sa mayE jagat prasTite samasye yasamaya idamite sAmaye ti yuktyA sa viBA sama ye samEzyati DyA",
+      "gold": "jananaM samaye samaye jagataH praTite samaye samayedamite sanirAsamaye'samaye sTitiyuksvavaBAsamaye'samayezwaDiyA"
+    },
+    {
+      "id": "vg_te_00145",
+      "pred": "vartasvAdyadi sarvaM divyaM tu no SantatrO vizRuH sadanto niSaM satravizRusurasADUn guRABipUrRopayuguRAH",
+      "gold": "vartasvADyaDi sarvaM dIvyedaM so'niSaM svatantro vizRuH ujjAsaya duzwAnAM saMskuru sADUn guRABipUrRo'pyaguRaH"
+    },
+    {
+      "id": "vg_te_00146",
+      "pred": "asamottamo matosO SriyaH patagavfzwvato viBinnAtma prakAmamArTAn prakarAma mArTAM prakhAlayAmAsa setyAdIn",
+      "gold": "asamottamo mato'sO SriyaHpatirviSvato viBinnAtmA paramAn prakAmamarTAn prakASayAmAsa setyAdIn"
+    },
+    {
+      "id": "vg_te_00147",
+      "pred": "samAnayA namAsAmayA niyA tatayAyAm namAH nayA sanAna sa nAsa yA nayAtanAlasanAtayA",
+      "gold": "samAnayA yAnamAsa mAyayA tatayA'yamA nayAsanA nAsa yA na yAtanAlalanA'tayA"
+    },
+    {
+      "id": "vg_te_00148",
+      "pred": "prAjYa nfpAnyAM trivapadaviM korarvaM kzatraM mAsaM tasyAt savistaraM sa tyAtmAdyEH rihaparivftto BAvimArI ca dfQasya tiTu te'sti",
+      "gold": "prAjYo rAjYAM tridivapadavIM kOravaM kzetramAptaH sasmArATa svavihftipatadDastiyudDotsavAnAm satyAtmAdyEriha parivfto BAvimArIcadfgBiH vismerEH svErnijanfpatanUhetidfzwyA'tituzwEH"
+    },
+    {
+      "id": "vg_te_00149",
+      "pred": "viprAtmeSakaH sAnArTaM kftanAtiraSitiSrISfze keSadeSe spazwaM dfzwopyadrastasapavihitAvaM svapne svaprarItAnyaH sTalagaRitanaro pAkftirahi BakzyaBoje prAje tyasta lagnijanani rOpA kfzawEraBakza Boje yEH prADeyAH sTapare ritAnyasTala gaRani janarUpA kftEH prajEH prerAdyaH svaM guruM hi laguruMvedanaya devadaRqo'yaM vedapadaM",
+      "gold": "viprAtmeSaH kzaRArTaM kftanatiraSitiSrIhfzIkeSadeSe spazwaM dfzwo'pyadfzwaH sapadi vihitavAn vismayaM dehaBAjAm svapne svapreritAnyasTalaganijanaropAhftErBakzyaBojyEH prAjyEH prABojayat svaM gurumaKilaguruM vedayan vedabanDum"
+    },
+    {
+      "id": "vg_te_00150",
+      "pred": "avAptavAn punarizupAtamasmaradramApatiM sa paraSurAhamamadarAt sa rAjakelyurukAdalIsahasrakaMtadAdadaByavahftidattamuttamam",
+      "gold": "avAptavAn punarizupAtamasmaradramApatiM sa paraSurAmamAdarAt sa rAjakelyurukadalIsahasrakaM tadA''dadaByavahftidattamuttamam"
+    },
+    {
+      "id": "vg_te_00151",
+      "pred": "ayameva gozayatopi kftricitsadasyajanArTito javAt puzpamutTa palamaho vidaDe janasuptidAnupamagAnasampadA",
+      "gold": "ayameva govizayato'pi kutracit sadasi janatArTito javAt puzpamuta Palamaho vidaDe janasuptidAnupamagAnasampadA"
+    },
+    {
+      "id": "vg_te_00152",
+      "pred": "DanyomahyaDanakena mAhitaraGravAn sa mojasya yo maDvo Dvastaduragamograya maGu SikAmAmAyAmahfda vizRuM viSvajayapradaM sahi hinAma sevyaM svasOkyaM udA",
+      "gold": "Danyo'mahyata nAkinAmahitahfdbARassamo'jasya yo maDvo DvastadurAgamo'grayahimaguSrIH kAmamAyAmahft vizRuM viSvajayapradaM sa hi naman sevyaM susOKyaM mudA dAkzyAcCrIDaramAmayAdivirahI yogI suhft sarvadA"
+    },
+    {
+      "id": "vg_te_00153",
+      "pred": "iti BuvanaviBUzaRasya BUyAM svakanitAni kftAntarARi hanta Savanamananaketareta pratidadatItyamarAH praketayanti",
+      "gold": "iti BuvanaviBUzaRasya BUyAMsyavigaRitAni kftAntarARi hanta SravaRamananakIrtanEraBIzwaM pratidadatItyamarAH prakIrtayanti"
+    },
+    {
+      "id": "vg_te_00154",
+      "pred": "pracUrAntarapravacanaM hanirAdupaSurvAMsaM ca sanakAdimunihe gagane padaSravaRaM tarjitaM nilaya padaM",
+      "gold": "pracurAntarapravacanaM PaRirAqupaSuSruvAnsasanakAdimuniH gagane'lpadfzwavapuratra janEstvaritaM nilInarucirApa padam"
+    },
+    {
+      "id": "vg_te_00155",
+      "pred": "atIcitraDAM nindaTAM nirataM sa sahasramastaka manantamantamo munuya BivaniyA vinayA BarAnavAramaRavarmaRa vajYayutataratamatarawamasti",
+      "gold": "aticitraDAmina nijaDAmina rataM sasahasramastakamanantamamum munayo'BivAdya vinayABaraRAH varamanvayuYjata tadarTamimam"
+    },
+    {
+      "id": "vg_te_00156",
+      "pred": "Bagavattamasya vibalapramatame samayaM manohara tAmaYjagatI mahitaM BavAdfapale papAte pAtAtmaho hapa nilokpa pe pAta tamaH",
+      "gold": "Bagavattamasya vipulapramateH samayaM manoharatamaM jagati mahitaM BavadBirapi lokapate paWatAM muhuH Palamudezyati kim"
+    },
+    {
+      "id": "vg_te_00157",
+      "pred": "aTikAriRAM palamalaM viduzAM Bavati pravartarativIryavatI itat palaM saPalasaN kaTano'BagavAn prapaYca yadBUriyaH hAm",
+      "gold": "aDikAriRAM PalamalaM viduzAM Bavati pravfttirativIryavatI iti tatPalaM saPalasaMkaTano BagavAnprapaYcayatu BUridayaH"
+    },
+    {
+      "id": "vg_te_00158",
+      "pred": "itIte rudIritamudAramatiravacanaM niSamya sadgadAgiram SfRotadareRa mahAniyatamama mahaniyatAmama hanIyapAdasamayasya palam",
+      "gold": "iti tErudIritamudAramatirvacanaM niSamya sa jagAda giram fRutAdareRa mahanIyatamaM mahanIyapAdasamayasya Palam"
+    },
+    {
+      "id": "vg_te_00159",
+      "pred": "AUM utTApya cEnamaravindadalayatAkzaSca kArmike navara dalayAtAkzasya kAraM gijena vrajanena kramAM jene kftvA cAsaM samprityArUH sahasA sa lakzmaRena",
+      "gold": "AUM utTApya cEnamaravindadalAyatAkzaScakrANkitena varadena karAmbujena kftvA ca saMvidamanena nutosya cAMsaM prItyAruroha sa hasan saha lakzmaRena"
+    },
+    {
+      "id": "vg_te_00160",
+      "pred": "ArupyacAM sa yugalaM BagavantamenaM tasyA nujaM ca hanumAn prayayO kapIndram sakyantarayugaparidam saKyaM cakAra hutabrukpramuKamukte ca sanyarenaSASvatanijAreRa Sigram",
+      "gold": "Aropya cAMsayugalaM BagavantamenaM tasyAnujaM ca hanumAn prayayO kapIndram saKyaM cakAra hutaBukpramuKe ca tasya rAmeRa SASvatanijArtihareRa SIGram"
+    },
+    {
+      "id": "vg_te_00161",
+      "pred": "SftvA sya duHKamatidavaraH pratijYAM ca kre sa vAlinihatanAya harISvarUpe sItAnumarAgna kfte tasAvAlenEva kzitAM hinduBitanuM samadarSayat",
+      "gold": "SrutvAsya duHKamaTa devavaraH pratijYAM cakre sa vAliniDanAya harISvaropi sItAnumArgaRakfteTa sa vAlinEva kziptAM hi dunduBitanuM samadarSayacca"
+    },
+    {
+      "id": "vg_te_00162",
+      "pred": "vikzevitAni patitAmaTa taramAdevasaMguzWamAtra jalAnadati lIlayEva saMprAsya yojanaSate tatayEvacUruM sarvaM vidArya tijAlasTAn m",
+      "gold": "vIkzyEva tAM nipatitAmaTa rAmadevaH soNguzWamAtracalanAdatilIlayEva samprAsya yojanaSateTa tayEva corvIM sarvAn vidArya ditijAnahanad rasAsTAn"
+    },
+    {
+      "id": "vg_te_00163",
+      "pred": "SarvaprasAdajalabadDijanavajYAnasarvARi hacakane pana punaH ca sakzaH BItena vAlibalataH kaTitasasaptatAlAn pradarSayati jAna sudfQAM ca vajrAt",
+      "gold": "SarvaprasAdajabalAd ditijAnavaDyAn sarvAn nihatya kuRapena punaSca saKyA BItena vAlibalataH kaTitaH sa sapta tAlAn pradarSya ditijAn sudfQAMSca vajrAt"
+    },
+    {
+      "id": "vg_te_00164",
+      "pred": "ekEkameza sa vikampya tu tamastra pawe tu sahi vikaM payituM parato patito sahEna Satate naSaktaH viSvasiti tAM nEke SunAtarahi vARiva te samarTA",
+      "gold": "ekEkamezu sa vikampayituM samarTaH patrARi loptumapi tUtsahate na SaktaH vizvaksTitAn yadi BavAn pratiBetsyatImAnekezuRA tarhi vAlivaDe samarTaH"
+    },
+    {
+      "id": "vg_te_00165",
+      "pred": "yetuM caturguRabalopama prasidDa Dyama duHKabalo'pi balaM suSaktaH tasmAdimAnahi haya ma ha balopyapatrAn viBinniti",
+      "gold": "jetuM caturguRabalo hi pumAn praBuH syAdDantuM SatADikabalotibalaM suSaktaH tasmAdimAn harihayAtmajabAhvalopyapatrAn viBidya mama saMSayamASu BinDi"
+    },
+    {
+      "id": "vg_te_00166",
+      "pred": "SrutvA sEvAya vakzyati te sutAstAntADaruvarAdaKila biBfgadyarUpAR brahmatvamApatu calaM paWa spfha praviBeda rAmaH",
+      "gold": "SrutvAsya vAkyamavamfSya diteH sutAMstAn DAturvarAdaKilapumBiraBedyarUpAn brahmatvamAptumacalaM tapasi pravfttAnekezuRA sapadi tAn prabiBeda rAmaH"
+    },
+    {
+      "id": "vg_te_00167",
+      "pred": "sanDAya kArmukavEre niHiSite tu bARe tAkfzyadakziRa Bajena tadApramukte rAmena satvaramannatabalena surocirutaH sapadi te taravorvena",
+      "gold": "sanDAya kArmukavare niSite tu bAReTAkfzya dakziRaBujena tadA pramukte rAmeRa satvaramanantabalena sarve cUrRIkftAH sapadi te taravo raveRa"
+    },
+    {
+      "id": "vg_te_00168",
+      "pred": "BittvA ca tAM sagiriM bagavatpramuktaH putraH tAdasaH paktaM hatA jalasaptakamaTAtra ca ye tvavaDyAH",
+      "gold": "BitvA ca tAn sagiri kuM BagavatpramuktaH pAtAlasaptakamaTAtra ca ye tvavaDyAH nAmnAsurAH kumudinobjajavAkyarakzAH sarvAMSca tAnadahadASu SaraH sa ekaH"
+    },
+    {
+      "id": "vg_te_00169",
+      "pred": "nItadvicitramamitorubalasya vizRorayan taspavanasya Bavet lokasya saprakftikasyasarudrakAlakarmaAdikasyAtadapi damananyAsa DyAm",
+      "gold": "nEtad vicitramamitorubalasya vizRoryatpreraRAt sapavanasya Bavet pravfttiH lokasya saprakftikasya sarudrakAlakarmAdikasya tadapIdamananyasADyam"
+    },
+    {
+      "id": "vg_te_00170",
+      "pred": "dfzwvA balaM BagavatotTahariSvarOhAsavagreRihAyata magAd puramagrajasya aSucyarAvamanujasyavilAgAd sajjAgAgAd BenamASu dEtApratitavArito'pi",
+      "gold": "dfzwvA balaM BagavatoTa harISvarosAvagre niDAya tamagAt puramagrajasya ASrutya rAvamanujasya bilAt sa cAgAdaByenamASu dayitA prativAritopi"
+    },
+    {
+      "id": "vg_te_00171",
+      "pred": "tanmastuBi pratihata prayAvAcarako haruko pI DarmamIkzaRaM nEnajaGAnavitAhilalokacCoste pInaM sA hAyuDAnaviditAKilaloga cezwopI pInaYsa Aha ya ma ya viviDa nAma yaviviktA",
+      "gold": "tanmuzwiBiH pratihataH prayayAvaSaktaH sugrIva ASu raGupopi hi DarmamIkzan nEnaM jaGAna viditAKilalokacezwopyenaM sa Aha yuDi vAM na mayA viviktO"
+    },
+    {
+      "id": "vg_te_00172",
+      "pred": "soBrAtrameza yadi vAn nirAgasamaTA grajanimAna nirANAM nirAkara samaTa grajinaM hanumEze digrakuwanaBavediGopiko Dikupo diggo pikArRamarTe vinivartate ca",
+      "gold": "sOBrAtrameza yadi vAYCati vAlinEva nAhaM nirAgasamaTAgrajaniM hanizye dIrGaH sahodaragato na BavedDi kopo dIrGopi kAraRamfte vinivartate ca"
+    },
+    {
+      "id": "vg_te_00173",
+      "pred": "ko passahoqarajane punarantakAle prAyo nirvftimupagacCati papaH ca kesya baNga itIna ekasya BagatI inEva DyapAstado lozo nihanti mahyo yatI tiM smamene",
+      "gold": "kopaH sahodarajane punarantakAle prAyo nivfttimupagacCati tApakaSca ekasya BaNga iti nEva JaqityapAstadozo nihantumiha yogya iti sma mene"
+    },
+    {
+      "id": "vg_te_00174",
+      "pred": "tasmAn na baMDuM janajI te viroDe kAryo vaDaM duH virASvotTanubanDa virAzwvihA DarmaM pradarSayituM ve vara ve sutasya BAvi vicCanta pariti vicanataM jaGAna",
+      "gold": "tasmAnna banDujanage janite viroDe kAryo vaDastadanubanDuBirASvitIha DarmaM pradarSayitumeva raveH sutasya BAvI na tApa iti vicca na taM jaGAna"
+    },
+    {
+      "id": "vg_te_00175",
+      "pred": "yaH prerakaH sa kalaSemaSivasantatyE ca tasyAH gatAH kutaH he Savarzasya vizRuH",
+      "gold": "yaH prerakaH sakalaSemuzisantateSca tasyAjYatA kuta iheSavarasya vizRoH"
+    },
+    {
+      "id": "vg_te_00176",
+      "pred": "tenoditodBawostu dfQaM punarAgatena vajropamaM SaramAM mucacaqindrasUnuH rAmAgnayabElatayAravijeva Bakte vAyustu na raktape",
+      "gold": "tenoditoTa sudfQaM punarAgatena vajropamaM SaramamUmucadindrasUnO rAmAjYayEva latayA ravije viBakte vAyoH sutena raGupeRa Sare pramukte"
+    },
+    {
+      "id": "vg_te_00177",
+      "pred": "SrutvAsya Sabawa tulaM hftidevAnidrAtmajogirirvyApatadAsu sannahA Bakto'mabIya paSyatI hapAdo dfrvamamasi eza ya mA maBiH paSyAti hapAva dfQamama sma eza nirvicAraH",
+      "gold": "SrutvAsya SabdamatulaM hfdi tena vidDa indrAtmajo giririvApatadASu sannaH Bakto mamEza yadi mAmaBipaSyatIha pAdO DruvaM mama samezyati nirvicAraH"
+    },
+    {
+      "id": "vg_te_00178",
+      "pred": "yogyo vaDo hi janasya padAnatasya rAjyarTinAriva sUtena vaDo'TitasyaH kAryamaSvaSravya pitfRatasyA cEva",
+      "gold": "yogyo vaDo nahi janasya padAnatasya rAjyArTinA ravisutena vaDorTitaSca kAryaM hyaBIzwamapi tat praRatasya pUrvaM Sasto vaDo na padayoH praRatasya cEva"
+    },
+    {
+      "id": "vg_te_00179",
+      "pred": "tasmAd dfSyatAnureva nihani miSakraputraM tvihitamAdfSya tAdfSyAta yAjaGAnA yaH prIrakaH sakalalokalasyanityaM purana vyayocca balavIryatanusvatantraH",
+      "gold": "tasmAdadfSyatanureva nihanmi SakraputraM tvitIha tamadfSyatayA jaGAna yaH prerakaH sakalalokabalasya nityaM pUrRAvyayoccabalavIryatanuH svatantraH"
+    },
+    {
+      "id": "vg_te_00180",
+      "pred": "kiM sa dfzwiH paTa sya ca vAnarUyaM karteSca pAmapi yena purA viBaNgam sannetAva liBamacastasya pArSvaM prAhe namArdravacasA idaM ca sa iti vaMSca itvam",
+      "gold": "kiM tasya dfzwipaTagasya ca vAnaroyaM karteSacApamapi yena purA viBagnam sanneTa vAlini jagAma ca tasya pArSvaM prAhEnamArdravacasA yadi vAYCasi tvam"
+    },
+    {
+      "id": "vg_te_00181",
+      "pred": "ujIbaiyaSa iti nEva ca sottaragrahe kUnAmaRicaTamftrimatiM puruzottame'sti",
+      "gold": "ujjIvayizya iti nEcCadasO tvadagre ko nAma necCati mftiM puruzottameti"
+    },
+    {
+      "id": "vg_te_00182",
+      "pred": "kAryAnijasacarAmAni viDAya putraM giraniDAyarvajayaH picirAlaco sturAmopi tigirvare caturTamAsaM dfzwvA GanAgAmmama salakzmaRosO",
+      "gold": "kAryARi tasya caramARi viDAya putraM tvagre niDAya ravijaH kapirAjya AsIt rAmopi tadgirivare caturoTa mAsAn dfzwvA GanAgamamuvAsa salakzmaRosO"
+    },
+    {
+      "id": "vg_te_00183",
+      "pred": "aTAtisaktikzitipekapInAM pravisfterAmaNkfto pakAre prasaKyataM vadizwo rAmaM gfhfBakto hanumAn vo vAca",
+      "gold": "aTAtisakte kzitipe kapInAM pravismfte rAmakftopakAre prasahya taM budDimatAM varizWo rAmANiGraBakto hanumAnuvAca"
+    },
+    {
+      "id": "vg_te_00184",
+      "pred": "na visPftiH te ragavaryakAryakaTaYca sa hi no BUpyaH na cet sa hInaH nace sa vyANkartumaBiStamajjate DruvaM bale na hi kArayAm",
+      "gold": "na vismftiste raGuvaryakArye kAryA kaTaYcit sa hi noBipUjyaH na cet svayaM kartumaBIzwamadya te DruvaM balenApi hi kArayAmi"
+    },
+    {
+      "id": "vg_te_00185",
+      "pred": "sa eva mukta harirAjasaMniDo dvipezu saptasvapi vARarAn prati sammelanAya Sukta svapa na rAM psaTApa yAmAsa samastaSaH prapUra",
+      "gold": "sa evamuktvA harirAjasanniDO dvIpezu saptasvapi vAnarAn prati sammelanAyASugatIn sma vAnarAn prasTApayAmAsa samastaSaH praBuH"
+    },
+    {
+      "id": "vg_te_00186",
+      "pred": "hariH varAjYA praRiDAnapUrvakaM hanUmatA puraM vaM tAte prahitA vAnarAH samastaSeladurmazRadasaMsTitAnAM hareH samAdayat tadABijagum",
+      "gold": "harISvarAjYApraRiDAnapUrvakaM hanUmatA te prahitA hi vAnarAH samastaSEladrumazaRqasaMsTitAn harIn samAdAya tadABijagmuH"
+    },
+    {
+      "id": "vg_te_00187",
+      "pred": "tadEva rAmo'pi hi gasakatM pramattamAlakzya kaSca kiSvaraM praBuH jagAda somitrimidaM vaco me plavaM gameSAya vadASu yAsyati",
+      "gold": "tadEva rAmopi hi BogasaktaM pramattamAlakzya kapISvaraM praBuH jagAda sOmitrimidaM vaco me plavaNgameSAya vadASu yAhi"
+    },
+    {
+      "id": "vg_te_00188",
+      "pred": "yadi pramatto'smi madIya kArye nyAyaM hftusutasya mArgaM prayAsya svAkAryepratipAditEH madoDatAnapratikartumISate",
+      "gold": "yadi pramattosi madIyakArye nayAmyahaM tvendrasutasya mArgam prAyaH svakArye pratipAdite hi madodDatA na pratikartumISate"
+    },
+    {
+      "id": "vg_te_00189",
+      "pred": "itIdya rAmena samIretadAya yo sa bARasadanasadalasaKalaM karmaRaH tfzwvEva taM tena sEvata nirBayAdyayorAmapadAnItikaM tvaran",
+      "gold": "itIqyarAmeRa samIrite tadA yayO sabARaH saDanuH sa lakzmaRaH dfzwvEEva taM tena sahEva tApanirBayAd yayO rAmapadAntikaM tvaran"
+    },
+    {
+      "id": "vg_te_00190",
+      "pred": "ahoracogavizRuprasaMge tasya DipepInAM samAgate sa DipatiH nAm samAGate svaraharipraverEH sahEva taM vIkzaRaM na darAGavaH",
+      "gold": "hanUmataH sADuvacoBirASu prasannacetasyaDipe kapInAm samAgate sarvaharipravIrEH sahEva taM vIkzya nananda rAGavaH"
+    },
+    {
+      "id": "vg_te_00191",
+      "pred": "sa samBramaM taM paditaM pratibAdDajayayostvaran samutyA samASrilaSca laSu pavizwo jagadISaH sanniDO tadAjaya EvAdiSA daSovAnarAnA",
+      "gold": "sasamBramaM taM patitaM padAbjayostvaran samutTApya samASlizat praBuH sa copavizwo jagadISasanniDO tadAjYayEvAdiSadASu vAnarAn"
+    },
+    {
+      "id": "vg_te_00192",
+      "pred": "samastadikzuprahitezu praBfhaRomantamadiM bahASe na kasti deSastavatra te sidDarite si sADane samasyAmesya",
+      "gold": "samastadikzu prahitezu tena praBurhanUmantamidaM baBAze na kaScidISastvadftesti sADane samastakAryapravarasya mesya"
+    },
+    {
+      "id": "vg_te_00193",
+      "pred": "atastameva pratyahIdarikzaRAdiSiMsAM samAdAya madANgululiyAkam itIritozo puruzottamena yayO deSaM tAM vilAya yuktaH",
+      "gold": "atastvameva pratiyAhi dakziRAM diSaM samAdAya madaNgulIyakam itIritosO puruzottamena yayO diSaM tAM yuvarAjayuktaH"
+    },
+    {
+      "id": "vg_te_00194",
+      "pred": "samastadIkzupratiyApitahite hariSvarAjYA masataH samAyojasi te NgadajAM bvuvan muKAsu tena vAyuH sahitAnacAyayuH svItinAjayU",
+      "gold": "samastadikzu pratiyApitA hi te harISvarAjYAmupaDArya mAsataH samAyayusteNgadajAmbavanmuKAH sutena vAyoH sahitA nacAyayuH"
+    },
+    {
+      "id": "vg_te_00195",
+      "pred": "samastadurgapravaraM nurAsadaM vinargatAM vinirgatANu giriM hataM namAM gatasakAlo harirAudiritaH samAsAsAdaM ScADati param mahAtubamum DAvum mahadButam",
+      "gold": "samastadurgapravaraM durAsadaM vimArgatAM vinDyagiriM mahAtmanAm gataH sa kAlo harirAqudIritaH samAsadaMScATa bilaM mahAdButam"
+    },
+    {
+      "id": "vg_te_00196",
+      "pred": "kftaM mAyenAtivicitraM mataM samIkzata tatra uvAca jaNgadaM vayanayA mohahari rAjasanniDiM bilaNGito nasamayo yatosya",
+      "gold": "kftaM mayenAtivicitramuttamaM samIkzya tat tAra uvAca cANgadam vayaM na yAmo harirAjasanniDiM vilaNGito naH samayo yatosya"
+    },
+    {
+      "id": "vg_te_00197",
+      "pred": "durA sA dozAsanO hi sati tvamapi kimadAdikAn agamyametad divamApya tat suKaM sa vihAcaret",
+      "gold": "durAsadosAvaticaRqaSAsano hanizyati tvAmapi kiM madAdikAn agamyametad bilamApya tat suKaM vasAma sarve kimasAvihAcaret"
+    },
+    {
+      "id": "vg_te_00198",
+      "pred": "anye vArme na salakzmaRena prayojanaM novanacAriRAM sadA nacEriRAMsadA anyacezwAmatiH sa kaSmastato masjakasamastaTo mameyaM svIviniSiTamatiH",
+      "gold": "nacEva rAmeRa salakzmaRena prayojanaM no vanacAriRAM sadA naceha naH pIqayituM sa ca kzamastato mameyaM suviniScitA matiH"
+    },
+    {
+      "id": "vg_te_00199",
+      "pred": "itIritaM AtaMkavAkyaM mAsu ada dEvAlisutopi sa AdadEvAlasuto'sadA davAlisUto'pi balaMgikaM ca na hIravaSakzina SAsanAnAm",
+      "gold": "itIritaM mAtulavAkyamASu sa Adade vAlisutopi sAdaram uvAca vAkyaM ca na no harISvaraH kzamI BavellaNGitaSAsanAnAm"
+    },
+    {
+      "id": "vg_te_00200",
+      "pred": "rAjyAti nEH KAti kUdrajoSya dAsya dArAsu nfSaM sa kena sa na saKawaM rakzati SAsanAtigAnirASayAM nirASAya nfjablubalAkaM balEstiTiH",
+      "gold": "rAjyArTinA yena hi GAtitograjo hftASca dArAH sunfSaMsakena sa naH kaTaM rakzati SAsanAtigAn nirASrayAn durbalakAn bale sTitaH"
+    },
+    {
+      "id": "vg_te_00201",
+      "pred": "itIrite SakrasuTatAmjayantaTeja cUcasahajAM bavan muKAH sarve'pi teSAha maTa cEkamatyaM dfzwvA hanumAn niDamAba BAze",
+      "gold": "itIrite SakrasutAtmajena taTeti cocuH sahajAmbavanmuKAH sarvepi tezAmaTa cEkamatyaM dfzwvA hanUmAnidamAbaBAze"
+    },
+    {
+      "id": "vg_te_00202",
+      "pred": "vijYAtametadaDi mayA gadasya rAjyAya tarABitaM hi vAkyaM sadyaM ca na hi yat tanna hi'yaM sonUrAmapratIpaM vacanaM sAhetA",
+      "gold": "vijYAtametadDi mayANgadasya rAjyAya tArABihitaM hi vAkyam sADyaM nacEtannahi vAyusUnU rAmapratIpaM vacanaM saheta"
+    },
+    {
+      "id": "vg_te_00203",
+      "pred": "nacAha mAKrazWumupAyatopi paSyakaTaYca sametEH sannArakowAniva hi rAGavasya durantaSakterBilavalapradfSyaM",
+      "gold": "nacAhamAkrazwumupAyatopi SakyaH kaTaYcit sakalEH sametEH sanmArgato nEva hi rAGavasya durantaSakterbilamapraDfzyam"
+    },
+    {
+      "id": "vg_te_00204",
+      "pred": "vaco mama taddi dicAra ne grAhyaM Baved vastadatipriyame nacetabalA dayapayannapyarpitAM praSasya san san rAgagatAn karO me",
+      "gold": "vaco mamEtad yadi cAdareRa grAhyaM Baved vastadatipriyaM me na ced balAdapyanaye pravfttAn praSAsya sanmArgagatAn karomi"
+    },
+    {
+      "id": "vg_te_00205",
+      "pred": "itIritaM tat pavAnta majasya SftvAtiBitADarmukaBAvAH sarvendaguM stamaTAdfQumukhaM yamA nfpatiM DArfmayAseddurgAdBordOH",
+      "gold": "itIritaM tat pavanAtmajasya SrutvAtiBItA DftamUkaBAvAH sarvenujagmustamaTAdrimuKyaM mAhendramAseduragADaboDAH"
+    },
+    {
+      "id": "vg_te_00206",
+      "pred": "indIkzate sAgaramapradfSyaM sa garamApradfzwyaM sA kara mapraSAsTimida dfQa prayopaveSAya taTA ca caturKa u",
+      "gold": "nirIkzya te sAgaramapraDfzyamapArameyaM sahasA vizaRRAH dfQaM nirASASca matiM hi daDruH prAyopaveSAya taTA ca cakruH"
+    },
+    {
+      "id": "vg_te_00207",
+      "pred": "prAyopavizwASca kaTAM vajaM sayaH saMsAravimuktirAtu cetayA SuSpAdanamUcIretataH sampAtinAM naSravaRaM jagAm",
+      "gold": "prAyopavizwASca kaTAM vadanto rAmasya saMsAravimuktidAtuH jawAyuzaH pAtanamUcire tat sampAtinAmnaH SravaRaM jagAma"
+    },
+    {
+      "id": "vg_te_00208",
+      "pred": "tasyAGradUraBAvanusyasoriyA svIya viMSaM svIyAnviMSat sahEnayAtA jvalanaM sahatTaM sutaptaM guptvA patatriAyAmaH",
+      "gold": "tasyAgrajosAvaruRasya sUnuH sUryasya bimbaM saha tena yAtaH javaM parIkzannaTa taM sutaptaM guptvA patatrakzayamApya cApatat"
+    },
+    {
+      "id": "vg_te_00209",
+      "pred": "sadaDaH pakzaH sa vittapatAH caturviMSatyaDivarAmasya KawAM svakaH BUtvA punaScASu SrutiM jawAja suzWuM rapupuzwvA puRaH samyeka",
+      "gold": "sa dagDapakzaH savitfpratApAcCrutvEva rAmasya kaTAM sapakzaH BUtvA punaScASu mftiM jawAyuzaH SuSrAva pfzwvA punareva samyak"
+    },
+    {
+      "id": "vg_te_00210",
+      "pred": "sa rAvaRasyATagatiM sutoktAM nivedya dfzwvA janatAM cAkartiM m svayaM taTA Sokavane hiMsannAmavocadaByuH",
+      "gold": "sa rAvaRasyATa gatiM sutoktAM nivedya dfzwvA janakAtmajAkftim svayaM taTASokavane nizaRRAmavocadeByo haripuNgaveByaH"
+    },
+    {
+      "id": "vg_te_00211",
+      "pred": "tatastu te brahmasutanedamapi janma praTftakadze vacAraBya daSottarasya kramAt pTaO yojanato BIyAni",
+      "gold": "tatastu te brahmasutena pfzwA nyavedayannAtmabalaM pfTakpfTak daSEva cAraBya daSottarasya kramAt paTo yojanatoBiyAne"
+    },
+    {
+      "id": "vg_te_00212",
+      "pred": "sanilamemandadvidvidAsasadArAssarvepyaSItyAH paratonaSaktAH gaRtuM yadADAtmabalaM sajjaM vARquM jagAda tasmAt paraSftam",
+      "gold": "sanIlamEndadvividAH satArAH sarvepyaSItyAH parato na SaktAH gantuM yadATAtmabalaM sa jAmbavAYjagAda tasmAt punarazwamAMSam"
+    },
+    {
+      "id": "vg_te_00213",
+      "pred": "balEryadA vizRurvApalokastriBiH kramEH kra mErannadIrvaM prakorvatA tadA mayA BrAntamidaM jagattrayaM savedanaM jananumamAsameva rutaH",
+      "gold": "baleryadA vizRuravApa lokAMstriBiH kramErnandiravaM prakurvatA tadA mayA BrAntamidaM jagattrayaM savedanaM jAnu mamAsa merutaH"
+    },
+    {
+      "id": "vg_te_00214",
+      "pred": "ato javo me nahi pUrvasammitaH purAtva samitaHpurAto tataH kukAra rogadAhA cAsmaTtaM pravayena tato BIjAne",
+      "gold": "ato javo me nahi pUrvasammitaH purA tvahaM zaRRavatiplavosmi tataH kumAroNgada Aha cAsmAcCataM plaveyaM na tatoBijAne"
+    },
+    {
+      "id": "vg_te_00215",
+      "pred": "ApUrtetEH sakalESatasya gamA gAmeSatrubalaM ca vIkzyA sudurgamAt taM canizA ca reza puryA sadA tasuta ABare",
+      "gold": "ApUrite tEH sakalEH Satasya gamAgame SatrubalaM ca vIkzya sudurgamatvaM ca niSAcareSapuryAH sa DAtuH suta AbaBAze"
+    },
+    {
+      "id": "vg_te_00216",
+      "pred": "ayaM hi gfhaDarzatayojanAM gIrintfkowAmaheta utA tArtavi bihAraH Baveyurnayepi tato hanUmAne kasaMsmartO na parosti kaScit",
+      "gold": "ayaM hi gfDraH SatayojanaM giriM trikUwamAheta utAtra viGnAH Baveyuranyepi tato hanUmAnekaH samarTo na parosti kaScit"
+    },
+    {
+      "id": "vg_te_00217",
+      "pred": "uktvAsaItyaM punarAraH sUnuM praRayan sImamabalaM prakASayan tam te me ka evAtra paraM samarTaH kuru vacEvAnarAnA",
+      "gold": "uktvA sa itTaM punarAha sUnuM prARasya niHsImabalaM prakASayan tvameka evAtra paraM samarTaH kuruzva cEtat paripAhi vAnarAn"
+    },
+    {
+      "id": "vg_te_00218",
+      "pred": "itIritosOhanamAna nije pIWaM te SamaSaktiM prakawAM viDAyAH avarDatASu pravicintacarAmaM supUrRaSaktIM caritostadAjYAm",
+      "gold": "itIritosO hanumAn nijepsitaM tezAmaSaktiM prakawAM viDAya avarDatASu pravicintya rAmaM supUrRaSaktiM caritostadAjYAm"
+    },
+    {
+      "id": "vg_te_00219",
+      "pred": "iti SrImadAnandatIrTaBagavatpAdAcAryaviracite SrImodaM mahABAratatAtparyanirRaye SrIrAmacarite samudrataraRaniScayo nAmaSazwo'DyAyaH",
+      "gold": "iti SrImadAnandatIrTaBagavatpAdAcAryaviracite SrImanmahABAratatAtparyanirRaye SrIrAmacarite samudrataraRaniScayo nAma zazWoDyAyaH"
+    }
+  ]
+}

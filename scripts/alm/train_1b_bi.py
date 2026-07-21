@@ -105,7 +105,7 @@ def eval_fair(core, proj, bias, rows, dev, slp1: bool, max_new: int = 448, limit
             "wer": round(float(np.mean(wns)), 4) if wns else None, "n": len(cns)}
 
 
-def main(epochs: int = 2, lr: float = 1e-4, r: int = 16, eos_weight: float = 3.0) -> int:
+def main(epochs: int = 2, lr: float = 1e-4, r: int = 64, eos_weight: float = 3.0) -> int:
     t_start = time.time()
     core = Megatron1BCore().load()
     for p in core._model.parameters():
@@ -141,8 +141,9 @@ def main(epochs: int = 2, lr: float = 1e-4, r: int = 16, eos_weight: float = 3.0
     for s in SETS:
         rows = [r_ for r_ in load_split(s, "train")
                 if (SETS[s] / "feats" / f"{r_['id']}.npy").exists()]
-        train_rows += rows
-        print(json.dumps({"set": s, "n_train_with_feats": len(rows)}), flush=True)
+        train_rows += rows * (2 if s == "librispeech" else 1)  # EN-weighted: audio-conditioning for
+        print(json.dumps({"set": s, "n_train_with_feats": len(rows),   # English needs more gradient
+                          "weight": 2 if s == "librispeech" else 1}), flush=True)
     val_en = load_split("librispeech", "validation")
     val_sa = load_split("shrutilipi", "validation")
 
