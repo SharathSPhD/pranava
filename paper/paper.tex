@@ -68,13 +68,56 @@ Vāk & Bhartṛhari & Śabda-ALM & Role \\
 
 \subsection{External Test Results (Public Benchmarks)}
 
-\textbf{Shrutilipi-Sanskrit (real speech):} \textbf{WER 1.10} [1.04–1.17] vs Whisper-large-v3 \textbf{1.33} [1.26–1.40] — disjoint CIs, Śabda-ALM wins on real human Sanskrit. \textbf{LibriSpeech (English):} \textbf{WER 1.10} — \textbf{NOT competitive}; weak audio$\to$English conditioning diagnosed via per-clip babble. \textbf{Vagdhenu Chant:} \textbf{CER 0.31} — strong on prosodic structure. Figure~\ref{fig:public} shows the public Shrutilipi head-to-head.
+\textbf{Shrutilipi-Sanskrit (real speech, $n{=}1474$):} Śabda-ALM \textbf{WER 1.1024} [1.0439, 1.1681] vs Whisper-large-v3 \textbf{1.3254} [1.2583, 1.3957] vs Qwen2-Audio-7B \textbf{2.2338} [2.064, 2.410]. The intervals for the top two are disjoint, so the word-error ordering is a real difference and not sampling noise. We report the metric that disagrees with us as well: Whisper attains the lower \emph{character} error rate (0.6402 vs 0.6897), i.e.\ our system recovers more words while Whisper recovers more characters on the words it misses. \textbf{Vagdhenu chant:} CER 0.31. \textbf{LibriSpeech test-clean (English):} WER 1.0996, CER 0.8043 --- \textbf{not competitive}, and we treat this as a finding rather than a footnote (\S\ref{sec:interference}). Figure~\ref{fig:public} shows the Sanskrit head-to-head.
 
 \begin{figure}[h]\centering
 \includegraphics[width=0.72\textwidth]{../docs/figures/06_public_shrutilipi.png}
 \caption{PUBLIC Shrutilipi-Sanskrit test (All India Radio, $n{=}1474$): folded WER with bootstrap 95\% CIs. Śabda-ALM 1.10 [1.04, 1.17] vs Whisper-large-v3 1.33 [1.26, 1.40] — disjoint intervals.}
 \label{fig:public}
 \end{figure}
+
+\subsection{Why English fails: interference, not capacity}
+\label{sec:interference}
+
+The English result above is a negative one, and its cause is not the obvious one. We ran three
+successive interventions against the hypothesis that the adapter simply lacked capacity to learn
+audio-to-English conditioning: additional bilingual epochs; a $4\times$ wider adapter ($r{=}16 \to 64$)
+trained from scratch; and that same wider adapter warm-started by rank expansion (the trained
+$r{=}16$ weights occupy the first 16 ranks, the added $B$ columns are zero, so the model is
+function-identical to its predecessor at initialisation) with English examples weighted $2\times$.
+None moved English validation CER materially from $0.799$; the best of the three reached $0.8016$.
+
+A text-only probe explains why. We measure teacher-forced next-byte cross-entropy of the frozen core
+on gold transcripts with \emph{no audio at all} --- the most generous possible condition, since
+acoustic uncertainty is removed entirely. Two facts follow (Figure~\ref{fig:interference}).
+
+First, the frozen Sanskrit-pretrained core is \emph{better} at English (1.873 nats/byte) than at
+Sanskrit (2.675). The English deficit therefore cannot be attributed to a missing English prior in
+the core: byte-level English is highly predictable, and the core predicts it well.
+
+Second, loading the trained bilingual adapter \emph{raises} English cross-entropy to 3.841 --- worse
+than using no adapter at all --- while lowering Sanskrit to 1.507. The adapter does not fail to learn
+English; it destroys English competence the frozen core already possessed, and spends that capacity
+on Sanskrit. This is language interference in a shared low-rank adapter, and it accounts for the
+failure of all three capacity interventions: widening a bottleneck does not help when the two
+languages are competing for it and one of them --- the language with more real audio and every
+warm-start in its favour --- reliably wins.
+
+We note the confound: the adapter was trained with an audio prefix present, so text-only evaluation
+is off-distribution for it. Both languages are measured under that identical condition, however, and
+they move in \emph{opposite} directions, which is what the interference account predicts and what a
+generic off-distribution penalty does not.
+
+The practical implication is that a single shared adapter is the wrong structure for this model. The
+sphoṭa-principled core is not the limiting factor --- it handles both languages --- and the honest
+scope of our claim is accordingly a Sanskrit speech result, not a bilingual one.
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.72\textwidth]{../docs/figures/07_language_interference.png}
+\caption{Teacher-forced byte cross-entropy on gold text, no audio ($n{=}200$ per language). The frozen core handles English better than Sanskrit; the trained bilingual adapter inverts this, pushing English \emph{above} its own no-adapter baseline while improving Sanskrit. Lower is better.}
+\label{fig:interference}
+\end{figure}
+
 
 \subsection{The Corrected Benchmark: Specialist Achieves cer\_norm 0.0392, 4.8$\times$ Better}
 
