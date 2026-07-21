@@ -105,7 +105,9 @@ def eval_fair(core, proj, bias, rows, dev, slp1: bool, max_new: int = 448, limit
             "wer": round(float(np.mean(wns)), 4) if wns else None, "n": len(cns)}
 
 
-def main(epochs: int = 2, lr: float = 1e-4, r: int = 64, eos_weight: float = 3.0) -> int:
+def main(epochs: int = 2, lr: float = 2.5e-5, r: int = 64, eos_weight: float = 3.0) -> int:
+    # lr: r=64 has 4x the adapter params of r=16; lr 1e-4 (stable at r=16 across 6 epochs)
+    # drove TWO r=64 runs into EOS-collapse (val CER exactly 1.0) within one epoch — quarter it.
     t_start = time.time()
     core = Megatron1BCore().load()
     for p in core._model.parameters():
@@ -122,12 +124,16 @@ def main(epochs: int = 2, lr: float = 1e-4, r: int = 64, eos_weight: float = 3.0
     proj = SphotaProjector(d_enc=d_enc, d_model=core.d_model, downsample=4).to(dev)
 
     warm = next((p for p in (ROOT / "data/alm/bi1b_ckpt.pt", ROOT / "data/alm/sh1b_ckpt.pt", ROOT / "data/alm/xl1b_ckpt.pt") if p.exists()), None)
+    warm_bar = float("inf")
     if warm:
         blob = torch.load(warm, map_location=dev, weights_only=True)
         try:
             proj.load_state_dict(blob["projector"])
             n = load_megatron_lora(core._model, blob["lora"])
-            print(json.dumps({"warm_start": warm.name, "lora_tensors": n}), flush=True)
+            # inherit the warm ckpt's val macro as the save bar: never overwrite a better
+            # checkpoint with a worse epoch (two collapsed runs clobbered v3 before this)
+            warm_bar = float(blob.get("val_cer_norm_fair", float("inf")))
+            print(json.dumps({"warm_start": warm.name, "lora_tensors": n, "save_bar": warm_bar}), flush=True)
         except Exception as e:
             print(f"warm-start skipped: {e}", flush=True)
 
@@ -157,7 +163,7 @@ def main(epochs: int = 2, lr: float = 1e-4, r: int = 64, eos_weight: float = 3.0
         n = ids.shape[1]
         return ce(logits[:, -n:, :].reshape(-1, core.vocab_size), ids.reshape(-1))
 
-    hist, evals, best = [], [], float("inf")
+    hist, evals, best = [], [], warm_bar
     for ep in range(epochs):
         for g in opt.param_groups:  # per-epoch decay: 1e-4 -> xN(0.6) — epoch-1 collapse fix
             g["lr"] = lr * (0.6 ** ep)
