@@ -164,19 +164,32 @@ def main(epochs: int = 2, lr: float = 1e-4, r: int = 64, eos_weight: float = 3.0
         proj.train()
         order = list(range(len(train_rows)))
         random.Random(ep).shuffle(order)
-        run, t0 = 0.0, time.time()
+        run, t0, n_used, n_skipped = 0.0, time.time(), 0, 0
         for i, idx in enumerate(order):
             opt.zero_grad()
             L = loss_on(train_rows[idx])
+            # NaN guard: one non-finite step poisons Adam state forever (observed: healthy
+            # 1.98->1.87 for 12k steps, then a single NaN killed the whole run). Skip it.
+            if not torch.isfinite(L):
+                n_skipped += 1
+                if n_skipped <= 10 or n_skipped % 100 == 0:
+                    print(json.dumps({"skip_nonfinite_loss": n_skipped, "epoch": ep, "step": i + 1,
+                                      "row_id": train_rows[idx]["id"]}), flush=True)
+                continue
             L.backward()
-            torch.nn.utils.clip_grad_norm_(trainable, 1.0)
+            gn = torch.nn.utils.clip_grad_norm_(trainable, 1.0)
+            if not torch.isfinite(gn):
+                n_skipped += 1
+                print(json.dumps({"skip_nonfinite_grad": n_skipped, "epoch": ep, "step": i + 1}), flush=True)
+                continue
             opt.step()
+            n_used += 1
             run += float(L.item())
             if (i + 1) % 2000 == 0:
                 print(json.dumps({"epoch": ep, "step": i + 1, "of": len(order),
-                                  "loss": round(run / (i + 1), 4),
+                                  "loss": round(run / max(1, n_used), 4), "skipped": n_skipped,
                                   "min_elapsed": round((time.time() - t0) / 60, 1)}), flush=True)
-        hist.append(round(run / len(order), 4))
+        hist.append(round(run / max(1, n_used), 4))
         proj.eval()
         en = eval_fair(core, proj, bias, val_en, dev, slp1=False)
         sa = eval_fair(core, proj, bias, val_sa, dev, slp1=True)
