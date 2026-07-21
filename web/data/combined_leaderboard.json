@@ -1,0 +1,76 @@
+{
+  "note": "PRIMARY RANKING = wer_common_macro: macro-average WER over the public test sets every listed system ran, so the comparison is like-for-like. wer_all_datasets_macro covers every set a model ran and is NOT comparable across models with different coverage (ranking by it would put the only system that ran all three first for that reason alone). No imputation anywhere.",
+  "datasets": [
+    "librispeech",
+    "shrutilipi",
+    "vagdhenu"
+  ],
+  "common_datasets": [
+    "librispeech",
+    "shrutilipi"
+  ],
+  "leaderboard": [
+    {
+      "model": "Whisper-large-v3 (OpenAI)",
+      "wer_shrutilipi": 1.3254,
+      "wer_vagdhenu": null,
+      "wer_librispeech": 0.0299,
+      "datasets_covered": [
+        "librispeech",
+        "shrutilipi"
+      ],
+      "common_datasets": [
+        "librispeech",
+        "shrutilipi"
+      ],
+      "wer_common_macro": 0.6776
+    },
+    {
+      "model": "Sabda-ALM 1.13B+LoRA (ours)",
+      "wer_shrutilipi": 1.1024,
+      "wer_vagdhenu": 1.0071,
+      "wer_librispeech": 1.0996,
+      "datasets_covered": [
+        "librispeech",
+        "shrutilipi",
+        "vagdhenu"
+      ],
+      "wer_all_datasets_macro": 1.0697,
+      "common_datasets": [
+        "librispeech",
+        "shrutilipi"
+      ],
+      "wer_common_macro": 1.101
+    },
+    {
+      "model": "Qwen2-Audio-7B-Instruct (Alibaba)",
+      "wer_shrutilipi": 2.2338,
+      "wer_vagdhenu": null,
+      "wer_librispeech": 0.0747,
+      "datasets_covered": [
+        "librispeech",
+        "shrutilipi"
+      ],
+      "common_datasets": [
+        "librispeech",
+        "shrutilipi"
+      ],
+      "wer_common_macro": 1.1542
+    },
+    {
+      "model": "Voxtral-Mini-3B-2507 (Mistral)",
+      "wer_shrutilipi": 2.3121,
+      "wer_vagdhenu": null,
+      "wer_librispeech": 0.0295,
+      "datasets_covered": [
+        "librispeech",
+        "shrutilipi"
+      ],
+      "common_datasets": [
+        "librispeech",
+        "shrutilipi"
+      ],
+      "wer_common_macro": 1.1708
+    }
+  ]
+}

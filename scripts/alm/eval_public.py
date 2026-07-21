@@ -326,13 +326,26 @@ def combined():
         entry = {"model": m,
                  **{f"wer_{ds}": (v["wer_norm"] if v else None) for ds, v in per_ds.items()},
                  "datasets_covered": sorted(have)}
-        if len(have) == len(boards):  # full coverage → combined macro-avg
-            entry["wer_combined_macro"] = round(float(np.mean([v["wer_norm"] for v in have.values()])), 4)
+        if len(have) == len(boards):  # full coverage → all-dataset macro (ours only, so far)
+            entry["wer_all_datasets_macro"] = round(float(np.mean([v["wer_norm"] for v in have.values()])), 4)
         rows.append(entry)
-    rows.sort(key=lambda r: (r.get("wer_combined_macro") is None, r.get("wer_combined_macro", 9)))
-    res = {"note": "combined = macro-average WER over all scored public test sets; models without full "
-                   "coverage shown per-language only (no imputation)",
-           "datasets": sorted(boards), "leaderboard": rows}
+
+    # THE COMPARABLE NUMBER. Ranking by the all-dataset macro would put us first purely because we
+    # are the only system that ran vagdhenu — a coverage artifact, not a result. So rank on the
+    # datasets EVERY model has in common, where the comparison is actually like-for-like.
+    common = sorted(set.intersection(*[set(r["datasets_covered"]) for r in rows])) if rows else []
+    for r in rows:
+        vals = [r[f"wer_{ds}"] for ds in common if r.get(f"wer_{ds}") is not None]
+        r["common_datasets"] = common
+        r["wer_common_macro"] = round(float(np.mean(vals)), 4) if len(vals) == len(common) and common else None
+    rows.sort(key=lambda r: (r.get("wer_common_macro") is None, r.get("wer_common_macro", 9)))
+
+    res = {"note": "PRIMARY RANKING = wer_common_macro: macro-average WER over the public test sets "
+                   "every listed system ran, so the comparison is like-for-like. wer_all_datasets_macro "
+                   "covers every set a model ran and is NOT comparable across models with different "
+                   "coverage (ranking by it would put the only system that ran all three first for "
+                   "that reason alone). No imputation anywhere.",
+           "datasets": sorted(boards), "common_datasets": common, "leaderboard": rows}
     (ROOT / "data/benchmark/combined_leaderboard.json").write_text(json.dumps(res, indent=2, ensure_ascii=False))
     print(json.dumps(res, indent=2, ensure_ascii=False))
 
