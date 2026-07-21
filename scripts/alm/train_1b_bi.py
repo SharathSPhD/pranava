@@ -114,7 +114,10 @@ def eval_fair(core, proj, bias, rows, dev, slp1: bool, max_new: int = 448, limit
             "wer": round(float(np.mean(wns)), 4) if wns else None, "n": len(cns)}
 
 
-def main(epochs: int = 2, lr: float = 1e-4, r: int = 16, eos_weight: float = 3.0) -> int:
+def main(epochs: int = 2, lr: float = 2.5e-5, r: int = 16, eos_weight: float = 3.0) -> int:
+    # lr 2.5e-5: at lr 1e-4 the language-tagged run DIVERGED monotonically (loss 1.71->3.43->5.52)
+    # — the prompt shift destabilised the warm start, so the tagging hypothesis was never actually
+    # tested at stable optimisation. Re-run at the lr that held r=64 steady in v5.
     # r/lr: r=64 is FALSIFIED as a lever (v4 cold -> EOS-collapse; v5 warm+EN-2x -> best en_val
     # 0.8016 vs v3's 0.799). Back to the proven-stable r=16 @ lr 1e-4; the new variable is
     # language-tagged instructions (instr_for), not capacity.
