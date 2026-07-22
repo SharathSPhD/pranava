@@ -4,7 +4,8 @@
 set -u
 LOG(){ echo "[$(date -u +%H:%M:%S)] $*"; }
 IMG=prabhasa/nemo-gb10:26.02
-MOUNT="-v /home/sharaths/projects:/work -w /work -e PYTHONPATH=/work/pranava/src -e HF_HOME=/work/pranava/.hf_cache"
+# SanskritCore(arm=m2) imports prabhasa.infrastructure — add prabhasa-samskrutam/src to the path
+MOUNT="-v /home/sharaths/projects:/work -w /work -e PYTHONPATH=/work/pranava/src:/work/prabhasa-samskrutam/src -e HF_HOME=/work/pranava/.hf_cache"
 
 LOG "=== precompute feats: bi_instruct ==="
 docker run --rm --name pranava-feats-biinstruct --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 \
