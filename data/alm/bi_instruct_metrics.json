@@ -1,0 +1,200 @@
+{
+  "method": "bilingual instruction broadening (200M SanskritCore + LoRA r=8), warm instruct_ckpt",
+  "corpora": [
+    "manifest.jsonl",
+    "manifest.jsonl"
+  ],
+  "epochs": 4,
+  "baseline_before": {
+    "per_task_exact_match": {
+      "karana": 0.4444,
+      "karma": 0.8361,
+      "karta": 0.8372,
+      "kriya": 0.4535,
+      "language": 0.0,
+      "transcribe": 0.0253,
+      "translate_en": 0.0,
+      "translate_sa": 0.0
+    },
+    "per_task_mean_cer": {
+      "karana": 0.1156,
+      "karma": 0.0611,
+      "karta": 0.0613,
+      "kriya": 0.1812,
+      "language": 0.6251,
+      "transcribe": 0.6735,
+      "translate_en": 0.934,
+      "translate_sa": 1.0
+    },
+    "overall_exact_match": 0.1222,
+    "control_shuffled_instruction": 0.0,
+    "instruction_sensitivity_gap": 0.1222,
+    "n_val": 1424,
+    "n_val_per_task": {
+      "karana": 18,
+      "karma": 61,
+      "karta": 86,
+      "kriya": 86,
+      "language": 586,
+      "transcribe": 158,
+      "translate_en": 214,
+      "translate_sa": 215
+    }
+  },
+  "eval_history": [
+    {
+      "epoch": 0,
+      "train_loss": 0.6512,
+      "per_task_exact_match": {
+        "karana": 0.5,
+        "karma": 0.8033,
+        "karta": 0.7674,
+        "kriya": 0.4419,
+        "language": 0.0034,
+        "transcribe": 0.0,
+        "translate_en": 0.0,
+        "translate_sa": 0.0
+      },
+      "per_task_mean_cer": {
+        "karana": 0.1535,
+        "karma": 0.0904,
+        "karta": 0.0881,
+        "kriya": 0.1923,
+        "language": 0.788,
+        "transcribe": 0.6945,
+        "translate_en": 0.7492,
+        "translate_sa": 0.8137
+      },
+      "overall_exact_match": 0.1152,
+      "control_shuffled_instruction": 0.0007,
+      "instruction_sensitivity_gap": 0.1145,
+      "n_val": 1424,
+      "n_val_per_task": {
+        "karana": 18,
+        "karma": 61,
+        "karta": 86,
+        "kriya": 86,
+        "language": 586,
+        "transcribe": 158,
+        "translate_en": 214,
+        "translate_sa": 215
+      }
+    },
+    {
+      "epoch": 1,
+      "train_loss": 0.5756,
+      "per_task_exact_match": {
+        "karana": 0.3889,
+        "karma": 0.918,
+        "karta": 0.7907,
+        "kriya": 0.2907,
+        "language": 0.0205,
+        "transcribe": 0.0063,
+        "translate_en": 0.0,
+        "translate_sa": 0.0
+      },
+      "per_task_mean_cer": {
+        "karana": 0.2768,
+        "karma": 0.041,
+        "karta": 0.0679,
+        "kriya": 0.2659,
+        "language": 0.6616,
+        "transcribe": 0.6193,
+        "translate_en": 0.7567,
+        "translate_sa": 0.7548
+      },
+      "overall_exact_match": 0.1187,
+      "control_shuffled_instruction": 0.0,
+      "instruction_sensitivity_gap": 0.1187,
+      "n_val": 1424,
+      "n_val_per_task": {
+        "karana": 18,
+        "karma": 61,
+        "karta": 86,
+        "kriya": 86,
+        "language": 586,
+        "transcribe": 158,
+        "translate_en": 214,
+        "translate_sa": 215
+      }
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.5463,
+      "per_task_exact_match": {
+        "karana": 0.1111,
+        "karma": 0.9016,
+        "karta": 0.7791,
+        "kriya": 0.3837,
+        "language": 0.2679,
+        "transcribe": 0.0,
+        "translate_en": 0.0,
+        "translate_sa": 0.0
+      },
+      "per_task_mean_cer": {
+        "karana": 0.3337,
+        "karma": 0.0464,
+        "karta": 0.0867,
+        "kriya": 0.2342,
+        "language": 0.554,
+        "transcribe": 0.6972,
+        "translate_en": 0.7883,
+        "translate_sa": 0.7627
+      },
+      "overall_exact_match": 0.2205,
+      "control_shuffled_instruction": 0.0007,
+      "instruction_sensitivity_gap": 0.2198,
+      "n_val": 1424,
+      "n_val_per_task": {
+        "karana": 18,
+        "karma": 61,
+        "karta": 86,
+        "kriya": 86,
+        "language": 586,
+        "transcribe": 158,
+        "translate_en": 214,
+        "translate_sa": 215
+      }
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.5246,
+      "per_task_exact_match": {
+        "karana": 0.2222,
+        "karma": 0.7869,
+        "karta": 0.6047,
+        "kriya": 0.3488,
+        "language": 0.0034,
+        "transcribe": 0.0063,
+        "translate_en": 0.0,
+        "translate_sa": 0.0
+      },
+      "per_task_mean_cer": {
+        "karana": 0.3212,
+        "karma": 0.1057,
+        "karta": 0.2046,
+        "kriya": 0.3302,
+        "language": 0.812,
+        "transcribe": 0.714,
+        "translate_en": 0.7266,
+        "translate_sa": 0.831
+      },
+      "overall_exact_match": 0.0962,
+      "control_shuffled_instruction": 0.0007,
+      "instruction_sensitivity_gap": 0.0955,
+      "n_val": 1424,
+      "n_val_per_task": {
+        "karana": 18,
+        "karma": 61,
+        "karta": 86,
+        "kriya": 86,
+        "language": 586,
+        "transcribe": 158,
+        "translate_en": 214,
+        "translate_sa": 215
+      }
+    }
+  ],
+  "save_rule": "checkpoint saved only when overall val exact-match >= warm baseline (no regression)",
+  "honesty": "translate_en emits English — expected weakest per the interference finding; per-task numbers reported as measured, favourable or not"
+}
