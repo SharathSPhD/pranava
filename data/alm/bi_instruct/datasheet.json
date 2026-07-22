@@ -1,0 +1,11 @@
+{
+  "n_items": 5996,
+  "n_pairs_sampled": 1500,
+  "tasks": [
+    "language",
+    "translate_en",
+    "translate_sa"
+  ],
+  "provenance": "Itihāsa train split (rahular/itihasa; aligned Sa↔En) — TRAIN pairs only; TTS: indic-parler (Devanagari for sa = native phonetics; English voice for en)",
+  "note": "translation supervision is the aligned human translation — never machine output"
+}

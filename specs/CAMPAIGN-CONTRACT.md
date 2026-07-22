@@ -7,19 +7,33 @@ each clause is checked, iterated, and closed with evidence; failures are reporte
 ## Clause 1 — Bilingual public leaderboard (head-to-head on THEIR language)
 The hypothesis is NOT beating generalists on Sanskrit alone; it is one sphoṭa-principled model
 standing on English too (prabhasa is an English↔Sanskrit architecture).
-- [x] Śabda-ALM (bi1b) evaluated on **LibriSpeech test-clean** (public English, official split) and
-      **Shrutilipi-sa test** (+ Vagdhenu chant test) under the fair free-decode protocol.
-      *(2026-07-21, v3 ckpt: Shrutilipi WER 1.1024 [1.0439,1.1681] — BEATS Whisper-large-v3
-      1.3254 [1.2583,1.3957], CIs disjoint; Vagdhenu chant CER 0.31; LibriSpeech WER 1.0996 —
-      honestly NOT competitive: EN-shaped babble ⇒ weak audio→English conditioning. Final lever
-      running: v4 r=64 LoRA (4× capacity, cold) + warm projector + EN-2× weighting, 4 ep. If v4
-      fails materially on en_val, the EN-parity claim closes via documented infeasibility.)*
-- [ ] Baselines on the SAME tests, identical folded scoring, bootstrap CIs: Whisper-large-v3 ✓(sa),
-      Qwen2-Audio-7B (sa running, 800/1474), Voxtral-Mini-3B, Su-śrotā Conformer (queued, GB10
-      chain); then whisper/qwen/voxtral on LibriSpeech (en_baseline_chain armed).
-- [ ] Per-language + COMBINED macro leaderboards published (data/benchmark/*_leaderboard.json),
-      app + paper updated with the real numbers, favorable or not.
-- Closure evidence: leaderboard JSONs with n=full test sizes; gate PB (to be added) green.
+- [x] Śabda-ALM evaluated on **LibriSpeech test-clean** (n=2620) and **Shrutilipi-sa test** (n=1474)
+      + **Vagdhenu chant** under the fair free-decode protocol.
+- [x] Baselines on the SAME tests, identical folded scoring, bootstrap CIs: Whisper-large-v3,
+      Qwen2-Audio-7B, Voxtral-Mini-3B on both languages. Su-śrotā EXCLUDED with cause (its .nemo
+      needs a `multisoftmax` RNNTDecoder absent from our NeMo build — documented like MMS's missing
+      Sanskrit adapter). data/benchmark/{shrutilipi,librispeech,combined}_leaderboard.json.
+- [x] Per-language + COMBINED leaderboards published; app (web/data/) + paper (§3.1–3.2, PAPER.md
+      §3.0–3.0.1, both papers + figures) updated with the real numbers, favorable or not.
+- **CLAUSE 1 VERDICT (2026-07-22, honest closure):**
+  - **Sanskrit board — WON:** ours WER **1.1024** [1.04,1.17] > Whisper 1.3254 > Qwen 2.2338 >
+    Voxtral 2.3121. We top the real-broadcast-Sanskrit leaderboard (Whisper edges CER 0.640 vs 0.690;
+    stated). Chant CER 0.31.
+  - **English board — LOST (last of 4):** Voxtral 0.0295 < Whisper 0.0299 < Qwen 0.0747 << ours 1.0996.
+  - **Combined (macro over the sets every system ran) — 2nd, NOT 1st:** Whisper **0.6776**, ours
+    **1.1010**, Qwen 1.1542, Voxtral 1.1708. *We do not top the combined bilingual board — Whisper does.*
+  - **English parity: proven INFEASIBLE under the frozen-Sanskrit-core + shared-adapter architecture**,
+    with mechanism (not a shrug). FIVE training levers all pinned English val CER ≈0.80, never < v3:
+    v3 baseline 0.799; v4 r=64 cold → EOS-collapse; v5 r=64 warm+EN-2× → 0.8016; v6/v6b language-tagged
+    (lr 1e-4 diverged, lr 2.5e-5 stable) → 0.808. The text-only probe (core_prior_probe.json) shows the
+    frozen core is *better* at English (1.87 nats/byte) than Sanskrit (2.68), yet the trained adapter
+    *raises* English to 3.84 (below the no-adapter baseline) while improving Sanskrit — catastrophic
+    language interference in one shared adapter. Attenuation (scale sweep) destroys the audio path, so
+    there is no inference-time separation. A real fix needs per-language adapters — which abandons the
+    one-model unity that was the hypothesis. **The bilingual-parity claim is therefore reported as NOT
+    SUPPORTED; the Sanskrit claim stands, strong. This is honest closure (infeasibility with evidence).**
+- Closure evidence: leaderboard JSONs (n=full), core_prior_probe.json + lora_interference_probe.json,
+  five EFE ledger entries, paper §3.2 + Figure 7. **CLAUSE 1 CLOSED.**
 
 ## Clause 2 — Instruction-tuned bilingual CHAT (not simply Sanskrit ASR)
 - [ ] Broadened bilingual instruction tuning: transcribe (en+sa real audio), translate sa↔en

@@ -236,6 +236,29 @@
       <div id="shrutilipiBenchmark"></div>
     </section>
 
+    <!-- ENGLISH BENCHMARK — the honest negative -->
+    <section class="benchmark-section">
+      <h2>Public Benchmark: LibriSpeech (English) — where we lose</h2>
+      <p>The hypothesis was that one sphoṭa-principled model could stand on English too. It cannot: on the
+      standard English ASR benchmark Śabda-ALM is last of four, by a wide margin. We show it in full rather
+      than omit it. <strong>Why</strong> is the interesting part — see the interference finding in the paper
+      (§3.2): the frozen core models English fine on its own, but a single shared adapter cannot serve both
+      languages, and Sanskrit captures it.</p>
+      <div id="librispeechBenchmark"></div>
+    </section>
+
+    <!-- COMBINED — we do not top it -->
+    <section class="benchmark-section">
+      <h2>Combined Bilingual Leaderboard</h2>
+      <p>Macro-averaged word error over the public test sets <em>every</em> system ran, so the comparison is
+      like-for-like. Ranking by all sets a model happened to run would put us first purely because we are the
+      only system that also ran the chant set — a coverage artifact, not a result; we rank on the common set
+      instead. <strong>We place second, not first — Whisper-large-v3 tops the combined board</strong>, because
+      its near-perfect English outweighs its moderately-worse Sanskrit. Our win is specifically the
+      real-Sanskrit board above.</p>
+      <div id="combinedBenchmark"></div>
+    </section>
+
     <footer style="text-align: center; padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--line);">
       <p>Benchmarking methodology and full logs: <code>research/alm-vs-alm.md</code>, <code>research/alm_efe_ledger.jsonl</code> (audit trail). Per-model per-clip breakdowns in <code>data/benchmark/alm_vs_alm_records.json</code>.</p>
     </footer>
@@ -355,6 +378,54 @@
       </div>
     `;
   }
+
+  // English board + combined board — the honest bilingual picture (we win Sanskrit, lose English,
+  // place 2nd combined). fmt/ci mirror the Sanskrit renderer.
+  const fmt = (v) => (typeof v === "number" ? v.toFixed(4) : "—");
+  const ci = (a) => (Array.isArray(a) ? `[${a[0].toFixed(3)}, ${a[1].toFixed(3)}]` : "");
+
+  async function renderSimpleBoard(url, mountId, opts) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) return;
+      const data = await res.json();
+      const rows = data.leaderboard || [];
+      const isOurs = (m) => /ours|Sabda|Śabda/.test(m);
+      const table = document.createElement("table");
+      table.className = "leaderboard-table";
+      table.innerHTML = `<thead><tr><th>#</th><th>Model</th>${opts.cols}</tr></thead><tbody></tbody>`;
+      const tb = table.querySelector("tbody");
+      rows.forEach((e, i) => {
+        const tr = document.createElement("tr");
+        if (isOurs(e.model)) tr.style.fontWeight = "600";
+        tr.innerHTML = `<td class="rank">${i + 1}</td><td class="model-name">${e.model}</td>${opts.row(e, i)}`;
+        tb.appendChild(tr);
+      });
+      const mount = document.getElementById(mountId);
+      mount.appendChild(table);
+      if (opts.caption) {
+        const p = document.createElement("p");
+        p.style.cssText = "margin-top:1rem;font-size:0.85rem;color:var(--muted);line-height:1.6;";
+        p.innerHTML = opts.caption(data);
+        mount.appendChild(p);
+      }
+    } catch (e) { /* board stays empty rather than showing a fake number */ }
+  }
+
+  renderSimpleBoard("data/librispeech_leaderboard.json", "librispeechBenchmark", {
+    cols: `<th>WER (95% CI)</th><th>CER</th><th>n</th>`,
+    row: (e, i) => `<td class="metric ${i === 0 ? "metric-best" : ""}">${fmt(e.wer_norm)}
+        <span class="metric-note">${ci(e.wer_ci95)}</span></td><td>${fmt(e.cer_norm)}</td><td>${e.n ?? "—"}</td>`,
+    caption: (d) => `LibriSpeech test-clean (n=${d.n_test ?? "—"}). Lower is better; we are last, and the row is shown unedited.`,
+  });
+
+  renderSimpleBoard("data/combined_leaderboard.json", "combinedBenchmark", {
+    cols: `<th>Sanskrit WER</th><th>English WER</th><th>Common-set macro</th>`,
+    row: (e) => `<td>${fmt(e.wer_shrutilipi)}</td><td>${fmt(e.wer_librispeech)}</td>
+        <td class="metric ${/ours|Sabda|Śabda/.test(e.model) ? "" : ""}">${fmt(e.wer_common_macro)}</td>`,
+    caption: (d) => `Ranked by macro WER over the common sets: ${(d.common_datasets || []).join(" + ")}.
+        Whisper-large-v3 tops the combined board; Śabda-ALM is second.`,
+  });
 })();
 </script>
 </body>
