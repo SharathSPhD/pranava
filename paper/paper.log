@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.28)  21 JUL 2026 16:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.28)  22 JUL 2026 11:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -561,27 +561,27 @@ Package pdftex.def Info: ../docs/figures/06_public_shrutilipi.png  used on input
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2]
-<../docs/figures/07_language_interference.png, id=105, 570.933pt x 353.4003pt>
+[2] [3 <../docs/figures/06_public_shrutilipi.png>]
+<../docs/figures/07_language_interference.png, id=111, 570.933pt x 353.4003pt>
 File: ../docs/figures/07_language_interference.png Graphic file (type png)
 <use ../docs/figures/07_language_interference.png>
-Package pdftex.def Info: ../docs/figures/07_language_interference.png  used on input line 116.
+Package pdftex.def Info: ../docs/figures/07_language_interference.png  used on input line 124.
 (pdftex.def)             Requested size: 338.22418pt x 209.36176pt.
- [3 <../docs/figures/06_public_shrutilipi.png>]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 122.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\times' on input line 122.
+(hyperref)                removing `math shift' on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 122.
+(hyperref)                removing `\times' on input line 130.
 
 
-Overfull \hbox (5.36891pt too wide) in paragraph at lines 127--128
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 130.
+
+
+Overfull \hbox (5.36891pt too wide) in paragraph at lines 135--136
 []\OT1/cmr/bx/n/10.95 Bug 2: \OT1/cmr/m/n/10.95 Spe-cial-ist re-ceived gold-length or-a-cle (de-code $[]([]) + 4$ bytes, trun-cate to $[]([])$).
  []
 
@@ -591,7 +591,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <../docs/figures/01_training_trajectory.png, id=114, 570.933pt x 354.123pt>
 File: ../docs/figures/01_training_trajectory.png Graphic file (type png)
 <use ../docs/figures/01_training_trajectory.png>
-Package pdftex.def Info: ../docs/figures/01_training_trajectory.png  used on input line 147.
+Package pdftex.def Info: ../docs/figures/01_training_trajectory.png  used on input line 155.
 (pdftex.def)             Requested size: 328.82707pt x 203.96495pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -599,46 +599,46 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <../docs/figures/02_sanskrit_leaderboard.png, id=115, 708.246pt x 426.393pt>
 File: ../docs/figures/02_sanskrit_leaderboard.png Graphic file (type png)
 <use ../docs/figures/02_sanskrit_leaderboard.png>
-Package pdftex.def Info: ../docs/figures/02_sanskrit_leaderboard.png  used on input line 153.
+Package pdftex.def Info: ../docs/figures/02_sanskrit_leaderboard.png  used on input line 161.
 (pdftex.def)             Requested size: 399.29463pt x 240.3985pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../docs/figures/03_per_clip_distribution.png, id=116, 714.7503pt x 426.393pt>
+[4 <../docs/figures/07_language_interference.png>]
+<../docs/figures/03_per_clip_distribution.png, id=124, 714.7503pt x 426.393pt>
 File: ../docs/figures/03_per_clip_distribution.png Graphic file (type png)
 <use ../docs/figures/03_per_clip_distribution.png>
-Package pdftex.def Info: ../docs/figures/03_per_clip_distribution.png  used on input line 161.
+Package pdftex.def Info: ../docs/figures/03_per_clip_distribution.png  used on input line 169.
 (pdftex.def)             Requested size: 352.31625pt x 210.1836pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4 <../docs/figures/07_language_interference.png>]
 <../docs/figures/04_sphota_lens_emergence.png, id=125, 715.473pt x 426.393pt>
 File: ../docs/figures/04_sphota_lens_emergence.png Graphic file (type png)
 <use ../docs/figures/04_sphota_lens_emergence.png>
-Package pdftex.def Info: ../docs/figures/04_sphota_lens_emergence.png  used on input line 181.
+Package pdftex.def Info: ../docs/figures/04_sphota_lens_emergence.png  used on input line 189.
 (pdftex.def)             Requested size: 375.80544pt x 223.96378pt.
-
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 186.
+(hyperref)                removing `math shift' on input line 194.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\times' on input line 186.
+(hyperref)                removing `\times' on input line 194.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 186.
+(hyperref)                removing `math shift' on input line 194.
 
 [5 <../docs/figures/01_training_trajectory.png>]
 <../docs/figures/05_steering_uptake.png, id=132, 642.4803pt x 426.393pt>
 File: ../docs/figures/05_steering_uptake.png Graphic file (type png)
 <use ../docs/figures/05_steering_uptake.png>
-Package pdftex.def Info: ../docs/figures/05_steering_uptake.png  used on input line 195.
+Package pdftex.def Info: ../docs/figures/05_steering_uptake.png  used on input line 203.
 (pdftex.def)             Requested size: 375.80544pt x 249.40962pt.
 
 
@@ -646,111 +646,111 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 216.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Delta' on input line 208.
+(hyperref)                removing `\Delta' on input line 216.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 216.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 216.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 216.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--219
+Underfull \hbox (badness 10000) in paragraph at lines 227--227
 []\OT1/cmr/m/n/10 Spho[]a re-al-iz-able via
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--219
+Underfull \hbox (badness 10000) in paragraph at lines 227--227
 []\OT1/cmr/m/n/10 THESIS-
  []
 
 
-Overfull \hbox (6.6184pt too wide) in paragraph at lines 219--220
+Overfull \hbox (6.6184pt too wide) in paragraph at lines 227--228
 []\OT1/cmr/m/n/10 Architectural| 
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 220--220
+Underfull \hbox (badness 1221) in paragraph at lines 228--228
 []\OT1/cmr/m/n/10 cer[]norm 0.0392 on fair
  []
 
 
-Underfull \hbox (badness 6220) in paragraph at lines 222--222
+Underfull \hbox (badness 6220) in paragraph at lines 230--230
 []\OT1/cmr/m/n/10 Bug 1: Qwen kwarg
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
 []\OT1/cmr/m/n/10 alm-vs-alm.md
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 223--223
+Underfull \hbox (badness 10000) in paragraph at lines 231--231
 []\OT1/cmr/m/n/10 alm-vs-alm.md
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--224
+Underfull \hbox (badness 10000) in paragraph at lines 232--232
 []\OT1/cmr/m/n/10 alm-vs-alm.md
  []
 
 
-Overfull \hbox (24.8294pt too wide) in paragraph at lines 225--225
+Overfull \hbox (24.8294pt too wide) in paragraph at lines 233--233
 []\OT1/cmr/m/n/10 emergence[]report.json| 
  []
 
 
-Underfull \hbox (badness 6842) in paragraph at lines 226--226
+Underfull \hbox (badness 6842) in paragraph at lines 234--234
 []\OT1/cmr/m/n/10 Workspace band lay-ers
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--226
+Underfull \hbox (badness 10000) in paragraph at lines 234--234
 []\OT1/cmr/m/n/10 P3-sphota-
  []
 
 
-Overfull \hbox (1.32938pt too wide) in paragraph at lines 227--227
+Overfull \hbox (1.32938pt too wide) in paragraph at lines 235--235
 []\OT1/cmr/m/n/10 p3su[]results.json| 
  []
 
 
-Overfull \hbox (1.32938pt too wide) in paragraph at lines 228--228
+Overfull \hbox (1.32938pt too wide) in paragraph at lines 236--236
 []\OT1/cmr/m/n/10 p3su[]results.json| 
  []
 
 
-Underfull \hbox (badness 7907) in paragraph at lines 229--229
+Underfull \hbox (badness 7907) in paragraph at lines 237--237
 []\OT1/cmr/m/n/10 Ny^^Vaya fire-rate 0.9469,
  []
 
 
-Overfull \hbox (2.38495pt too wide) in paragraph at lines 229--229
+Overfull \hbox (2.38495pt too wide) in paragraph at lines 237--237
 []\OT1/cmr/m/n/10 p3ng[]results.json| 
  []
 
 
-Overfull \hbox (15.4518pt too wide) in paragraph at lines 230--231
+Overfull \hbox (15.4518pt too wide) in paragraph at lines 238--239
 []\OT1/cmr/m/n/10 Methodological| 
  []
 
 [6 <../docs/figures/02_sanskrit_leaderboard.png>] [7 <../docs/figures/03_per_clip_distribution.png>]
-Overfull \hbox (28.93025pt too wide) in paragraph at lines 260--261
+Overfull \hbox (28.93025pt too wide) in paragraph at lines 268--269
 \OT1/cmr/bx/n/10.95 Pre-registration. \OT1/cmr/m/n/10.95 All hy-pothe-ses locked be-fore bat-tery run: \OT1/cmtt/m/n/10.95 research/prereg/P3-battery-prereg.md
  []
 
 [8 <../docs/figures/04_sphota_lens_emergence.png>]
-Overfull \hbox (4.43942pt too wide) in paragraph at lines 280--281
+Overfull \hbox (4.43942pt too wide) in paragraph at lines 288--289
 \OT1/cmr/m/n/10.95 workspace, steer-ing up-take 5.11$\OMS/cmsy/m/n/10.95 ^^B$\OT1/cmr/m/n/10.95 ); (3) a fair bench-mark prov-ing spe-cial-ist com-pet-i-tive-ness (cer[]norm
  []
 
@@ -771,7 +771,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  84i,12n,94p,1604b,520s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/sharaths/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </home/sharaths/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/sharaths/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on paper.pdf (10 pages, 418837 bytes).
+Output written on paper.pdf (10 pages, 419450 bytes).
 PDF statistics:
  224 PDF objects out of 1000 (max. 8388607)
  175 compressed objects within 2 object streams

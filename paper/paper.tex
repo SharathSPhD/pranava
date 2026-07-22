@@ -110,7 +110,15 @@ generic off-distribution penalty does not.
 
 The practical implication is that a single shared adapter is the wrong structure for this model. The
 sphoṭa-principled core is not the limiting factor --- it handles both languages --- and the honest
-scope of our claim is accordingly a Sanskrit speech result, not a bilingual one.
+scope of our claim is accordingly a Sanskrit speech result, not a bilingual one. A second, independent
+observation corroborates this at a different scale and task family: broadening our 200M instruction
+model (which already does Sanskrit transcription and four kāraka-role tasks) with a bilingual
+translation and language-identification corpus regressed every existing task (kartā exact-match
+$0.84 \to 0.61$, karaṇa $0.44 \to 0.22$) while translation never became usable (character error
+$\approx 0.75$ in both directions). The same phenomenon --- one shared low-rank adapter cannot take
+on a second language's tasks without taxing the first --- appears whether the model is a 1.13B ASR
+system or a 200M instruction-follower. We therefore do not ship the broadened model; the honest scope
+is a Sanskrit system.
 
 \begin{figure}[h]\centering
 \includegraphics[width=0.72\textwidth]{../docs/figures/07_language_interference.png}

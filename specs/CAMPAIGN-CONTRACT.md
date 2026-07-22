@@ -36,10 +36,18 @@ standing on English too (prabhasa is an English↔Sanskrit architecture).
   five EFE ledger entries, paper §3.2 + Figure 7. **CLAUSE 1 CLOSED.**
 
 ## Clause 2 — Instruction-tuned bilingual CHAT (not simply Sanskrit ASR)
-- [ ] Broadened bilingual instruction tuning: transcribe (en+sa real audio), translate sa↔en
-      (from parallel corpora, TTS-voiced), language-ID, kāraka roles (sa) — one instruct model.
-      *(build_bi_instruct.py written — Itihāsa parallel corpus, TTS-voiced; auto-runs after the
-      GB10 baseline chain frees the GPU; then one bi-instruct training round on the 5090.)*
+- [x] Broadened bilingual instruction tuning ATTEMPTED and honestly RULED OUT at this scale.
+      Corpus: aligned Itihāsa (5,996 items translate sa↔en + language-ID; the CSV files are actually
+      line-per-sentence, a bug that had mis-paired translations until fixed). Trainer warm-started the
+      live 200M instruct_ckpt.pt on both corpora, save-bar protected. **Result (data/alm/
+      bi_instruct_metrics.json): does NOT deploy.** Every kāraka task regressed (kartā 0.837→0.605,
+      karaṇa 0.444→0.222, kriyā 0.454→0.349); language-ID spiked to 0.27 at epoch 2 then collapsed;
+      translation never usable (CER ~0.75 both directions). This is the SAME shared-adapter interference
+      the 1.13B ASR probe found (core_prior_probe.json), now corroborated at a 2nd scale (200M) and a
+      2nd task-family (instruction/translation): one adapter cannot absorb the bilingual tasks without
+      taxing what it already did well. **Honest closure: the live chat is a transcribe + kāraka
+      instruction model; bilingual translation is documented-infeasible at this scale, not shipped as a
+      half-working feature.** Live model stays the better 6-task instruct_ckpt.pt.
 - [x] Serve: /chat endpoint — audio turn in EITHER language → instructed answer → spoken reply;
       per-turn latency reported honestly. Single-turn v1 documented as such (multi-turn = roadmap).
       *(2026-07-20: live on pranava-zeta, turn-verified end-to-end; X-Chat-Mode header labels

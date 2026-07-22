@@ -163,6 +163,14 @@ runaway decoding) and Sanskrit worsens too (0.52 → 0.80), because the projecto
 with a full-strength adapter and depends on it. The adapter is load-bearing for the audio path in
 both languages; there is no inference-time knob that separates them.
 
+**Second-scale corroboration.** The same phenomenon appears in a completely different model and task
+family. Broadening our 200M instruction model — which already does Sanskrit transcription plus four
+kāraka-role tasks — with a bilingual translation + language-ID corpus regressed *every* existing task
+(kartā exact-match 0.84→0.61, karaṇa 0.44→0.22, kriyā 0.45→0.35) while translation never became usable
+(CER ≈0.75 both directions) and a transient language-ID gain collapsed. One shared low-rank adapter
+cannot absorb a second language's tasks without taxing the first, whether the model is a 1.13B ASR
+system or a 200M instruction-follower. (`data/alm/bi_instruct_metrics.json`.)
+
 **Honest scope.** A true remedy would require per-language adapters trained jointly with their own
 projector — which abandons the one-model-two-languages claim rather than supporting it. We therefore
 report the unified bilingual hypothesis as **not supported by these experiments**, and scope the
