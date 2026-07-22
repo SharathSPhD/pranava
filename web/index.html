@@ -197,6 +197,11 @@
     align-items: center;
   }
 
+  .chip-exp {
+    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em;
+    opacity: 0.65; margin-left: 0.35em; padding: 0.05em 0.3em;
+    border: 1px solid currentColor; border-radius: 0.4em; vertical-align: middle;
+  }
   .instruction-chip {
     padding: 0.5rem 1rem;
     background: transparent;
@@ -708,7 +713,7 @@
     <div class="card hidden" id="live">
       <div class="capability-banner" id="capabilityBanner">
         <div id="capabilityText">
-          <strong>Checking which model is live…</strong> transcription + kāraka analysis are supported today; translation instructions are experimental until the bilingual instruct round lands.
+          <strong>Checking which model is live…</strong> transcription, kāraka (case-role) analysis, and language-ID are the working capabilities. Translation was tested and is <em>not</em> reliable at this model scale — a single shared adapter cannot take on a second language without degrading the rest (see the paper's interference finding), so we don't present it as working.
         </div>
         <button class="capability-dismiss" id="dismissBanner" aria-label="Dismiss">✕</button>
       </div>
@@ -742,11 +747,11 @@
             <span class="instruction-chip-deva">भाषा</span>
             <span>Language</span>
           </button>
-          <button class="instruction-chip" data-instruction="translate_en">
-            <span>Translate→EN</span>
+          <button class="instruction-chip" data-instruction="translate_en" title="Experimental — translation is not reliable at this model scale (see the interference finding). The model will attempt it, but do not trust the output.">
+            <span>Translate→EN</span><span class="chip-exp">exp</span>
           </button>
-          <button class="instruction-chip" data-instruction="translate_sa">
-            <span>Translate→SA</span>
+          <button class="instruction-chip" data-instruction="translate_sa" title="Experimental — translation is not reliable at this model scale (see the interference finding). The model will attempt it, but do not trust the output.">
+            <span>Translate→SA</span><span class="chip-exp">exp</span>
           </button>
           <button class="instruction-toggle" id="advancedToggle" aria-label="Toggle custom instruction input">+ Advanced</button>
         </div>
